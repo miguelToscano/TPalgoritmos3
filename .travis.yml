@@ -8,3 +8,6 @@ notifications:
       - constanza.viere@gmail.com
     on_success: always # default: change
     on_failure: always # defaults: always
+
+jdk:
+  - openjdk8
