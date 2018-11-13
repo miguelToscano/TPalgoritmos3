@@ -1,8 +1,9 @@
-package unidad;
+package fiuba.algo3.ejemplo1;
 
 import junit.framework.Assert;
 import org.junit.Test;
 
+@SuppressWarnings("deprecation")
 public class FooTest {
 
 	@Test
@@ -22,3 +23,4 @@ public class FooTest {
 	*/
 
 }
+
