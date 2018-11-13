@@ -7,6 +7,7 @@ notifications:
       - miguetoscano288@gmail.com
       - constanza.viere@gmail.com
     on_success: always # default: change
+
     on_failure: always # defaults: always
 
 jdk:
