@@ -1,11 +1,7 @@
-Ejemplo                                                                                                                                                                 
-==========
+# Pendientes
 
-[![Build Status](https://nicopaez.ci.cloudbees.com/view/Algo3/job/proyecto-base-aglo3/badge/icon)](https://nicopaez.ci.cloudbees.com/view/Algo3/job/proyecto-base-aglo3/)
+Reorganizar los paquetes, ya que se encuentra todo en el mismo fiuba.algo3.ejemplo1
 
-Este proyecto es un simple ejemplo que muestra un proyecto base en Java para la material Algo3.
+Respecto a las pruebas de las unidades, faltaria poder agregar las que verifiquen las acciones del aldeano. Ya que éstas implican que el modelo esté casi terminado.
 
-## Definición de pruebas
-### Nombrar correctamente los archivos de pruebas
-
-Al momento de definir un nuevo archivo que contendrá pruebas, ya sean unitarias o de integración, el patrón del nuevo archivo **deberá** ser `*Test.java`; además de ubicarse en `<directorio del proyecto>/test/`. A modo de ejemplo: `<mi proyecto>/test/<paquete>/MiNuevoArchivoTest.java`.
+Las pruebas del mapa son temporales, ya que todavia no sabemos que implementacion del mismo vamos a hacer. Deberiamos consultarlo con nuestro corrector.
