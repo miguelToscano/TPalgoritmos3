@@ -18,11 +18,5 @@ public class MapaTest {
 		Assert.assertEquals(5, unMapa.getColumnas());
 	}
 	
-	@Test
-	public void unEspadachinAtaca() {
-		
-		Espadachin unEspadachin = new Espadachin();
-		
-		unEspadachin.atacar();
-	}
+	
 }

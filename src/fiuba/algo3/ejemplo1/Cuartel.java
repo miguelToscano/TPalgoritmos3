@@ -29,11 +29,11 @@ public class Cuartel {
 		this.arqueros.add(unArquero);
 	}
 	
-	public boolean creoEspadachin() {
+	public boolean tieneEspadachin() {
 		return this.espadachines.size() > 0;
 	}
 	
-	public boolean creoArquero() {
+	public boolean tieneArquero() {
 		return this.arqueros.size() > 0;
 	}
 }

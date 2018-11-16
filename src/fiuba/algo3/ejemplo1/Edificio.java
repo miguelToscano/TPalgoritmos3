@@ -12,8 +12,7 @@ public class Edificio {
 	
 	protected int velocidadReparacion;
 	
-	Edificio() {
-		
+	Edificio() {		
 		this.vida = 0;
 		this.costo = 0;
 		this.turnosConstruccion = 0;

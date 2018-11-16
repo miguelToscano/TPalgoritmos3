@@ -7,7 +7,7 @@ public class Espadachin extends Unidad {
 	private int danioEdificios;
 	
 	Espadachin() {
-		super(0, 0, 100);
+		super(0, 0);
 		this.danioUnidades = 25;
 		this.danioEdificios = 15;
 	}

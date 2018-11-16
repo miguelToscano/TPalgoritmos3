@@ -3,11 +3,15 @@ package fiuba.algo3.ejemplo1;
 public class Aldeano extends Unidad {
 
 	Aldeano() {
-		super(0,0,0);
+		super(0,0);
+	}
+	
+	Aldeano(int fila, int columna) {
+		super(fila, columna);
 	}
 	
 	Aldeano(int fila, int columna, int vida) {
-		super(fila, columna, vida);
+		super(fila, columna);
 		// TODO Auto-generated constructor stub
 	}
 

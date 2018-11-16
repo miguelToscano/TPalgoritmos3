@@ -16,7 +16,7 @@ public class EdificioTest {
 		
 		unaPlazaCentral.crearAldeano();
 		
-		Assert.assertEquals(true, unaPlazaCentral.creoAldeano());
+		Assert.assertEquals(true, unaPlazaCentral.tieneAldeano());
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -27,7 +27,7 @@ public class EdificioTest {
 		
 		unCuartel.crearEspadachin();
 		
-		Assert.assertEquals(true, unCuartel.creoEspadachin());
+		Assert.assertEquals(true, unCuartel.tieneEspadachin());
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -38,6 +38,16 @@ public class EdificioTest {
 		
 		unCuartel.crearArquero();
 		
-		Assert.assertEquals(true, unCuartel.creoArquero());
+		Assert.assertEquals(true, unCuartel.tieneArquero());
+	}
+	
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testCastilloCreaArmaDeAsedio() {
+		Castillo unCastillo = new Castillo();
+		
+		unCastillo.crearArmaDeAsedio();
+		
+		Assert.assertEquals(true, unCastillo.tieneArmaDeAsedio());
 	}
 }

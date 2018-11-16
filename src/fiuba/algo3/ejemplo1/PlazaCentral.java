@@ -25,7 +25,7 @@ public class PlazaCentral extends Edificio {
 	}
 	
 	// Funcion solo para que pase las pruebas
-	public boolean creoAldeano() {
+	public boolean tieneAldeano() {
 		return this.aldeanos.size() > 0;
 	}
 }
