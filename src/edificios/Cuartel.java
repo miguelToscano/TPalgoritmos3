@@ -3,38 +3,42 @@ package edificios;
 import java.util.ArrayList;
 import unidades.*;
 
-public class Cuartel {
+public class Cuartel extends Edificio {
 
-	private ArrayList<Espadachin> espadachines;
+	private ArrayList<Militar> ejercito;
 	
-	private ArrayList<Arquero> arqueros;
+	//private ArrayList<Arquero> arqueros;
 	
-	Cuartel() {
+	Cuartel(int [][]posiciones) {
 		
-		super();
-		espadachines = new ArrayList<Espadachin>();
-		arqueros = new ArrayList<Arquero>();
+		this.turnosConstruccion = 3;
+		this.velocidadReparacion = 50;
+		this.costo = 50;
+		this.vida = 250;
+		this.espacioOcupado = posiciones;
+		ejercito = new ArrayList<Militar>();
+		//arqueros = new ArrayList<Arquero>();
 	}
 	
-	public void crearEspadachin() {
+	public void crearEspadachin(int[] posicion) {
 		
-		Espadachin unEspadachin = new Espadachin();
+		Espadachin unEspadachin = new Espadachin(posicion);
 		
-		this.espadachines.add(unEspadachin);
+		this.ejercito.add(unEspadachin);
 	}
 	
-	public void crearArquero() {
+	public void crearArquero(int[] posicion) {
 		
-		Arquero unArquero = new Arquero();
+		Arquero unArquero = new Arquero(posicion);
 		
-		this.arqueros.add(unArquero);
+		this.ejercito.add(unArquero);
 	}
 	
 	public boolean tieneEspadachin() {
-		return this.espadachines.size() > 0;
+		return this.ejercito.size() > 0;
 	}
 	
 	public boolean tieneArquero() {
-		return this.arqueros.size() > 0;
+		return this.ejercito.size() > 0;
 	}
 }

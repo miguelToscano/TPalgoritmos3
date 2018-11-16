@@ -1,15 +1,20 @@
 package unidades;
 
-public class Espadachin extends Unidad {
-
-	private int danioUnidades;
+public class Espadachin extends Militar {
 	
-	private int danioEdificios;
+	// override costo
 	
-	public Espadachin() {
-		super(0, 0);
-		this.danioUnidades = 25;
-		this.danioEdificios = 15;
+	protected int costo = 50;
+	
+	
+	public Espadachin (int[] posicion) {
+		
+		this.espacioOcupado = posicion;
+		this.danioAtaque= 25; // el -10 de bonus  en clase ataque
+		this.radioAtaque = 1;
+		this.vida = 100;
+		
+		cantidad += 1;
 	}
 	
 	public void atacar() {

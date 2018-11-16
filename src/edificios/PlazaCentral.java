@@ -9,18 +9,16 @@ public class PlazaCentral extends Edificio {
 	
 	PlazaCentral() {
 		
-		super();
 		this.aldeanos = new ArrayList<Aldeano>();
 		this.vida = 450;
 		this.costo = 100;
 		this.turnosConstruccion = 3;
-		this.tamanio = 4;
 		this.velocidadReparacion = 25;
 	}
 	
-	public void crearAldeano() {
+	public void crearAldeano(int[] posicion) {
 		
-		Aldeano unAldeano = new Aldeano();
+		Aldeano unAldeano = new Aldeano(posicion);
 		
 		this.aldeanos.add(unAldeano);
 	}

@@ -1,29 +1,39 @@
 package unidades;
+import edificios.Edificio;
 
 public class Aldeano extends Unidad {
 
-	public Aldeano() {
-		super(0,0);
-	}
 	
-	Aldeano(int fila, int columna) {
-		super(fila, columna);
-	}
+	protected int costo = 25;
+	private boolean trabajando = false; // reparando/ construyendo, no recolecta oro
 	
-	Aldeano(int fila, int columna, int vida) {
-		super(fila, columna);
-		// TODO Auto-generated constructor stub
+	public Aldeano(int [] posicion) {
+		
+	this.espacioOcupado = posicion;
+	
 	}
 
 	public void construirEdificio() {
 		System.out.println("Construye un edificio");
 	}
 	
-	public void repararEdificio() {
-		System.out.println("Repara un edificio");
+	public void repararEdificio(Edificio unEdificio) {
+		
+		unEdificio.reparar();
+		trabajando = true;
+		
+		
 	}
 	
-	public void recolectarOro() {
-		System.out.println("Recolecta oro");
+	//public Edificio construirEdificio ()
+	
+	
+	public int sumarOro () {
+		if	(trabajando) {
+			return 0;
+		}
+		else {
+			return 20;
+		}
 	}
 }

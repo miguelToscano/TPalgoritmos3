@@ -1,21 +1,32 @@
-package mapa;
+//package mapa;
+//import edificios.*;
+//import unidades.*;
+//
+//
+//public class Mapa {
+//
+//	Entidad[][] grilla;
+//	
+//	Mapa(int filas, int columnas) {
+//		
+//		grilla = new Entidad [filas][columnas];
+//		
+//	}
+//	
+//	public Entidad enPosicion (int[] posicion) {
+//		
+//		int fila = posicion[0];
+//		int columna = posicion[1];
+//		
+//		return grilla [fila][columna];
+//	}
+//	
+//	public void agregarEdificio (int[][] posicion) {
+//	
+//	}
+//	
+//	public void agregarUnidad (int[] posicion, Unidad unaUnidad) {
+//		this.enPosicion(posicion) = unaUnidad;
+//	}
+//}
 
-public class Mapa {
-
-	private int filas;
-	
-	private int columnas;
-	
-	Mapa(int filas, int columnas) {
-		this.filas = filas;
-		this.columnas = columnas;
-	}
-	
-	public int getFilas() {
-		return this.filas;
-	}
-	
-	public int getColumnas() {
-		return this.columnas;
-	}
-}
