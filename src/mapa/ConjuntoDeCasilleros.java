@@ -15,7 +15,6 @@ public abstract class ConjuntoDeCasilleros
     }
 
 
-
     public int obtenerTamanio()
     {
         return this.tamanio;
@@ -23,7 +22,17 @@ public abstract class ConjuntoDeCasilleros
 
     public boolean contiene(int numero)
     {
-        return true;
+        boolean contiene = false;
+
+        for(int i=0;i<this.tamanio;i++)
+        {
+            if (this.obtenerElemento(i) == numero)
+            {
+                contiene = true;
+            }
+        }
+        return contiene;
+
     }
 
     public Casillero obtenerCasillero(int posicion)

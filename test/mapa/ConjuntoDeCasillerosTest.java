@@ -1,47 +1,46 @@
 package mapa;
 
-import java.util.ArrayList;
+import org.junit.Assert;
+import org.junit.Test;
 
-public abstract class ConjuntoDeCasilleros
-{
-    private ArrayList<Casillero> lista = new ArrayList<Casillero>();
-    protected int tamanio;
+import static org.junit.Assert.*;
 
+public class ConjuntoDeCasillerosTest {
 
-    public void referenciarCasillero(Casillero casillero)
+    @Test
+    public void seCreaConTamanioElegido()
     {
-        this.lista.add(casillero);
-        return;
+        Fila fila = new Fila(5);
+        Assert.assertEquals(5,fila.obtenerTamanio());
     }
 
-
-    public int obtenerTamanio()
+    @Test
+    public void contieneDevuelveTrueSiElElementoEstaEnLaFila()
     {
-        return this.tamanio;
+        Mapa mapa = new Mapa();
+        mapa.cambiarContenidoDeCasillero(4,0,3);
+        Fila fila = mapa.obtenerFilas().get(4);
+        Assert.assertTrue(fila.contiene(3));
     }
 
-    public boolean contiene(int numero)
+    @Test
+    public void primerColumnaReferenciaMismosCasillerosQueMapa()
     {
-        boolean contiene = false;
-
-        for(int i=0;i<this.tamanio;i++)
+        Mapa mapa = new Mapa();
+        Columna columna = mapa.obtenerColumnas().get(0);
+        for(int i=0;i<columna.obtenerTamanio();i++)
         {
-            if (this.obtenerElemento(i) == numero)
-            {
-                contiene = true;
-            }
+            Assert.assertEquals(mapa.obtenerCasillero(i,0),columna.obtenerCasillero(i));
         }
-        return contiene;
 
     }
 
-    public Casillero obtenerCasillero(int posicion)
+    @Test
+    public void elementoEnFilaYColumnaCoincideConElementoEnMapa()
     {
-        return lista.get(posicion);
+        Mapa mapa = new Mapa();
+        mapa.cambiarContenidoDeCasillero(4,0,3);
+        Fila fila = mapa.obtenerFilas().get(4);
+        Assert.assertEquals(fila.obtenerElemento(0),3);
     }
-    public int obtenerElemento(int posicion)
-    {
-        return this.obtenerCasillero(posicion).obtenerElemento();
-    }
-
 }
