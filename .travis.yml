@@ -4,8 +4,6 @@ install: ant
 notifications:
   email:
     recipients:
-      - miguetoscano288@gmail.com
-      - constanza.viere@gmail.com
       - caropistillo@gmail.com
     on_success: always # default: change
 
