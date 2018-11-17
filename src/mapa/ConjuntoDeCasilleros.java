@@ -2,7 +2,7 @@ package mapa;
 
 import java.util.ArrayList;
 
-public class ConjuntoDeCasilleros
+public abstract class ConjuntoDeCasilleros
 {
     private ArrayList<Casillero> lista = new ArrayList<Casillero>();
     protected int tamanio;
