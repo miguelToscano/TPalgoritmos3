@@ -1,4 +1,4 @@
-package Mapa;
+package mapa;
 
 import java.util.ArrayList;
 
