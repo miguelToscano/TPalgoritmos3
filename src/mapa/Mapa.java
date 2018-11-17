@@ -130,11 +130,30 @@ public class Mapa
         return this.cajas;
     }
 
+    public int obtenerTamanioFilas()
+    {
+        return this.tamanioFilas;
+    }
+
+    public int obtenerTamanioColumnas()
+    {
+        return this.tamanioColumnas;
+    }
+
+    public int obtenerTamanioCajas()
+    {
+        return this.tamanioCajas;
+    }
+
 
     public void cambiarContenidoDeCasillero(int fila, int columna,int contenido)
     {
         this.obtenerCasillero(fila,columna).cambiarContenido(contenido);
     }
 
+    public int obtenerElemento(int fila,int columna)
+    {
+        return this.obtenerCasillero(fila,columna).obtenerElemento();
+    }
 
 }
