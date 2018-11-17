@@ -1,4 +1,4 @@
-package Mapa;
+package mapa;
 
 public class Casillero
 {
