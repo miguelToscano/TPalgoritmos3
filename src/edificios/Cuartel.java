@@ -1,4 +1,4 @@
-package edificios;
+/*package edificios;
 
 import java.util.ArrayList;
 import unidades.*;
@@ -42,3 +42,4 @@ public class Cuartel extends Edificio {
 		return this.ejercito.size() > 0;
 	}
 }
+*/

@@ -1,6 +1,7 @@
 package mapa;
 
 import java.util.ArrayList;
+import unidades.Entidad;
 
 public class Mapa
 {
@@ -146,12 +147,12 @@ public class Mapa
     }
 
 
-    public void cambiarContenidoDeCasillero(int fila, int columna,int contenido)
+    public void cambiarContenidoDeCasillero(int fila, int columna,Entidad contenido)
     {
         this.obtenerCasillero(fila,columna).cambiarContenido(contenido);
     }
 
-    public int obtenerElemento(int fila,int columna)
+    public Entidad obtenerElemento(int fila,int columna)
     {
         return this.obtenerCasillero(fila,columna).obtenerElemento();
     }

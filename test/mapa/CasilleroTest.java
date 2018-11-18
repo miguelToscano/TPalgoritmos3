@@ -1,5 +1,6 @@
 package mapa;
 
+import unidades.Aldeano;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,23 +11,28 @@ public class CasilleroTest
 {
 
     @Test
-    public void casilleroSeCreaVacio() {
+    public void casilleroSeCreaVacio()
+    {
         Casillero casilleroVacio = new Casillero();
         Assert.assertTrue(casilleroVacio.estaLibre());
     }
 
     @Test
-    public void casilleroSeCreaConContenido() {
-        Casillero casilleroLleno = new Casillero(5);
-        Assert.assertEquals(5, casilleroLleno.obtenerElemento());
+    public void casilleroSeCreaConContenido()
+    {
+        Aldeano aldeano = new Aldeano();
+        Casillero casilleroLleno = new Casillero(aldeano);
+        Assert.assertEquals(aldeano, casilleroLleno.obtenerElemento());
     }
 
     @Test
     public void seCambiaContenido()
     {
-        Casillero casillero = new Casillero(4);
-        casillero.cambiarContenido(6);
-        Assert.assertEquals(6,casillero.obtenerElemento());
+        Aldeano unAldeano = new Aldeano();
+        Aldeano otroAldeano = new Aldeano();
+        Casillero casillero = new Casillero(unAldeano);
+        casillero.cambiarContenido(otroAldeano);
+        Assert.assertEquals(otroAldeano,casillero.obtenerElemento());
     }
 
 }

@@ -1,31 +1,42 @@
 package unidades;
 
-public abstract class Entidad {
+public abstract class Entidad
+{
+    protected int vida;
+	
+	protected int costo;
+	
+	protected boolean construible;
+	
+	protected int turnosConstruccion;
+	
+	//protected int[][] espacioOcupado; // Matriz de espacios ocupados.
 
-	protected int vida = 0;
-	
-	protected int costo = 0;
-	
-	protected boolean construible = true;
-	
-	 protected int turnosConstruccion = 3;
-	
-	 protected int[][] espacioOcupado; // Matriz de espacios ocupados.
-	
+    public Entidad()
+    {
+        this.vida=0;
+        this.costo=0;
+        this.construible=true;
+        this.turnosConstruccion = 3;
+    }
 	 
-	 public int getVida() {
+    public int getVida()
+    {
 		return this.vida;
 	}
 	
-	 public int getCosto() {
+	public int getCosto()
+    {
 		return this.costo;
 	}
 	
-	 public int getTurnosConstruccion() {
+	public int getTurnosConstruccion()
+    {
 		return this.turnosConstruccion;
 	}
  
-	public boolean estaVivo () {
+	public boolean estaVivo ()
+    {
 		return (this.vida > 0 );
 	}
 	

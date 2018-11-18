@@ -1,35 +1,35 @@
 package mapa;
 
+import unidades.Entidad;
+
 public class Casillero
 {
-    private int contenido;
+    private Entidad contenido;
+    private boolean estaLibre;
 
     //Constructor con casillero vacio
     public Casillero ()
     {
-        contenido = 0;
+        this.estaLibre=true;
+
     }
-    public Casillero (int numero)
+    public Casillero (Entidad entidad)
     {
-        contenido = numero;
+        contenido = entidad;
     }
 
-    public Casillero (int filaCasillero,int columnaCasillero)
-    {
 
-    }
-
-    public int obtenerElemento()
+    public Entidad obtenerElemento()
     {
         return this.contenido;
     }
 
     public boolean estaLibre ()
     {
-        return contenido == 0;
+        return this.estaLibre;
     }
 
-    public void cambiarContenido(int contenido)
+    public void cambiarContenido(Entidad contenido)
     {
         this.contenido = contenido;
     }

@@ -1,4 +1,4 @@
-package edificios;
+/*package edificios;
 
 import java.util.ArrayList;
 
@@ -36,3 +36,4 @@ public class Castillo extends Edificio {
 		
 	}
 }
+*/
