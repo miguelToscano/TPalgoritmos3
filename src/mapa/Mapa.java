@@ -2,6 +2,7 @@ package mapa;
 
 import java.util.ArrayList;
 import unidades.Entidad;
+import edificios.Castillo;
 
 public class Mapa
 {
@@ -9,10 +10,13 @@ public class Mapa
     private int tamanioColumnas;
     private int tamanioCajas;
     private int tamanioCastillo;
+
     private ArrayList<ArrayList<Casillero>> matriz = new ArrayList<ArrayList<Casillero>>();
     private ArrayList<Fila> filas = new ArrayList<Fila>();
     private ArrayList<Columna> columnas = new ArrayList<Columna>();
     private ArrayList<Caja> cajas = new ArrayList<Caja>();
+    private Castillo castilloSuperior;
+    private Castillo castilloInferior;
 
     //Crea los mxn casilleros (m=tamanioFilas, n=tamanioColumnas)
     private void crearCasilleros()
@@ -97,6 +101,21 @@ public class Mapa
                 finFilas++;
             }
         }
+    }
+
+    public void crearCastilloSuperior()
+    {
+        Caja caja = new Caja(this.tamanioCastillo);
+        for(int i=0;i<4;i++)
+        {
+            for(int j=0;j<4;j++)
+            {
+                caja.referenciarCasillero(this.obtenerFila(i).get(j));
+            }
+
+        }
+        castilloSuperior.ubicar(caja);
+
     }
 
     public Mapa()
