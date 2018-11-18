@@ -9,7 +9,8 @@ public abstract class Edificio extends Entidad {
 
 	protected int velocidadReparacion;
 	
-	public void reparar() {
+	public void reparar()
+	{
 		vida += velocidadReparacion;
 	}
 

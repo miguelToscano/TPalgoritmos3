@@ -1,10 +1,11 @@
-/*package edificios;
+package edificios;
 
 import java.util.ArrayList;
 
 import unidades.ArmaDeAsedio;
 
-public class Castillo extends Edificio {
+public class Castillo extends Edificio
+{
 	
 	ArrayList<ArmaDeAsedio> armasDeAsedio;
 	
@@ -18,7 +19,8 @@ public class Castillo extends Edificio {
 		armasDeAsedio = new ArrayList<ArmaDeAsedio>();
 	}
 	
-	public void crearArmaDeAsedio(int[] posicion) {
+	public void crearArmaDeAsedio(int[] posicion)
+    {
 		//check posicion esta en espacioOcupado
 		ArmaDeAsedio unArmaDeAsedio = new ArmaDeAsedio(posicion);
 		
@@ -29,11 +31,11 @@ public class Castillo extends Edificio {
 		return !this.armasDeAsedio.isEmpty();
 	}
 	
-	public void atacarCircundantes() {
+	public void atacarCircundantes()
+    {
 		
 		int radioAtaque = 3;
 		// atacar
 		
 	}
 }
-*/
