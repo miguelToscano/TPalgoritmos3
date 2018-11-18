@@ -9,10 +9,19 @@ import static org.junit.Assert.*;
 
 public class MapaTest {
 
+    private Mapa mapa;
+
+
+    public MapaTest ()
+    {
+        mapa = new Mapa();
+
+    }
+
     @Test
     public void seCreaConCasillerosVacios()
     {
-        Mapa mapa = new Mapa();
+
         for(int i=0;i<mapa.obtenerTamanioFilas();i++)
         {
             for(int j=0;j<mapa.obtenerTamanioColumnas();j++)
@@ -25,7 +34,6 @@ public class MapaTest {
     @Test
     public void seCambiaContenidoDePrimerCasillero()
     {
-        Mapa mapa = new Mapa();
         Aldeano aldeano = new Aldeano(0,0,mapa);
         Assert.assertEquals(aldeano,mapa.obtenerElemento(0,0));
 
@@ -34,7 +42,6 @@ public class MapaTest {
     @Test
     public void obtenerSegundaFilaDevuelveLaSegundaFilaDelMapa()
     {
-        Mapa mapa = new Mapa();
         Fila segundaFila = mapa.obtenerFilas().get(1);
 
         for(int i=0;i<mapa.obtenerTamanioColumnas();i++)
@@ -46,7 +53,6 @@ public class MapaTest {
     @Test
     public void obtenerPrimerColumnaDevuelveLaPrimerColumnaDelMapa()
     {
-        Mapa mapa = new Mapa();
         Columna primerColumna = mapa.obtenerColumnas().get(0);
 
         for(int i=0;i<mapa.obtenerTamanioFilas();i++)
@@ -58,7 +64,6 @@ public class MapaTest {
     @Test
     public void obtenerPrimerCajaDevuelveLaPrimerCajaDelMapa()
     {
-        Mapa mapa = new Mapa();
         Caja primerCaja = mapa.obtenerCajas().get(0);
         int k=0;
 
@@ -70,5 +75,15 @@ public class MapaTest {
                 k++;
             }
         }
+    }
+
+    @Test
+    public void obtenerCajaAPartirDePrimerCasilleroDevuelvePrimerCaja()
+    {
+        Caja primerCaja = mapa.obtenerCajas().get(0);
+        Casillero primerCasillero = mapa.obtenerCasillero(0,0);
+        Caja cajaRetornada = mapa.asignarCajaACasillero(primerCasillero);
+
+        Assert.assertEquals(cajaRetornada,primerCaja);
     }
 }

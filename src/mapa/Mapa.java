@@ -8,6 +8,7 @@ public class Mapa
     private int tamanioFilas;
     private int tamanioColumnas;
     private int tamanioCajas;
+    private int tamanioCastillo;
     private ArrayList<ArrayList<Casillero>> matriz = new ArrayList<ArrayList<Casillero>>();
     private ArrayList<Fila> filas = new ArrayList<Fila>();
     private ArrayList<Columna> columnas = new ArrayList<Columna>();
@@ -103,6 +104,7 @@ public class Mapa
         this.tamanioColumnas = 5;
         this.tamanioFilas = 5;
         this.tamanioCajas = 4;
+        this.tamanioCastillo = 16;
 
         this.crearCasilleros();
         this.crearFilas();
@@ -114,7 +116,8 @@ public class Mapa
     {
         this.tamanioColumnas = filas ;
         this.tamanioFilas = columnas ;
-        this.tamanioCajas = filas-1 ;
+        this.tamanioCajas = 4 ;
+        this.tamanioCastillo = 16;
 
         this.crearCasilleros();
         this.crearFilas();
@@ -178,4 +181,18 @@ public class Mapa
     }
     //puedoColocar
 
+    public Caja asignarCajaACasillero(Casillero casillero)
+    {
+        Caja caja = new Caja(4);
+
+        for(int i=0;i<this.obtenerTamanioCajas();i++)
+        {
+            if (this.obtenerCajas().get(i).obtenerPrimerCasillero() == casillero)
+            {
+                caja = this.obtenerCajas().get(i);
+            }
+        }
+        //cambiar lanzando excepcion si el casillero no existe
+        return caja;
+    }
 }

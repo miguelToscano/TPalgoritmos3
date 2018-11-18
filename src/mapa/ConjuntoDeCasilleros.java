@@ -59,4 +59,9 @@ public abstract class ConjuntoDeCasilleros extends Mapeable
         return estaLibre;
     }
 
+    public Casillero obtenerPrimerCasillero()
+    {
+        return this.lista.get(0);
+    }
+
 }
