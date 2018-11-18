@@ -30,6 +30,7 @@ public abstract class ConjuntoDeCasilleros extends Mapeable
             if (this.obtenerElemento(i) == entidad)
             {
                 contiene = true;
+                break;
             }
         }
         return contiene;

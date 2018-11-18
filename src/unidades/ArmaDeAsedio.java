@@ -1,27 +1,38 @@
 package unidades;
 
+import mapa.Casillero;
+import mapa.Mapa;
+
 public class ArmaDeAsedio extends Militar {
 
 	private boolean montada;
 
-	public ArmaDeAsedio()
-	{
+	
+	
+	public ArmaDeAsedio (int fila, int columna, Mapa mapa) {
+		
+		super (fila, columna, mapa);
+		
 		this.montada = false;
 		this.vida = 150;
 		this.radioAtaque = 5;
 		this.danioAEdificios = 75;
 
-	}
+		
 	
-	/*public ArmaDeAsedio (int[] posicion) {
-			
-			this.espacioOcupado = posicion;
-			this.danioAtaque= 0; // el +75 de bonus  en clase ataque
-			
-			cantidad += 1;
-		}
-		*/
+}
 
+	public ArmaDeAsedio (Casillero casillero) {
+	
+		super (casillero);
+		
+		this.montada = false;
+		this.vida = 150;
+		this.radioAtaque = 5;
+		this.danioAEdificios = 75;
+
+}
+	
 	public void atacar()
     {
         System.out.println("Ataca a una unidad o edificio");

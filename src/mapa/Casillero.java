@@ -10,7 +10,7 @@ public class Casillero extends Mapeable
     //Constructor con casillero vacio
     public Casillero ()
     {
-        this.estaLibre=true;
+        this.estaLibre = true;
 
     }
 

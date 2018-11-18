@@ -110,6 +110,18 @@ public class Mapa
         this.crearCajas();
 
     }
+    public Mapa (int filas, int columnas)
+    {
+        this.tamanioColumnas = filas ;
+        this.tamanioFilas = columnas ;
+        this.tamanioCajas = filas-1 ;
+
+        this.crearCasilleros();
+        this.crearFilas();
+        this.crearColumnas();
+        this.crearCajas();
+
+    }
 
     private int cantidadDeCajas()
     {
