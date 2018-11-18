@@ -15,16 +15,17 @@ public class AldeanoTest {
 	private int columnaDet;
 	private Casillero celda;
 	
-	public AldeanoTest () {
-		
+	public AldeanoTest ()
+	{
 		mapa = new Mapa();
 		filaDet = 3;
 		columnaDet= 3;
-		
-		}
-	
+	}
+
+
 	@Test
-	public void seCreoAldeanoConCoordenadas() {
+	public void seCreoAldeanoConCoordenadas()
+	{
 		
 		Aldeano aldeano = new Aldeano(filaDet,columnaDet,mapa);
         Assert.assertEquals(aldeano, mapa.obtenerElemento(filaDet, columnaDet) );
@@ -32,7 +33,8 @@ public class AldeanoTest {
 	}
 	
 	@Test
-	public void seCreoAldeanoConCasillero() {
+	public void seCreoAldeanoConCasillero()
+	{
 		
 		celda = mapa.obtenerCasillero(filaDet, columnaDet);
 		Aldeano aldeano = new Aldeano(celda);
@@ -41,7 +43,8 @@ public class AldeanoTest {
 	}
 	
 	@Test
-	public void seMueveCorrectamente1() {
+	public void seMueveCorrectamente1()
+	{
 		
 		// y+1
 		celda = mapa.obtenerCasillero(filaDet + 1, columnaDet);
@@ -51,9 +54,11 @@ public class AldeanoTest {
         Assert.assertEquals(aldeano, mapa.obtenerElemento(filaDet+1 , columnaDet) );
         Assert.assertNotSame(aldeano, mapa.obtenerElemento(filaDet, columnaDet));
         
-}
+	}
+
 	@Test
-	public void seMueveCorrectamente2() {
+	public void seMueveCorrectamente2()
+	{
 		
 		// y-1
 		celda = mapa.obtenerCasillero(filaDet - 1, columnaDet);
@@ -63,9 +68,11 @@ public class AldeanoTest {
         Assert.assertEquals(aldeano, mapa.obtenerElemento(filaDet-1 , columnaDet) );
         Assert.assertNotSame(aldeano, mapa.obtenerElemento(filaDet, columnaDet));
         
-}
+	}
+
 	@Test
-	public void seMueveCorrectamente3() {
+	public void seMueveCorrectamente3()
+	{
 		
 		// x+1
 		celda = mapa.obtenerCasillero(filaDet , columnaDet+1);
@@ -75,10 +82,11 @@ public class AldeanoTest {
         Assert.assertEquals(aldeano, mapa.obtenerElemento(filaDet , columnaDet+1) );
         Assert.assertNotSame(aldeano, mapa.obtenerElemento(filaDet, columnaDet));
         
-}
+	}
 	
 	@Test
-	public void seMueveCorrectamente4() {
+	public void seMueveCorrectamente4()
+	{
 		
 		// x-1
 		celda = mapa.obtenerCasillero(filaDet , columnaDet-1);
@@ -88,10 +96,11 @@ public class AldeanoTest {
         Assert.assertEquals(aldeano, mapa.obtenerElemento(filaDet , columnaDet-1) );
         Assert.assertNotSame(aldeano, mapa.obtenerElemento(filaDet, columnaDet));
         
-}
+	}
 	
 	@Test
-	public void seMueveCorrectamente5() {
+	public void seMueveCorrectamente5()
+	{
 		
 		// x-1 y-1
 		celda = mapa.obtenerCasillero(filaDet - 1, columnaDet -1 );
@@ -101,9 +110,10 @@ public class AldeanoTest {
         Assert.assertEquals(aldeano, mapa.obtenerElemento(filaDet-1 , columnaDet-1) );
         Assert.assertNotSame(aldeano, mapa.obtenerElemento(filaDet, columnaDet));
         
-}
+	}
 	@Test
-	public void seMueveCorrectamente6() {
+	public void seMueveCorrectamente6()
+	{
 		
 		// x+1 y+1
 		celda = mapa.obtenerCasillero(filaDet + 1, columnaDet+1);
@@ -113,9 +123,10 @@ public class AldeanoTest {
         Assert.assertEquals(aldeano, mapa.obtenerElemento(filaDet+1 , columnaDet+1) );
         Assert.assertNotSame(aldeano, mapa.obtenerElemento(filaDet, columnaDet));
         
-}
+	}
 	@Test
-	public void seMueveCorrectamente7() {
+	public void seMueveCorrectamente7()
+	{
 		
 		// x+1 y-1
 		celda = mapa.obtenerCasillero(filaDet - 1, columnaDet+1);
@@ -125,9 +136,10 @@ public class AldeanoTest {
         Assert.assertEquals(aldeano, mapa.obtenerElemento(filaDet-1 , columnaDet+1) );
         Assert.assertNotSame(aldeano, mapa.obtenerElemento(filaDet, columnaDet));
         
-}
+	}
 	@Test
-	public void seMueveCorrectamente8() {
+	public void seMueveCorrectamente8()
+	{
 		
 		// x-1 y+1
 		celda = mapa.obtenerCasillero(filaDet + 1, columnaDet -1 );
@@ -137,18 +149,7 @@ public class AldeanoTest {
         Assert.assertEquals(aldeano, mapa.obtenerElemento(filaDet+1 , columnaDet-1 ) );
         Assert.assertNotSame(aldeano, mapa.obtenerElemento(filaDet, columnaDet));
         
-}
-	
-	
-	
-	
-	
-	
-	
-		
-	
-	
-
+	}
 
 
 }

@@ -21,8 +21,7 @@ public class FilaTest
     public void estaLibreDevuelveFalseParaFilaOcupadaDelMapa()
     {
         Mapa mapa = new Mapa();
-        Aldeano aldeano = new Aldeano();
-        mapa.cambiarContenidoDeCasillero(0,1,aldeano);
+        Aldeano aldeano = new Aldeano(0,1,mapa);
         Fila fila = mapa.obtenerFilas().get(0);
         Assert.assertFalse(fila.estaLibre());
 

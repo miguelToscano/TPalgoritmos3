@@ -11,8 +11,9 @@ public abstract class Unidad extends Entidad
 
 	//Constructores
 	
-	public Unidad() {
-	
+	public Unidad()
+    {
+	    this.turnosConstruccion = 1;
 	}
 	
 	//Con coordenadas 
@@ -24,8 +25,7 @@ public abstract class Unidad extends Entidad
         
      }
 	
-	//con casillero 
-	
+	//con casillero
 	public Unidad (Casillero casillero)   
     {
         this.turnosConstruccion = 1;

@@ -1,17 +1,19 @@
 package unidades;
 import edificios.Edificio;
-import unidades.Unidad;
 import mapa.*;
 
 public class Aldeano extends Unidad
 {
 	private boolean trabajando; // reparando/ construyendo, no recolecta oro
 
-	//Constructores
-	public Aldeano() {
-		
-	}
-	
+    //Sin parametros
+    public Aldeano()
+    {
+        this.costo = 25;
+        this.trabajando = true;
+        this.vida  =50;
+    }
+
 	//Coordenadas
 	public Aldeano(int fila, int columna, Mapa mapa)
 	{
@@ -19,6 +21,7 @@ public class Aldeano extends Unidad
 		this.costo = 25;
 		this.trabajando = false;
 		this.vida = 50;
+		mapa.cambiarContenidoDeCasillero(fila,columna,this);
 	}
 	
 	//Casillero
@@ -28,6 +31,7 @@ public class Aldeano extends Unidad
 		this.costo = 25;
 		this.trabajando = false;
 		this.vida = 50;
+		casillero.cambiarContenido(this);
 	
 	}
 	

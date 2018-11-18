@@ -26,8 +26,7 @@ public class MapaTest {
     public void seCambiaContenidoDePrimerCasillero()
     {
         Mapa mapa = new Mapa();
-        Aldeano aldeano = new Aldeano();
-        mapa.cambiarContenidoDeCasillero(0,0,aldeano);
+        Aldeano aldeano = new Aldeano(0,0,mapa);
         Assert.assertEquals(aldeano,mapa.obtenerElemento(0,0));
 
     }

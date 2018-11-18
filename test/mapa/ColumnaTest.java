@@ -21,8 +21,7 @@ public class ColumnaTest
     public void estaLibreDevuelveFalseParaColumnaOcupadaDelMapa()
     {
         Mapa mapa = new Mapa();
-        Aldeano aldeano = new Aldeano();
-        mapa.cambiarContenidoDeCasillero(0,1,aldeano);
+        Aldeano aldeano = new Aldeano(0,1,mapa);
         Columna columna = mapa.obtenerColumnas().get(1);
         Assert.assertFalse(columna.estaLibre());
 

@@ -1,4 +1,4 @@
-package edificios;
+/*package edificios;
 
 import java.util.ArrayList;
 import unidades.*;
@@ -34,3 +34,4 @@ public class PlazaCentral extends Edificio {
         return;
     }
 }
+*/
