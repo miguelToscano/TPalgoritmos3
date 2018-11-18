@@ -1,15 +1,18 @@
 package unidades;
 import edificios.Edificio;
+import edificios.PlazaCentral;
 
-public class Aldeano extends Unidad
-{
-	private boolean trabajando; // reparando/ construyendo, no recolecta oro
+public class Aldeano extends Unidad {
 
+	
+	protected int costo = 25;
+	public boolean trabajando = false; // reparando/ construyendo, no recolecta oro
+	private int turnosConstruyendo = 0;
+	public Edificio edificioEnConstruccion = null;
+	
 	public Aldeano()
 	{
-		this.costo = 25;
-		this.trabajando = false;
-		this.vida = 50;
+		
 	}
 
 	//public Aldeano(int [] posicion)
@@ -19,29 +22,44 @@ public class Aldeano extends Unidad
 	
 	//}
 
-	public void construirEdificio()
-    {
-		System.out.println("Construye un edificio");
+	public void construirPlaza() {
+		
+		turnosConstruyendo++;
+		trabajando=true;
+		
+		
+		if (turnosConstruyendo==1) {
+			PlazaCentral plaza = new PlazaCentral();
+			edificioEnConstruccion=plaza;
+			
+		} else if(turnosConstruyendo==edificioEnConstruccion.turnosConstruccion){
+			
+			terminarConstruccion();
+		}
+	
 	}
 	
-	public void repararEdificio(Edificio unEdificio)
-    {
+	private void terminarConstruccion() {
+
+		//edificioEnConstruccion.jugador=this.jugador;
+		edificioEnConstruccion=null;
+		trabajando=false;
+		turnosConstruyendo=0;
+	}
+	
+	public void repararEdificio(Edificio unEdificio) {
+		
 		unEdificio.reparar();
 		trabajando = true;
 		
+		
 	}
 	
-	//public Edificio construirEdificio ()
-	
-	
-	public int recolectarOro ()
-    {
-		if	(trabajando)
-		{
+	public int sumarOro () {
+		if	(trabajando) {
 			return 0;
 		}
-		else
-		    {
+		else {
 			return 20;
 		}
 	}
