@@ -39,6 +39,7 @@ public abstract class Unidad extends Entidad
 		this.casilleroOcupado.vaciar();
 		//check distancias, movimiento posible
 		this.casilleroOcupado = casillero;
+		casillero.cambiarContenido(this);
 		
 	}
 	
