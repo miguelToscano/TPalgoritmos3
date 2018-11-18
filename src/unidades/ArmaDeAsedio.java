@@ -5,7 +5,7 @@ public class ArmaDeAsedio extends Militar {
 	protected int costo = 200;
 	private boolean montada =  true;
 	
-	public ArmaDeAsedio (int[] posicion) {
+	/*public ArmaDeAsedio (int[] posicion) {
 			
 			this.espacioOcupado = posicion;
 			this.danioAtaque= 0; // el +75 de bonus  en clase ataque
@@ -14,7 +14,7 @@ public class ArmaDeAsedio extends Militar {
 			
 			cantidad += 1;
 		}
-		
+		*/
 		public void atacar() {
 			System.out.println("Ataca a una unidad o edificio");
 		}

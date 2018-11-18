@@ -2,7 +2,7 @@ package mapa;
 
 import unidades.Entidad;
 
-public class Casillero
+public class Casillero extends Mapeable
 {
     private Entidad contenido;
     private boolean estaLibre;

@@ -1,15 +1,15 @@
 package unidades;
 import edificios.Edificio;
 
-public class Aldeano extends Unidad {
-
-	
-	protected int costo = 25;
-	private boolean trabajando = false; // reparando/ construyendo, no recolecta oro
+public class Aldeano extends Unidad
+{
+	private boolean trabajando; // reparando/ construyendo, no recolecta oro
 
 	public Aldeano()
 	{
-
+		this.costo = 25;
+		this.trabajando = false;
+		this.vida = 50;
 	}
 
 	//public Aldeano(int [] posicion)
@@ -19,22 +19,23 @@ public class Aldeano extends Unidad {
 	
 	//}
 
-	public void construirEdificio() {
+	public void construirEdificio()
+    {
 		System.out.println("Construye un edificio");
 	}
 	
-	public void repararEdificio(Edificio unEdificio) {
-		
+	public void repararEdificio(Edificio unEdificio)
+    {
 		unEdificio.reparar();
 		trabajando = true;
-		
 		
 	}
 	
 	//public Edificio construirEdificio ()
 	
 	
-	public int sumarOro () {
+	public int sumarOro ()
+    {
 		if	(trabajando) {
 			return 0;
 		}

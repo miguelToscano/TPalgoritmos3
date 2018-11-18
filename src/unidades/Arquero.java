@@ -6,7 +6,7 @@ public class Arquero extends Militar {
 	
 	protected int costo = 75;
 	
-	public Arquero (int[] posicion) {
+	/*public Arquero (int[] posicion) {
 			
 			this.espacioOcupado = posicion;
 			this.danioAtaque= 15; // el -5 de bonus  en clase ataque
@@ -15,8 +15,9 @@ public class Arquero extends Militar {
 			
 			cantidad += 1;
 		}
-		
+		*/
 		public void atacar() {
 			System.out.println("Ataca a una unidad o edificio");
 		}
+
 }

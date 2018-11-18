@@ -1,15 +1,17 @@
 package unidades;
 
-public abstract class Unidad extends Entidad {
-	
-	
-	protected int turnosConstruccion = 1;
+import mapa.Mapeable;
+import mapa.Casillero;
 
-	protected int[] espacioOcupado; // fila columna
-	
+public abstract class Unidad extends Entidad
+{
+    protected Casillero casilleroOcupado;
 	public static int cantidad = 0;
 
-	
+	public Unidad()
+    {
+        this.turnosConstruccion = 1;
+    }
 	
 //	Unidad(int [] posicion) {
 //		this.espacioOcupado = posicion;
@@ -22,7 +24,7 @@ public abstract class Unidad extends Entidad {
 //		this.costo = costo;
 //	}
 	
-	public void mover(int[] deltaVec) {
+	/*public void mover(int[] deltaVec) {
 		// check delta vec <=1
 		this.espacioOcupado[0] += deltaVec[0];
 		
@@ -33,5 +35,10 @@ public abstract class Unidad extends Entidad {
 	
 	public void recibirDanio(int danio) {
 		this.vida = this.vida - danio;
-	}
+	}*/
+
+	public void ubicar(Mapeable casillero)
+    {
+        this.casilleroOcupado = (Casillero)casillero;
+    }
 }

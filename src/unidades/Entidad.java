@@ -1,23 +1,21 @@
 package unidades;
 
+import mapa.Mapeable;
+import mapa.Casillero;
+
 public abstract class Entidad
 {
     protected int vida;
-	
 	protected int costo;
-	
 	protected boolean construible;
-	
 	protected int turnosConstruccion;
-	
-	//protected int[][] espacioOcupado; // Matriz de espacios ocupados.
 
     public Entidad()
     {
-        this.vida=0;
-        this.costo=0;
+        //this.vida=0;
+        //this.costo=0;
         this.construible=true;
-        this.turnosConstruccion = 3;
+        //this.turnosConstruccion = 3;
     }
 	 
     public int getVida()
@@ -40,6 +38,5 @@ public abstract class Entidad
 		return (this.vida > 0 );
 	}
 	
-	
-	 
+	public abstract void ubicar(Mapeable mapeable);
  }

@@ -2,6 +2,7 @@ package edificios;
 
 import java.util.ArrayList;
 import unidades.*;
+import mapa.Mapeable;
 
 public class PlazaCentral extends Edificio {
 
@@ -27,4 +28,9 @@ public class PlazaCentral extends Edificio {
 	public boolean tieneAldeano() {
 		return this.aldeanos.size() > 0;
 	}
+
+	public void ubicar(Mapeable mapa)
+    {
+        return;
+    }
 }

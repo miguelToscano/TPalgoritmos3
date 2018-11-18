@@ -149,12 +149,17 @@ public class Mapa
 
     public void cambiarContenidoDeCasillero(int fila, int columna,Entidad contenido)
     {
-        this.obtenerCasillero(fila,columna).cambiarContenido(contenido);
+        Casillero casillero = this.obtenerCasillero(fila,columna);
+        casillero.cambiarContenido(contenido);
+        contenido.ubicar(casillero);
+
     }
 
     public Entidad obtenerElemento(int fila,int columna)
     {
         return this.obtenerCasillero(fila,columna).obtenerElemento();
     }
+
+    //puedoColocar
 
 }

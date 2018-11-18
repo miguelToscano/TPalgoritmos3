@@ -7,7 +7,7 @@ public class Espadachin extends Militar {
 	protected int costo = 50;
 	
 	
-	public Espadachin (int[] posicion) {
+	/*public Espadachin (int[] posicion) {
 		
 		this.espacioOcupado = posicion;
 		this.danioAtaque= 25; // el -10 de bonus  en clase ataque
@@ -16,10 +16,10 @@ public class Espadachin extends Militar {
 		
 		cantidad += 1;
 	}
-	
+	*/
 	public void atacar() {
 		System.out.println("Ataca a una unidad o edificio");
 	}
-	
+
 	
 }
