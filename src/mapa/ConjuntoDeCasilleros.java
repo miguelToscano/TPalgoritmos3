@@ -1,6 +1,7 @@
 package mapa;
 
 import java.util.ArrayList;
+import unidades.Entidad;
 
 public abstract class ConjuntoDeCasilleros
 {
@@ -20,13 +21,13 @@ public abstract class ConjuntoDeCasilleros
         return this.tamanio;
     }
 
-    public boolean contiene(int numero)
+    public boolean contiene(Entidad entidad)
     {
         boolean contiene = false;
 
         for(int i=0;i<this.tamanio;i++)
         {
-            if (this.obtenerElemento(i) == numero)
+            if (this.obtenerElemento(i) == entidad)
             {
                 contiene = true;
             }
@@ -39,7 +40,7 @@ public abstract class ConjuntoDeCasilleros
     {
         return lista.get(posicion);
     }
-    public int obtenerElemento(int posicion)
+    public Entidad obtenerElemento(int posicion)
     {
         return this.obtenerCasillero(posicion).obtenerElemento();
     }

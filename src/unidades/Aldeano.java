@@ -6,12 +6,18 @@ public class Aldeano extends Unidad {
 	
 	protected int costo = 25;
 	private boolean trabajando = false; // reparando/ construyendo, no recolecta oro
-	
-	public Aldeano(int [] posicion) {
-		
-	this.espacioOcupado = posicion;
-	
+
+	public Aldeano()
+	{
+
 	}
+
+	//public Aldeano(int [] posicion)
+	//{
+		
+	//this.espacioOcupado = posicion;
+	
+	//}
 
 	public void construirEdificio() {
 		System.out.println("Construye un edificio");

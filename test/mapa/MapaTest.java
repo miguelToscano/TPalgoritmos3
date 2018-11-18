@@ -3,6 +3,8 @@ package mapa;
 import org.junit.Assert;
 import org.junit.Test;
 
+import unidades.Aldeano;
+
 import static org.junit.Assert.*;
 
 public class MapaTest {
@@ -24,8 +26,9 @@ public class MapaTest {
     public void seCambiaContenidoDePrimerCasillero()
     {
         Mapa mapa = new Mapa();
-        mapa.cambiarContenidoDeCasillero(0,0,3);
-        Assert.assertEquals(3,mapa.obtenerElemento(0,0));
+        Aldeano aldeano = new Aldeano();
+        mapa.cambiarContenidoDeCasillero(0,0,aldeano);
+        Assert.assertEquals(aldeano,mapa.obtenerElemento(0,0));
 
     }
 

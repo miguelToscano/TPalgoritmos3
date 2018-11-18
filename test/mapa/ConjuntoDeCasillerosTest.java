@@ -2,6 +2,7 @@ package mapa;
 
 import org.junit.Assert;
 import org.junit.Test;
+import unidades.Aldeano;
 
 import static org.junit.Assert.*;
 
@@ -18,9 +19,10 @@ public class ConjuntoDeCasillerosTest {
     public void contieneDevuelveTrueSiElElementoEstaEnLaFila()
     {
         Mapa mapa = new Mapa();
-        mapa.cambiarContenidoDeCasillero(4,0,3);
+        Aldeano aldeano = new Aldeano();
+        mapa.cambiarContenidoDeCasillero(4,0,aldeano);
         Fila fila = mapa.obtenerFilas().get(4);
-        Assert.assertTrue(fila.contiene(3));
+        Assert.assertTrue(fila.contiene(aldeano));
     }
 
     @Test
@@ -39,8 +41,9 @@ public class ConjuntoDeCasillerosTest {
     public void elementoEnFilaYColumnaCoincideConElementoEnMapa()
     {
         Mapa mapa = new Mapa();
-        mapa.cambiarContenidoDeCasillero(4,0,3);
+        Aldeano aldeano = new Aldeano();
+        mapa.cambiarContenidoDeCasillero(4,0,aldeano);
         Fila fila = mapa.obtenerFilas().get(4);
-        Assert.assertEquals(fila.obtenerElemento(0),3);
+        Assert.assertEquals(fila.obtenerElemento(0),aldeano);
     }
 }

@@ -18,7 +18,7 @@ public class PlazaCentral extends Edificio {
 	
 	public void crearAldeano(int[] posicion) {
 		
-		Aldeano unAldeano = new Aldeano(posicion);
+		Aldeano unAldeano = new Aldeano();
 		
 		this.aldeanos.add(unAldeano);
 	}
