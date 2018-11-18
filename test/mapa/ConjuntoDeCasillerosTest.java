@@ -6,7 +6,8 @@ import unidades.Aldeano;
 
 import static org.junit.Assert.*;
 
-public class ConjuntoDeCasillerosTest {
+public class ConjuntoDeCasillerosTest
+{
 
     @Test
     public void seCreaConTamanioElegido()
@@ -46,4 +47,5 @@ public class ConjuntoDeCasillerosTest {
         Fila fila = mapa.obtenerFilas().get(4);
         Assert.assertEquals(fila.obtenerElemento(0),aldeano);
     }
+
 }

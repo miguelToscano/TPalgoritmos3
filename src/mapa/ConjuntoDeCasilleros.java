@@ -45,4 +45,17 @@ public abstract class ConjuntoDeCasilleros extends Mapeable
         return this.obtenerCasillero(posicion).obtenerElemento();
     }
 
+    public boolean estaLibre()
+    {
+        boolean estaLibre = true;
+        for(int i=0;i<this.tamanio;i++)
+        {
+            if(this.obtenerCasillero(i).estaOcupado())
+            {
+                estaLibre = false;
+            }
+        }
+        return estaLibre;
+    }
+
 }

@@ -14,7 +14,7 @@ public abstract class Entidad
     {
         //this.vida=0;
         //this.costo=0;
-        this.construible=true;
+        this.construible=true;//?
         //this.turnosConstruccion = 3;
     }
 	 

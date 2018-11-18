@@ -4,8 +4,8 @@ import unidades.Entidad;
 
 public class Casillero extends Mapeable
 {
-    private Entidad contenido;
     private boolean estaLibre;
+    private Entidad contenido;
 
     //Constructor con casillero vacio
     public Casillero ()
@@ -13,9 +13,12 @@ public class Casillero extends Mapeable
         this.estaLibre=true;
 
     }
+
+    //Constructor con casillero con Entidad
     public Casillero (Entidad entidad)
     {
-        contenido = entidad;
+        this.contenido = entidad;
+        this.estaLibre = false;
     }
 
 
@@ -29,8 +32,14 @@ public class Casillero extends Mapeable
         return this.estaLibre;
     }
 
+    public boolean estaOcupado()
+    {
+        return !this.estaLibre();
+    }
+
     public void cambiarContenido(Entidad contenido)
     {
         this.contenido = contenido;
+        this.estaLibre = false;
     }
 }

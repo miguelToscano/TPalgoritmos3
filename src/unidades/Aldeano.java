@@ -34,12 +34,14 @@ public class Aldeano extends Unidad
 	//public Edificio construirEdificio ()
 	
 	
-	public int sumarOro ()
+	public int recolectarOro ()
     {
-		if	(trabajando) {
+		if	(trabajando)
+		{
 			return 0;
 		}
-		else {
+		else
+		    {
 			return 20;
 		}
 	}

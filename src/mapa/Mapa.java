@@ -160,6 +160,10 @@ public class Mapa
         return this.obtenerCasillero(fila,columna).obtenerElemento();
     }
 
+    public boolean puedoColocar(Entidad entidad, Mapeable mapeable)
+    {
+        return true;
+    }
     //puedoColocar
 
 }
