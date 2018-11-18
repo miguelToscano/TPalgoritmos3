@@ -37,6 +37,12 @@ public class Casillero extends Mapeable
         return !this.estaLibre();
     }
 
+    public void vaciar () {
+    	
+    	this.contenido = null;
+    	this.estaLibre = true;
+    	
+    }
     public void cambiarContenido(Entidad contenido)
     {
         this.contenido = contenido;
