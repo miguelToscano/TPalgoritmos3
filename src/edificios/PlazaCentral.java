@@ -1,25 +1,49 @@
-/*package edificios;
+package edificios;
 
 import java.util.ArrayList;
 import unidades.*;
-import mapa.Mapeable;
+import mapa.*;
 
 public class PlazaCentral extends Edificio {
 
 	private ArrayList<Aldeano> aldeanos;
 	
-	PlazaCentral() {
+	
+	// constructores
+	
+	// le indico todos los casilleros que ocupa
+	PlazaCentral(Caja lugarOcupado) {
 		
 		this.aldeanos = new ArrayList<Aldeano>();
 		this.vida = 450;
 		this.costo = 100;
 		this.turnosConstruccion = 3;
 		this.velocidadReparacion = 25;
+		this.cajaOcupada = lugarOcupado;
+		this.settearPuntoRally();
+		
 	}
 	
-	public void crearAldeano(int[] posicion) {
+	// indico el donde empieza
+	PlazaCentral(Casillero casilleroInicial) {
 		
-		Aldeano unAldeano = new Aldeano();
+		super(casilleroInicial);
+		this.aldeanos = new ArrayList<Aldeano>();
+		this.vida = 450;
+		this.costo = 100;
+		this.turnosConstruccion = 3;
+		this.velocidadReparacion = 25;
+		this.settearPuntoRally();
+		
+		
+	}
+	
+	
+	
+	public void crearAldeano() {
+		
+		Aldeano unAldeano = new Aldeano(puntoRally);
+		// isRallyPoint ocupado? excepcion
 		
 		this.aldeanos.add(unAldeano);
 	}
@@ -34,4 +58,3 @@ public class PlazaCentral extends Edificio {
         return;
     }
 }
-*/

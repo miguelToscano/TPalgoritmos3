@@ -1,37 +1,34 @@
 package edificios;
 
 import java.util.ArrayList;
-
-import unidades.ArmaDeAsedio;
-
 import mapa.*;
-
+import unidades.ArmaDeAsedio;
 
 public class Castillo extends Edificio
 {
+	private int radioAtaque;
 	
 	ArrayList<ArmaDeAsedio> armasDeAsedio;
 	
-	Castillo (Caja cajaOcupada)
-	{
+	Castillo (Caja lugarOcupado) {
+		
 		this.vida= 1000;
 		this.construible = false;
 		this.velocidadReparacion = 15;
-		this.cajaOcupada = cajaOcupada;
+		this.cajaOcupada = lugarOcupado;
+		this.radioAtaque = 3;
+		
+		this.settearPuntoRally(); // ojo que aca puede estar en el medio
 
 		armasDeAsedio = new ArrayList<ArmaDeAsedio>();
 	}
 	
-	public void crearArmaDeAsedio(int fila, int columna, Mapa mapa)
+	public void crearArmaDeAsedio()
     {
-		if(mapa.obtenerCasillero(fila,columna).estaLibre())
-		{
-			ArmaDeAsedio unArmaDeAsedio = new ArmaDeAsedio(fila,columna,mapa);
-			armasDeAsedio.add(unArmaDeAsedio);
-		}
-
-		//else excepcion
-
+		//check posicion esta en espacioOcupado
+		ArmaDeAsedio unArmaDeAsedio = new ArmaDeAsedio(puntoRally);
+		
+		armasDeAsedio.add(unArmaDeAsedio);
 	}
 	
 	public boolean tieneArmaDeAsedio() {
@@ -40,10 +37,13 @@ public class Castillo extends Edificio
 	
 	public void atacarCircundantes()
     {
-		int radioAtaque = 3;
-		// atacar
 		
-	}
+    }
+	
+
+
+
+ 
 
 	public void ubicar(Mapeable mapeable)
 	{
