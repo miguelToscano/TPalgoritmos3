@@ -11,6 +11,10 @@ public abstract class Unidad extends Entidad
 
 	//Constructores
 	
+	public Unidad() {
+	
+	}
+	
 	//Con coordenadas 
 	public Unidad (int fila, int columna, Mapa mapa)   
     {
@@ -30,7 +34,13 @@ public abstract class Unidad extends Entidad
         
      }
 	
-	
+	public void mover(Casillero casillero) {
+		
+		this.casilleroOcupado.vaciar();
+		//check distancias, movimiento posible
+		this.casilleroOcupado = casillero;
+		
+	}
 	
 	
 	

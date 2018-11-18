@@ -8,6 +8,9 @@ public class Aldeano extends Unidad
 	private boolean trabajando; // reparando/ construyendo, no recolecta oro
 
 	//Constructores
+	public Aldeano() {
+		
+	}
 	
 	//Coordenadas
 	public Aldeano(int fila, int columna, Mapa mapa)
