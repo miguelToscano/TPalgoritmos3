@@ -33,7 +33,7 @@
 
 	<path id="cobertura.classpath">
 		<fileset dir="${cobertura.dir}">
-			<include name="cobertura-1.9.4.1.jar" />
+			<include name="cobertura-1.8.4.1.jar" />
 			<include name="*.jar" />
 		</fileset>
 	</path>
