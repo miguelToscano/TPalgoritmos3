@@ -70,7 +70,7 @@ public class PlazaCentralTest {
    }
    
    @Test
-   public void seReparaEdificio() {
+   public void seRecibeDanio() {
    	plaza = new PlazaCentral (celda,mapa);
    	plaza.recibirDanio(60);
    	
