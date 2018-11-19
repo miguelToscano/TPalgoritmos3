@@ -14,9 +14,9 @@ public abstract class Edificio extends Entidad {
 	public Edificio () {
 		
 	}
-	public Edificio (Casillero casilleroInicial) {
+	public Edificio (Casillero casilleroInicial, Mapa mapa) {
 		
-		this.cajaOcupada = this.obtenerCaja(casilleroInicial);
+		this.cajaOcupada = this.obtenerCaja(casilleroInicial,mapa);
 
 		
 	}
@@ -27,14 +27,20 @@ public abstract class Edificio extends Entidad {
 		
 	}
 	
-	public Caja obtenerCaja(Casillero casilleroInicial) {
-		Caja caja = new Caja(casilleroInicial, 4); // 4 para todos los edficios construibles
+	public Caja obtenerCaja(Casillero casilleroInicial, Mapa mapa) {
+		Caja caja = mapa.asignarCajaACasillero(casilleroInicial); // 4 para todos los edficios construibles
 		return caja;
 	}
 	public void reparar()
 	{
 		vida += velocidadReparacion;
 	}
-
+	public Casillero getPuntoRally(){
+		return this.puntoRally ;
+	}
 	
+	public Caja obtenerEspacioOcupado()
+	{
+		return this.cajaOcupada;
+	}
 }

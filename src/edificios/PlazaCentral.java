@@ -25,9 +25,9 @@ public class PlazaCentral extends Edificio {
 	}
 	
 	// indico el donde empieza
-	PlazaCentral(Casillero casilleroInicial) {
+	PlazaCentral(Casillero casilleroInicial, Mapa mapa) {
 		
-		super(casilleroInicial);
+		super(casilleroInicial, mapa);
 		this.aldeanos = new ArrayList<Aldeano>();
 		this.vida = 450;
 		this.costo = 100;
@@ -38,7 +38,10 @@ public class PlazaCentral extends Edificio {
 		
 	}
 	
-	
+	public ArrayList<Aldeano> getAldeanos(){
+		
+		return aldeanos;
+	}
 	
 	public void crearAldeano() {
 		

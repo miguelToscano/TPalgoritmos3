@@ -50,8 +50,5 @@ public class Castillo extends Edificio
 		this.cajaOcupada = (Caja)mapeable;
 	}
 
-	public Caja obtenerEspacioOcupado()
-	{
-		return this.cajaOcupada;
-	}
+	
 }

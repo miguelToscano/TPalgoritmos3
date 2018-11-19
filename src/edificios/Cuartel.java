@@ -21,9 +21,9 @@ public class Cuartel extends Edificio {
 		ejercito = new ArrayList<Militar>();
 	}
 	
-	Cuartel(Casillero casilleroInicial) {
+	Cuartel(Casillero casilleroInicial, Mapa mapa) {
 		
-		super(casilleroInicial);
+		super(casilleroInicial, mapa);
 		this.turnosConstruccion = 3;
 		this.velocidadReparacion = 50;
 		this.costo = 50;

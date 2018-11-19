@@ -33,6 +33,9 @@ public abstract class Entidad
 		return this.turnosConstruccion;
 	}
  
+	public void recibirDanio(int danio){
+		this.vida = this.vida-danio;
+	}
 	public boolean estaVivo ()
     {
 		return (this.vida > 0 );
