@@ -57,5 +57,25 @@ public class PlazaCentralTest {
 
     	
     }
-    
+   @Test
+   public void seReparaEdificio() {
+   	plaza = new PlazaCentral (celda,mapa);
+   	plaza.recibirDanio(40);
+   	plaza.crearAldeano();
+	ArrayList<Aldeano> aldeanos = plaza.getAldeanos();
+	aldeanos.get(0).repararEdificio(plaza);
+	Assert.assertEquals(plaza.getVida(), 450-40+25);
+	
+  
+   }
+   
+   @Test
+   public void seReparaEdificio() {
+   	plaza = new PlazaCentral (celda,mapa);
+   	plaza.recibirDanio(60);
+   	
+	Assert.assertEquals(plaza.getVida(), 450-60);
+	
+  
+   }
 }
