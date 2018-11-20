@@ -31,6 +31,7 @@ public class MapaTest {
         }
     }
 
+
     @Test
     public void seCambiaContenidoDePrimerCasillero()
     {
@@ -80,8 +81,8 @@ public class MapaTest {
     @Test
     public void obtenerCajaAPartirDeTercerCasilleroDevuelveTercerCaja() throws casilleroInvalido
     {
-        Caja tercerCaja = mapa.obtenerCajas().get(2);
-        Casillero tercerCasillero = mapa.obtenerCasillero(0,2);
+        Caja tercerCaja = mapa.obtenerCajas().get(4);
+        Casillero tercerCasillero = mapa.obtenerCasillero(1,0);
         try{mapa.asignarCajaACasillero(tercerCasillero);}
         catch(casilleroInvalido c)
         {
@@ -98,7 +99,5 @@ public class MapaTest {
         Casillero casilleroLimite = mapa.obtenerCasillero(4,4);
         mapa.asignarCajaACasillero(casilleroLimite);
     }
-
-
 
 }

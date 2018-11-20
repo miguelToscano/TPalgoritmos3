@@ -12,10 +12,7 @@ public abstract class Entidad
 
     public Entidad()
     {
-        //this.vida=0;
-        //this.costo=0;
         this.construible=true;//?
-        //this.turnosConstruccion = 3;
     }
 	 
     public int getVida()

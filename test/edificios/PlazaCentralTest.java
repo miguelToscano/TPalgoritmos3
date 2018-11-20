@@ -20,32 +20,34 @@ public class PlazaCentralTest {
     public PlazaCentralTest()  throws casilleroInvalido
     {
 
-        this.mapa = new Mapa(16, 16);
-        this.celda = mapa.obtenerCasillero(0, 0);
+        this.mapa = new Mapa();
+        this.celda = mapa.obtenerCasillero(0, 2);
         this.caja = mapa.asignarCajaACasillero(celda);
+        this.plaza = new PlazaCentral(this.celda,mapa);
     }
+
     
     @Test
-    public void seCreaEnLaPrimerCaja()
+    public void seCreaEnLaPrimerCaja() throws casilleroInvalido
     {
-    	this.plaza =  new PlazaCentral(this.caja);
+    	this.plaza =  new PlazaCentral(this.celda,this.mapa);
         Assert.assertEquals(this.caja, this.plaza.obtenerEspacioOcupado());
 
     }
 
     @Test
-    public void seCreaConCasilleroComoParametro()
+    public void seCreaConCasilleroComoParametro() throws casilleroInvalido
     {
-    	this.plaza = new PlazaCentral (caja);
+    	this.plaza = new PlazaCentral (this.celda,this.mapa);
         Assert.assertEquals(caja, plaza.obtenerEspacioOcupado());
 
     }
     // danio
     @Test
-    public void seCreaAldeanoConRallyLibre()
+    public void seCreaAldeanoConRallyLibre() throws casilleroInvalido
     {
 
-    	plaza =  new PlazaCentral(caja);
+    	plaza =  new PlazaCentral(this.celda,this.mapa);
     	plaza.crearAldeano();
     	celda = plaza.getPuntoRally();
     	ArrayList<Aldeano> aldeanos = plaza.getAldeanos();
@@ -55,9 +57,9 @@ public class PlazaCentralTest {
     	
     }
    @Test
-   public void seReparaEdificio()
+   public void seReparaEdificio() throws casilleroInvalido
    {
-   	    plaza = new PlazaCentral (this.caja);
+   	    plaza = new PlazaCentral (this.celda,this.mapa);
    	    plaza.recibirDanio(40);
    	    plaza.crearAldeano();
 	    ArrayList<Aldeano> aldeanos = plaza.getAldeanos();
@@ -68,9 +70,9 @@ public class PlazaCentralTest {
    }
    
    @Test
-   public void seRecibeDanio()
+   public void seRecibeDanio() throws casilleroInvalido
    {
-       plaza = new PlazaCentral (this.caja);
+       plaza = new PlazaCentral (this.celda,this.mapa);
        plaza.recibirDanio(60);
    	
        Assert.assertEquals(plaza.getVida(), 450-60);

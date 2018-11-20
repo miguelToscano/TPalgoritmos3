@@ -18,7 +18,7 @@ public abstract class Edificio extends Entidad {
 
 	public Edificio (Casillero casilleroInicial, Mapa mapa) throws casilleroInvalido
     {
-		
+
 		this.cajaOcupada = this.fijarCaja(casilleroInicial, mapa);
 		
 	}

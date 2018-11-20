@@ -202,9 +202,9 @@ public class Mapa
 
     public Caja asignarCajaACasillero(Casillero casillero) throws casilleroInvalido
     {
-        Caja caja = new Caja(4);
+        Caja caja = new Caja(this.obtenerTamanioCajas());
 
-        for(int i=0;i<this.obtenerTamanioCajas();i++)
+        for(int i=0;i<16;i++)
         {
             if(casillero.obtenerFila(this)==this.ultimaFila()
                     ||(casillero.obtenerColumna(this)==this.ultimaColumna()))

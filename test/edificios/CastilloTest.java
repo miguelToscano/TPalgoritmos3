@@ -9,7 +9,8 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class CastilloTest {
+public class CastilloTest
+{
 
     private Caja caja;
     private Mapa mapa;

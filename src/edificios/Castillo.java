@@ -7,20 +7,23 @@ import unidades.ArmaDeAsedio;
 public class Castillo extends Edificio
 {
 	private int radioAtaque;
+	private int danioAEntidades;
 	
 	ArrayList<ArmaDeAsedio> armasDeAsedio;
 	
-	Castillo (Caja lugarOcupado) {
+	Castillo (Caja lugarOcupado)
+	{
 		
 		this.vida= 1000;
 		this.construible = false;
 		this.velocidadReparacion = 15;
 		this.cajaOcupada = lugarOcupado;
 		this.radioAtaque = 3;
+		this.danioAEntidades = 20;
 		
 		this.settearPuntoRally(); // ojo que aca puede estar en el medio
 
-		armasDeAsedio = new ArrayList<ArmaDeAsedio>();
+		this.armasDeAsedio = new ArrayList<ArmaDeAsedio>();
 	}
 	
 	public void crearArmaDeAsedio()
@@ -31,7 +34,8 @@ public class Castillo extends Edificio
 		armasDeAsedio.add(unArmaDeAsedio);
 	}
 	
-	public boolean tieneArmaDeAsedio() {
+	public boolean tieneArmaDeAsedio()
+	{
 		return !this.armasDeAsedio.isEmpty();
 	}
 	
