@@ -64,4 +64,18 @@ public abstract class ConjuntoDeCasilleros extends Mapeable
         return this.lista.get(0);
     }
 
+    public boolean contiene(Casillero casillero)
+    {
+        boolean contiene = false;
+
+        for(int i=0;i<this.tamanio;i++)
+        {
+            if(this.obtenerCasillero(i)==casillero)
+            {
+                contiene = true;
+            }
+        }
+
+        return contiene;
+    }
 }

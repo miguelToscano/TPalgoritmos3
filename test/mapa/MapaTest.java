@@ -78,12 +78,27 @@ public class MapaTest {
     }
 
     @Test
-    public void obtenerCajaAPartirDePrimerCasilleroDevuelvePrimerCaja()
+    public void obtenerCajaAPartirDeTercerCasilleroDevuelveTercerCaja() throws casilleroInvalido
     {
-        Caja primerCaja = mapa.obtenerCajas().get(0);
-        Casillero primerCasillero = mapa.obtenerCasillero(0,0);
-        Caja cajaRetornada = mapa.asignarCajaACasillero(primerCasillero);
+        Caja tercerCaja = mapa.obtenerCajas().get(2);
+        Casillero tercerCasillero = mapa.obtenerCasillero(0,2);
+        try{mapa.asignarCajaACasillero(tercerCasillero);}
+        catch(casilleroInvalido c)
+        {
+            System.out.println("La prueba no paso. El casillero elegido no es valido");
+        }
 
-        Assert.assertEquals(cajaRetornada,primerCaja);
+        Caja cajaRetornada = mapa.asignarCajaACasillero(tercerCasillero);
+        Assert.assertEquals(cajaRetornada,tercerCaja);
     }
+
+    @Test(expected = casilleroInvalido.class)
+    public void obtenerCajaAPartirDeCasilleroLimiteLanzaExcepcion() throws casilleroInvalido
+    {
+        Casillero casilleroLimite = mapa.obtenerCasillero(4,4);
+        mapa.asignarCajaACasillero(casilleroLimite);
+    }
+
+
+
 }

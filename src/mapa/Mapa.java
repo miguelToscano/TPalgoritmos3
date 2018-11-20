@@ -200,18 +200,66 @@ public class Mapa
     }
     //puedoColocar
 
-    public Caja asignarCajaACasillero(Casillero casillero)
+    public Caja asignarCajaACasillero(Casillero casillero) throws casilleroInvalido
     {
         Caja caja = new Caja(4);
 
         for(int i=0;i<this.obtenerTamanioCajas();i++)
         {
-            if (this.obtenerCajas().get(i).obtenerPrimerCasillero() == casillero)
+            if(casillero.obtenerFila(this)==this.ultimaFila()
+                    ||(casillero.obtenerColumna(this)==this.ultimaColumna()))
+            {
+                throw new casilleroInvalido(); //excepcion
+            }
+
+            else if (this.obtenerCajas().get(i).obtenerPrimerCasillero() == casillero)
             {
                 caja = this.obtenerCajas().get(i);
             }
+
         }
-        //cambiar lanzando excepcion si el casillero no existe
         return caja;
+        //cambiar lanzando excepcion si el casillero no existe
+    }
+
+
+    private Fila ultimaFila()
+    {
+        return this.obtenerFilas().get(this.tamanioFilas-1);
+    }
+
+    public Fila obtenerFila(Casillero casillero)
+    {
+        Fila fila = new Fila(this.tamanioFilas);
+
+        for(int i=0;i<this.tamanioFilas;i++)
+        {
+            if(this.obtenerFilas().get(i).contiene(casillero))
+            {
+                return this.obtenerFilas().get(i);
+            }
+        }
+
+        return fila;
+    }
+
+    private Columna ultimaColumna()
+    {
+        return this.obtenerColumnas().get(tamanioColumnas-1);
+    }
+
+    public Columna obtenerColumna(Casillero casillero)
+    {
+        Columna columna = new Columna(this.tamanioColumnas);
+
+        for(int i=0;i<this.tamanioColumnas;i++)
+        {
+            if(this.obtenerColumnas().get(i).contiene(casillero))
+            {
+                return this.obtenerColumnas().get(i);
+            }
+        }
+
+        return columna;
     }
 }

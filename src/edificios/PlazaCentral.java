@@ -25,7 +25,8 @@ public class PlazaCentral extends Edificio {
 	}
 	
 	// indico el donde empieza
-	PlazaCentral(Casillero casilleroInicial, Mapa mapa) {
+	PlazaCentral(Casillero casilleroInicial, Mapa mapa) throws casilleroInvalido
+	{
 		
 		super(casilleroInicial, mapa);
 		this.aldeanos = new ArrayList<Aldeano>();

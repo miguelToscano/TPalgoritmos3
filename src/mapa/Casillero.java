@@ -48,4 +48,14 @@ public class Casillero extends Mapeable
         this.contenido = contenido;
         this.estaLibre = false;
     }
+
+    public Fila obtenerFila(Mapa mapa)
+    {
+        return mapa.obtenerFila(this);
+    }
+
+    public Columna obtenerColumna(Mapa mapa)
+    {
+        return mapa.obtenerColumna(this);
+    }
 }

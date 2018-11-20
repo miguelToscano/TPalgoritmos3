@@ -8,34 +8,39 @@ public abstract class Edificio extends Entidad {
 	protected Caja cajaOcupada;
 	
 	protected Casillero puntoRally; // aca se crean las unidades
+
 	protected int velocidadReparacion;
 	
-	
-	public Edificio () {
+	public Edificio ()
+    {
 		
 	}
-	public Edificio (Casillero casilleroInicial, Mapa mapa) {
-		
-		this.cajaOcupada = this.obtenerCaja(casilleroInicial,mapa);
 
+	public Edificio (Casillero casilleroInicial, Mapa mapa) throws casilleroInvalido
+    {
+		
+		this.cajaOcupada = this.fijarCaja(casilleroInicial, mapa);
 		
 	}
 	
-	public void settearPuntoRally () {
-		puntoRally = cajaOcupada.obtenerCasillero(1);
+	public void settearPuntoRally ()
+    {
+		puntoRally = cajaOcupada.obtenerCasillero(0);
 		//harcodeo el primer lugar, despues vemos donde las ponemos
-		
+
 	}
 	
-	public Caja obtenerCaja(Casillero casilleroInicial, Mapa mapa) {
-		Caja caja = mapa.asignarCajaACasillero(casilleroInicial); // 4 para todos los edficios construibles
-		return caja;
+	private Caja fijarCaja(Casillero casilleroInicial, Mapa mapa) throws casilleroInvalido
+    {
+		return mapa.asignarCajaACasillero(casilleroInicial); // 4 para todos los edficios construibles
 	}
+
 	public void reparar()
 	{
-		vida += velocidadReparacion;
+		this.vida += this.velocidadReparacion;
 	}
-	public Casillero getPuntoRally(){
+	public Casillero getPuntoRally()
+    {
 		return this.puntoRally ;
 	}
 	

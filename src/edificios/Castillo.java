@@ -41,10 +41,6 @@ public class Castillo extends Edificio
     }
 	
 
-
-
- 
-
 	public void ubicar(Mapeable mapeable)
 	{
 		this.cajaOcupada = (Caja)mapeable;
