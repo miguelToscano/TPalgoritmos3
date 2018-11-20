@@ -3,6 +3,7 @@ package mapa;
 import java.util.ArrayList;
 import unidades.Entidad;
 import edificios.Castillo;
+import excepciones.CasilleroLleno;
 
 public class Mapa
 {
@@ -181,7 +182,7 @@ public class Mapa
     }
 
 
-    public void cambiarContenidoDeCasillero(int fila, int columna,Entidad contenido)
+    public void cambiarContenidoDeCasillero(int fila, int columna,Entidad contenido) throws CasilleroLleno
     {
         Casillero casillero = this.obtenerCasillero(fila,columna);
         casillero.cambiarContenido(contenido);
@@ -204,7 +205,7 @@ public class Mapa
     {
         Caja caja = new Caja(this.obtenerTamanioCajas());
 
-        for(int i=0;i<16;i++)
+        for(int i=0;i<cajas.size();i++)
         {
             if(casillero.obtenerFila(this)==this.ultimaFila()
                     ||(casillero.obtenerColumna(this)==this.ultimaColumna()))

@@ -3,8 +3,9 @@ package unidades;
 import mapa.Mapeable;
 import mapa.Casillero;
 import mapa.Mapa;
+import excepciones.*
+;public abstract class Unidad extends Entidad
 
-public abstract class Unidad extends Entidad
 {
     protected Casillero casilleroOcupado;
 	public static int cantidad = 0;
@@ -17,29 +18,27 @@ public abstract class Unidad extends Entidad
 	}
 	
 	//Con coordenadas 
-	public Unidad (int fila, int columna, Mapa mapa)   
+	public Unidad (int fila, int columna, Mapa mapa) throws CasilleroLleno  
     {
         this.turnosConstruccion = 1;
-        mapa.cambiarContenidoDeCasillero(fila, columna, this);
-        this.casilleroOcupado = mapa.obtenerCasillero(fila,columna);
+        Casillero casillero = mapa.obtenerCasillero(fila,columna);
+        this.ubicar(casillero);
         
      }
 	
 	//con casillero
-	public Unidad (Casillero casillero)   
+	public Unidad (Casillero casillero)  throws CasilleroLleno  
     {
         this.turnosConstruccion = 1;
-        casillero.cambiarContenido(this);
-        this.casilleroOcupado = casillero;
+        this.ubicar(casillero);
         
      }
 	
-	public void mover(Casillero casillero) {
+	public void mover(Casillero casillero)throws CasilleroLleno {
 		
 		this.casilleroOcupado.vaciar();
 		//check distancias, movimiento posible
-		this.casilleroOcupado = casillero;
-		
+		this.ubicar(casillero);
 	}
 	
 	
@@ -49,8 +48,13 @@ public abstract class Unidad extends Entidad
 		this.vida = this.vida - danio;
 	}
 
-	public void ubicar(Mapeable casillero)
+	public void ubicar(Mapeable mapeable) throws CasilleroLleno
     {
-        this.casilleroOcupado = (Casillero)casillero;
+        Casillero casillero = (Casillero) mapeable; 
+        if (casillero.estaOcupado()) {
+        	throw new CasilleroLleno();
+        }
+		this.casilleroOcupado = casillero;
+        casillero.cambiarContenido(this);
     }
 }

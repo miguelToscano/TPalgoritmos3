@@ -1,5 +1,6 @@
 package unidades;
 import edificios.Edificio;
+import excepciones.*;
 import mapa.*;
 
 public class Aldeano extends Unidad
@@ -15,23 +16,21 @@ public class Aldeano extends Unidad
     }
 
 	//Coordenadas
-	public Aldeano(int fila, int columna, Mapa mapa)
+	public Aldeano(int fila, int columna, Mapa mapa)throws CasilleroLleno
 	{
 		super(fila, columna, mapa);
 		this.costo = 25;
 		this.trabajando = false;
 		this.vida = 50;
-		mapa.cambiarContenidoDeCasillero(fila,columna,this);
 	}
 	
 	//Casillero
-	public Aldeano(Casillero casillero)
+	public Aldeano(Casillero casillero) throws CasilleroLleno
 	{
 		super(casillero);
 		this.costo = 25;
 		this.trabajando = false;
 		this.vida = 50;
-		casillero.cambiarContenido(this);
 	
 	}
 	

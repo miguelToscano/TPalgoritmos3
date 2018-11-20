@@ -1,6 +1,7 @@
 package mapa;
 
 import org.junit.Assert;
+import excepciones.*;
 import org.junit.Test;
 
 import unidades.Aldeano;
@@ -33,7 +34,7 @@ public class MapaTest {
 
 
     @Test
-    public void seCambiaContenidoDePrimerCasillero()
+    public void seCambiaContenidoDePrimerCasillero() throws CasilleroLleno
     {
         Aldeano aldeano = new Aldeano(0,0,mapa);
         Assert.assertEquals(aldeano,mapa.obtenerElemento(0,0));

@@ -5,7 +5,7 @@ import unidades.Entidad;
 
 public abstract class ConjuntoDeCasilleros extends Mapeable
 {
-    private ArrayList<Casillero> lista = new ArrayList<Casillero>();
+    protected ArrayList<Casillero> lista = new ArrayList<Casillero>();
     protected int tamanio;
 
 

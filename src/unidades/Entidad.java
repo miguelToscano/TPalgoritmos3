@@ -2,7 +2,7 @@ package unidades;
 
 import mapa.Mapeable;
 import mapa.Casillero;
-
+import excepciones.*;
 public abstract class Entidad
 {
     protected int vida;
@@ -38,5 +38,5 @@ public abstract class Entidad
 		return (this.vida > 0 );
 	}
 	
-	public abstract void ubicar(Mapeable mapeable);
+	public abstract void ubicar(Mapeable mapeable) throws CasilleroLleno;
  }

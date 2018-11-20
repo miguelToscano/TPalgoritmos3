@@ -26,7 +26,6 @@ public abstract class Edificio extends Entidad {
 	public void settearPuntoRally ()
     {
 		puntoRally = cajaOcupada.obtenerCasillero(0);
-		//harcodeo el primer lugar, despues vemos donde las ponemos
 
 	}
 	

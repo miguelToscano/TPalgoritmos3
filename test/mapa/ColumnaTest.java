@@ -3,6 +3,7 @@ package mapa;
 import org.junit.Assert;
 import org.junit.Test;
 
+import excepciones.CasilleroLleno;
 import unidades.Aldeano;
 
 import static org.junit.Assert.*;
@@ -18,7 +19,7 @@ public class ColumnaTest
     }
 
     @Test
-    public void estaLibreDevuelveFalseParaColumnaOcupadaDelMapa()
+    public void estaLibreDevuelveFalseParaColumnaOcupadaDelMapa() throws CasilleroLleno
     {
         Mapa mapa = new Mapa();
         Aldeano aldeano = new Aldeano(0,1,mapa);

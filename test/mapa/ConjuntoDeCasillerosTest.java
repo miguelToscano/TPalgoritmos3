@@ -2,6 +2,8 @@ package mapa;
 
 import org.junit.Assert;
 import org.junit.Test;
+
+import excepciones.CasilleroLleno;
 import unidades.Aldeano;
 
 import static org.junit.Assert.*;
@@ -17,7 +19,7 @@ public class ConjuntoDeCasillerosTest
     }
 
     @Test
-    public void contieneDevuelveTrueSiElElementoEstaEnLaFila()
+    public void contieneDevuelveTrueSiElElementoEstaEnLaFila() throws CasilleroLleno
     {
         Mapa mapa = new Mapa();
         Aldeano aldeano = new Aldeano(4,0,mapa);
@@ -38,7 +40,7 @@ public class ConjuntoDeCasillerosTest
     }
 
     @Test
-    public void elementoEnFilaYColumnaCoincideConElementoEnMapa()
+    public void elementoEnFilaYColumnaCoincideConElementoEnMapa() throws CasilleroLleno
     {
         Mapa mapa = new Mapa();
         Aldeano aldeano = new Aldeano(4,0,mapa);

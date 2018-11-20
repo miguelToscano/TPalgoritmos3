@@ -1,4 +1,5 @@
 package unidades;
+import excepciones.CasilleroLleno;
 import mapa.*;
 
 public abstract class Militar extends Unidad
@@ -9,14 +10,14 @@ public abstract class Militar extends Unidad
 
     abstract void atacar();
     
-    public Militar (int fila, int columna, Mapa mapa) {
+    public Militar (int fila, int columna, Mapa mapa) throws CasilleroLleno {
     		
     		super (fila, columna, mapa);
     		
     	
     }
 	
-    public Militar (Casillero casillero) {
+    public Militar (Casillero casillero) throws CasilleroLleno {
     	
     	super (casillero);
     }
