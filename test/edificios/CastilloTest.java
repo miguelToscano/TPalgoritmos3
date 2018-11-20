@@ -34,7 +34,7 @@ public class CastilloTest
     @Test
     public void castilloSeCreaConCajaPasadaPorParametro()
     {
-        Castillo castillo = new Castillo(caja);
+        Castillo castillo = new Castillo(caja,this.mapa);
         Assert.assertEquals(caja,castillo.obtenerEspacioOcupado());
     }
 

@@ -88,6 +88,7 @@ public class MapaTest {
         catch(casilleroInvalido c)
         {
             System.out.println("La prueba no paso. El casillero elegido no es valido");
+            //hacer fallar test manualmente
         }
 
         Caja cajaRetornada = mapa.asignarCajaACasillero(tercerCasillero);

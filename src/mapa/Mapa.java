@@ -243,6 +243,34 @@ public class Mapa
 
         return fila;
     }
+    public int obtenerFilaInt(Casillero casillero)
+    {
+       
+    	int i = 0;
+        for( i=0;i<this.tamanioFilas;i++)
+        {
+            if(this.obtenerFilas().get(i).contiene(casillero))
+            {
+                return i;
+            }
+        }
+
+        return i;
+    }
+    
+    public int obtenerColumnaInt(Casillero casillero)
+    {
+    	int i=0;
+        for( i=0;i<this.tamanioColumnas;i++)
+        {
+            if(this.obtenerColumnas().get(i).contiene(casillero))
+            {
+                return i;
+            }
+        }
+
+        return i;
+    }
 
     private Columna ultimaColumna()
     {

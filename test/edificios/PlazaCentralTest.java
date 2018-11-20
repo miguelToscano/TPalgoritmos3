@@ -33,7 +33,7 @@ public class PlazaCentralTest {
     @Test
     public void seCreaEnLaPrimerCaja() throws casilleroInvalido
     {
-    	this.plaza =  new PlazaCentral(this.caja);
+    	this.plaza =  new PlazaCentral(this.caja, this.mapa);
         Assert.assertEquals(this.caja, this.plaza.obtenerEspacioOcupado());
 
     }
@@ -48,7 +48,7 @@ public class PlazaCentralTest {
     // danio
 
     //Arreglar
-    /*
+    
     @Test
     public void seCreaAldeanoConRallyLibre() throws casilleroInvalido, CasilleroLleno
     {
@@ -61,10 +61,10 @@ public class PlazaCentralTest {
     	Assert.assertEquals(aldeanos.get(0) , celda.obtenerElemento());
 
     	
-    }*/
+    }
 
     //Arreglar
-    /*
+    
    @Test
    public void seReparaEdificio() throws casilleroInvalido, CasilleroLleno
    {
@@ -75,7 +75,7 @@ public class PlazaCentralTest {
 	    aldeanos.get(0).repararEdificio(plaza);
 	    Assert.assertEquals(plaza.getVida(), 450-40+25);
   
-   }*/
+   }
    
    @Test
    public void seRecibeDanio() throws casilleroInvalido
@@ -90,7 +90,7 @@ public class PlazaCentralTest {
    @Test 
    public void seCreaEnCajaYElMapaLaReconoceEnCadaCasillero(){
 	   
-   		this.plaza =  new PlazaCentral(this.caja);
+   		this.plaza =  new PlazaCentral(this.caja, this.mapa);
    		Assert.assertEquals(celda.obtenerElemento(), plaza);
    		
    		this.celda = mapa.obtenerCasillero(fila+1, columna);

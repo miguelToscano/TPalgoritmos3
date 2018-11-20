@@ -13,7 +13,7 @@ public class Castillo extends Edificio
 	
 	ArrayList<ArmaDeAsedio> armasDeAsedio;
 	
-	Castillo (Caja lugarOcupado)
+	Castillo (Caja lugarOcupado, Mapa mapa)
 	{
 		
 		this.vida= 1000;
@@ -23,7 +23,7 @@ public class Castillo extends Edificio
 		this.radioAtaque = 3;
 		this.danioAEntidades = 20;
 		this.cajaOcupada.llenar(this);
-		this.settearPuntoRally(); // ojo que aca puede estar en el medio
+		this.settearPuntoRally(mapa); // ojo que aca puede estar en el medio
 
 		this.armasDeAsedio = new ArrayList<ArmaDeAsedio>();
 	}

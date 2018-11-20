@@ -35,10 +35,10 @@ public class Aldeano extends Unidad
 	}
 	
 
-	public void construirEdificio()
-    {
-		System.out.println("Construye un edificio");
-	}
+//	public void construirEdificio(Edificio edificio, Casillero casillero, Mapa mapa)
+//    {
+//		edificio = new Edificio()
+//	}
 	
 	public void repararEdificio(Edificio unEdificio)
     {

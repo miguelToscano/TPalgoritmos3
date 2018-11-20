@@ -182,7 +182,7 @@ public class AldeanoTest {
 		//creo el edificio
 		celda = mapa.obtenerCasillero(6, 6);
 		Caja caja = mapa.asignarCajaACasillero(celda);
-		Cuartel cuartel = new Cuartel (caja);
+		Cuartel cuartel = new Cuartel (caja,this.mapa);
 		
 		// el edificio va a estar en 6,6 6,7 7,6 y 7,7
 		Aldeano aldeano = new Aldeano(mapa.obtenerCasillero(6, 7));
@@ -196,7 +196,7 @@ public class AldeanoTest {
 		//creo el edificio
 		celda = mapa.obtenerCasillero(6, 6);
 		Caja caja = mapa.asignarCajaACasillero(celda);
-		Cuartel cuartel = new Cuartel (caja);
+		Cuartel cuartel = new Cuartel (caja, this.mapa);
 
 		// el edificio va a estar en 6,6 6,7 7,6 y 7,7
 		Aldeano aldeano = new Aldeano(mapa.obtenerCasillero(5, 5));
@@ -204,5 +204,31 @@ public class AldeanoTest {
 		
 		
 	}
-
+//	@Test
+//    public void aldeanoComienzaAConstruirPlaza()
+//    {
+//        Aldeano aldeano = new Aldeano();
+//        aldeano.construirPlaza();
+//        
+//        Assert.assertTrue(aldeano.edificioEnConstruccion != null);
+//    }
+// 
+//	@Test
+//    public void aldeanoConstruyendoEstaTrabajando()
+//    {
+//        Aldeano aldeano = new Aldeano();
+//        aldeano.construirPlaza();
+//        
+//        Assert.assertTrue(aldeano.trabajando);
+//    }
+// 
+// @Test
+//    public void aldeanoConstruyendoNoProduceOro()
+//    {
+//        Aldeano aldeano = new Aldeano();
+//        aldeano.construirPlaza();
+//        
+//        Assert.assertTrue(aldeano.sumarOro()==0);
+//    }
+//
 }

@@ -11,7 +11,7 @@ public class Cuartel extends Edificio {
 	private ArrayList<Militar> ejercito;
 	
 	
-	public Cuartel(Caja lugarOcupado) {
+	public Cuartel(Caja lugarOcupado, Mapa mapa) {
 		
 		this.turnosConstruccion = 3;
 		this.velocidadReparacion = 50;
@@ -19,7 +19,7 @@ public class Cuartel extends Edificio {
 		this.vida = 250;
 		this.cajaOcupada = lugarOcupado;
 		this.cajaOcupada.llenar(this);
-		this.settearPuntoRally();
+		this.settearPuntoRally(mapa);
 		ejercito = new ArrayList<Militar>();
 	}
 	
@@ -32,7 +32,7 @@ public class Cuartel extends Edificio {
 		this.costo = 50;
 		this.vida = 250;
 		this.cajaOcupada.llenar(this);
-		this.settearPuntoRally();
+		this.settearPuntoRally(mapa);
 		
 		ejercito = new ArrayList<Militar>();
 		
