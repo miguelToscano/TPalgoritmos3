@@ -11,6 +11,8 @@ public abstract class Edificio extends Entidad {
 
 	protected int velocidadReparacion;
 	
+	protected boolean construido=false;
+	
 	public Edificio ()
     {
 		
@@ -23,9 +25,15 @@ public abstract class Edificio extends Entidad {
 		
 	}
 	
-	public void settearPuntoRally ()
+	public void settearPuntoRally (Mapa mapa)
     {
-		puntoRally = cajaOcupada.obtenerCasillero(0);
+		int puntoRallyFila = mapa.obtenerFilaInt(cajaOcupada.obtenerCasillero(0));
+		int puntoRallyColumna = mapa.obtenerColumnaInt(cajaOcupada.obtenerCasillero(0))+ 2;
+		
+		// pongo el +2 ahi. La idea seria abrir un GUI que permita elegir el RP
+		
+		puntoRally =mapa.obtenerCasillero(puntoRallyFila, puntoRallyColumna);
+		
 
 	}
 	
@@ -46,5 +54,9 @@ public abstract class Edificio extends Entidad {
 	public Caja obtenerEspacioOcupado()
 	{
 		return this.cajaOcupada;
+	}
+	
+	public void mostrarConstruido() {
+		this.construido=true;
 	}
 }
