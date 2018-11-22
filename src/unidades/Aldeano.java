@@ -1,12 +1,16 @@
 package unidades;
+import edificios.Cuartel;
 import edificios.Edificio;
+import edificios.PlazaCentral;
 import excepciones.*;
 import mapa.*;
 
 public class Aldeano extends Unidad
 {
-	private boolean trabajando; // reparando/ construyendo, no recolecta oro
-
+	public boolean trabajando; // reparando/ construyendo, no recolecta oro
+	public Edificio edificioEnConstruccion=null;
+	private int turnosConstruyendo=0;
+	
     //Sin parametros
     public Aldeano()
     {
@@ -35,9 +39,36 @@ public class Aldeano extends Unidad
 	}
 	
 
-	public void construirEdificio()
+	public void construirPlazaCentral(Caja caja, Mapa mapa)
     {
-		System.out.println("Construye un edificio");
+		turnosConstruyendo++;
+		trabajando=true;
+		
+		if (turnosConstruyendo==1) {
+			PlazaCentral plaza = new PlazaCentral();
+			edificioEnConstruccion=plaza;
+		} else if (turnosConstruyendo==edificioEnConstruccion.getTurnosConstruccion()) {
+			edificioEnConstruccion.mostrarConstruido();
+			trabajando=false;
+			turnosConstruyendo=0;
+		}
+		
+	}
+	
+	public void construirCuartel(Caja caja, Mapa mapa)
+    {
+		turnosConstruyendo++;
+		trabajando=true;
+		
+		if (turnosConstruyendo==1) {
+			Cuartel plaza = new Cuartel();
+			edificioEnConstruccion=plaza;
+		} else if (turnosConstruyendo==edificioEnConstruccion.getTurnosConstruccion()) {
+			edificioEnConstruccion.mostrarConstruido();
+			trabajando=false;
+			turnosConstruyendo=0;
+		}
+		
 	}
 	
 	public void repararEdificio(Edificio unEdificio)
@@ -62,3 +93,4 @@ public class Aldeano extends Unidad
 		}
 	}
 }
+
