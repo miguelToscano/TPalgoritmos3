@@ -78,4 +78,9 @@ public abstract class ConjuntoDeCasilleros extends Mapeable
 
         return contiene;
     }
+    
+    public ArrayList<Casillero>  getLista() {
+    	return lista;
+    	
+    }
 }

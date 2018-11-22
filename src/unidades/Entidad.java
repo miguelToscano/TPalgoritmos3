@@ -38,5 +38,6 @@ public abstract class Entidad
 		return (this.vida > 0 );
 	}
 	
+	public abstract boolean estaEnRango (int rango, Casillero casillero);
 	public abstract void ubicar(Mapeable mapeable) throws CasilleroLleno;
  }

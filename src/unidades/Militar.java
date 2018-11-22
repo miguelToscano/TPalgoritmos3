@@ -1,6 +1,7 @@
 package unidades;
-import excepciones.CasilleroLleno;
+import excepciones.*;
 import mapa.*;
+import edificios.*;
 
 public abstract class Militar extends Unidad
 {
@@ -8,7 +9,7 @@ public abstract class Militar extends Unidad
 	protected int danioAEdificios;
 	protected int radioAtaque;
 
-    abstract void atacar();
+   // abstract void atacar();
     
     public Militar (int fila, int columna, Mapa mapa) throws CasilleroLleno {
     		
@@ -21,4 +22,34 @@ public abstract class Militar extends Unidad
     	
     	super (casillero);
     }
+    
+    
+    
+    public void atacar (Entidad objetivo) throws FueraDeRango, UnidadAliada
+    {
+    	if (! this.estaEnRango ( objetivo)) {
+    		 throw new FueraDeRango();
+    	}
+    	//limitar turno
+    	objetivo.recibirDanio(this.danioAUnidades);
+    }
+    
+    
+    public boolean estaEnRango ( Entidad objetivo) {
+    		
+    	return objetivo.estaEnRango(this.radioAtaque, this.casilleroOcupado);
+    	}
+    	
+   
+
 }
+//    
+//    public void atacar (Edificio objetivo) throws FueraDeRango, UnidadAliada
+//    {
+//    	if (! this.estaEnRango (radioAtaque, objetivo)) {
+//   		 throw new FueraDeRango();
+//   	}
+//   	//limitar turno
+//    	objetivo.recibirDanio(this.danioAUnidades);
+//    }
+

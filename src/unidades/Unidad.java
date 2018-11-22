@@ -1,8 +1,6 @@
 package unidades;
 
-import mapa.Mapeable;
-import mapa.Casillero;
-import mapa.Mapa;
+import mapa.*;
 import excepciones.*
 ;public abstract class Unidad extends Entidad
 
@@ -46,6 +44,9 @@ import excepciones.*
 	public void recibirDanio(int danio) {
 		
 		this.vida = this.vida - danio;
+		if (vida <= 0 ) {
+			//matar unidad
+		}
 	}
 
 	public void ubicar(Mapeable mapeable) throws CasilleroLleno
@@ -57,4 +58,12 @@ import excepciones.*
 		this.casilleroOcupado = casillero;
         casillero.cambiarContenido(this);
     }
+	
+	public boolean estaEnRango (int rango, Casillero casillero) {
+		
+			if	(Math.abs(this.casilleroOcupado.getFila() - casillero.getFila()) > rango  || Math.abs(this.casilleroOcupado.getColumna() - casillero.getColumna()) > rango )
+				return false;
+			return true;
+	}
+	
 }
