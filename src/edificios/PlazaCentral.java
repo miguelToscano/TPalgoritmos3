@@ -14,7 +14,7 @@ public class PlazaCentral extends Edificio {
 	// constructores
 	
 	// le indico todos los casilleros que ocupa
-	PlazaCentral(Caja lugarOcupado) {
+	public PlazaCentral(Caja lugarOcupado, Mapa mapa) {
 
 		this.aldeanos = new ArrayList<Aldeano>();
 		this.vida = 450;
@@ -23,12 +23,22 @@ public class PlazaCentral extends Edificio {
 		this.velocidadReparacion = 25;
 		this.cajaOcupada = lugarOcupado;
 		this.cajaOcupada.llenar(this);
-		this.settearPuntoRally();
+		this.settearPuntoRally(mapa);
+		
+	}
+	
+	public PlazaCentral() {
+
+		this.aldeanos = new ArrayList<Aldeano>();
+		this.vida = 450;
+		this.costo = 100;
+		this.turnosConstruccion = 3;
+		this.velocidadReparacion = 25;
 		
 	}
 	
 	// indico el donde empieza
-	PlazaCentral(Casillero casilleroInicial, Mapa mapa) throws casilleroInvalido
+	public PlazaCentral(Casillero casilleroInicial, Mapa mapa) throws casilleroInvalido
 	{
 		
 		super(casilleroInicial, mapa);
@@ -38,7 +48,7 @@ public class PlazaCentral extends Edificio {
 		this.turnosConstruccion = 3;
 		this.velocidadReparacion = 25;
 		this.cajaOcupada.llenar(this);
-		this.settearPuntoRally();
+		this.settearPuntoRally(mapa);
 	}
 	
 	public ArrayList<Aldeano> getAldeanos(){
