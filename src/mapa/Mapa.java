@@ -26,9 +26,14 @@ public class Mapa
         {
             ArrayList<Casillero> fila = new ArrayList<Casillero>();
             matriz.add(fila);
+            
             for(int j=0;j<tamanioColumnas;j++)
             {
                 Casillero casillero = new Casillero();
+                
+                casillero.setColumna(j);
+                casillero.setFila(i);
+                
                 fila.add(casillero);
             }
         }
