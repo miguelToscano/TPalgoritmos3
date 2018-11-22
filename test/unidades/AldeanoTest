@@ -7,32 +7,7 @@ import unidades.Aldeano;
 
 public class AldeanoTest {
 	
-	 @Test
-	    public void aldeanoComienzaAConstruirPlaza()
-	    {
-	        Aldeano aldeano = new Aldeano();
-	        aldeano.construirPlaza();
-	        
-	        Assert.assertTrue(aldeano.edificioEnConstruccion != null);
-	    }
 	 
-	 @Test
-	    public void aldeanoConstruyendoEstaTrabajando()
-	    {
-	        Aldeano aldeano = new Aldeano();
-	        aldeano.construirPlaza();
-	        
-	        Assert.assertTrue(aldeano.trabajando);
-	    }
-	 
-	 @Test
-	    public void aldeanoConstruyendoNoProduceOro()
-	    {
-	        Aldeano aldeano = new Aldeano();
-	        aldeano.construirPlaza();
-	        
-	        Assert.assertTrue(aldeano.sumarOro()==0);
-	    }
 	 
 @Test
     public void aldeanoComienzaAConstruirPlaza()

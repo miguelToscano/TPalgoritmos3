@@ -26,9 +26,14 @@ public class Mapa
         {
             ArrayList<Casillero> fila = new ArrayList<Casillero>();
             matriz.add(fila);
+            
             for(int j=0;j<tamanioColumnas;j++)
             {
                 Casillero casillero = new Casillero();
+                
+                casillero.setColumna(j);
+                casillero.setFila(i);
+                
                 fila.add(casillero);
             }
         }
@@ -242,6 +247,34 @@ public class Mapa
         }
 
         return fila;
+    }
+    public int obtenerFilaInt(Casillero casillero)
+    {
+       
+    	int i = 0;
+        for( i=0;i<this.tamanioFilas;i++)
+        {
+            if(this.obtenerFilas().get(i).contiene(casillero))
+            {
+                return i;
+            }
+        }
+
+        return i;
+    }
+    
+    public int obtenerColumnaInt(Casillero casillero)
+    {
+    	int i=0;
+        for( i=0;i<this.tamanioColumnas;i++)
+        {
+            if(this.obtenerColumnas().get(i).contiene(casillero))
+            {
+                return i;
+            }
+        }
+
+        return i;
     }
 
     private Columna ultimaColumna()

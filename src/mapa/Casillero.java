@@ -6,6 +6,7 @@ public class Casillero extends Mapeable
 {
     private boolean estaLibre;
     private Entidad contenido;
+    private int fila,columna;
 
     //Constructor con casillero vacio
     public Casillero ()
@@ -58,4 +59,21 @@ public class Casillero extends Mapeable
     {
         return mapa.obtenerColumna(this);
     }
+    public int getFila() {
+    	return fila;
+    }
+    
+    public int getColumna() {
+    	return columna;
+    }
+
+	public void setFila(int fila) {
+		this.fila = fila;
+	}
+
+	public void setColumna(int columna) {
+		this.columna = columna;
+	}
+    
+    
 }

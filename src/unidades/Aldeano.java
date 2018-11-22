@@ -61,7 +61,7 @@ public class Aldeano extends Unidad
 		trabajando=true;
 		
 		if (turnosConstruyendo==1) {
-			Cuartel plaza = new Cuartel();
+			Cuartel plaza = new Cuartel(); // ?
 			edificioEnConstruccion=plaza;
 		} else if (turnosConstruyendo==edificioEnConstruccion.getTurnosConstruccion()) {
 			edificioEnConstruccion.mostrarConstruido();
@@ -70,6 +70,10 @@ public class Aldeano extends Unidad
 		}
 		
 	}
+//	public void construirEdificio(Edificio edificio, Casillero casillero, Mapa mapa)
+//    {
+//		edificio = new Edificio()
+//	}
 	
 	public void repararEdificio(Edificio unEdificio)
     {
