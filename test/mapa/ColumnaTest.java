@@ -4,7 +4,7 @@ import mapa.excepcionesMapa.tamanioDeMapaInvalido;
 import org.junit.Assert;
 import org.junit.Test;
 
-import mapa.excepcionesMapa.casilleroLleno;
+import mapa.excepcionesMapa.casilleroEstaOcupado;
 import unidades.Aldeano;
 
 public class ColumnaTest
@@ -24,7 +24,7 @@ public class ColumnaTest
     }
 
     @Test
-    public void estaLibreDevuelveFalseParaColumnaOcupadaDelMapa() throws casilleroLleno
+    public void estaLibreDevuelveFalseParaColumnaOcupadaDelMapa() throws casilleroEstaOcupado
     {
         Aldeano aldeano = new Aldeano(0,1,mapa);
         Columna columna = mapa.obtenerColumnas().get(1);

@@ -4,7 +4,7 @@ import mapa.excepcionesMapa.tamanioDeMapaInvalido;
 import org.junit.Assert;
 import org.junit.Test;
 
-import mapa.excepcionesMapa.casilleroLleno;
+import mapa.excepcionesMapa.casilleroEstaOcupado;
 import unidades.Aldeano;
 
 public class ConjuntoDeCasillerosTest
@@ -25,7 +25,7 @@ public class ConjuntoDeCasillerosTest
     }
 
     @Test
-    public void contieneDevuelveTrueSiElElementoEstaEnLaFila() throws casilleroLleno
+    public void contieneDevuelveTrueSiElElementoEstaEnLaFila() throws casilleroEstaOcupado
     {
         Aldeano aldeano = new Aldeano(4,0,mapa);
         Fila fila = mapa.obtenerFilas().get(4);
@@ -44,7 +44,7 @@ public class ConjuntoDeCasillerosTest
     }
 
     @Test
-    public void elementoEnFilaYColumnaCoincideConElementoEnMapa() throws casilleroLleno
+    public void elementoEnFilaYColumnaCoincideConElementoEnMapa() throws casilleroEstaOcupado
     {
         Aldeano aldeano = new Aldeano(4,0,mapa);
         Fila fila = mapa.obtenerFilas().get(4);

@@ -1,7 +1,7 @@
 package unidades;
 
 import mapa.*;
-import mapa.excepcionesMapa.casilleroLleno;
+import mapa.excepcionesMapa.casilleroEstaOcupado;
 
 public abstract class Unidad extends Entidad
 
@@ -18,34 +18,35 @@ public abstract class Unidad extends Entidad
 	}
 	
 	//Con coordenadas 
-	public Unidad (int fila, int columna, Mapa mapa) throws casilleroLleno
+	public Unidad (int fila, int columna, Mapa mapa) throws casilleroEstaOcupado
     {
-        this.turnosConstruccion = 1;
-        Casillero casillero = mapa.obtenerCasillero(fila,columna);
-        this.ubicar(casillero);
-	    this.cantidad++;
-
-        
+		if(this.puedoColocar(fila,columna,mapa))
+		{
+			this.turnosConstruccion = 1;
+			Casillero casillero = mapa.obtenerCasillero(fila, columna);
+			this.ubicar(casillero);
+			this.cantidad++;
+		}
      }
 	
 	//con casillero
-	public Unidad (Casillero casillero)  throws casilleroLleno
+	public Unidad (Casillero casillero)  throws casilleroEstaOcupado
     {
-        this.turnosConstruccion = 1;
-        this.ubicar(casillero);
-	    this.cantidad++;
-
-        
+    	if(this.puedoColocar(casillero))
+    	{
+			this.turnosConstruccion = 1;
+			this.ubicar(casillero);
+			this.cantidad++;
+		}
      }
 	
-	public void mover(Casillero casillero)throws casilleroLleno {
+	public void mover(Casillero casillero)throws casilleroEstaOcupado {
 		
 		this.casilleroOcupado.vaciar();
 		//check distancias, movimiento posible
 		this.ubicar(casillero);
 	}
-	
-	
+
 	
 	public void recibirDanio(int danio) {
 		
@@ -56,11 +57,11 @@ public abstract class Unidad extends Entidad
 		}
 	}
 
-	public void ubicar(Mapeable mapeable) throws casilleroLleno
+	public void ubicar(Mapeable mapeable) throws casilleroEstaOcupado
     {
         Casillero casillero = (Casillero) mapeable; 
         if (casillero.estaOcupado()) {
-        	throw new casilleroLleno();
+        	throw new casilleroEstaOcupado();
         }
 		this.casilleroOcupado = casillero;
         casillero.cambiarContenido(this);
@@ -71,6 +72,21 @@ public abstract class Unidad extends Entidad
 			if	(Math.abs(this.casilleroOcupado.getFila() - casillero.getFila()) > rango  || Math.abs(this.casilleroOcupado.getColumna() - casillero.getColumna()) > rango )
 				return false;
 			return true;
+	}
+
+	public boolean puedoColocar(int fila, int columna,Mapa mapa) throws casilleroEstaOcupado
+	{
+		return mapa.puedoColocarUnidad(fila,columna);
+	}
+
+	public boolean puedoColocar(Casillero casillero) throws casilleroEstaOcupado
+	{
+		boolean puedoColocar=true;
+		if(casillero.estaOcupado())
+		{
+			throw new casilleroEstaOcupado();
+		}
+		return puedoColocar;
 	}
 	
 }

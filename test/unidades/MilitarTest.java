@@ -2,7 +2,7 @@ package unidades;
 
 import java.util.ArrayList;
 
-import mapa.excepcionesMapa.casilleroLleno;
+import mapa.excepcionesMapa.casilleroEstaOcupado;
 import mapa.excepcionesMapa.tamanioDeMapaInvalido;
 import org.junit.Assert;
 import excepciones.*;
@@ -34,7 +34,7 @@ public class MilitarTest {
 	
 	
 	@Test
-	public void ArqueroAtacaAldeano() throws UnidadAliada, casilleroLleno,FueraDeRango
+	public void ArqueroAtacaAldeano() throws UnidadAliada, casilleroEstaOcupado,FueraDeRango
 	{
 		Aldeano objetivo = new Aldeano(lista.get(0)); // aldeano en 3 3;
 		Arquero arquero = new Arquero (lista.get(1));
@@ -44,7 +44,7 @@ public class MilitarTest {
 	}
 	
 	@Test
-	public void ArquerosVariosAtacanAldeano() throws UnidadAliada, casilleroLleno,FueraDeRango
+	public void ArquerosVariosAtacanAldeano() throws UnidadAliada, casilleroEstaOcupado,FueraDeRango
 	{
 		Aldeano objetivo = new Aldeano(lista.get(0)); // aldeano en 3 3;
 		Arquero arquero = new Arquero (lista.get(1));
@@ -56,7 +56,7 @@ public class MilitarTest {
 	}
 	
 	@Test
-	public void ArquerosVariosAtacanyMatanAldeano() throws UnidadAliada, casilleroLleno,FueraDeRango
+	public void ArquerosVariosAtacanyMatanAldeano() throws UnidadAliada, casilleroEstaOcupado,FueraDeRango
 	{
 		Aldeano objetivo = new Aldeano(lista.get(0)); // aldeano en 3 3;
 		Arquero arquero = new Arquero (lista.get(1));
@@ -70,7 +70,7 @@ public class MilitarTest {
 	}
 	
 	@Test(expected = FueraDeRango.class)
-	public void ArqueroFueraDeRangoLanzaExcepcion() throws UnidadAliada, casilleroLleno,FueraDeRango
+	public void ArqueroFueraDeRangoLanzaExcepcion() throws UnidadAliada, casilleroEstaOcupado,FueraDeRango
 	{
 		Aldeano objetivo = new Aldeano(lista.get(0)); // aldeano en 3 3;
 		Arquero arquero = new Arquero (lista.get(4));

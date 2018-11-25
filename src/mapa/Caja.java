@@ -9,7 +9,8 @@ public class Caja extends ConjuntoDeCasilleros
         this.tamanio = tamanio;
     }
 
-    public void llenar (Edificio edificio) {
+    public void llenar (Edificio edificio)
+    {
     	for (Casillero celda : lista) {
     		celda.cambiarContenido(edificio);
     	}

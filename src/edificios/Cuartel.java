@@ -2,9 +2,8 @@ package edificios;
 
 import java.util.ArrayList;
 
-import mapa.excepcionesMapa.casilleroLleno;
 import mapa.*;
-import mapa.excepcionesMapa.casilleroInvalido;
+import mapa.excepcionesMapa.*;
 import unidades.*;
 
 public class Cuartel extends Edificio {
@@ -33,7 +32,7 @@ public class Cuartel extends Edificio {
 		ejercito = new ArrayList<Militar>();
 	}
 	
-	public Cuartel(Casillero casilleroInicial, Mapa mapa) throws casilleroInvalido
+	public Cuartel(Casillero casilleroInicial, Mapa mapa) throws casilleroInvalido, cajaEstaOcupada
 	{
 		
 		super(casilleroInicial, mapa);
@@ -48,14 +47,14 @@ public class Cuartel extends Edificio {
 		
 	}
 	
-	public void crearEspadachin() throws casilleroLleno {
+	public void crearEspadachin() throws casilleroEstaOcupado {
 		
 		Espadachin unEspadachin = new Espadachin(puntoRally);
 		
 		this.ejercito.add(unEspadachin);
 	}
 	
-	public void crearArquero() throws casilleroLleno {
+	public void crearArquero() throws casilleroEstaOcupado {
 		
 		Arquero unArquero = new Arquero(puntoRally);
 		

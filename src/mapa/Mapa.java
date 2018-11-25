@@ -6,7 +6,7 @@ import mapa.excepcionesMapa.casilleroInvalido;
 import mapa.excepcionesMapa.tamanioDeMapaInvalido;
 import unidades.Entidad;
 import edificios.Castillo;
-import mapa.excepcionesMapa.casilleroLleno;
+import mapa.excepcionesMapa.*;
 
 public class Mapa
 {
@@ -189,7 +189,7 @@ public class Mapa
     }
 
 
-    public void cambiarContenidoDeCasillero(int fila, int columna,Entidad contenido) throws casilleroLleno
+    public void cambiarContenidoDeCasillero(int fila, int columna,Entidad contenido) throws casilleroEstaOcupado
     {
         Casillero casillero = this.obtenerCasillero(fila,columna);
         casillero.cambiarContenido(contenido);
@@ -203,26 +203,38 @@ public class Mapa
         return this.obtenerCasillero(fila,columna).obtenerElemento();
     }
 
-    /*
-    public boolean puedoColocarUnidad(int fila, int columna) throws casilleroOcupado
+
+    public boolean puedoColocarUnidad(int fila, int columna) throws casilleroEstaOcupado
     {
-        if(this.obtenerCasillero(fila,columna).estaOcupado())
-        {
-            throw new casilleroOcupado;
-        }
+        return this.puedoColocarUnidad(this.obtenerCasillero(fila,columna));
     }
 
-    public boolean puedoColocarEdificio(int fila, int columna) throws cajaOcupada, casilleroInvalido
+    public boolean puedoColocarUnidad(Casillero casillero) throws casilleroEstaOcupado
     {
-        Casillero casillero = this.obtenerCasillero(fila,columna);
+        boolean puedoColocar = true;
+        if(casillero.estaOcupado())
+        {
+            throw new casilleroEstaOcupado();
+        }
+        return puedoColocar;
+    }
+
+
+    public boolean puedoColocarEdificio(int fila, int columna) throws cajaEstaOcupada, casilleroInvalido
+    {
+        return this.puedoColocarEdificio(this.obtenerCasillero(fila,columna));
+    }
+
+    public boolean puedoColocarEdificio(Casillero casillero) throws cajaEstaOcupada, casilleroInvalido
+    {
+        boolean puedoColocar = true;
         if(this.asignarCajaACasillero(casillero).estaOcupada())
         {
-            throw new cajaOcupada();
+            throw new cajaEstaOcupada();
         }
-        else
-            return true;
+        return puedoColocar;
     }
-    */
+
 
     public Caja asignarCajaACasillero(Casillero casillero) throws casilleroInvalido
     {

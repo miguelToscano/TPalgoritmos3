@@ -3,13 +3,12 @@ import java.util.ArrayList;
 
 import junit.framework.Assert;
 import mapa.*;
-import mapa.excepcionesMapa.casilleroInvalido;
-import mapa.excepcionesMapa.tamanioDeMapaInvalido;
+import mapa.excepcionesMapa.*;
 import unidades.Aldeano;
 
 import org.junit.Test;
 
-import mapa.excepcionesMapa.casilleroLleno;
+import mapa.excepcionesMapa.casilleroEstaOcupado;
 
 public class PlazaCentralTest {
 	
@@ -20,10 +19,10 @@ public class PlazaCentralTest {
     private int fila,columna;
     
 
-    public PlazaCentralTest()  throws tamanioDeMapaInvalido, casilleroInvalido
+    public PlazaCentralTest()  throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada
     {
-    	fila = 4;
-    	columna = 6;
+    	this.fila = 4;
+    	this.columna = 6;
         this.mapa = new Mapa(15,15);
         this.celda = mapa.obtenerCasillero(fila, columna);
         this.caja = mapa.asignarCajaACasillero(celda);
@@ -32,15 +31,15 @@ public class PlazaCentralTest {
 
     
     @Test
-    public void seCreaEnLaPrimerCaja() throws casilleroInvalido
+    public void seCreaEnLaPrimerCaja() throws casilleroInvalido, cajaEstaOcupada
     {
-    	this.plaza =  new PlazaCentral(this.caja, this.mapa);
-        Assert.assertEquals(this.caja, this.plaza.obtenerEspacioOcupado());
+    	this.plaza =  new PlazaCentral(this.celda, this.mapa);
+        Assert.assertEquals(this.celda, this.plaza.obtenerEspacioOcupado());
 
     }
 
     @Test
-    public void seCreaConCasilleroComoParametro() throws casilleroInvalido
+    public void seCreaConCasilleroComoParametro() throws casilleroInvalido, cajaEstaOcupada
     {
     	this.plaza = new PlazaCentral (this.celda,this.mapa);
         Assert.assertEquals(caja, plaza.obtenerEspacioOcupado());
@@ -51,7 +50,7 @@ public class PlazaCentralTest {
     //Arreglar
     
     @Test
-    public void seCreaAldeanoConRallyLibre() throws casilleroInvalido, casilleroLleno
+    public void seCreaAldeanoConRallyLibre() throws casilleroInvalido, casilleroEstaOcupado, cajaEstaOcupada
     {
 
     	plaza =  new PlazaCentral(this.celda,this.mapa);
@@ -67,7 +66,7 @@ public class PlazaCentralTest {
     //Arreglar
     
    @Test
-   public void seReparaEdificio() throws casilleroInvalido, casilleroLleno
+   public void seReparaEdificio() throws casilleroInvalido, casilleroEstaOcupado, cajaEstaOcupada
    {
    	    plaza = new PlazaCentral (this.celda,this.mapa);
    	    plaza.recibirDanio(40);
@@ -79,7 +78,7 @@ public class PlazaCentralTest {
    }
    
    @Test
-   public void seRecibeDanio() throws casilleroInvalido
+   public void seRecibeDanio() throws casilleroInvalido, cajaEstaOcupada
    {
        plaza = new PlazaCentral (this.celda,this.mapa);
        plaza.recibirDanio(60);
@@ -89,9 +88,9 @@ public class PlazaCentralTest {
    }
    
    @Test 
-   public void seCreaEnCajaYElMapaLaReconoceEnCadaCasillero(){
-	   
-   		this.plaza =  new PlazaCentral(this.caja, this.mapa);
+   public void seCreaEnCajaYElMapaLaReconoceEnCadaCasillero() throws cajaEstaOcupada
+   {
+
    		Assert.assertEquals(celda.obtenerElemento(), plaza);
    		
    		this.celda = mapa.obtenerCasillero(fila+1, columna);
@@ -105,8 +104,8 @@ public class PlazaCentralTest {
    	
    }
    
-   @Test(expected = casilleroLleno.class)
-   public void intentarCrearAldeanoConRallyPointOcupadoLanzaExcepcion() throws casilleroLleno,casilleroInvalido
+   @Test(expected = casilleroEstaOcupado.class)
+   public void intentarCrearAldeanoConRallyPointOcupadoLanzaExcepcion() throws casilleroEstaOcupado,casilleroInvalido
    {
        plaza.crearAldeano();
        plaza.crearAldeano();

@@ -23,7 +23,7 @@ public class AldeanoTest {
 
 
 	@Test
-	public void seCreoAldeanoConCoordenadas() throws casilleroLleno
+	public void seCreoAldeanoConCoordenadas() throws casilleroEstaOcupado
 	{
 		
 		Aldeano aldeano = new Aldeano(filaDet,columnaDet,mapa);
@@ -32,7 +32,7 @@ public class AldeanoTest {
 	}
 	
 	@Test
-	public void seCreoAldeanoConCasillero() throws casilleroLleno
+	public void seCreoAldeanoConCasillero() throws casilleroEstaOcupado
 	{
 		
 		celda = mapa.obtenerCasillero(filaDet, columnaDet);
@@ -42,7 +42,7 @@ public class AldeanoTest {
 	}
 	
 	@Test
-	public void seMueveCorrectamente1() throws casilleroLleno
+	public void seMueveCorrectamente1() throws casilleroEstaOcupado
 	{
 		
 		// y+1
@@ -56,7 +56,7 @@ public class AldeanoTest {
 	}
 
 	@Test
-	public void seMueveCorrectamente2() throws casilleroLleno
+	public void seMueveCorrectamente2() throws casilleroEstaOcupado
 	{
 		
 		// y-1
@@ -70,7 +70,7 @@ public class AldeanoTest {
 	}
 
 	@Test
-	public void seMueveCorrectamente3() throws casilleroLleno
+	public void seMueveCorrectamente3() throws casilleroEstaOcupado
 	{
 		
 		// x+1
@@ -84,7 +84,7 @@ public class AldeanoTest {
 	}
 	
 	@Test
-	public void seMueveCorrectamente4() throws casilleroLleno
+	public void seMueveCorrectamente4() throws casilleroEstaOcupado
 	{
 		
 		// x-1
@@ -98,7 +98,7 @@ public class AldeanoTest {
 	}
 	
 	@Test
-	public void seMueveCorrectamente5() throws casilleroLleno
+	public void seMueveCorrectamente5() throws casilleroEstaOcupado
 	{
 		
 		// x-1 y-1
@@ -111,7 +111,7 @@ public class AldeanoTest {
         
 	}
 	@Test
-	public void seMueveCorrectamente6() throws casilleroLleno
+	public void seMueveCorrectamente6() throws casilleroEstaOcupado
 	{
 		
 		// x+1 y+1
@@ -124,7 +124,7 @@ public class AldeanoTest {
         
 	}
 	@Test
-	public void seMueveCorrectamente7() throws casilleroLleno
+	public void seMueveCorrectamente7() throws casilleroEstaOcupado
 	{
 		
 		// x+1 y-1
@@ -137,7 +137,7 @@ public class AldeanoTest {
         
 	}
 	@Test
-	public void seMueveCorrectamente8() throws casilleroLleno
+	public void seMueveCorrectamente8() throws casilleroEstaOcupado
 	{
 		
 		// x-1 y+1
@@ -150,9 +150,9 @@ public class AldeanoTest {
         
 	}
 	
-@Test(expected = casilleroLleno.class)
+@Test(expected = casilleroEstaOcupado.class)
 	
-	public void seCreaEnLugarOcupadoPorUnidadLanzaExcepcion () throws casilleroLleno
+	public void seCreaEnLugarOcupadoPorUnidadLanzaExcepcion () throws casilleroEstaOcupado
 	{
 		celda = mapa.obtenerCasillero(filaDet, columnaDet);
 		Aldeano aldeano = new Aldeano(celda);
@@ -161,8 +161,8 @@ public class AldeanoTest {
 
 	}
 	
-	@Test(expected = casilleroLleno.class)
-	public void seMueveAUnLugarOcupadoPorUnidadLanzaExcepcion () throws casilleroLleno
+	@Test(expected = casilleroEstaOcupado.class)
+	public void seMueveAUnLugarOcupadoPorUnidadLanzaExcepcion () throws casilleroEstaOcupado
 	{
 		celda = mapa.obtenerCasillero(filaDet+1, columnaDet+1);
 		Casillero celdaBis = mapa.obtenerCasillero(filaDet, columnaDet);
@@ -173,8 +173,8 @@ public class AldeanoTest {
 		aldeanoBis.mover(celda);
 
 	}
-	@Test(expected = casilleroLleno.class)
-	public void seCreaEnUnLugarOcupadoPorEdificioLanzaExcepcion () throws casilleroLleno, casilleroInvalido
+	@Test(expected = casilleroEstaOcupado.class)
+	public void seCreaEnUnLugarOcupadoPorEdificioLanzaExcepcion () throws casilleroEstaOcupado, casilleroInvalido
 	{
 		//creo el edificio
 		celda = mapa.obtenerCasillero(6, 6);
@@ -187,8 +187,8 @@ public class AldeanoTest {
 		
 	}
 	
-	@Test(expected = casilleroLleno.class)
-	public void seMueveAUnLugarOcupadoPorEdificioLanzaExcepcion () throws casilleroLleno,casilleroInvalido
+	@Test(expected = casilleroEstaOcupado.class)
+	public void seMueveAUnLugarOcupadoPorEdificioLanzaExcepcion () throws casilleroEstaOcupado,casilleroInvalido
 	{
 		//creo el edificio
 		celda = mapa.obtenerCasillero(6, 6);

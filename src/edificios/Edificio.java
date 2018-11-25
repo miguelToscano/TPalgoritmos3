@@ -1,5 +1,6 @@
 package edificios;
 
+import mapa.excepcionesMapa.cajaEstaOcupada;
 import mapa.excepcionesMapa.casilleroInvalido;
 import unidades.Entidad;
 import mapa.*;
@@ -13,17 +14,18 @@ public abstract class Edificio extends Entidad {
 	protected int velocidadReparacion;
 	
 	protected boolean construido=false;
-	
+
 	public Edificio ()
     {
-		
+
 	}
 
-	public Edificio (Casillero casilleroInicial, Mapa mapa) throws casilleroInvalido
+	public Edificio (Casillero casilleroInicial, Mapa mapa) throws casilleroInvalido, cajaEstaOcupada
     {
-
-		this.cajaOcupada = this.fijarCaja(casilleroInicial, mapa);
-		
+    	if(this.puedoColocar(casilleroInicial,mapa))
+		{
+			this.cajaOcupada = this.fijarCaja(casilleroInicial, mapa);
+		}
 	}
 	
 	public void settearPuntoRally (Mapa mapa)
@@ -68,5 +70,11 @@ public abstract class Edificio extends Entidad {
 				return false;
 		}
 		return true;
+	}
+
+
+	public boolean puedoColocar(Casillero casillero,Mapa mapa) throws cajaEstaOcupada,casilleroInvalido
+	{
+		return mapa.puedoColocarEdificio(casillero);
 	}
 }

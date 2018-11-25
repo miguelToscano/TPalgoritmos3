@@ -3,7 +3,7 @@ import edificios.Cuartel;
 import edificios.Edificio;
 import edificios.PlazaCentral;
 import mapa.*;
-import mapa.excepcionesMapa.casilleroLleno;
+import mapa.excepcionesMapa.casilleroEstaOcupado;
 
 public class Aldeano extends Unidad
 {
@@ -20,7 +20,7 @@ public class Aldeano extends Unidad
     }
 
 	//Coordenadas
-	public Aldeano(int fila, int columna, Mapa mapa)throws casilleroLleno
+	public Aldeano(int fila, int columna, Mapa mapa)throws casilleroEstaOcupado
 	{
 		super(fila, columna, mapa);
 		this.costo = 25;
@@ -29,7 +29,7 @@ public class Aldeano extends Unidad
 	}
 	
 	//Casillero
-	public Aldeano(Casillero casillero) throws casilleroLleno
+	public Aldeano(Casillero casillero) throws casilleroEstaOcupado
 	{
 		super(casillero);
 		this.costo = 25;

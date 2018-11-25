@@ -1,12 +1,13 @@
 package mapa;
 
-import mapa.excepcionesMapa.casilleroLleno;
-import mapa.excepcionesMapa.casilleroInvalido;
-import mapa.excepcionesMapa.tamanioDeMapaInvalido;
+import edificios.*;
+import mapa.excepcionesMapa.*;
 import org.junit.Assert;
 import org.junit.Test;
 
 import unidades.Aldeano;
+import unidades.Espadachin;
+
 
 import static org.junit.Assert.*;
 
@@ -15,48 +16,85 @@ public class MapaTest {
     private Mapa mapa;
 
 
-    public MapaTest() throws tamanioDeMapaInvalido
-    {
+    public MapaTest() throws tamanioDeMapaInvalido {
         mapa = new Mapa(15, 15);
     }
 
     @Test
-    public void seCreaConTamanioPasadoPorParametros() throws tamanioDeMapaInvalido
-    {
-        try{Mapa mapaPrueba = new Mapa(20,20);}
-        catch(tamanioDeMapaInvalido e)
-        {
+    public void seCreaConTamanioPasadoPorParametros() throws tamanioDeMapaInvalido {
+        try {
+            Mapa mapaPrueba = new Mapa(20, 20);
+        } catch (tamanioDeMapaInvalido e) {
             fail("La prueba no paso. El tamanio del mapa no es valido");
         }
-        Mapa mapaPrueba = new Mapa(20,20);
-        Assert.assertEquals(400,mapaPrueba.obtenerTamanio());
+        Mapa mapaPrueba = new Mapa(20, 20);
+        Assert.assertEquals(400, mapaPrueba.obtenerTamanio());
     }
 
     @Test(expected = tamanioDeMapaInvalido.class)
-    public void crearMapaConTamanioInvalidoLanzaError() throws tamanioDeMapaInvalido
-    {
+    public void crearMapaConTamanioInvalidoLanzaError() throws tamanioDeMapaInvalido {
         new Mapa(1, 15);
     }
 
     @Test
-    public void seCreaConCasillerosVacios()
-    {
-        for(int i=0;i<mapa.obtenerTamanioFilas();i++)
-        {
-            for(int j=0;j<mapa.obtenerTamanioColumnas();j++)
-            {
-                Assert.assertTrue(mapa.obtenerCasillero(i,j).estaLibre());
+    public void seCreaConCasillerosVacios() {
+        for (int i = 0; i < mapa.obtenerTamanioFilas(); i++) {
+            for (int j = 0; j < mapa.obtenerTamanioColumnas(); j++) {
+                Assert.assertTrue(mapa.obtenerCasillero(i, j).estaLibre());
             }
         }
     }
 
 
     @Test
-    public void seColocaAldeanoEnPrimerCasillero() throws casilleroLleno
+    public void seColocaAldeanoEnPrimerCasillero() throws casilleroEstaOcupado
     {
-        Aldeano aldeano = new Aldeano(0,0,mapa);
-        Assert.assertEquals(aldeano,mapa.obtenerElemento(0,0));
+        Aldeano aldeano = new Aldeano(0, 0, mapa);
+        Assert.assertEquals(aldeano, mapa.obtenerElemento(0, 0));
+    }
 
+    @Test(expected = casilleroEstaOcupado.class)
+    public void colocarAldeanoEnCasilleroOcupadoLanzaExcepcion() throws casilleroEstaOcupado
+    {
+        Aldeano unAldeano = new Aldeano(5,5,mapa);
+        Aldeano otroAldeano = new Aldeano(5,5,mapa);
+    }
+
+    @Test
+    public void seColocaEspadachinEnCasillero() throws casilleroEstaOcupado
+    {
+        Casillero casillero = mapa.obtenerCasillero(3,3);
+        Espadachin espadachin = new Espadachin(casillero);
+        Assert.assertEquals(espadachin, mapa.obtenerElemento(3, 3));
+    }
+
+    @Test(expected = casilleroEstaOcupado.class)
+    public void colocarEspadachinEnCasilleroOcupadoLanzaExcepcion() throws casilleroEstaOcupado
+    {
+        Casillero casillero = mapa.obtenerCasillero(4,3);
+        Espadachin unEspadachin = new Espadachin(casillero);
+        Espadachin otroEspadachin = new Espadachin(casillero);
+    }
+
+    @Test
+    public void seColocaPlazaCentralEnCajaDadaPorCasillero() throws cajaEstaOcupada, casilleroInvalido
+    {
+        Casillero casillero = mapa.obtenerCasillero(0,0);
+        Caja caja = mapa.obtenerCajas().get(0);
+        PlazaCentral plaza = new PlazaCentral(casillero,mapa);
+        for(int i=0;i<mapa.obtenerTamanioCajas();i++)
+        {
+            Assert.assertEquals(caja.obtenerElemento(i),plaza);
+        }
+
+    }
+
+    @Test(expected = cajaEstaOcupada.class)
+    public void colocarCuartelEnCajaOcupadaLanzaExcepcion() throws casilleroInvalido, cajaEstaOcupada
+    {
+        Casillero casillero = mapa.obtenerCasillero(5,5);
+        Cuartel unCuartel = new Cuartel(casillero,mapa);
+        Cuartel otroCuartel = new Cuartel(casillero,mapa);
     }
 
     @Test

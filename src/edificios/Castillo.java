@@ -2,7 +2,7 @@ package edificios;
 
 import java.util.ArrayList;
 
-import mapa.excepcionesMapa.casilleroLleno;
+import mapa.excepcionesMapa.casilleroEstaOcupado;
 import mapa.*;
 import unidades.ArmaDeAsedio;
 
@@ -28,7 +28,7 @@ public class Castillo extends Edificio
 		this.armasDeAsedio = new ArrayList<ArmaDeAsedio>();
 	}
 	
-	public void crearArmaDeAsedio() throws casilleroLleno
+	public void crearArmaDeAsedio() throws casilleroEstaOcupado
     {
 		//check posicion esta en espacioOcupado
 		ArmaDeAsedio unArmaDeAsedio = new ArmaDeAsedio(puntoRally);
