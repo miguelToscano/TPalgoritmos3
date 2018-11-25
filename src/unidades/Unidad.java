@@ -6,13 +6,14 @@ import excepciones.*
 
 {
     protected Casillero casilleroOcupado;
-	public static int cantidad = 0;
+	private static int cantidad = 0;
 
 	//Constructores
 	
 	public Unidad()
     {
 	    this.turnosConstruccion = 1;
+	    this.cantidad++;
 	}
 	
 	//Con coordenadas 
@@ -21,6 +22,8 @@ import excepciones.*
         this.turnosConstruccion = 1;
         Casillero casillero = mapa.obtenerCasillero(fila,columna);
         this.ubicar(casillero);
+	    this.cantidad++;
+
         
      }
 	
@@ -29,6 +32,8 @@ import excepciones.*
     {
         this.turnosConstruccion = 1;
         this.ubicar(casillero);
+	    this.cantidad++;
+
         
      }
 	
@@ -46,6 +51,7 @@ import excepciones.*
 		this.vida = this.vida - danio;
 		if (vida <= 0 ) {
 			//matar unidad
+			this.cantidad--;
 		}
 	}
 
