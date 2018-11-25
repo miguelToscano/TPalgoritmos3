@@ -2,7 +2,8 @@ package unidades;
 
 import mapa.Mapeable;
 import mapa.Casillero;
-import excepciones.*;
+import mapa.excepcionesMapa.casilleroLleno;
+
 public abstract class Entidad
 {
     protected int vida;
@@ -39,5 +40,6 @@ public abstract class Entidad
 	}
 	
 	public abstract boolean estaEnRango (int rango, Casillero casillero);
-	public abstract void ubicar(Mapeable mapeable) throws CasilleroLleno;
+
+	public abstract void ubicar(Mapeable mapeable) throws casilleroLleno;
  }

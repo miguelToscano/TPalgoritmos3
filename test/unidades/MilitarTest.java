@@ -2,12 +2,12 @@ package unidades;
 
 import java.util.ArrayList;
 
+import mapa.excepcionesMapa.casilleroLleno;
+import mapa.excepcionesMapa.tamanioDeMapaInvalido;
 import org.junit.Assert;
 import excepciones.*;
 import org.junit.Test;
 import mapa.*;
-import edificios.*;
-import unidades.*;
 
 public class MilitarTest {
 	
@@ -18,9 +18,9 @@ public class MilitarTest {
 	ArrayList<Casillero> lista = new ArrayList<Casillero>();
 	
 	
-	public  MilitarTest ()
+	public  MilitarTest () throws tamanioDeMapaInvalido
 	{
-		mapa = new Mapa(10,10);
+		mapa = new Mapa(15,15);
 		filaDet = 3;
 		columnaDet= 3;
 		celda = mapa.obtenerCasillero(filaDet, columnaDet);
@@ -29,14 +29,12 @@ public class MilitarTest {
 		lista.add(mapa.obtenerCasillero(filaDet, columnaDet+1));
 		lista.add(mapa.obtenerCasillero(filaDet+1, columnaDet+1));
 		lista.add(mapa.obtenerCasillero(filaDet+4, columnaDet));
-
-
 		
 	}
 	
 	
 	@Test
-	public void ArqueroAtacaAldeano() throws UnidadAliada,CasilleroLleno,FueraDeRango
+	public void ArqueroAtacaAldeano() throws UnidadAliada, casilleroLleno,FueraDeRango
 	{
 		Aldeano objetivo = new Aldeano(lista.get(0)); // aldeano en 3 3;
 		Arquero arquero = new Arquero (lista.get(1));
@@ -46,7 +44,7 @@ public class MilitarTest {
 	}
 	
 	@Test
-	public void ArquerosVariosAtacanAldeano() throws UnidadAliada,CasilleroLleno,FueraDeRango
+	public void ArquerosVariosAtacanAldeano() throws UnidadAliada, casilleroLleno,FueraDeRango
 	{
 		Aldeano objetivo = new Aldeano(lista.get(0)); // aldeano en 3 3;
 		Arquero arquero = new Arquero (lista.get(1));
@@ -58,7 +56,7 @@ public class MilitarTest {
 	}
 	
 	@Test
-	public void ArquerosVariosAtacanyMatanAldeano() throws UnidadAliada,CasilleroLleno,FueraDeRango
+	public void ArquerosVariosAtacanyMatanAldeano() throws UnidadAliada, casilleroLleno,FueraDeRango
 	{
 		Aldeano objetivo = new Aldeano(lista.get(0)); // aldeano en 3 3;
 		Arquero arquero = new Arquero (lista.get(1));
@@ -72,7 +70,7 @@ public class MilitarTest {
 	}
 	
 	@Test(expected = FueraDeRango.class)
-	public void ArqueroFueraDeRangoLanzaExcepcion() throws UnidadAliada,CasilleroLleno,FueraDeRango
+	public void ArqueroFueraDeRangoLanzaExcepcion() throws UnidadAliada, casilleroLleno,FueraDeRango
 	{
 		Aldeano objetivo = new Aldeano(lista.get(0)); // aldeano en 3 3;
 		Arquero arquero = new Arquero (lista.get(4));

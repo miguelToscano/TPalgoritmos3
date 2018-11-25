@@ -2,7 +2,8 @@ package edificios;
 
 import java.util.ArrayList;
 
-import excepciones.CasilleroLleno;
+import mapa.excepcionesMapa.casilleroLleno;
+import mapa.excepcionesMapa.casilleroInvalido;
 import unidades.*;
 import mapa.*;
 
@@ -56,7 +57,7 @@ public class PlazaCentral extends Edificio {
 		return aldeanos;
 	}
 	
-	public void crearAldeano() throws CasilleroLleno {
+	public void crearAldeano() throws casilleroLleno {
 		
 		Aldeano unAldeano = new Aldeano(puntoRally);
 		// isRallyPoint ocupado? excepcion

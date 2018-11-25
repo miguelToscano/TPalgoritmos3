@@ -1,8 +1,9 @@
 package unidades;
 
 import mapa.*;
-import excepciones.*
-;public abstract class Unidad extends Entidad
+import mapa.excepcionesMapa.casilleroLleno;
+
+public abstract class Unidad extends Entidad
 
 {
     protected Casillero casilleroOcupado;
@@ -17,7 +18,7 @@ import excepciones.*
 	}
 	
 	//Con coordenadas 
-	public Unidad (int fila, int columna, Mapa mapa) throws CasilleroLleno  
+	public Unidad (int fila, int columna, Mapa mapa) throws casilleroLleno
     {
         this.turnosConstruccion = 1;
         Casillero casillero = mapa.obtenerCasillero(fila,columna);
@@ -28,7 +29,7 @@ import excepciones.*
      }
 	
 	//con casillero
-	public Unidad (Casillero casillero)  throws CasilleroLleno  
+	public Unidad (Casillero casillero)  throws casilleroLleno
     {
         this.turnosConstruccion = 1;
         this.ubicar(casillero);
@@ -37,7 +38,7 @@ import excepciones.*
         
      }
 	
-	public void mover(Casillero casillero)throws CasilleroLleno {
+	public void mover(Casillero casillero)throws casilleroLleno {
 		
 		this.casilleroOcupado.vaciar();
 		//check distancias, movimiento posible
@@ -55,11 +56,11 @@ import excepciones.*
 		}
 	}
 
-	public void ubicar(Mapeable mapeable) throws CasilleroLleno
+	public void ubicar(Mapeable mapeable) throws casilleroLleno
     {
         Casillero casillero = (Casillero) mapeable; 
         if (casillero.estaOcupado()) {
-        	throw new CasilleroLleno();
+        	throw new casilleroLleno();
         }
 		this.casilleroOcupado = casillero;
         casillero.cambiarContenido(this);

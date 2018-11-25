@@ -2,8 +2,8 @@ package unidades;
 import edificios.Cuartel;
 import edificios.Edificio;
 import edificios.PlazaCentral;
-import excepciones.*;
 import mapa.*;
+import mapa.excepcionesMapa.casilleroLleno;
 
 public class Aldeano extends Unidad
 {
@@ -20,7 +20,7 @@ public class Aldeano extends Unidad
     }
 
 	//Coordenadas
-	public Aldeano(int fila, int columna, Mapa mapa)throws CasilleroLleno
+	public Aldeano(int fila, int columna, Mapa mapa)throws casilleroLleno
 	{
 		super(fila, columna, mapa);
 		this.costo = 25;
@@ -29,7 +29,7 @@ public class Aldeano extends Unidad
 	}
 	
 	//Casillero
-	public Aldeano(Casillero casillero) throws CasilleroLleno
+	public Aldeano(Casillero casillero) throws casilleroLleno
 	{
 		super(casillero);
 		this.costo = 25;

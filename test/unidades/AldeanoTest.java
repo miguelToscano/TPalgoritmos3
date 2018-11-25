@@ -1,13 +1,10 @@
 package unidades;
+import mapa.excepcionesMapa.*;
+import mapa.Mapa;
 import org.junit.Assert;
-import excepciones.*;
 import org.junit.Test;
 import mapa.*;
 import edificios.*;
-
-import unidades.Aldeano;
-
-import static org.junit.Assert.*;
 
 
 public class AldeanoTest {
@@ -17,16 +14,16 @@ public class AldeanoTest {
 	private int columnaDet;
 	private Casillero celda;
 	
-	public AldeanoTest ()
+	public AldeanoTest () throws tamanioDeMapaInvalido
 	{
-		mapa = new Mapa(10,10);
+		mapa = new Mapa(15,15);
 		filaDet = 3;
 		columnaDet= 3;
 	}
 
 
 	@Test
-	public void seCreoAldeanoConCoordenadas() throws CasilleroLleno
+	public void seCreoAldeanoConCoordenadas() throws casilleroLleno
 	{
 		
 		Aldeano aldeano = new Aldeano(filaDet,columnaDet,mapa);
@@ -35,7 +32,7 @@ public class AldeanoTest {
 	}
 	
 	@Test
-	public void seCreoAldeanoConCasillero() throws CasilleroLleno
+	public void seCreoAldeanoConCasillero() throws casilleroLleno
 	{
 		
 		celda = mapa.obtenerCasillero(filaDet, columnaDet);
@@ -45,7 +42,7 @@ public class AldeanoTest {
 	}
 	
 	@Test
-	public void seMueveCorrectamente1() throws CasilleroLleno
+	public void seMueveCorrectamente1() throws casilleroLleno
 	{
 		
 		// y+1
@@ -59,7 +56,7 @@ public class AldeanoTest {
 	}
 
 	@Test
-	public void seMueveCorrectamente2() throws CasilleroLleno
+	public void seMueveCorrectamente2() throws casilleroLleno
 	{
 		
 		// y-1
@@ -73,7 +70,7 @@ public class AldeanoTest {
 	}
 
 	@Test
-	public void seMueveCorrectamente3() throws CasilleroLleno
+	public void seMueveCorrectamente3() throws casilleroLleno
 	{
 		
 		// x+1
@@ -87,7 +84,7 @@ public class AldeanoTest {
 	}
 	
 	@Test
-	public void seMueveCorrectamente4() throws CasilleroLleno
+	public void seMueveCorrectamente4() throws casilleroLleno
 	{
 		
 		// x-1
@@ -101,7 +98,7 @@ public class AldeanoTest {
 	}
 	
 	@Test
-	public void seMueveCorrectamente5() throws CasilleroLleno
+	public void seMueveCorrectamente5() throws casilleroLleno
 	{
 		
 		// x-1 y-1
@@ -114,7 +111,7 @@ public class AldeanoTest {
         
 	}
 	@Test
-	public void seMueveCorrectamente6() throws CasilleroLleno
+	public void seMueveCorrectamente6() throws casilleroLleno
 	{
 		
 		// x+1 y+1
@@ -127,7 +124,7 @@ public class AldeanoTest {
         
 	}
 	@Test
-	public void seMueveCorrectamente7() throws CasilleroLleno
+	public void seMueveCorrectamente7() throws casilleroLleno
 	{
 		
 		// x+1 y-1
@@ -140,7 +137,7 @@ public class AldeanoTest {
         
 	}
 	@Test
-	public void seMueveCorrectamente8() throws CasilleroLleno
+	public void seMueveCorrectamente8() throws casilleroLleno
 	{
 		
 		// x-1 y+1
@@ -153,9 +150,9 @@ public class AldeanoTest {
         
 	}
 	
-@Test(expected = CasilleroLleno.class)
+@Test(expected = casilleroLleno.class)
 	
-	public void seCreaEnLugarOcupadoPorUnidadLanzaExcepcion () throws CasilleroLleno
+	public void seCreaEnLugarOcupadoPorUnidadLanzaExcepcion () throws casilleroLleno
 	{
 		celda = mapa.obtenerCasillero(filaDet, columnaDet);
 		Aldeano aldeano = new Aldeano(celda);
@@ -164,8 +161,8 @@ public class AldeanoTest {
 
 	}
 	
-	@Test(expected = CasilleroLleno.class)
-	public void seMueveAUnLugarOcupadoPorUnidadLanzaExcepcion () throws CasilleroLleno
+	@Test(expected = casilleroLleno.class)
+	public void seMueveAUnLugarOcupadoPorUnidadLanzaExcepcion () throws casilleroLleno
 	{
 		celda = mapa.obtenerCasillero(filaDet+1, columnaDet+1);
 		Casillero celdaBis = mapa.obtenerCasillero(filaDet, columnaDet);
@@ -176,8 +173,8 @@ public class AldeanoTest {
 		aldeanoBis.mover(celda);
 
 	}
-	@Test(expected = CasilleroLleno.class)
-	public void seCreaEnUnLugarOcupadoPorEdificioLanzaExcepcion () throws CasilleroLleno,casilleroInvalido
+	@Test(expected = casilleroLleno.class)
+	public void seCreaEnUnLugarOcupadoPorEdificioLanzaExcepcion () throws casilleroLleno, casilleroInvalido
 	{
 		//creo el edificio
 		celda = mapa.obtenerCasillero(6, 6);
@@ -190,8 +187,8 @@ public class AldeanoTest {
 		
 	}
 	
-	@Test(expected = CasilleroLleno.class)
-	public void seMueveAUnLugarOcupadoPorEdificioLanzaExcepcion () throws CasilleroLleno,casilleroInvalido
+	@Test(expected = casilleroLleno.class)
+	public void seMueveAUnLugarOcupadoPorEdificioLanzaExcepcion () throws casilleroLleno,casilleroInvalido
 	{
 		//creo el edificio
 		celda = mapa.obtenerCasillero(6, 6);

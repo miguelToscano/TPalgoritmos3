@@ -1,7 +1,9 @@
 package mapa;
 
+import mapa.excepcionesMapa.casilleroLleno;
+import mapa.excepcionesMapa.casilleroInvalido;
+import mapa.excepcionesMapa.tamanioDeMapaInvalido;
 import org.junit.Assert;
-import excepciones.*;
 import org.junit.Test;
 
 import unidades.Aldeano;
@@ -13,16 +15,32 @@ public class MapaTest {
     private Mapa mapa;
 
 
-    public MapaTest ()
+    public MapaTest() throws tamanioDeMapaInvalido
     {
-        mapa = new Mapa();
+        mapa = new Mapa(15, 15);
+    }
 
+    @Test
+    public void seCreaConTamanioPasadoPorParametros() throws tamanioDeMapaInvalido
+    {
+        try{Mapa mapaPrueba = new Mapa(20,20);}
+        catch(tamanioDeMapaInvalido e)
+        {
+            fail("La prueba no paso. El tamanio del mapa no es valido");
+        }
+        Mapa mapaPrueba = new Mapa(20,20);
+        Assert.assertEquals(400,mapaPrueba.obtenerTamanio());
+    }
+
+    @Test(expected = tamanioDeMapaInvalido.class)
+    public void crearMapaConTamanioInvalidoLanzaError() throws tamanioDeMapaInvalido
+    {
+        new Mapa(1, 15);
     }
 
     @Test
     public void seCreaConCasillerosVacios()
     {
-
         for(int i=0;i<mapa.obtenerTamanioFilas();i++)
         {
             for(int j=0;j<mapa.obtenerTamanioColumnas();j++)
@@ -34,7 +52,7 @@ public class MapaTest {
 
 
     @Test
-    public void seCambiaContenidoDePrimerCasillero() throws CasilleroLleno
+    public void seColocaAldeanoEnPrimerCasillero() throws casilleroLleno
     {
         Aldeano aldeano = new Aldeano(0,0,mapa);
         Assert.assertEquals(aldeano,mapa.obtenerElemento(0,0));
@@ -80,15 +98,15 @@ public class MapaTest {
     }
 
     @Test
-    public void obtenerCajaAPartirDeTercerCasilleroDevuelveTercerCaja() throws casilleroInvalido
+    public void obtenerTercerCajaAPartirDeTercerCasillero() throws casilleroInvalido
     {
-        Caja tercerCaja = mapa.obtenerCajas().get(4);
-        Casillero tercerCasillero = mapa.obtenerCasillero(1,0);
+
+        Caja tercerCaja = mapa.obtenerCajas().get(2);
+        Casillero tercerCasillero = mapa.obtenerCasillero(0,2);
         try{mapa.asignarCajaACasillero(tercerCasillero);}
         catch(casilleroInvalido c)
         {
-            System.out.println("La prueba no paso. El casillero elegido no es valido");
-            //hacer fallar test manualmente
+            fail("La prueba no paso. El casillero elegido no es valido");
         }
 
         Caja cajaRetornada = mapa.asignarCajaACasillero(tercerCasillero);
@@ -98,8 +116,10 @@ public class MapaTest {
     @Test(expected = casilleroInvalido.class)
     public void obtenerCajaAPartirDeCasilleroLimiteLanzaExcepcion() throws casilleroInvalido
     {
-        Casillero casilleroLimite = mapa.obtenerCasillero(4,4);
+        Casillero casilleroLimite = mapa.obtenerCasillero(mapa.obtenerTamanioFilas()-1,mapa.obtenerTamanioColumnas()-1);
         mapa.asignarCajaACasillero(casilleroLimite);
     }
+
+
 
 }

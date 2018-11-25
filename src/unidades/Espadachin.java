@@ -1,13 +1,13 @@
 package unidades;
 
-import excepciones.*;
 import mapa.Casillero;
 import mapa.Mapa;
+import mapa.excepcionesMapa.casilleroLleno;
 
 public class Espadachin extends Militar {
 
 	
-	public Espadachin (int fila, int columna, Mapa mapa) throws CasilleroLleno {
+	public Espadachin (int fila, int columna, Mapa mapa) throws casilleroLleno {
 		
 		super (fila, columna, mapa);
 		
@@ -20,7 +20,7 @@ public class Espadachin extends Militar {
 	
 }
 
-	public Espadachin (Casillero casillero) throws CasilleroLleno {
+	public Espadachin (Casillero casillero) throws casilleroLleno {
 	
 		super (casillero);
 		

@@ -1,9 +1,12 @@
 package mapa;
 
 import java.util.ArrayList;
+
+import mapa.excepcionesMapa.casilleroInvalido;
+import mapa.excepcionesMapa.tamanioDeMapaInvalido;
 import unidades.Entidad;
 import edificios.Castillo;
-import excepciones.CasilleroLleno;
+import mapa.excepcionesMapa.casilleroLleno;
 
 public class Mapa
 {
@@ -124,30 +127,29 @@ public class Mapa
 
     }
 
-    public Mapa()
+    //Constructor con parametros
+    public Mapa (int filas, int columnas) throws tamanioDeMapaInvalido
     {
-        this.tamanioColumnas = 5;
-        this.tamanioFilas = 5;
-        this.tamanioCajas = 4;
-        this.tamanioCastillo = 16;
+        //El tamanio del mapa es filas x columnas y debe ser >= a 200
+        //filas y columnas deben ser >=8 (tamanio castillo)
 
-        this.crearCasilleros();
-        this.crearFilas();
-        this.crearColumnas();
-        this.crearCajas();
+        if(filas*columnas<200||filas<8||columnas<8)
+        {
+            throw new tamanioDeMapaInvalido();
+        }
 
-    }
-    public Mapa (int filas, int columnas)
-    {
-        this.tamanioColumnas = filas ;
-        this.tamanioFilas = columnas ;
-        this.tamanioCajas = 4 ;
-        this.tamanioCastillo = 16;
+        else
+        {
+            this.tamanioColumnas = filas;
+            this.tamanioFilas = columnas;
+            this.tamanioCajas = 4;
+            this.tamanioCastillo = 16;
 
-        this.crearCasilleros();
-        this.crearFilas();
-        this.crearColumnas();
-        this.crearCajas();
+            this.crearCasilleros();
+            this.crearFilas();
+            this.crearColumnas();
+            this.crearCajas();
+        }
 
     }
 
@@ -187,7 +189,7 @@ public class Mapa
     }
 
 
-    public void cambiarContenidoDeCasillero(int fila, int columna,Entidad contenido) throws CasilleroLleno
+    public void cambiarContenidoDeCasillero(int fila, int columna,Entidad contenido) throws casilleroLleno
     {
         Casillero casillero = this.obtenerCasillero(fila,columna);
         casillero.cambiarContenido(contenido);
@@ -195,16 +197,32 @@ public class Mapa
 
     }
 
+
     public Entidad obtenerElemento(int fila,int columna)
     {
         return this.obtenerCasillero(fila,columna).obtenerElemento();
     }
 
-    public boolean puedoColocar(Entidad entidad, Mapeable mapeable)
+    /*
+    public boolean puedoColocarUnidad(int fila, int columna) throws casilleroOcupado
     {
-        return true;
+        if(this.obtenerCasillero(fila,columna).estaOcupado())
+        {
+            throw new casilleroOcupado;
+        }
     }
-    //puedoColocar
+
+    public boolean puedoColocarEdificio(int fila, int columna) throws cajaOcupada, casilleroInvalido
+    {
+        Casillero casillero = this.obtenerCasillero(fila,columna);
+        if(this.asignarCajaACasillero(casillero).estaOcupada())
+        {
+            throw new cajaOcupada();
+        }
+        else
+            return true;
+    }
+    */
 
     public Caja asignarCajaACasillero(Casillero casillero) throws casilleroInvalido
     {
@@ -296,4 +314,10 @@ public class Mapa
 
         return columna;
     }
+
+    public int obtenerTamanio()
+    {
+        return this.obtenerTamanioColumnas()*this.obtenerTamanioFilas();
+    }
+
 }

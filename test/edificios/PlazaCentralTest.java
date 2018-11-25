@@ -3,13 +3,13 @@ import java.util.ArrayList;
 
 import junit.framework.Assert;
 import mapa.*;
+import mapa.excepcionesMapa.casilleroInvalido;
+import mapa.excepcionesMapa.tamanioDeMapaInvalido;
 import unidades.Aldeano;
-
-import java.util.ArrayList;
 
 import org.junit.Test;
 
-import excepciones.CasilleroLleno;
+import mapa.excepcionesMapa.casilleroLleno;
 
 public class PlazaCentralTest {
 	
@@ -20,10 +20,11 @@ public class PlazaCentralTest {
     private int fila,columna;
     
 
-    public PlazaCentralTest()  throws casilleroInvalido
+    public PlazaCentralTest()  throws tamanioDeMapaInvalido, casilleroInvalido
     {
-    	fila = 4; columna = 6;
-        this.mapa = new Mapa(12,12);
+    	fila = 4;
+    	columna = 6;
+        this.mapa = new Mapa(15,15);
         this.celda = mapa.obtenerCasillero(fila, columna);
         this.caja = mapa.asignarCajaACasillero(celda);
         this.plaza = new PlazaCentral(this.celda,mapa);
@@ -50,7 +51,7 @@ public class PlazaCentralTest {
     //Arreglar
     
     @Test
-    public void seCreaAldeanoConRallyLibre() throws casilleroInvalido, CasilleroLleno
+    public void seCreaAldeanoConRallyLibre() throws casilleroInvalido, casilleroLleno
     {
 
     	plaza =  new PlazaCentral(this.celda,this.mapa);
@@ -66,7 +67,7 @@ public class PlazaCentralTest {
     //Arreglar
     
    @Test
-   public void seReparaEdificio() throws casilleroInvalido, CasilleroLleno
+   public void seReparaEdificio() throws casilleroInvalido, casilleroLleno
    {
    	    plaza = new PlazaCentral (this.celda,this.mapa);
    	    plaza.recibirDanio(40);
@@ -104,8 +105,8 @@ public class PlazaCentralTest {
    	
    }
    
-   @Test(expected = CasilleroLleno.class)
-   public void intentarCrearAldeanoConRallyPointOcupadoLanzaExcepcion() throws CasilleroLleno,casilleroInvalido
+   @Test(expected = casilleroLleno.class)
+   public void intentarCrearAldeanoConRallyPointOcupadoLanzaExcepcion() throws casilleroLleno,casilleroInvalido
    {
        plaza.crearAldeano();
        plaza.crearAldeano();

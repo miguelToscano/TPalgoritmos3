@@ -1,5 +1,6 @@
 package edificios;
 
+import mapa.excepcionesMapa.casilleroInvalido;
 import unidades.Entidad;
 import mapa.*;
 

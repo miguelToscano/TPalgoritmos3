@@ -9,8 +9,9 @@ import mapa.Mapa;
 import org.junit.Test;
 
 
-import static org.junit.Assert.*;
-import mapa.casilleroInvalido;
+import mapa.excepcionesMapa.casilleroInvalido;
+import mapa.excepcionesMapa.tamanioDeMapaInvalido;
+
 public class CastilloTest
 {
 
@@ -20,11 +21,11 @@ public class CastilloTest
     private PlazaCentral plaza;
     private int fila,columna;
 
-    public CastilloTest () throws casilleroInvalido
+    public CastilloTest () throws tamanioDeMapaInvalido, casilleroInvalido
     {
 
     	fila = 4; columna = 6;
-        this.mapa = new Mapa(12,12);
+        this.mapa = new Mapa(15,15);
         this.celda = mapa.obtenerCasillero(fila, columna);
         this.caja = mapa.asignarCajaACasillero(celda);
         
