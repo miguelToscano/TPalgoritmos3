@@ -2,7 +2,7 @@ package unidades;
 
 import mapa.Mapeable;
 import mapa.Casillero;
-import mapa.excepcionesMapa.casilleroEstaOcupado;
+import mapa.excepcionesMapa.*;
 
 public abstract class Entidad
 {
@@ -41,5 +41,5 @@ public abstract class Entidad
 	
 	public abstract boolean estaEnRango (int rango, Casillero casillero);
 
-	public abstract void ubicar(Mapeable mapeable) throws casilleroEstaOcupado;
+	public abstract void ubicarEn(Mapeable mapeable) throws casilleroEstaOcupado, cajaEstaOcupada;
  }

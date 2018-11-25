@@ -13,7 +13,7 @@ public abstract class Militar extends Unidad
     
     public Militar (int fila, int columna, Mapa mapa) throws casilleroEstaOcupado
 	{
-    		super (fila, columna, mapa);
+		super (fila, columna, mapa);
     }
 	
     public Militar (Casillero casillero) throws casilleroEstaOcupado {

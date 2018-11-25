@@ -1,6 +1,7 @@
 package edificios;
 
 import mapa.excepcionesMapa.cajaEstaOcupada;
+import mapa.excepcionesMapa.casilleroEstaOcupado;
 import mapa.excepcionesMapa.casilleroInvalido;
 import unidades.Entidad;
 import mapa.*;
@@ -22,10 +23,9 @@ public abstract class Edificio extends Entidad {
 
 	public Edificio (Casillero casilleroInicial, Mapa mapa) throws casilleroInvalido, cajaEstaOcupada
     {
-    	if(this.puedoColocar(casilleroInicial,mapa))
-		{
-			this.cajaOcupada = this.fijarCaja(casilleroInicial, mapa);
-		}
+    	Caja caja = mapa.asignarCajaACasillero(casilleroInicial);
+    	this.ubicarEn(caja);
+    	this.settearPuntoRally(mapa);
 	}
 	
 	public void settearPuntoRally (Mapa mapa)
@@ -63,18 +63,31 @@ public abstract class Edificio extends Entidad {
 		this.construido=true;
 	}
 	
-	public boolean estaEnRango (int rango, Casillero casillero) {
-		
-		for	(Casillero celda: this.cajaOcupada.getLista()) {
+	public boolean estaEnRango (int rango, Casillero casillero)
+	{
+		for	(Casillero celda: this.cajaOcupada.getLista())
+		{
 			if	(Math.abs(celda.getFila() - casillero.getFila()) > rango  || Math.abs(celda.getColumna() - casillero.getColumna()) > rango )
 				return false;
 		}
 		return true;
 	}
 
+	public void ubicarEn(Mapeable mapeable) throws cajaEstaOcupada
+	{
+		Caja caja = (Caja) mapeable;
+		if (caja.estaOcupada())
+		{
+			throw new cajaEstaOcupada();
+		}
+		this.cajaOcupada = caja;
+		caja.llenar(this);
+	}
 
+	/*
 	public boolean puedoColocar(Casillero casillero,Mapa mapa) throws cajaEstaOcupada,casilleroInvalido
 	{
 		return mapa.puedoColocarEdificio(casillero);
 	}
+	*/
 }

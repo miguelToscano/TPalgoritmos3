@@ -112,7 +112,7 @@ public class Mapa
         }
     }
 
-    public void crearCastilloSuperior()
+    public void crearCastilloSuperior() throws cajaEstaOcupada
     {
         Caja caja = new Caja(this.tamanioCastillo);
         for(int i=0;i<4;i++)
@@ -123,7 +123,7 @@ public class Mapa
             }
 
         }
-        castilloSuperior.ubicar(caja);
+        castilloSuperior.ubicarEn(caja);
 
     }
 
@@ -189,12 +189,11 @@ public class Mapa
     }
 
 
-    public void cambiarContenidoDeCasillero(int fila, int columna,Entidad contenido) throws casilleroEstaOcupado
+    public void cambiarContenidoDeCasillero(int fila, int columna,Entidad contenido) throws casilleroEstaOcupado, cajaEstaOcupada
     {
         Casillero casillero = this.obtenerCasillero(fila,columna);
         casillero.cambiarContenido(contenido);
-        contenido.ubicar(casillero);
-
+        contenido.ubicarEn(casillero);
     }
 
 
@@ -203,6 +202,7 @@ public class Mapa
         return this.obtenerCasillero(fila,columna).obtenerElemento();
     }
 
+    /*
 
     public boolean puedoColocarUnidad(int fila, int columna) throws casilleroEstaOcupado
     {
@@ -235,7 +235,7 @@ public class Mapa
         return puedoColocar;
     }
 
-
+*/
     public Caja asignarCajaACasillero(Casillero casillero) throws casilleroInvalido
     {
         Caja caja = new Caja(this.obtenerTamanioCajas());
