@@ -171,12 +171,11 @@ public class AldeanoTest {
 
 	@Test(expected = casilleroEstaOcupado.class)
 	public void seCreaEnUnLugarOcupadoPorEdificioLanzaExcepcion() throws casilleroEstaOcupado,
-														casilleroInvalido, cajaEstaOcupada,superaLimitePoblacional
-	{
+			casilleroInvalido, cajaEstaOcupada, superaLimitePoblacional {
 		//creo el edificio
 		celda = mapa.obtenerCasillero(6, 6);
 		Caja caja = mapa.asignarCajaACasillero(celda);
-		Cuartel cuartel = new Cuartel(caja, this.mapa,this.jugador);
+		Cuartel cuartel = new Cuartel(caja, this.mapa, this.jugador);
 
 		// el edificio va a estar en 6,6 6,7 7,6 y 7,7
 		Aldeano aldeano = new Aldeano(mapa.obtenerCasillero(6, 7));
@@ -186,12 +185,11 @@ public class AldeanoTest {
 
 	@Test(expected = casilleroEstaOcupado.class)
 	public void seMueveAUnLugarOcupadoPorEdificioLanzaExcepcion() throws casilleroEstaOcupado,
-														casilleroInvalido, cajaEstaOcupada,superaLimitePoblacional
-	{
+			casilleroInvalido, cajaEstaOcupada, superaLimitePoblacional {
 		//creo el edificio
 		celda = mapa.obtenerCasillero(6, 6);
 		Caja caja = mapa.asignarCajaACasillero(celda);
-		Cuartel cuartel = new Cuartel(caja, this.mapa,jugador);
+		Cuartel cuartel = new Cuartel(caja, this.mapa, jugador);
 
 		// el edificio va a estar en 6,6 6,7 7,6 y 7,7
 		Aldeano aldeano = new Aldeano(mapa.obtenerCasillero(5, 5));
@@ -200,16 +198,19 @@ public class AldeanoTest {
 
 	}
 }
-/*
+/*MAL MAL MAL
 	@Test
-    public void aldeanoComienzaAConstruirPlaza()
-    {
-        Aldeano aldeano = new Aldeano();
-        aldeano.construirPlazaCentral();
+	public void aldeanoComienzaAConstruirPlaza() throws casilleroEstaOcupado,casilleroInvalido,
+															superaLimitePoblacional,cajaEstaOcupada
+	{
+		Aldeano aldeano = new Aldeano(filaDet, columnaDet, mapa);
+		Casillero casillero = mapa.obtenerCasillero(3, 3);
+		Caja caja = mapa.asignarCajaACasillero(casillero);
+		aldeano.construirPlazaCentral(caja, mapa, jugador);
 
-        Assert.assertTrue(aldeano.edificioEnConstruccion != null);
-    }
-
+		Assert.assertTrue(aldeano.edificioEnConstruccion != null);
+	}
+}
 //	@Test
 //    public void aldeanoConstruyendoEstaTrabajando()
 //    {
@@ -227,5 +228,6 @@ public class AldeanoTest {
 //        
 //        Assert.assertTrue(aldeano.sumarOro()==0);
 //    }
+
 
 */

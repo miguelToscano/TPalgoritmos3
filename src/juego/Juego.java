@@ -10,6 +10,7 @@ public class Juego
     private Mapa mapa;
     private Jugador jugadorA;
     private Jugador jugadorB;
+    private static int turno;
 
     public Juego(Jugador jugadorA, Jugador jugadorB) throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada,superaLimitePoblacional
     {
@@ -18,8 +19,13 @@ public class Juego
         this.mapa = new Mapa(15,15);
         this.crearCastillos();
         this.crearPlazas();
+        this.turno = 0;
     }
 
+    public void aumentarTurno()
+    {
+        this.turno++;
+    }
 
     public void crearCastillos() throws cajaEstaOcupada,superaLimitePoblacional
     {

@@ -59,10 +59,12 @@ public class Aldeano extends Unidad
 		turnosConstruyendo++;
 		trabajando=true;
 		
-		if (turnosConstruyendo==1) {
+		if (turnosConstruyendo==1)
+		{
 			PlazaCentral plaza = new PlazaCentral(caja,mapa,jugador);
 			edificioEnConstruccion=plaza;
-		} else if (turnosConstruyendo==edificioEnConstruccion.getTurnosConstruccion()) {
+		} else if (turnosConstruyendo==edificioEnConstruccion.getTurnosConstruccion())
+		{
 			edificioEnConstruccion.mostrarConstruido();
 			trabajando=false;
 			turnosConstruyendo=0;
@@ -75,10 +77,13 @@ public class Aldeano extends Unidad
 		turnosConstruyendo++;
 		trabajando=true;
 		
-		if (turnosConstruyendo==1) {
+		if (turnosConstruyendo==1)
+		{
 			Cuartel plaza = new Cuartel(caja,mapa,jugador); // ?
 			edificioEnConstruccion=plaza;
-		} else if (turnosConstruyendo==edificioEnConstruccion.getTurnosConstruccion()) {
+		}
+		else if (turnosConstruyendo==edificioEnConstruccion.getTurnosConstruccion())
+		{
 			edificioEnConstruccion.mostrarConstruido();
 			trabajando=false;
 			turnosConstruyendo=0;
