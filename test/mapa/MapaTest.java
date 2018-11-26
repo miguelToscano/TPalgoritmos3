@@ -1,13 +1,14 @@
 package mapa;
 
 import edificios.*;
-import jugador.*;
+import juego.*;
 import mapa.excepcionesMapa.*;
 import org.junit.Assert;
 import org.junit.Test;
 
 import unidades.Aldeano;
 import unidades.Espadachin;
+import excepciones.superaLimitePoblacional;
 
 
 import static org.junit.Assert.*;
@@ -17,8 +18,7 @@ public class MapaTest {
     private Jugador jugador;
 
 
-    public MapaTest() throws tamanioDeMapaInvalido
-    {
+    public MapaTest() throws tamanioDeMapaInvalido {
         mapa = new Mapa(15, 15);
         jugador = new Jugador();
     }
@@ -76,10 +76,11 @@ public class MapaTest {
     }
 
     @Test
-    public void seColocaPlazaCentralEnCajaDadaPorCasillero() throws cajaEstaOcupada, casilleroInvalido {
+    public void seColocaPlazaCentralEnCajaDadaPorCasillero() throws cajaEstaOcupada, casilleroInvalido,superaLimitePoblacional
+    {
         Casillero casillero = mapa.obtenerCasillero(0, 0);
         Caja caja = mapa.obtenerCajas().get(0);
-        PlazaCentral plaza = new PlazaCentral(casillero, mapa,this.jugador);
+        PlazaCentral plaza = new PlazaCentral(casillero, mapa, this.jugador);
         for (int i = 0; i < mapa.obtenerTamanioCajas(); i++) {
             Assert.assertEquals(caja.obtenerElemento(i), plaza);
         }
@@ -87,10 +88,11 @@ public class MapaTest {
     }
 
     @Test(expected = cajaEstaOcupada.class)
-    public void colocarCuartelEnCajaOcupadaLanzaExcepcion() throws casilleroInvalido, cajaEstaOcupada {
+    public void colocarCuartelEnCajaOcupadaLanzaExcepcion() throws casilleroInvalido, cajaEstaOcupada,superaLimitePoblacional
+    {
         Casillero casillero = mapa.obtenerCasillero(5, 5);
-        Cuartel unCuartel = new Cuartel(casillero, mapa,this.jugador);
-        Cuartel otroCuartel = new Cuartel(casillero, mapa,this.jugador);
+        Cuartel unCuartel = new Cuartel(casillero, mapa, this.jugador);
+        Cuartel otroCuartel = new Cuartel(casillero, mapa, this.jugador);
     }
 
     @Test
@@ -143,6 +145,20 @@ public class MapaTest {
     public void obtenerCajaAPartirDeCasilleroLimiteLanzaExcepcion() throws casilleroInvalido {
         Casillero casilleroLimite = mapa.obtenerCasillero(mapa.obtenerTamanioFilas() - 1, mapa.obtenerTamanioColumnas() - 1);
         mapa.asignarCajaACasillero(casilleroLimite);
+    }
+
+    @Test
+    public void obtenerFilaIntDevuelveNumeroDeFilaCorrecto()
+    {
+        Casillero casillero = mapa.obtenerCasillero(4,0);
+        Assert.assertEquals(mapa.obtenerFilaInt(casillero),4);
+    }
+
+    @Test
+    public void obtenerColumnaIntDevuelveNumeroDeColumnaCorrecto()
+    {
+        Casillero casillero = mapa.obtenerCasillero(8,8);
+        Assert.assertEquals(mapa.obtenerColumnaInt(casillero),8);
     }
 
 

@@ -6,10 +6,11 @@ import mapa.excepcionesMapa.casilleroEstaOcupado;
 import mapa.excepcionesMapa.casilleroInvalido;
 import unidades.Entidad;
 import mapa.*;
+import excepciones.superaLimitePoblacional;
+
+import java.util.ArrayList;
 
 public abstract class Edificio extends Entidad {
-
-    private Jugador duenio;
 
 	protected Caja cajaOcupada;
 	
@@ -19,32 +20,43 @@ public abstract class Edificio extends Entidad {
 	
 	protected boolean construido=false;
 
-	public Edificio (Caja lugarOcupado, Mapa mapa, Jugador jugador) throws cajaEstaOcupada
+	public Edificio (Caja lugarOcupado, Mapa mapa, Jugador jugador) throws cajaEstaOcupada, superaLimitePoblacional
     {
-        this.duenio = jugador;
+        this.jugador = jugador;
+		this.jugador.aumentarPoblacion(1);
         this.ubicarEn(lugarOcupado);
-        //this.settearPuntoRally(mapa);// ojo que para castillo puede estar en el medio
+        this.settearPuntoRally(mapa);// ojo que para castillo puede estar en el medio
 	}
 
-	public Edificio (Casillero casilleroInicial, Mapa mapa, Jugador jugador) throws casilleroInvalido, cajaEstaOcupada
+	public Edificio (Casillero casilleroInicial, Mapa mapa, Jugador jugador) throws casilleroInvalido, cajaEstaOcupada,
+																					superaLimitePoblacional
     {
-        this.duenio = jugador;
+        this.jugador = jugador;
     	Caja caja = mapa.asignarCajaACasillero(casilleroInicial);
     	this.ubicarEn(caja);
-    	//this.settearPuntoRally(mapa);
+    	this.settearPuntoRally(mapa);
 	}
 	
-	/*public void settearPuntoRally (Mapa mapa)
+	public void settearPuntoRally (Mapa mapa)
     {
-		int puntoRallyFila = mapa.obtenerFilaInt(cajaOcupada.obtenerCasillero(0));
-		int puntoRallyColumna = mapa.obtenerColumnaInt(cajaOcupada.obtenerCasillero(0))+ 2;
+        //Ofrezco los casilleros circundantes posibles
+        ArrayList<Casillero> casilleros = mapa.obtenerCasillerosCircundantes(this.cajaOcupada);
+
+        //Opcion provisoria: Elijo el primero libre
+        for(Casillero casillero: casilleros)
+        {
+            if(casillero.estaLibre())
+                this.puntoRally = casillero;
+
+        }
+		//int puntoRallyFila = mapa.obtenerFilaInt(cajaOcupada.obtenerCasillero(0));
+		//int puntoRallyColumna = mapa.obtenerColumnaInt(cajaOcupada.obtenerCasillero(0))+2;
 		
 		// pongo el +2 ahi. La idea seria abrir un GUI que permita elegir el RP
 		
-		puntoRally =mapa.obtenerCasillero(puntoRallyFila, puntoRallyColumna);
-		
+		//puntoRally = mapa.obtenerCasillero(puntoRallyFila, puntoRallyColumna);
 
-	}*/
+	}
 	
 	private Caja fijarCaja(Casillero casilleroInicial, Mapa mapa) throws casilleroInvalido
     {

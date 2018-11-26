@@ -1,7 +1,5 @@
 package edificios;
 
-import java.util.ArrayList;
-
 import mapa.excepcionesMapa.cajaEstaOcupada;
 import mapa.excepcionesMapa.casilleroEstaOcupado;
 import mapa.excepcionesMapa.casilleroInvalido;
@@ -11,15 +9,11 @@ import excepciones.*;
 import org.junit.Test;
 import mapa.*;
 import juego.*;
-import edificios.*;
-import unidades.*;
-
-import org.junit.Test;
 
 public class CuartelTest {
 	
 	@Test
-	public void crearUnidadArqueroAumentaPoblacion() throws tamanioDeMapaInvalido, casilleroEstaOcupado, casilleroInvalido, cajaEstaOcupada, SuperaLimitePoblacional {
+	public void crearUnidadArqueroAumentaPoblacion() throws tamanioDeMapaInvalido, casilleroEstaOcupado, casilleroInvalido, cajaEstaOcupada, superaLimitePoblacional {
 		Jugador jugador = new Jugador();
 		Mapa mapa = new Mapa(15, 15);
 		Cuartel cuartel = new Cuartel(mapa.obtenerCasillero(1, 1), mapa, jugador);		
@@ -29,7 +23,7 @@ public class CuartelTest {
 	}
 	
 	@Test
-	public void crearUnidadEspadachinAumentaPoblacion() throws casilleroEstaOcupado, tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, SuperaLimitePoblacional {
+	public void crearUnidadEspadachinAumentaPoblacion() throws casilleroEstaOcupado, tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, superaLimitePoblacional {
 		
 		Jugador jugador = new Jugador();
 		Mapa mapa = new Mapa(20, 20);
@@ -40,8 +34,8 @@ public class CuartelTest {
 		Assert.assertEquals(1, jugador.obtenerPoblacion());
 	}
 	
-	@Test(expected = SuperaLimitePoblacional.class)
-	public void crearArqueroCuandoSeAlcanzaElLimitePoblacionalArrojaExcepcion() throws casilleroEstaOcupado, SuperaLimitePoblacional, casilleroInvalido, cajaEstaOcupada, tamanioDeMapaInvalido {
+	@Test(expected = superaLimitePoblacional.class)
+	public void crearArqueroCuandoSeAlcanzaElLimitePoblacionalArrojaExcepcion() throws casilleroEstaOcupado, superaLimitePoblacional, casilleroInvalido, cajaEstaOcupada, tamanioDeMapaInvalido {
 		
 		Jugador jugador = new Jugador();
 		Mapa mapa = new Mapa(20, 20);
@@ -50,8 +44,8 @@ public class CuartelTest {
 		cuartel.crearArquero();
 	}
 	
-	@Test(expected = SuperaLimitePoblacional.class)
-	public void crearEspadachinCuandoSeAlcanzaElLimitePoblacionalArrojaExcepcion() throws casilleroEstaOcupado, SuperaLimitePoblacional, casilleroInvalido, cajaEstaOcupada, tamanioDeMapaInvalido {
+	@Test(expected = superaLimitePoblacional.class)
+	public void crearEspadachinCuandoSeAlcanzaElLimitePoblacionalArrojaExcepcion() throws casilleroEstaOcupado, superaLimitePoblacional, casilleroInvalido, cajaEstaOcupada, tamanioDeMapaInvalido {
 		
 		Jugador jugador = new Jugador();
 		Mapa mapa = new Mapa(20, 20);

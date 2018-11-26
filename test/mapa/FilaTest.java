@@ -3,7 +3,7 @@ package mapa;
 import mapa.excepcionesMapa.tamanioDeMapaInvalido;
 import org.junit.Assert;
 import org.junit.Test;
-import jugador.*;
+import juego.*;
 
 import mapa.excepcionesMapa.casilleroEstaOcupado;
 import unidades.Aldeano;

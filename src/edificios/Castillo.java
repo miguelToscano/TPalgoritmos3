@@ -6,7 +6,8 @@ import mapa.excepcionesMapa.cajaEstaOcupada;
 import mapa.excepcionesMapa.casilleroEstaOcupado;
 import mapa.*;
 import unidades.ArmaDeAsedio;
-import jugador.*;
+import juego.*;
+import excepciones.superaLimitePoblacional;
 
 public class Castillo extends Edificio
 {
@@ -15,7 +16,8 @@ public class Castillo extends Edificio
 
 	private ArrayList<ArmaDeAsedio> armasDeAsedio;
 
-	public Castillo (Caja lugarOcupado, Mapa mapa, Jugador jugador) throws cajaEstaOcupada
+	public Castillo (Caja lugarOcupado, Mapa mapa, Jugador jugador) throws cajaEstaOcupada, superaLimitePoblacional
+
 	{
 		super(lugarOcupado,mapa,jugador);
 		this.vida= 1000;
@@ -25,7 +27,6 @@ public class Castillo extends Edificio
 		this.radioAtaque = 3;
 		this.danioAEntidades = 20;
 		this.cajaOcupada.llenar(this);
-		//this.settearPuntoRally(mapa); // ojo que aca puede estar en el medio
 		this.armasDeAsedio = new ArrayList<ArmaDeAsedio>();
 
 	}
@@ -33,7 +34,7 @@ public class Castillo extends Edificio
 	public void crearArmaDeAsedio() throws casilleroEstaOcupado
     {
 		ArmaDeAsedio unArmaDeAsedio = new ArmaDeAsedio(puntoRally);
-		this. armasDeAsedio.add(unArmaDeAsedio);
+		this.armasDeAsedio.add(unArmaDeAsedio);
 	}
 
 	public boolean tieneArmaDeAsedio()

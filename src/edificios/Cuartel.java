@@ -2,7 +2,7 @@ package edificios;
 
 import java.util.ArrayList;
 
-import excepciones.SuperaLimitePoblacional;
+import excepciones.superaLimitePoblacional;
 import mapa.*;
 import mapa.excepcionesMapa.*;
 import unidades.*;
@@ -14,7 +14,7 @@ public class Cuartel extends Edificio
 	private ArrayList<Militar> ejercito;
 	
 	
-	public Cuartel(Caja lugarOcupado, Mapa mapa, Jugador jugador) throws cajaEstaOcupada
+	public Cuartel(Caja lugarOcupado, Mapa mapa, Jugador jugador) throws cajaEstaOcupada,superaLimitePoblacional
 	{
 		super(lugarOcupado,mapa,jugador);
 		this.turnosConstruccion = 3;
@@ -27,7 +27,8 @@ public class Cuartel extends Edificio
 	}
 
 	
-	public Cuartel(Casillero casilleroInicial, Mapa mapa, Jugador jugador) throws casilleroInvalido, cajaEstaOcupada
+	public Cuartel(Casillero casilleroInicial, Mapa mapa, Jugador jugador) throws casilleroInvalido, cajaEstaOcupada,
+																					superaLimitePoblacional
 	{
 		
 		super(casilleroInicial, mapa, jugador);
@@ -44,7 +45,7 @@ public class Cuartel extends Edificio
 	}
 
 	
-	public void crearEspadachin() throws casilleroEstaOcupado, SuperaLimitePoblacional {
+	public void crearEspadachin() throws casilleroEstaOcupado, superaLimitePoblacional {
 		
 		Espadachin unEspadachin = new Espadachin(puntoRally);
 		unEspadachin.setJugador(this.jugador);
@@ -52,7 +53,7 @@ public class Cuartel extends Edificio
 		this.jugador.aumentarPoblacion(1);
 	}
 	
-	public void crearArquero() throws casilleroEstaOcupado, SuperaLimitePoblacional {
+	public void crearArquero() throws casilleroEstaOcupado, superaLimitePoblacional {
 		
 		Arquero unArquero = new Arquero(puntoRally);
 		unArquero.setJugador(this.jugador);

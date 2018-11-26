@@ -6,7 +6,7 @@ import mapa.excepcionesMapa.casilleroEstaOcupado;
 import mapa.excepcionesMapa.tamanioDeMapaInvalido;
 import org.junit.Assert;
 import excepciones.*;
-import jugador.Jugador;
+import juego.*;
 
 import org.junit.Test;
 import mapa.*;
@@ -80,7 +80,7 @@ public class MilitarTest {
 	}
 	
 	@Test
-	public void matarAldeanoReducePoblacion() throws casilleroEstaOcupado, SuperaLimitePoblacional {
+	public void matarAldeanoReducePoblacion() throws casilleroEstaOcupado, superaLimitePoblacional {
 		
 		Jugador jugador = new Jugador();
 		Aldeano aldeano = new Aldeano(this.filaDet, this.columnaDet, this.mapa, jugador);
@@ -92,7 +92,7 @@ public class MilitarTest {
 		Assert.assertEquals(0, jugador.obtenerPoblacion());
 	}
 	
-	public void matarArqueroReducePoblacion() throws casilleroEstaOcupado, SuperaLimitePoblacional {
+	public void matarArqueroReducePoblacion() throws casilleroEstaOcupado, superaLimitePoblacional {
 		
 		Jugador jugador = new Jugador();
 		Arquero arquero = new Arquero(this.filaDet, this.columnaDet, this.mapa, jugador);
@@ -105,7 +105,7 @@ public class MilitarTest {
 	}
 	
 	@Test
-	public void matarEspadachinReducePoblacion() throws casilleroEstaOcupado, SuperaLimitePoblacional {
+	public void matarEspadachinReducePoblacion() throws casilleroEstaOcupado, superaLimitePoblacional {
 		
 		Jugador jugador = new Jugador();
 		Espadachin espadachin= new Espadachin(this.filaDet, this.columnaDet, this.mapa, jugador);
@@ -118,7 +118,7 @@ public class MilitarTest {
 	}
 	
 	@Test
-	public void matarArmaDeAsedioReducePoblacion() throws casilleroEstaOcupado, SuperaLimitePoblacional {
+	public void matarArmaDeAsedioReducePoblacion() throws casilleroEstaOcupado, superaLimitePoblacional {
 
 		Jugador jugador = new Jugador();
 		ArmaDeAsedio armaDeAsedio= new ArmaDeAsedio(this.filaDet, this.columnaDet, this.mapa, jugador);
@@ -131,7 +131,7 @@ public class MilitarTest {
 	}
 	
 	@Test
-	public void matarAldeanoBajaProduccionDeOro() throws casilleroEstaOcupado, SuperaLimitePoblacional {
+	public void matarAldeanoBajaProduccionDeOro() throws casilleroEstaOcupado, superaLimitePoblacional {
 		
 		Jugador jugador = new Jugador();
 		Aldeano aldeano = new Aldeano(this.filaDet, this.columnaDet, this.mapa, jugador);

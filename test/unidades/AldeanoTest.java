@@ -1,11 +1,12 @@
 package unidades;
-import jugador.*;
+import juego.*;
 import mapa.excepcionesMapa.*;
 import mapa.Mapa;
 import org.junit.Assert;
 import org.junit.Test;
 import mapa.*;
 import edificios.*;
+import excepciones.superaLimitePoblacional;
 
 
 public class AldeanoTest {
@@ -170,7 +171,7 @@ public class AldeanoTest {
 
 	@Test(expected = casilleroEstaOcupado.class)
 	public void seCreaEnUnLugarOcupadoPorEdificioLanzaExcepcion() throws casilleroEstaOcupado,
-														casilleroInvalido, cajaEstaOcupada
+														casilleroInvalido, cajaEstaOcupada,superaLimitePoblacional
 	{
 		//creo el edificio
 		celda = mapa.obtenerCasillero(6, 6);
@@ -185,7 +186,7 @@ public class AldeanoTest {
 
 	@Test(expected = casilleroEstaOcupado.class)
 	public void seMueveAUnLugarOcupadoPorEdificioLanzaExcepcion() throws casilleroEstaOcupado,
-														casilleroInvalido, cajaEstaOcupada
+														casilleroInvalido, cajaEstaOcupada,superaLimitePoblacional
 	{
 		//creo el edificio
 		celda = mapa.obtenerCasillero(6, 6);

@@ -1,7 +1,7 @@
 package juego;
 import edificios.*;
+import excepciones.superaLimitePoblacional;
 import unidades.*;
-import mapa.Fila;
 
 import java.util.ArrayList;
 
@@ -65,14 +65,33 @@ public class Jugador
         this.poblacion = nuevaPoblacion;
     }
 
-    public void aumentarPoblacion(int cantidad) {
-
-        this.poblacion += cantidad;
-    }
 
     public ArrayList<PlazaCentral> getPlazas()
     {
         return this.plazas;
+    }
+
+    public void aumentarPoblacion(int cantidad) throws superaLimitePoblacional {
+
+        if (this.poblacion + cantidad > LIMITE_POBLACION)
+            throw new superaLimitePoblacional();
+
+        this.poblacion += cantidad;
+    }
+
+    public void reducirPoblacion(int cantidad) {
+
+        this.poblacion -= cantidad;
+    }
+
+    public int obtenerOro() {
+
+        return this.oro;
+    }
+
+    public void sumarOro(int oro) {
+
+        this.oro += oro;
     }
 
 }

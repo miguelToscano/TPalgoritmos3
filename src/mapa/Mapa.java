@@ -7,7 +7,8 @@ import mapa.excepcionesMapa.tamanioDeMapaInvalido;
 import unidades.Entidad;
 import edificios.Castillo;
 import mapa.excepcionesMapa.*;
-import jugador.*;
+import juego.*;
+import excepciones.superaLimitePoblacional;
 
 public class Mapa
 {
@@ -111,7 +112,7 @@ public class Mapa
         }
     }
 
-    public void crearCastilloNoroeste(Jugador jugador) throws cajaEstaOcupada
+    public void crearCastilloNoroeste(Jugador jugador) throws cajaEstaOcupada, superaLimitePoblacional
     {
         Caja caja = new Caja(this.tamanioCastillo);
         for(int i=0;i<4;i++)
@@ -127,7 +128,7 @@ public class Mapa
 
     }
 
-    public void crearCastilloSureste(Jugador jugador) throws cajaEstaOcupada
+    public void crearCastilloSureste(Jugador jugador) throws cajaEstaOcupada, superaLimitePoblacional
     {
         Caja caja = new Caja(this.tamanioCastillo);
         for(int i=this.obtenerTamanioFilas()-4;i<this.obtenerTamanioFilas();i++)
@@ -294,7 +295,6 @@ public class Mapa
     }
     public int obtenerFilaInt(Casillero casillero)
     {
-       
     	int i = 0;
         for( i=0;i<this.tamanioFilas;i++)
         {
@@ -303,7 +303,6 @@ public class Mapa
                 return i;
             }
         }
-
         return i;
     }
     
@@ -355,4 +354,66 @@ public class Mapa
     {
         return this.castilloInferior;
     }*/
+
+    public ArrayList<Casillero> obtenerCasillerosCircundantes(Caja caja)
+    {
+        ArrayList<Casillero> casilleros = new ArrayList<Casillero>();
+        Casillero primerCasillero = caja.obtenerCasillero(0);
+        Casillero segundoCasillero = caja.obtenerCasillero(1);
+        Casillero tercerCasillero = caja.obtenerCasillero(2);
+        Casillero cuartoCasillero = caja.obtenerCasillero(3);
+
+        if(this.obtenerFilaInt(primerCasillero)>0)
+        {
+            casilleros.add(this.obtenerCasilleroSuperior(primerCasillero));
+            casilleros.add(this.obtenerCasilleroSuperior(segundoCasillero));
+        }
+        if(this.obtenerColumnaInt(primerCasillero)>0)
+        {
+            casilleros.add(this.obtenerCasilleroIzquierda(primerCasillero));
+            casilleros.add(this.obtenerCasilleroIzquierda(tercerCasillero));
+        }
+        if(this.obtenerFilaInt(cuartoCasillero)<this.obtenerTamanioFilas()-1)
+        {
+            casilleros.add(this.obtenerCasilleroInferior(tercerCasillero));
+            casilleros.add(this.obtenerCasilleroInferior(cuartoCasillero));
+        }
+        if(this.obtenerColumnaInt(cuartoCasillero)<this.obtenerTamanioColumnas()-1)
+        {
+            casilleros.add(this.obtenerCasilleroDerecha(segundoCasillero));
+            casilleros.add(this.obtenerCasilleroDerecha(cuartoCasillero));
+        }
+
+        return casilleros;
+    }
+
+
+    public Casillero obtenerCasilleroSuperior(Casillero casillero)
+    {
+        int fila = obtenerFilaInt(casillero);
+        int columna = obtenerColumnaInt(casillero);
+        return this.obtenerCasillero(fila-1,columna);
+    }
+
+    public Casillero obtenerCasilleroInferior(Casillero casillero)
+    {
+        int fila = obtenerFilaInt(casillero);
+        int columna = obtenerColumnaInt(casillero);
+        return this.obtenerCasillero(fila+1,columna);
+    }
+
+    public Casillero obtenerCasilleroDerecha(Casillero casillero)
+    {
+        int fila = obtenerFilaInt(casillero);
+        int columna = obtenerColumnaInt(casillero);
+        return this.obtenerCasillero(fila,columna+1);
+    }
+
+    public Casillero obtenerCasilleroIzquierda(Casillero casillero)
+    {
+        int fila = obtenerFilaInt(casillero);
+        int columna = obtenerColumnaInt(casillero);
+        return this.obtenerCasillero(fila,columna-1);
+    }
+
 }

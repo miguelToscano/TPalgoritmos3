@@ -3,6 +3,7 @@ import edificios.PlazaCentral;
 import mapa.*;
 import mapa.excepcionesMapa.*;
 import juego.Jugador;
+import excepciones.superaLimitePoblacional;
 
 public class Juego
 {
@@ -10,7 +11,7 @@ public class Juego
     private Jugador jugadorA;
     private Jugador jugadorB;
 
-    public Juego(Jugador jugadorA, Jugador jugadorB) throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada
+    public Juego(Jugador jugadorA, Jugador jugadorB) throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada,superaLimitePoblacional
     {
         this.jugadorA = jugadorA;
         this.jugadorB = jugadorB;
@@ -20,13 +21,13 @@ public class Juego
     }
 
 
-    public void crearCastillos() throws cajaEstaOcupada
+    public void crearCastillos() throws cajaEstaOcupada,superaLimitePoblacional
     {
        this.mapa.crearCastilloNoroeste(jugadorA);
        this.mapa.crearCastilloSureste(jugadorB);
     }
 
-    public void crearPlazas() throws casilleroInvalido, cajaEstaOcupada
+    public void crearPlazas() throws casilleroInvalido, cajaEstaOcupada, superaLimitePoblacional
     //se crean en las otras dos esquinas
     {
 

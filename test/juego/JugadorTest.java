@@ -10,6 +10,7 @@ import edificios.*;
 import unidades.*;
 import juego.*;
 import mapa.excepcionesMapa.*;
+import excepciones.superaLimitePoblacional;
 
 public class JugadorTest {
 
@@ -31,7 +32,7 @@ public class JugadorTest {
     }
 
     @Test
-    public void agregarPlazaCentral() throws casilleroInvalido, cajaEstaOcupada
+    public void agregarPlazaCentral() throws casilleroInvalido, cajaEstaOcupada, superaLimitePoblacional
     {
         Casillero casillero = mapa.obtenerCasillero(0,0);
         Caja caja = mapa.asignarCajaACasillero(casillero);
@@ -50,5 +51,12 @@ public class JugadorTest {
 
     @Test
     public void aumentarPoblacion() {
+    }
+
+    @Test
+    public void jugadorSeCreaConOroInicial() {
+
+        Jugador jugador = new Jugador();
+        Assert.assertEquals(100, jugador.obtenerOro());
     }
 }

@@ -6,43 +6,41 @@ import mapa.Caja;
 import mapa.Casillero;
 import mapa.Mapa;
 import mapa.excepcionesMapa.*;
-import jugador.*;
+import excepciones.superaLimitePoblacional;
 
 import org.junit.Test;
 
 
 import mapa.excepcionesMapa.casilleroInvalido;
 import mapa.excepcionesMapa.tamanioDeMapaInvalido;
+import juego.Jugador;
 
 public class CastilloTest
 {
 	private Caja caja;
     private Mapa mapa;
     private Casillero celda;
-    private PlazaCentral plaza;
-    private int fila,columna;
     private Castillo castillo;
     private Jugador jugador;
 
-    public CastilloTest () throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada
+    public CastilloTest () throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, superaLimitePoblacional
     {
-    	fila = 4;
-    	columna = 6;
     	this.jugador = new Jugador();
         this.mapa = new Mapa(15,15);
-        this.celda = mapa.obtenerCasillero(this.fila, this.columna);
+        this.celda = mapa.obtenerCasillero(0, 0);
         this.caja = mapa.asignarCajaACasillero(celda);
         this.castillo = new Castillo(this.caja,this.mapa,this.jugador);
     }
 
     @Test
-    public void castilloSeCreaConCajaPasadaPorParametro()
+    public void castilloSeCreaConCajaPasadaPorParametro() throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada
     {
         Assert.assertEquals(caja,castillo.obtenerEspacioOcupado());
     }
 
+
     @Test(expected = casilleroEstaOcupado.class)
-    public void crearArmaDeAsedioLanzaExcepcionSiCasilleroEstaOcupado() throws casilleroEstaOcupado
+    public void crearArmaDeAsedioLanzaExcepcionSiCasilleroEstaOcupado() throws casilleroEstaOcupado, superaLimitePoblacional
     {
         castillo.crearArmaDeAsedio();
         castillo.crearArmaDeAsedio(); //como el arma de asedio no se movio la
@@ -50,7 +48,7 @@ public class CastilloTest
     }
 
     @Test
-    public void tieneArmaDeAsedio() throws casilleroEstaOcupado
+    public void tieneArmaDeAsedio() throws casilleroEstaOcupado,superaLimitePoblacional
     {
         castillo.crearArmaDeAsedio();
         Assert.assertTrue(castillo.tieneArmaDeAsedio());
@@ -59,7 +57,6 @@ public class CastilloTest
     @Test
     public void atacarCircundantes()
     {
-    	
     }
 
     @Test

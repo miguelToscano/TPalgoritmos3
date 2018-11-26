@@ -2,11 +2,10 @@ package unidades;
 import edificios.Cuartel;
 import edificios.Edificio;
 import edificios.PlazaCentral;
-import excepciones.SuperaLimitePoblacional;
-import jugador.Jugador;
+import excepciones.superaLimitePoblacional;
 import mapa.*;
 import mapa.excepcionesMapa.*;
-import juego.Jugador;
+import juego.*;
 
 public class Aldeano extends Unidad
 {
@@ -33,7 +32,7 @@ public class Aldeano extends Unidad
 		this.vida = 50;
 	}
 
-	public Aldeano(int fila, int columna, Mapa mapa, Jugador jugador)throws casilleroEstaOcupado, SuperaLimitePoblacional
+	public Aldeano(int fila, int columna, Mapa mapa, Jugador jugador)throws casilleroEstaOcupado, superaLimitePoblacional
 	{
 		super(fila, columna, mapa);
 		this.costo = 25;
@@ -54,7 +53,7 @@ public class Aldeano extends Unidad
 	}
 	
 
-	public void construirPlazaCentral(Caja caja, Mapa mapa,Jugador jugador) throws cajaEstaOcupada
+	public void construirPlazaCentral(Caja caja, Mapa mapa,Jugador jugador) throws cajaEstaOcupada, superaLimitePoblacional
 
     {
 		turnosConstruyendo++;
@@ -71,7 +70,7 @@ public class Aldeano extends Unidad
 		
 	}
 	
-	public void construirCuartel(Caja caja, Mapa mapa,Jugador jugador) throws cajaEstaOcupada
+	public void construirCuartel(Caja caja, Mapa mapa,Jugador jugador) throws cajaEstaOcupada,superaLimitePoblacional
     {
 		turnosConstruyendo++;
 		trabajando=true;

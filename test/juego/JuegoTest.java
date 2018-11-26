@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import mapa.Mapa;
 import mapa.excepcionesMapa.*;
+import excepciones.superaLimitePoblacional;
 
 import static org.junit.Assert.*;
 
@@ -13,7 +14,8 @@ public class JuegoTest {
     private Mapa mapa;
     private Juego juego;
 
-    public JuegoTest() throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada {
+    public JuegoTest() throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada,superaLimitePoblacional
+    {
         jugadorA = new Jugador();
         jugadorB = new Jugador();
         this.juego = new Juego(jugadorA, jugadorB);
