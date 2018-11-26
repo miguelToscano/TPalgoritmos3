@@ -47,7 +47,7 @@ public class Castillo extends Edificio
     {
 		//check posicion esta en espacioOcupado
 		ArmaDeAsedio unArmaDeAsedio = new ArmaDeAsedio(puntoRally);
-		
+		this.jugador.aumentarPoblacion(1);
 		armasDeAsedio.add(unArmaDeAsedio);
 	}
 	

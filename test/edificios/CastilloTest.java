@@ -8,10 +8,10 @@ import mapa.Mapa;
 
 import org.junit.Test;
 
-
+import mapa.excepcionesMapa.casilleroEstaOcupado;
 import mapa.excepcionesMapa.casilleroInvalido;
 import mapa.excepcionesMapa.tamanioDeMapaInvalido;
-
+import jugador.*;
 public class CastilloTest
 {
 
@@ -32,6 +32,17 @@ public class CastilloTest
 
     }
 
+    @Test
+    public void castilloCreaArmaDeAsedioYAumentaPoblacion() throws tamanioDeMapaInvalido, casilleroEstaOcupado {
+    	
+    	Jugador jugador = new Jugador();
+    	Castillo castillo = new Castillo(caja, this.mapa, jugador);
+    	
+    	castillo.crearArmaDeAsedio();
+    	
+    	Assert.assertEquals(1, jugador);
+    }
+    
     @Test
     public void castilloSeCreaConCajaPasadaPorParametro()
     {
