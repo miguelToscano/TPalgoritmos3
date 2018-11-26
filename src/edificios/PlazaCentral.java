@@ -21,7 +21,8 @@ public class PlazaCentral extends Edificio {
     {
         super(lugarOcupado,mapa,jugador);
 		this.aldeanos = new ArrayList<Aldeano>();
-		this.vida = 450;
+		this.vidaCompleta = 450;
+		this.vida=this.vidaCompleta;
 		this.costo = 100;
 		this.turnosConstruccion = 3;
 		this.velocidadReparacion = 25;
@@ -37,7 +38,8 @@ public class PlazaCentral extends Edificio {
 	{
 		super(casilleroInicial, mapa, jugador);
 		this.aldeanos = new ArrayList<Aldeano>();
-		this.vida = 450;
+		this.vidaCompleta = 450;
+		this.vida=this.vidaCompleta;
 		this.costo = 100;
 		this.turnosConstruccion = 3;
 		this.velocidadReparacion = 25;
