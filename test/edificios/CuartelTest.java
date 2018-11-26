@@ -39,4 +39,24 @@ public class CuartelTest {
 		
 		Assert.assertEquals(1, jugador.obtenerPoblacion());
 	}
+	
+	@Test(expected = SuperaLimitePoblacional.class)
+	public void crearArqueroCuandoSeAlcanzaElLimitePoblacionalArrojaExcepcion() throws casilleroEstaOcupado, SuperaLimitePoblacional, casilleroInvalido, cajaEstaOcupada, tamanioDeMapaInvalido {
+		
+		Jugador jugador = new Jugador();
+		Mapa mapa = new Mapa(20, 20);
+		Cuartel cuartel = new Cuartel(mapa.obtenerCasillero(1, 1), mapa, jugador);
+		jugador.establecerPoblacion(50);
+		cuartel.crearArquero();
+	}
+	
+	@Test(expected = SuperaLimitePoblacional.class)
+	public void crearEspadachinCuandoSeAlcanzaElLimitePoblacionalArrojaExcepcion() throws casilleroEstaOcupado, SuperaLimitePoblacional, casilleroInvalido, cajaEstaOcupada, tamanioDeMapaInvalido {
+		
+		Jugador jugador = new Jugador();
+		Mapa mapa = new Mapa(20, 20);
+		Cuartel cuartel = new Cuartel(mapa.obtenerCasillero(1, 1), mapa, jugador);
+		jugador.establecerPoblacion(50);
+		cuartel.crearEspadachin();
+	}
 }

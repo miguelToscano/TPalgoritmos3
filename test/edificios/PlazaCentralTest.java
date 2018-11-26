@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
+import excepciones.SuperaLimitePoblacional;
+import jugador.Jugador;
 import mapa.excepcionesMapa.*;
 
 public class PlazaCentralTest {
@@ -39,11 +41,12 @@ public class PlazaCentralTest {
     //Arreglar
 
     @Test
-    public void seCreaAldeanoConRallyLibre() throws casilleroInvalido, casilleroEstaOcupado, cajaEstaOcupada, tamanioDeMapaInvalido
+    public void seCreaAldeanoConRallyLibre() throws casilleroInvalido, casilleroEstaOcupado, cajaEstaOcupada, tamanioDeMapaInvalido, SuperaLimitePoblacional
     {
+    	Jugador jugador = new Jugador();
         Mapa mapa = new Mapa(15,15);
         Casillero casillero = mapa.obtenerCasillero(3,2);
-        PlazaCentral plaza = new PlazaCentral (casillero,mapa);
+        PlazaCentral plaza = new PlazaCentral (casillero,mapa, jugador);
     	plaza.crearAldeano();
     	casillero = plaza.getPuntoRally();
     	ArrayList<Aldeano> aldeanos = plaza.getAldeanos();
@@ -56,11 +59,12 @@ public class PlazaCentralTest {
     //Arreglar
     
    @Test
-   public void seReparaEdificio() throws casilleroInvalido, casilleroEstaOcupado, cajaEstaOcupada, tamanioDeMapaInvalido
+   public void seReparaEdificio() throws casilleroInvalido, casilleroEstaOcupado, cajaEstaOcupada, tamanioDeMapaInvalido, SuperaLimitePoblacional
    {
+	   Jugador jugador = new Jugador();
         Mapa mapa = new Mapa(15,15);
         Casillero casillero = mapa.obtenerCasillero(1,9);
-        PlazaCentral plaza = new PlazaCentral (casillero,mapa);
+        PlazaCentral plaza = new PlazaCentral (casillero,mapa, jugador);
    	    plaza.recibirDanio(40);
    	    plaza.crearAldeano();
 	    ArrayList<Aldeano> aldeanos = plaza.getAldeanos();
@@ -107,13 +111,39 @@ public class PlazaCentralTest {
    
    @Test(expected = casilleroEstaOcupado.class)
    public void intentarCrearAldeanoConRallyPointOcupadoLanzaExcepcion() throws casilleroEstaOcupado,
-                                        tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada
+                                        tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, SuperaLimitePoblacional
    {
+	   Jugador jugador = new Jugador();
        Mapa mapa = new Mapa(15,15);
        Casillero casillero = mapa.obtenerCasillero(0,0);
-       PlazaCentral plaza = new PlazaCentral (casillero,mapa);
+       PlazaCentral plaza = new PlazaCentral (casillero,mapa, jugador);
        plaza.crearAldeano();
        plaza.crearAldeano();
+   }
+   
+   public void crearAldeanoConLimitePoblacionalArrojaExcepcion() throws casilleroInvalido, casilleroEstaOcupado, cajaEstaOcupada, tamanioDeMapaInvalido, SuperaLimitePoblacional
+   {
+	   Jugador jugador = new Jugador();
+       Mapa mapa = new Mapa(15,15);
+       Casillero casillero = mapa.obtenerCasillero(3,2);
+       PlazaCentral plaza = new PlazaCentral (casillero,mapa, jugador);
+	   	plaza.crearAldeano();
+	   	casillero = plaza.getPuntoRally();
+	   	ArrayList<Aldeano> aldeanos = plaza.getAldeanos();
+	   	
+	   	Assert.assertEquals(aldeanos.get(0) , casillero.obtenerElemento());
+   }
 
+   public void crearAldeanoAumentaPoblacion() throws casilleroInvalido, casilleroEstaOcupado, cajaEstaOcupada, tamanioDeMapaInvalido, SuperaLimitePoblacional
+   {
+	   Jugador jugador = new Jugador();
+       Mapa mapa = new Mapa(15,15);
+       Casillero casillero = mapa.obtenerCasillero(3,2);
+       PlazaCentral plaza = new PlazaCentral (casillero,mapa, jugador);
+	   	plaza.crearAldeano();
+	   	casillero = plaza.getPuntoRally();
+	   	ArrayList<Aldeano> aldeanos = plaza.getAldeanos();
+	   	
+	   	Assert.assertEquals(1, jugador.obtenerPoblacion());
    }
 }

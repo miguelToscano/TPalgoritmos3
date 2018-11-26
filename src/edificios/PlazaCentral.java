@@ -2,9 +2,12 @@ package edificios;
 
 import java.util.ArrayList;
 
+import excepciones.*;
+import jugador.*;
 import mapa.excepcionesMapa.*;
 import unidades.*;
 import mapa.*;
+
 
 public class PlazaCentral extends Edificio {
 
@@ -51,12 +54,25 @@ public class PlazaCentral extends Edificio {
 		this.settearPuntoRally(mapa);
 	}
 	
+	public PlazaCentral(Casillero casillero, Mapa mapa, Jugador jugador) throws casilleroInvalido, cajaEstaOcupada {
+		
+		super(casillero, mapa);
+		this.aldeanos = new ArrayList<Aldeano>();
+		this.vida = 450;
+		this.costo = 100;
+		this.turnosConstruccion = 3;
+		this.velocidadReparacion = 25;
+		this.cajaOcupada.llenar(this);
+		this.settearPuntoRally(mapa);
+		this.jugador = jugador;
+	}
+
 	public ArrayList<Aldeano> getAldeanos(){
 		
 		return aldeanos;
 	}
 	
-	public void crearAldeano() throws casilleroEstaOcupado
+	public void crearAldeano() throws casilleroEstaOcupado, SuperaLimitePoblacional
 	{
 		
 		Aldeano unAldeano = new Aldeano(puntoRally);
@@ -64,6 +80,7 @@ public class PlazaCentral extends Edificio {
 		
 		this.aldeanos.add(unAldeano);
 		unAldeano.setJugador(this.jugador);
+		this.jugador.aumentarPoblacion(1);
 	}
 	
 	

@@ -1,5 +1,5 @@
 package unidades;
-import juego.Jugador;
+import jugador.*;
 import mapa.excepcionesMapa.*;
 import mapa.Mapa;
 import org.junit.Assert;

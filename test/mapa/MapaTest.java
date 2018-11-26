@@ -1,7 +1,7 @@
 package mapa;
 
 import edificios.*;
-import juego.Jugador;
+import jugador.*;
 import mapa.excepcionesMapa.*;
 import org.junit.Assert;
 import org.junit.Test;
