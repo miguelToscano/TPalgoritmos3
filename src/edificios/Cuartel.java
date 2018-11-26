@@ -61,6 +61,21 @@ public class Cuartel extends Edificio {
 		ejercito = new ArrayList<Militar>();
 		
 	}
+
+	public Cuartel(Casillero casilleroInicial, Mapa mapa) throws casilleroInvalido, cajaEstaOcupada
+	{
+		
+		super(casilleroInicial, mapa);
+		this.turnosConstruccion = 3;
+		this.velocidadReparacion = 50;
+		this.costo = 50;
+		this.vida = 250;
+		this.cajaOcupada.llenar(this);
+		this.settearPuntoRally(mapa);
+		
+		ejercito = new ArrayList<Militar>();
+		
+	}
 	
 	public void crearEspadachin() throws casilleroEstaOcupado {
 		

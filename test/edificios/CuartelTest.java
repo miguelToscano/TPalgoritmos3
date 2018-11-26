@@ -25,7 +25,7 @@ public class CuartelTest {
 		Cuartel cuartel = new Cuartel(mapa.obtenerCasillero(1, 1), mapa, jugador);		
 		cuartel.crearArquero();
 		
-		Assert.assertEquals(1, jugador.getPoblacion());
+		Assert.assertEquals(1, jugador.obtenerPoblacion());
 	}
 	
 	@Test
@@ -37,6 +37,6 @@ public class CuartelTest {
 	
 		cuartel.crearEspadachin();
 		
-		Assert.assertEquals(1, jugador.getPoblacion());
+		Assert.assertEquals(1, jugador.obtenerPoblacion());
 	}
 }

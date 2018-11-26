@@ -198,8 +198,6 @@ public class Mapa
         return this.obtenerCasillero(fila,columna).obtenerElemento();
     }
 
-    /*
-
     public boolean puedoColocarUnidad(int fila, int columna) throws casilleroEstaOcupado
     {
         return this.puedoColocarUnidad(this.obtenerCasillero(fila,columna));
@@ -231,7 +229,6 @@ public class Mapa
         return puedoColocar;
     }
 
-*/
     public Caja asignarCajaACasillero(Casillero casillero) throws casilleroInvalido
     {
         Caja caja = new Caja(this.obtenerTamanioCajas());

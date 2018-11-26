@@ -40,7 +40,7 @@ public class CastilloTest
     	
     	castillo.crearArmaDeAsedio();
     	
-    	Assert.assertEquals(1, jugador);
+    	Assert.assertEquals(1, jugador.obtenerPoblacion());
     }
     
     @Test

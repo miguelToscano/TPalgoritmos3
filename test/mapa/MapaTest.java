@@ -10,7 +10,6 @@ import unidades.Espadachin;
 
 
 import static org.junit.Assert.*;
-
 public class MapaTest {
 
     private Mapa mapa;

@@ -24,13 +24,13 @@ public class Jugador {
 		this.poblacion = 0;
 	}
 	
-	public int getPoblacion() {
+	public int obtenerPoblacion() {
 		
 		return this.poblacion;
 	}
 	
 	// Esta funcion es solo para usarla en los Test
-	public void setPoblacion(int nuevaPoblacion) {
+	public void establecerPoblacion(int nuevaPoblacion) {
 		
 		this.poblacion = nuevaPoblacion;
 	}
