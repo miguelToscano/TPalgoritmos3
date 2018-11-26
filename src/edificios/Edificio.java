@@ -48,7 +48,7 @@ public abstract class Edificio extends Entidad {
             if(casillero.estaLibre())
                 this.puntoRally = casillero;
 
-        }
+        } //AGREGAR EXCEPCION
 		//int puntoRallyFila = mapa.obtenerFilaInt(cajaOcupada.obtenerCasillero(0));
 		//int puntoRallyColumna = mapa.obtenerColumnaInt(cajaOcupada.obtenerCasillero(0))+2;
 		
