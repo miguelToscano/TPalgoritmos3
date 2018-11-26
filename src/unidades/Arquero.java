@@ -1,6 +1,7 @@
 package unidades;
 
 import mapa.excepcionesMapa.casilleroEstaOcupado;
+import jugador.Jugador;
 import mapa.Casillero;
 import mapa.Mapa;
 
@@ -18,6 +19,19 @@ public class Arquero extends Militar
 		
 	}
 
+	public Arquero (int fila, int columna, Mapa mapa, Jugador jugador)throws casilleroEstaOcupado {
+		
+		super (fila, columna, mapa);
+		
+		this.danioAEdificios = 10;
+		this.danioAUnidades = 15;
+		this.radioAtaque = 3;
+		this.vida = 75;
+		this.costo = 75;
+		this.jugador = jugador;
+		this.jugador.aumentarPoblacion(1);
+	}
+	
 	public Arquero (Casillero casillero) throws casilleroEstaOcupado {
 	
 	super (casillero);

@@ -1,6 +1,7 @@
 package unidades;
 
 import mapa.excepcionesMapa.casilleroEstaOcupado;
+import jugador.Jugador;
 import mapa.Casillero;
 import mapa.Mapa;
 
@@ -17,10 +18,19 @@ public class ArmaDeAsedio extends Militar {
 		this.montada = false;
 		this.vida = 150;
 		this.radioAtaque = 5;
-		this.danioAEdificios = 75;
-
-		
+		this.danioAEdificios = 75;	
+}
 	
+	public ArmaDeAsedio (int fila, int columna, Mapa mapa, Jugador jugador) throws casilleroEstaOcupado {
+		
+		super (fila, columna, mapa);
+		
+		this.montada = false;
+		this.vida = 150;
+		this.radioAtaque = 5;
+		this.danioAEdificios = 75;
+		this.jugador = jugador;
+		this.jugador.aumentarPoblacion(1);
 }
 
 	public ArmaDeAsedio (Casillero casillero) throws casilleroEstaOcupado {

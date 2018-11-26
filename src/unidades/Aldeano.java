@@ -2,6 +2,7 @@ package unidades;
 import edificios.Cuartel;
 import edificios.Edificio;
 import edificios.PlazaCentral;
+import jugador.Jugador;
 import mapa.*;
 import mapa.excepcionesMapa.casilleroEstaOcupado;
 
@@ -10,6 +11,8 @@ public class Aldeano extends Unidad
 	public boolean trabajando; // reparando/ construyendo, no recolecta oro
 	public Edificio edificioEnConstruccion=null;
 	private int turnosConstruyendo=0;
+	
+	final static int ORO_POR_TURNO = 25;
 	
     //Sin parametros
     public Aldeano()
@@ -26,6 +29,16 @@ public class Aldeano extends Unidad
 		this.costo = 25;
 		this.trabajando = false;
 		this.vida = 50;
+	}
+
+	public Aldeano(int fila, int columna, Mapa mapa, Jugador jugador)throws casilleroEstaOcupado
+	{
+		super(fila, columna, mapa);
+		this.costo = 25;
+		this.trabajando = false;
+		this.vida = 50;
+		this.jugador = jugador;
+		this.jugador.aumentarPoblacion(1);
 	}
 	
 	//Casillero
@@ -83,17 +96,28 @@ public class Aldeano extends Unidad
 	}
 	
 	//public Edificio construirEdificio ()
+	public void matar() {
+		this.trabajando = false;
+		this.vida = 0;
+		this.jugador.reducirPoblacion(1);
+	}
 	
+//	public int recolectarOro ()
+//    {
+//		if	(trabajando)
+//		{
+//			return 0;
+//		}
+//		else
+//		    {
+//			return 20;
+//		}
+//	}
 	
-	public int recolectarOro ()
-    {
-		if	(trabajando)
-		{
-			return 0;
-		}
-		else
-		    {
-			return 20;
+	public void recolectarOro() {
+		
+		if (!trabajando && this.estaVivo()) {
+			this.jugador.sumarOro(ORO_POR_TURNO);
 		}
 	}
 }

@@ -39,4 +39,19 @@ public class Jugador {
 		
 		this.poblacion += cantidad;
 	}
+	
+	public void reducirPoblacion(int cantidad) {
+		
+		this.poblacion -= cantidad;
+	}
+	
+	public int obtenerOro() {
+		
+		return this.oro;
+	}
+	
+	public void sumarOro(int oro) {
+		
+		this.oro += oro;
+	}
 }

@@ -35,6 +35,18 @@ public abstract class Entidad
 	public void recibirDanio(int danio){
 		this.vida = this.vida-danio;
 	}
+	
+	public void establecerJugador(Jugador jugador) {
+		
+		this.jugador = jugador;
+	}
+	
+	public void matar() {
+		
+		this.vida = 0;
+		this.jugador.reducirPoblacion(1);
+	}
+	
 	public boolean estaVivo ()
     {
 		return (this.vida > 0 );
