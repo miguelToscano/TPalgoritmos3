@@ -1,6 +1,8 @@
 package unidades;
 
 import mapa.*;
+import jugador.*;
+
 import mapa.excepcionesMapa.casilleroEstaOcupado;
 
 public abstract class Unidad extends Entidad
@@ -15,6 +17,11 @@ public abstract class Unidad extends Entidad
     {
 	    this.turnosConstruccion = 1;
 	    this.cantidad++;
+	}
+	
+	public void setJugador(Jugador jugador) {
+		
+		this.jugador = jugador;
 	}
 	
 	//Con coordenadas 

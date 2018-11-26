@@ -3,14 +3,15 @@ package unidades;
 import mapa.Mapeable;
 import mapa.Casillero;
 import mapa.excepcionesMapa.*;
-
+import jugador.*;
 public abstract class Entidad
 {
     protected int vida;
 	protected int costo;
 	protected boolean construible;
 	protected int turnosConstruccion;
-
+	protected Jugador jugador;
+	
     public Entidad()
     {
         this.construible=true;//?

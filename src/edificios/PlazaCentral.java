@@ -47,6 +47,7 @@ public class PlazaCentral extends Edificio {
 		// isRallyPoint ocupado? excepcion
 		
 		this.aldeanos.add(unAldeano);
+		unAldeano.setJugador(this.jugador);
 	}
 	
 	

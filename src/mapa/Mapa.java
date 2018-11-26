@@ -138,8 +138,6 @@ public class Mapa
             throw new tamanioDeMapaInvalido();
         }
 
-        else
-        {
             this.tamanioColumnas = filas;
             this.tamanioFilas = columnas;
             this.tamanioCajas = 4;
@@ -149,8 +147,6 @@ public class Mapa
             this.crearFilas();
             this.crearColumnas();
             this.crearCajas();
-        }
-
     }
 
     private int cantidadDeCajas()
