@@ -1,5 +1,6 @@
 package jugador;
 
+import edificios.Castillo;
 import excepciones.*;
 //Cada jugador comienza con una plaza central y un castillo. No es posible construir un castillo. Sólo 
 // existirá el que es asignado al empezar la partida. Sí es posible construir plazas centrales y cuarteles sin límite.
@@ -57,5 +58,9 @@ public class Jugador {
 	public void sumarOro(int oro) {
 		
 		this.oro += oro;
+	}
+
+	public void asignarCastillo(Castillo castilloSuperior) {
+		// TODO Auto-generated method stub
 	}
 }
