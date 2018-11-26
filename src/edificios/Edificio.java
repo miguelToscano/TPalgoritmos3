@@ -67,6 +67,10 @@ public abstract class Edificio extends Entidad {
 	{
 		this.vida += this.velocidadReparacion;
 	}
+	public boolean reparacionCompleta()
+	{
+		return (this.vida == this.vidaCompleta);
+	}
 	public Casillero getPuntoRally()
     {
 		return this.puntoRally ;
@@ -109,3 +113,4 @@ public abstract class Edificio extends Entidad {
 	}
 	*/
 }
+
