@@ -1,6 +1,7 @@
 package mapa;
 
 import edificios.*;
+import juego.Jugador;
 import mapa.excepcionesMapa.*;
 import org.junit.Assert;
 import org.junit.Test;
@@ -15,7 +16,8 @@ public class MapaTest {
     private Mapa mapa;
 
 
-    public MapaTest() throws tamanioDeMapaInvalido {
+    public MapaTest() throws tamanioDeMapaInvalido
+    {
         mapa = new Mapa(15, 15);
     }
 
@@ -46,114 +48,98 @@ public class MapaTest {
 
 
     @Test
-    public void seColocaAldeanoEnPrimerCasillero() throws casilleroEstaOcupado
-    {
+    public void seColocaAldeanoEnPrimerCasillero() throws casilleroEstaOcupado {
         Aldeano aldeano = new Aldeano(0, 0, mapa);
         Assert.assertEquals(aldeano, mapa.obtenerElemento(0, 0));
     }
 
     @Test(expected = casilleroEstaOcupado.class)
-    public void colocarAldeanoEnCasilleroOcupadoLanzaExcepcion() throws casilleroEstaOcupado
-    {
-        Aldeano unAldeano = new Aldeano(5,5,mapa);
-        Aldeano otroAldeano = new Aldeano(5,5,mapa);
+    public void colocarAldeanoEnCasilleroOcupadoLanzaExcepcion() throws casilleroEstaOcupado {
+        Aldeano unAldeano = new Aldeano(5, 5, mapa);
+        Aldeano otroAldeano = new Aldeano(5, 5, mapa);
     }
 
     @Test
-    public void seColocaEspadachinEnCasillero() throws casilleroEstaOcupado
-    {
-        Casillero casillero = mapa.obtenerCasillero(3,3);
+    public void seColocaEspadachinEnCasillero() throws casilleroEstaOcupado {
+        Casillero casillero = mapa.obtenerCasillero(3, 3);
         Espadachin espadachin = new Espadachin(casillero);
         Assert.assertEquals(espadachin, mapa.obtenerElemento(3, 3));
     }
 
     @Test(expected = casilleroEstaOcupado.class)
-    public void colocarEspadachinEnCasilleroOcupadoLanzaExcepcion() throws casilleroEstaOcupado
-    {
-        Casillero casillero = mapa.obtenerCasillero(4,3);
+    public void colocarEspadachinEnCasilleroOcupadoLanzaExcepcion() throws casilleroEstaOcupado {
+        Casillero casillero = mapa.obtenerCasillero(4, 3);
         Espadachin unEspadachin = new Espadachin(casillero);
         Espadachin otroEspadachin = new Espadachin(casillero);
     }
 
     @Test
-    public void seColocaPlazaCentralEnCajaDadaPorCasillero() throws cajaEstaOcupada, casilleroInvalido
-    {
-        Casillero casillero = mapa.obtenerCasillero(0,0);
+    public void seColocaPlazaCentralEnCajaDadaPorCasillero() throws cajaEstaOcupada, casilleroInvalido {
+        Casillero casillero = mapa.obtenerCasillero(0, 0);
         Caja caja = mapa.obtenerCajas().get(0);
-        PlazaCentral plaza = new PlazaCentral(casillero,mapa);
-        for(int i=0;i<mapa.obtenerTamanioCajas();i++)
-        {
-            Assert.assertEquals(caja.obtenerElemento(i),plaza);
+        PlazaCentral plaza = new PlazaCentral(casillero, mapa);
+        for (int i = 0; i < mapa.obtenerTamanioCajas(); i++) {
+            Assert.assertEquals(caja.obtenerElemento(i), plaza);
         }
 
     }
 
     @Test(expected = cajaEstaOcupada.class)
-    public void colocarCuartelEnCajaOcupadaLanzaExcepcion() throws casilleroInvalido, cajaEstaOcupada
-    {
-        Casillero casillero = mapa.obtenerCasillero(5,5);
-        Cuartel unCuartel = new Cuartel(casillero,mapa);
-        Cuartel otroCuartel = new Cuartel(casillero,mapa);
+    public void colocarCuartelEnCajaOcupadaLanzaExcepcion() throws casilleroInvalido, cajaEstaOcupada {
+        Casillero casillero = mapa.obtenerCasillero(5, 5);
+        Cuartel unCuartel = new Cuartel(casillero, mapa);
+        Cuartel otroCuartel = new Cuartel(casillero, mapa);
     }
 
     @Test
-    public void obtenerSegundaFilaDevuelveLaSegundaFilaDelMapa()
-    {
+    public void obtenerSegundaFilaDevuelveLaSegundaFilaDelMapa() {
         Fila segundaFila = mapa.obtenerFilas().get(1);
 
-        for(int i=0;i<mapa.obtenerTamanioColumnas();i++)
-        {
-            Assert.assertEquals(mapa.obtenerCasillero(1,i),segundaFila.obtenerCasillero(i));
+        for (int i = 0; i < mapa.obtenerTamanioColumnas(); i++) {
+            Assert.assertEquals(mapa.obtenerCasillero(1, i), segundaFila.obtenerCasillero(i));
         }
     }
 
     @Test
-    public void obtenerPrimerColumnaDevuelveLaPrimerColumnaDelMapa()
-    {
+    public void obtenerPrimerColumnaDevuelveLaPrimerColumnaDelMapa() {
         Columna primerColumna = mapa.obtenerColumnas().get(0);
 
-        for(int i=0;i<mapa.obtenerTamanioFilas();i++)
-        {
-            Assert.assertEquals(mapa.obtenerCasillero(i,0),primerColumna.obtenerCasillero(i));
+        for (int i = 0; i < mapa.obtenerTamanioFilas(); i++) {
+            Assert.assertEquals(mapa.obtenerCasillero(i, 0), primerColumna.obtenerCasillero(i));
         }
     }
 
     @Test
-    public void obtenerPrimerCajaDevuelveLaPrimerCajaDelMapa()
-    {
+    public void obtenerPrimerCajaDevuelveLaPrimerCajaDelMapa() {
         Caja primerCaja = mapa.obtenerCajas().get(0);
-        int k=0;
+        int k = 0;
 
-        for(int i=0;i<2;i++)
-        {
-            for(int j=0;j<2;j++)
-            {
-                Assert.assertEquals(mapa.obtenerCasillero(i,j), primerCaja.obtenerCasillero(k));
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
+                Assert.assertEquals(mapa.obtenerCasillero(i, j), primerCaja.obtenerCasillero(k));
                 k++;
             }
         }
     }
 
     @Test
-    public void obtenerTercerCajaAPartirDeTercerCasillero() throws casilleroInvalido
-    {
+    public void obtenerTercerCajaAPartirDeTercerCasillero() throws casilleroInvalido {
 
         Caja tercerCaja = mapa.obtenerCajas().get(2);
-        Casillero tercerCasillero = mapa.obtenerCasillero(0,2);
-        try{mapa.asignarCajaACasillero(tercerCasillero);}
-        catch(casilleroInvalido c)
-        {
+        Casillero tercerCasillero = mapa.obtenerCasillero(0, 2);
+        try {
+            mapa.asignarCajaACasillero(tercerCasillero);
+        } catch (casilleroInvalido c) {
             fail("La prueba no paso. El casillero elegido no es valido");
         }
 
         Caja cajaRetornada = mapa.asignarCajaACasillero(tercerCasillero);
-        Assert.assertEquals(cajaRetornada,tercerCaja);
+        Assert.assertEquals(cajaRetornada, tercerCaja);
     }
 
     @Test(expected = casilleroInvalido.class)
-    public void obtenerCajaAPartirDeCasilleroLimiteLanzaExcepcion() throws casilleroInvalido
-    {
-        Casillero casilleroLimite = mapa.obtenerCasillero(mapa.obtenerTamanioFilas()-1,mapa.obtenerTamanioColumnas()-1);
+    public void obtenerCajaAPartirDeCasilleroLimiteLanzaExcepcion() throws casilleroInvalido {
+        Casillero casilleroLimite = mapa.obtenerCasillero(mapa.obtenerTamanioFilas() - 1, mapa.obtenerTamanioColumnas() - 1);
         mapa.asignarCajaACasillero(casilleroLimite);
     }
 

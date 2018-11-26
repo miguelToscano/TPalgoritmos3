@@ -1,5 +1,6 @@
 package mapa;
 
+import juego.Jugador;
 import mapa.excepcionesMapa.tamanioDeMapaInvalido;
 import org.junit.Assert;
 import org.junit.Test;
