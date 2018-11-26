@@ -72,7 +72,7 @@ public abstract class ConjuntoDeCasilleros extends Mapeable
 
     public boolean estaOcupada()
     {
-        return !estaLibre();
+        return !this.estaLibre();
     }
 
     public Casillero obtenerPrimerCasillero()

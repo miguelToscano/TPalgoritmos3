@@ -7,12 +7,14 @@ import mapa.excepcionesMapa.*;
 import unidades.*;
 import jugador.*;
 
-public class Cuartel extends Edificio {
+public class Cuartel extends Edificio
+{
 
 	private ArrayList<Militar> ejercito;
 	
 	
-	public Cuartel(Caja lugarOcupado, Mapa mapa) {
+	public Cuartel(Caja lugarOcupado, Mapa mapa)
+	{
 		
 		this.turnosConstruccion = 3;
 		this.velocidadReparacion = 50;

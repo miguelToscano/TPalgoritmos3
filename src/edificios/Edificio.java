@@ -75,7 +75,7 @@ public abstract class Edificio extends Entidad {
 
 	public void ubicarEn(Mapeable mapeable) throws cajaEstaOcupada
 	{
-		Caja caja = (Caja) mapeable;
+		Caja caja = (Caja)mapeable;
 		if (caja.estaOcupada())
 		{
 			throw new cajaEstaOcupada();

@@ -2,6 +2,7 @@ package unidades;
 
 import java.util.ArrayList;
 
+import juego.Jugador;
 import mapa.excepcionesMapa.casilleroEstaOcupado;
 import mapa.excepcionesMapa.tamanioDeMapaInvalido;
 import org.junit.Assert;
@@ -16,7 +17,7 @@ public class MilitarTest {
 	private int columnaDet;
 	private Casillero celda;
 	ArrayList<Casillero> lista = new ArrayList<Casillero>();
-	
+
 	
 	public  MilitarTest () throws tamanioDeMapaInvalido
 	{

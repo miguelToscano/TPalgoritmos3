@@ -7,6 +7,7 @@ import mapa.excepcionesMapa.tamanioDeMapaInvalido;
 import unidades.Entidad;
 import edificios.Castillo;
 import mapa.excepcionesMapa.*;
+import juego.Jugador;
 
 public class Mapa
 {
@@ -19,8 +20,6 @@ public class Mapa
     private ArrayList<Fila> filas = new ArrayList<Fila>();
     private ArrayList<Columna> columnas = new ArrayList<Columna>();
     private ArrayList<Caja> cajas = new ArrayList<Caja>();
-    private Castillo castilloSuperior;
-    private Castillo castilloInferior;
 
     //Crea los mxn casilleros (m=tamanioFilas, n=tamanioColumnas)
     private void crearCasilleros()
@@ -112,7 +111,7 @@ public class Mapa
         }
     }
 
-    public void crearCastilloSuperior() throws cajaEstaOcupada
+    public void crearCastilloSuperior(Jugador jugador)
     {
         Caja caja = new Caja(this.tamanioCastillo);
         for(int i=0;i<4;i++)
@@ -123,11 +122,27 @@ public class Mapa
             }
 
         }
-        castilloSuperior.ubicarEn(caja);
+        Castillo castilloSuperior = new Castillo(caja,this,jugador);
+        jugador.asignarCastillo(castilloSuperior);
 
     }
 
-    //Constructor con parametros
+    public void crearCastilloInferior(Jugador jugador)
+    {
+        Caja caja = new Caja(this.tamanioCastillo);
+        for(int i=this.obtenerTamanioFilas()-4;i<this.obtenerTamanioFilas();i++)
+        {
+            for(int j=this.obtenerTamanioColumnas()-4;j<this.obtenerTamanioColumnas();j++)
+            {
+                caja.referenciarCasillero(this.obtenerFila(i).get(j));
+            }
+
+        }
+        Castillo castilloInferior = new Castillo(caja,this,jugador);
+        jugador.asignarCastillo(castilloInferior);
+    }
+
+    //Constructor
     public Mapa (int filas, int columnas) throws tamanioDeMapaInvalido
     {
         //El tamanio del mapa es filas x columnas y debe ser >= a 200
@@ -138,6 +153,8 @@ public class Mapa
             throw new tamanioDeMapaInvalido();
         }
 
+        else
+        {
             this.tamanioColumnas = filas;
             this.tamanioFilas = columnas;
             this.tamanioCajas = 4;
@@ -147,6 +164,7 @@ public class Mapa
             this.crearFilas();
             this.crearColumnas();
             this.crearCajas();
+        }
     }
 
     private int cantidadDeCajas()
@@ -198,6 +216,8 @@ public class Mapa
         return this.obtenerCasillero(fila,columna).obtenerElemento();
     }
 
+    /*
+
     public boolean puedoColocarUnidad(int fila, int columna) throws casilleroEstaOcupado
     {
         return this.puedoColocarUnidad(this.obtenerCasillero(fila,columna));
@@ -229,6 +249,7 @@ public class Mapa
         return puedoColocar;
     }
 
+*/
     public Caja asignarCajaACasillero(Casillero casillero) throws casilleroInvalido
     {
         Caja caja = new Caja(this.obtenerTamanioCajas());
@@ -325,4 +346,13 @@ public class Mapa
         return this.obtenerTamanioColumnas()*this.obtenerTamanioFilas();
     }
 
+    /*public Castillo obtenerCastilloSuperior()
+    {
+        return this.castilloSuperior;
+    }
+
+    public Castillo obtenerCastilloInferior()
+    {
+        return this.castilloInferior;
+    }*/
 }
