@@ -1,9 +1,11 @@
 package unidades;
 import juego.*;
 import mapa.excepcionesMapa.*;
-import mapa.Mapa;
+
 import org.junit.Assert;
 import org.junit.Test;
+import org.mockito.Mockito;
+
 import mapa.*;
 import edificios.*;
 import excepciones.superaLimitePoblacional;
@@ -16,6 +18,11 @@ public class AldeanoTest {
 	private int columnaDet;
 	private Casillero celda;
 	private Jugador jugador;
+	Casillero casilleroMock = Mockito.mock(Casillero.class);
+    Caja cajaMock = Mockito.mock(Caja.class);
+    Mapa mapaMock =  Mockito.mock(Mapa.class);
+    Jugador jugadorMock =  Mockito.mock(Jugador.class);
+    
 
 
 	public AldeanoTest() throws tamanioDeMapaInvalido {
@@ -197,37 +204,37 @@ public class AldeanoTest {
 
 
 	}
-}
-/*MAL MAL MAL
+
 	@Test
 	public void aldeanoComienzaAConstruirPlaza() throws casilleroEstaOcupado,casilleroInvalido,
 															superaLimitePoblacional,cajaEstaOcupada
 	{
-		Aldeano aldeano = new Aldeano(filaDet, columnaDet, mapa);
-		Casillero casillero = mapa.obtenerCasillero(3, 3);
-		Caja caja = mapa.asignarCajaACasillero(casillero);
-		aldeano.construirPlazaCentral(caja, mapa, jugador);
+		Aldeano aldeano = new Aldeano(this.casilleroMock);
+		
+		aldeano.construirPlazaCentral(this.cajaMock, this.mapaMock, this.jugadorMock);
 
-		Assert.assertTrue(aldeano.edificioEnConstruccion != null);
+		Assert.assertFalse(aldeano.obtenerEdificioEnConstruccion() == null);
 	}
+
+	@Test
+    public void aldeanoConstruyendoEstaTrabajando() throws cajaEstaOcupada, superaLimitePoblacional, casilleroEstaOcupado
+    {
+		 
+	     Aldeano aldeano = new Aldeano(this.casilleroMock);
+	     
+	     aldeano.construirPlazaCentral(this.cajaMock, this.mapaMock, this.jugadorMock);
+	        
+	     Assert.assertTrue(aldeano.trabajando == true);
+    }
+ 
+ @Test
+    public void aldeanoConstruyendoNoProduceOro() throws casilleroInvalido, cajaEstaOcupada, superaLimitePoblacional
+    {
+        
+        Aldeano aldeanoMock = Mockito.mock(Aldeano.class);
+        aldeanoMock.construirPlazaCentral(this.cajaMock, this.mapaMock, this.jugadorMock);
+        
+        Mockito.verify(aldeanoMock, Mockito.times(0)).recolectarOro();
+        
+    }
 }
-//	@Test
-//    public void aldeanoConstruyendoEstaTrabajando()
-//    {
-//        Aldeano aldeano = new Aldeano();
-//        aldeano.construirPlaza();
-//        
-//        Assert.assertTrue(aldeano.trabajando);
-//    }
-// 
-// @Test
-//    public void aldeanoConstruyendoNoProduceOro()
-//    {
-//        Aldeano aldeano = new Aldeano();
-//        aldeano.construirPlaza();
-//        
-//        Assert.assertTrue(aldeano.sumarOro()==0);
-//    }
-
-
-*/
