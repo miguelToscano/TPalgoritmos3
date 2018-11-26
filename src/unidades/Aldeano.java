@@ -10,7 +10,7 @@ import juego.*;
 public class Aldeano extends Unidad
 {
 	public boolean trabajando; // reparando/ construyendo, no recolecta oro
-	public Edificio edificioEnConstruccion=null;
+	private Edificio edificioEnConstruccion=null;
 	private int turnosConstruyendo=0;
 	
 	final static int ORO_POR_TURNO = 25;
@@ -51,8 +51,17 @@ public class Aldeano extends Unidad
 		this.vida = 50;
 	
 	}
-	
-
+	//Casillero y jugador
+	public Aldeano(Casillero casillero, Jugador jugador) throws casilleroEstaOcupado, superaLimitePoblacional
+	{
+			super(casillero);
+			this.costo = 25;
+			this.trabajando = false;
+			this.vida = 50;
+			this.jugador = jugador;
+			this.jugador.aumentarPoblacion(1);
+		
+	}
 	public void construirPlazaCentral(Caja caja, Mapa mapa,Jugador jugador) throws cajaEstaOcupada, superaLimitePoblacional
 
     {
@@ -126,6 +135,12 @@ public class Aldeano extends Unidad
 		if (!trabajando && this.estaVivo()) {
 			this.jugador.sumarOro(ORO_POR_TURNO);
 		}
+	}
+	
+	public Edificio obtenerEdificioEnConstruccion() {
+		
+			return this.edificioEnConstruccion;
+		
 	}
 }
 
