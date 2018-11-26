@@ -1,6 +1,7 @@
 package unidades;
 
 import mapa.excepcionesMapa.casilleroEstaOcupado;
+import excepciones.SuperaLimitePoblacional;
 import jugador.Jugador;
 import mapa.Casillero;
 import mapa.Mapa;
@@ -21,7 +22,7 @@ public class ArmaDeAsedio extends Militar {
 		this.danioAEdificios = 75;	
 }
 	
-	public ArmaDeAsedio (int fila, int columna, Mapa mapa, Jugador jugador) throws casilleroEstaOcupado {
+	public ArmaDeAsedio (int fila, int columna, Mapa mapa, Jugador jugador) throws casilleroEstaOcupado, SuperaLimitePoblacional {
 		
 		super (fila, columna, mapa);
 		

@@ -2,7 +2,6 @@ package unidades;
 
 import java.util.ArrayList;
 
-import juego.Jugador;
 import mapa.excepcionesMapa.casilleroEstaOcupado;
 import mapa.excepcionesMapa.tamanioDeMapaInvalido;
 import org.junit.Assert;
@@ -81,7 +80,7 @@ public class MilitarTest {
 	}
 	
 	@Test
-	public void matarAldeanoReducePoblacion() throws casilleroEstaOcupado {
+	public void matarAldeanoReducePoblacion() throws casilleroEstaOcupado, SuperaLimitePoblacional {
 		
 		Jugador jugador = new Jugador();
 		Aldeano aldeano = new Aldeano(this.filaDet, this.columnaDet, this.mapa, jugador);
@@ -93,7 +92,7 @@ public class MilitarTest {
 		Assert.assertEquals(0, jugador.obtenerPoblacion());
 	}
 	
-	public void matarArqueroReducePoblacion() throws casilleroEstaOcupado {
+	public void matarArqueroReducePoblacion() throws casilleroEstaOcupado, SuperaLimitePoblacional {
 		
 		Jugador jugador = new Jugador();
 		Arquero arquero = new Arquero(this.filaDet, this.columnaDet, this.mapa, jugador);
@@ -106,7 +105,7 @@ public class MilitarTest {
 	}
 	
 	@Test
-	public void matarEspadachinReducePoblacion() throws casilleroEstaOcupado {
+	public void matarEspadachinReducePoblacion() throws casilleroEstaOcupado, SuperaLimitePoblacional {
 		
 		Jugador jugador = new Jugador();
 		Espadachin espadachin= new Espadachin(this.filaDet, this.columnaDet, this.mapa, jugador);
@@ -119,7 +118,7 @@ public class MilitarTest {
 	}
 	
 	@Test
-	public void matarArmaDeAsedioReducePoblacion() throws casilleroEstaOcupado {
+	public void matarArmaDeAsedioReducePoblacion() throws casilleroEstaOcupado, SuperaLimitePoblacional {
 
 		Jugador jugador = new Jugador();
 		ArmaDeAsedio armaDeAsedio= new ArmaDeAsedio(this.filaDet, this.columnaDet, this.mapa, jugador);
@@ -132,7 +131,7 @@ public class MilitarTest {
 	}
 	
 	@Test
-	public void matarAldeanoBajaProduccionDeOro() throws casilleroEstaOcupado {
+	public void matarAldeanoBajaProduccionDeOro() throws casilleroEstaOcupado, SuperaLimitePoblacional {
 		
 		Jugador jugador = new Jugador();
 		Aldeano aldeano = new Aldeano(this.filaDet, this.columnaDet, this.mapa, jugador);

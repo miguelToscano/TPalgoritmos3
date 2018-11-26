@@ -1,5 +1,6 @@
 package unidades;
 
+import excepciones.SuperaLimitePoblacional;
 import jugador.Jugador;
 import mapa.Casillero;
 import mapa.Mapa;
@@ -18,7 +19,7 @@ public class Espadachin extends Militar {
         this.radioAtaque = 1;	
 }
 
-	public Espadachin (int fila, int columna, Mapa mapa, Jugador jugador) throws casilleroEstaOcupado {
+	public Espadachin (int fila, int columna, Mapa mapa, Jugador jugador) throws casilleroEstaOcupado, SuperaLimitePoblacional {
 		
 		super (fila, columna, mapa);
 		this.costo = 50;

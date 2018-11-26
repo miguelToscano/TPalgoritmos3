@@ -7,7 +7,7 @@ import mapa.excepcionesMapa.tamanioDeMapaInvalido;
 import unidades.Entidad;
 import edificios.Castillo;
 import mapa.excepcionesMapa.*;
-import juego.Jugador;
+import jugador.*;
 
 public class Mapa
 {

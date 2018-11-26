@@ -1,6 +1,7 @@
 package unidades;
 
 import mapa.excepcionesMapa.casilleroEstaOcupado;
+import excepciones.SuperaLimitePoblacional;
 import jugador.Jugador;
 import mapa.Casillero;
 import mapa.Mapa;
@@ -19,7 +20,7 @@ public class Arquero extends Militar
 		
 	}
 
-	public Arquero (int fila, int columna, Mapa mapa, Jugador jugador)throws casilleroEstaOcupado {
+	public Arquero (int fila, int columna, Mapa mapa, Jugador jugador)throws casilleroEstaOcupado, SuperaLimitePoblacional {
 		
 		super (fila, columna, mapa);
 		

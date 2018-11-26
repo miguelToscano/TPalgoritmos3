@@ -1,5 +1,6 @@
 package jugador;
 
+import excepciones.*;
 //Cada jugador comienza con una plaza central y un castillo. No es posible construir un castillo. Sólo 
 // existirá el que es asignado al empezar la partida. Sí es posible construir plazas centrales y cuarteles sin límite.
 //
@@ -35,7 +36,10 @@ public class Jugador {
 		this.poblacion = nuevaPoblacion;
 	}
 	
-	public void aumentarPoblacion(int cantidad) {
+	public void aumentarPoblacion(int cantidad) throws SuperaLimitePoblacional {
+		
+		if (this.poblacion + cantidad > LIMITE_POBLACION)
+			throw new SuperaLimitePoblacional();
 		
 		this.poblacion += cantidad;
 	}

@@ -2,6 +2,7 @@ package edificios;
 
 import java.util.ArrayList;
 
+import excepciones.SuperaLimitePoblacional;
 import mapa.*;
 import mapa.excepcionesMapa.*;
 import unidades.*;
@@ -79,7 +80,7 @@ public class Cuartel extends Edificio
 		
 	}
 	
-	public void crearEspadachin() throws casilleroEstaOcupado {
+	public void crearEspadachin() throws casilleroEstaOcupado, SuperaLimitePoblacional {
 		
 		Espadachin unEspadachin = new Espadachin(puntoRally);
 		unEspadachin.setJugador(this.jugador);
@@ -87,7 +88,7 @@ public class Cuartel extends Edificio
 		this.jugador.aumentarPoblacion(1);
 	}
 	
-	public void crearArquero() throws casilleroEstaOcupado {
+	public void crearArquero() throws casilleroEstaOcupado, SuperaLimitePoblacional {
 		
 		Arquero unArquero = new Arquero(puntoRally);
 		unArquero.setJugador(this.jugador);

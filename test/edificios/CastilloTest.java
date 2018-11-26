@@ -6,13 +6,13 @@ import mapa.Caja;
 import mapa.Casillero;
 import mapa.Mapa;
 import mapa.excepcionesMapa.*;
+import jugador.*;
 
 import org.junit.Test;
 
 
 import mapa.excepcionesMapa.casilleroInvalido;
 import mapa.excepcionesMapa.tamanioDeMapaInvalido;
-import juego.Jugador;
 
 public class CastilloTest
 {

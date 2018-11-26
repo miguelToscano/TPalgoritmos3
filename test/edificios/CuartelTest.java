@@ -19,7 +19,7 @@ import org.junit.Test;
 public class CuartelTest {
 	
 	@Test
-	public void crearUnidadArqueroAumentaPoblacion() throws tamanioDeMapaInvalido, casilleroEstaOcupado, casilleroInvalido, cajaEstaOcupada {
+	public void crearUnidadArqueroAumentaPoblacion() throws tamanioDeMapaInvalido, casilleroEstaOcupado, casilleroInvalido, cajaEstaOcupada, SuperaLimitePoblacional {
 		Jugador jugador = new Jugador();
 		Mapa mapa = new Mapa(15, 15);
 		Cuartel cuartel = new Cuartel(mapa.obtenerCasillero(1, 1), mapa, jugador);		
@@ -29,7 +29,7 @@ public class CuartelTest {
 	}
 	
 	@Test
-	public void crearUnidadEspadachinAumentaPoblacion() throws casilleroEstaOcupado, tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada {
+	public void crearUnidadEspadachinAumentaPoblacion() throws casilleroEstaOcupado, tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, SuperaLimitePoblacional {
 		
 		Jugador jugador = new Jugador();
 		Mapa mapa = new Mapa(20, 20);

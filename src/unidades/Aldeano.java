@@ -2,6 +2,7 @@ package unidades;
 import edificios.Cuartel;
 import edificios.Edificio;
 import edificios.PlazaCentral;
+import excepciones.SuperaLimitePoblacional;
 import jugador.Jugador;
 import mapa.*;
 import mapa.excepcionesMapa.casilleroEstaOcupado;
@@ -31,7 +32,7 @@ public class Aldeano extends Unidad
 		this.vida = 50;
 	}
 
-	public Aldeano(int fila, int columna, Mapa mapa, Jugador jugador)throws casilleroEstaOcupado
+	public Aldeano(int fila, int columna, Mapa mapa, Jugador jugador)throws casilleroEstaOcupado, SuperaLimitePoblacional
 	{
 		super(fila, columna, mapa);
 		this.costo = 25;

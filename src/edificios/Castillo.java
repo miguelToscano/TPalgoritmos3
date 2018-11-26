@@ -6,7 +6,7 @@ import mapa.excepcionesMapa.cajaEstaOcupada;
 import mapa.excepcionesMapa.casilleroEstaOcupado;
 import mapa.*;
 import unidades.ArmaDeAsedio;
-import juego.Jugador;
+import jugador.*;
 
 public class Castillo extends Edificio
 {
