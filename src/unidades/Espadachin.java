@@ -1,16 +1,15 @@
 package unidades;
 
-import excepciones.*;
 import mapa.Casillero;
 import mapa.Mapa;
+import mapa.excepcionesMapa.casilleroEstaOcupado;
 
 public class Espadachin extends Militar {
 
 	
-	public Espadachin (int fila, int columna, Mapa mapa) throws CasilleroLleno {
+	public Espadachin (int fila, int columna, Mapa mapa) throws casilleroEstaOcupado {
 		
 		super (fila, columna, mapa);
-		
 		this.costo = 50;
         this.vida = 100;
         this.danioAUnidades = 25;
@@ -20,10 +19,10 @@ public class Espadachin extends Militar {
 	
 }
 
-	public Espadachin (Casillero casillero) throws CasilleroLleno {
+	public Espadachin (Casillero casillero) throws casilleroEstaOcupado
+	{
 	
 		super (casillero);
-		
 		this.costo = 50;
         this.vida = 100;
         this.danioAUnidades = 25;

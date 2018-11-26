@@ -2,20 +2,23 @@ package edificios;
 
 import java.util.ArrayList;
 
-import excepciones.CasilleroLleno;
+import mapa.excepcionesMapa.cajaEstaOcupada;
+import mapa.excepcionesMapa.casilleroEstaOcupado;
 import mapa.*;
 import unidades.ArmaDeAsedio;
+import juego.Jugador;
 
 public class Castillo extends Edificio
 {
+	private Jugador duenio;
 	private int radioAtaque;
 	private int danioAEntidades;
 	
-	ArrayList<ArmaDeAsedio> armasDeAsedio;
+	private ArrayList<ArmaDeAsedio> armasDeAsedio;
 	
-	Castillo (Caja lugarOcupado, Mapa mapa)
+	public Castillo (Caja lugarOcupado, Mapa mapa, Jugador jugador)
 	{
-		
+		this.duenio = jugador;
 		this.vida= 1000;
 		this.construible = false;
 		this.velocidadReparacion = 15;
@@ -24,16 +27,14 @@ public class Castillo extends Edificio
 		this.danioAEntidades = 20;
 		this.cajaOcupada.llenar(this);
 		this.settearPuntoRally(mapa); // ojo que aca puede estar en el medio
-
 		this.armasDeAsedio = new ArrayList<ArmaDeAsedio>();
+		this.ubicarEn(lugarOcupado);
 	}
 	
-	public void crearArmaDeAsedio() throws CasilleroLleno
+	public void crearArmaDeAsedio() throws casilleroEstaOcupado
     {
-		//check posicion esta en espacioOcupado
 		ArmaDeAsedio unArmaDeAsedio = new ArmaDeAsedio(puntoRally);
-		
-		armasDeAsedio.add(unArmaDeAsedio);
+		this. armasDeAsedio.add(unArmaDeAsedio);
 	}
 	
 	public boolean tieneArmaDeAsedio()
@@ -45,12 +46,18 @@ public class Castillo extends Edificio
     {
 		
     }
-	
 
-	public void ubicar(Mapeable mapeable)
+    public Caja getCajaOcupada()
 	{
-		this.cajaOcupada = (Caja)mapeable;
+		return this.cajaOcupada;
 	}
 
+
+	public void ubicarEn(Mapeable mapeable)
+	{
+		Caja caja = (Caja)mapeable;
+		this.cajaOcupada = caja;
+		caja.llenar(this);
+	}
 	
 }

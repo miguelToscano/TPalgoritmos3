@@ -74,6 +74,11 @@ public class Casillero extends Mapeable
 	public void setColumna(int columna) {
 		this.columna = columna;
 	}
+	
+	// casillero
+	
+	
+	
     
     
 }

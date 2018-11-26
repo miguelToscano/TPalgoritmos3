@@ -1,15 +1,22 @@
 package mapa;
 
+import juego.Jugador;
+import mapa.excepcionesMapa.tamanioDeMapaInvalido;
 import org.junit.Assert;
 import org.junit.Test;
 
-import excepciones.CasilleroLleno;
+import mapa.excepcionesMapa.casilleroEstaOcupado;
 import unidades.Aldeano;
-
-import static org.junit.Assert.*;
 
 public class ConjuntoDeCasillerosTest
 {
+    private Mapa mapa;
+    private Fila fila;
+
+    public ConjuntoDeCasillerosTest() throws tamanioDeMapaInvalido
+    {
+        mapa = new Mapa(15,15);
+    }
 
     @Test
     public void seCreaConTamanioElegido()
@@ -19,9 +26,8 @@ public class ConjuntoDeCasillerosTest
     }
 
     @Test
-    public void contieneDevuelveTrueSiElElementoEstaEnLaFila() throws CasilleroLleno
+    public void contieneDevuelveTrueSiElElementoEstaEnLaFila() throws casilleroEstaOcupado
     {
-        Mapa mapa = new Mapa();
         Aldeano aldeano = new Aldeano(4,0,mapa);
         Fila fila = mapa.obtenerFilas().get(4);
         Assert.assertTrue(fila.contiene(aldeano));
@@ -30,7 +36,6 @@ public class ConjuntoDeCasillerosTest
     @Test
     public void primerColumnaReferenciaMismosCasillerosQueMapa()
     {
-        Mapa mapa = new Mapa();
         Columna columna = mapa.obtenerColumnas().get(0);
         for(int i=0;i<columna.obtenerTamanio();i++)
         {
@@ -40,9 +45,8 @@ public class ConjuntoDeCasillerosTest
     }
 
     @Test
-    public void elementoEnFilaYColumnaCoincideConElementoEnMapa() throws CasilleroLleno
+    public void elementoEnFilaYColumnaCoincideConElementoEnMapa() throws casilleroEstaOcupado
     {
-        Mapa mapa = new Mapa();
         Aldeano aldeano = new Aldeano(4,0,mapa);
         Fila fila = mapa.obtenerFilas().get(4);
         Assert.assertEquals(fila.obtenerElemento(0),aldeano);

@@ -1,60 +1,97 @@
 package unidades;
 
-import mapa.Mapeable;
-import mapa.Casillero;
-import mapa.Mapa;
-import excepciones.*
-;public abstract class Unidad extends Entidad
+import mapa.*;
+import jugador.*;
+
+import mapa.excepcionesMapa.casilleroEstaOcupado;
+
+public abstract class Unidad extends Entidad
 
 {
     protected Casillero casilleroOcupado;
-	public static int cantidad = 0;
+	private static int cantidad = 0;
 
 	//Constructores
 	
 	public Unidad()
     {
 	    this.turnosConstruccion = 1;
+	    this.cantidad++;
+	}
+	
+	public void setJugador(Jugador jugador) {
+		
+		this.jugador = jugador;
 	}
 	
 	//Con coordenadas 
-	public Unidad (int fila, int columna, Mapa mapa) throws CasilleroLleno  
+	public Unidad (int fila, int columna, Mapa mapa) throws casilleroEstaOcupado
     {
-        this.turnosConstruccion = 1;
-        Casillero casillero = mapa.obtenerCasillero(fila,columna);
-        this.ubicar(casillero);
-        
+		Casillero casillero = mapa.obtenerCasillero(fila, columna);
+    	this.ubicarEn(casillero);
+    	this.turnosConstruccion = 1;
+    	this.cantidad++;
+
      }
 	
 	//con casillero
-	public Unidad (Casillero casillero)  throws CasilleroLleno  
+	public Unidad (Casillero casillero)  throws casilleroEstaOcupado
     {
-        this.turnosConstruccion = 1;
-        this.ubicar(casillero);
-        
+		this.ubicarEn(casillero);
+		this.turnosConstruccion = 1;
+		this.cantidad++;
+
      }
 	
-	public void mover(Casillero casillero)throws CasilleroLleno {
+	public void mover(Casillero casillero)throws casilleroEstaOcupado {
 		
 		this.casilleroOcupado.vaciar();
 		//check distancias, movimiento posible
-		this.ubicar(casillero);
+		this.ubicarEn(casillero);
 	}
-	
-	
+
 	
 	public void recibirDanio(int danio) {
 		
 		this.vida = this.vida - danio;
+		if (vida <= 0 ) {
+			//matar unidad
+			this.cantidad--;
+		}
 	}
 
-	public void ubicar(Mapeable mapeable) throws CasilleroLleno
+	public void ubicarEn(Mapeable mapeable) throws casilleroEstaOcupado
     {
-        Casillero casillero = (Casillero) mapeable; 
-        if (casillero.estaOcupado()) {
-        	throw new CasilleroLleno();
+    	Casillero casillero = (Casillero)mapeable;
+        if (casillero.estaOcupado())
+        {
+        	throw new casilleroEstaOcupado();
         }
 		this.casilleroOcupado = casillero;
         casillero.cambiarContenido(this);
     }
+	
+	public boolean estaEnRango (int rango, Casillero casillero) {
+		
+			if	(Math.abs(this.casilleroOcupado.getFila() - casillero.getFila()) > rango  || Math.abs(this.casilleroOcupado.getColumna() - casillero.getColumna()) > rango )
+				return false;
+			return true;
+	}
+
+	/*public boolean puedoColocar(int fila, int columna,Mapa mapa) throws casilleroEstaOcupado
+	{
+		return mapa.puedoColocarUnidad(fila,columna);
+	}
+
+	public boolean puedoColocar(Casillero casillero) throws casilleroEstaOcupado
+	{
+		boolean puedoColocar=true;
+		if(casillero.estaOcupado())
+		{
+			throw new casilleroEstaOcupado();
+		}
+		return puedoColocar;
+	}
+	*/
+	
 }

@@ -5,9 +5,20 @@ import unidades.Entidad;
 
 public abstract class ConjuntoDeCasilleros extends Mapeable
 {
-    protected ArrayList<Casillero> lista = new ArrayList<Casillero>();
+    protected ArrayList<Casillero> lista;
     protected int tamanio;
 
+    public ConjuntoDeCasilleros() {
+   
+    	this.tamanio = 0;
+    	lista = new ArrayList<Casillero>(this.tamanio);
+    }
+    
+    public ConjuntoDeCasilleros(int tamanio) {
+    	
+    	this.tamanio = tamanio;
+    	this.lista = new ArrayList<Casillero>(this.tamanio);
+    }
 
     public void referenciarCasillero(Casillero casillero)
     {
@@ -59,6 +70,11 @@ public abstract class ConjuntoDeCasilleros extends Mapeable
         return estaLibre;
     }
 
+    public boolean estaOcupada()
+    {
+        return !this.estaLibre();
+    }
+
     public Casillero obtenerPrimerCasillero()
     {
         return this.lista.get(0);
@@ -77,5 +93,10 @@ public abstract class ConjuntoDeCasilleros extends Mapeable
         }
 
         return contiene;
+    }
+    
+    public ArrayList<Casillero>  getLista() {
+    	return lista;
+    	
     }
 }

@@ -1,12 +1,12 @@
 package unidades;
 
-import excepciones.CasilleroLleno;
+import mapa.excepcionesMapa.casilleroEstaOcupado;
 import mapa.Casillero;
 import mapa.Mapa;
 
 public class Arquero extends Militar
 {
-	public Arquero (int fila, int columna, Mapa mapa)throws CasilleroLleno {
+	public Arquero (int fila, int columna, Mapa mapa)throws casilleroEstaOcupado {
 		
 		super (fila, columna, mapa);
 		
@@ -18,7 +18,7 @@ public class Arquero extends Militar
 		
 	}
 
-	public Arquero (Casillero casillero) throws CasilleroLleno {
+	public Arquero (Casillero casillero) throws casilleroEstaOcupado {
 	
 	super (casillero);
 	
