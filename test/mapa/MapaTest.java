@@ -50,29 +50,29 @@ public class MapaTest {
 
 
     @Test
-    public void seColocaAldeanoEnPrimerCasillero() throws casilleroEstaOcupado {
-        Aldeano aldeano = new Aldeano(0, 0, mapa);
+    public void seColocaAldeanoEnPrimerCasillero() throws casilleroEstaOcupado,superaLimitePoblacional {
+        Aldeano aldeano = new Aldeano(0, 0, mapa, jugador);
         Assert.assertEquals(aldeano, mapa.obtenerElemento(0, 0));
     }
 
     @Test(expected = casilleroEstaOcupado.class)
-    public void colocarAldeanoEnCasilleroOcupadoLanzaExcepcion() throws casilleroEstaOcupado {
-        Aldeano unAldeano = new Aldeano(5, 5, mapa);
-        Aldeano otroAldeano = new Aldeano(5, 5, mapa);
+    public void colocarAldeanoEnCasilleroOcupadoLanzaExcepcion() throws casilleroEstaOcupado,superaLimitePoblacional {
+        Aldeano unAldeano = new Aldeano(5, 5, mapa, jugador);
+        Aldeano otroAldeano = new Aldeano(5, 5, mapa, jugador);
     }
 
     @Test
-    public void seColocaEspadachinEnCasillero() throws casilleroEstaOcupado {
+    public void seColocaEspadachinEnCasillero() throws casilleroEstaOcupado,superaLimitePoblacional {
         Casillero casillero = mapa.obtenerCasillero(3, 3);
-        Espadachin espadachin = new Espadachin(casillero);
+        Espadachin espadachin = new Espadachin(casillero , jugador);
         Assert.assertEquals(espadachin, mapa.obtenerElemento(3, 3));
     }
 
     @Test(expected = casilleroEstaOcupado.class)
-    public void colocarEspadachinEnCasilleroOcupadoLanzaExcepcion() throws casilleroEstaOcupado {
+    public void colocarEspadachinEnCasilleroOcupadoLanzaExcepcion() throws casilleroEstaOcupado,superaLimitePoblacional {
         Casillero casillero = mapa.obtenerCasillero(4, 3);
-        Espadachin unEspadachin = new Espadachin(casillero);
-        Espadachin otroEspadachin = new Espadachin(casillero);
+        Espadachin unEspadachin = new Espadachin(casillero,jugador);
+        Espadachin otroEspadachin = new Espadachin(casillero, jugador);
     }
 
     @Test

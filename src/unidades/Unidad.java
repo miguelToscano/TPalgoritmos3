@@ -1,6 +1,7 @@
 package unidades;
 
 import mapa.*;
+import excepciones.*;
 import juego.*;
 
 import mapa.excepcionesMapa.casilleroEstaOcupado;
@@ -19,10 +20,6 @@ public abstract class Unidad extends Entidad
 	    this.cantidad++;
 	}
 	
-	public void setJugador(Jugador jugador) {
-		
-		this.jugador = jugador;
-	}
 	
 	//Con coordenadas 
 	public Unidad (int fila, int columna, Mapa mapa) throws casilleroEstaOcupado
@@ -34,11 +31,22 @@ public abstract class Unidad extends Entidad
 
      }
 	
-	//con casillero
+	
 	public Unidad (Casillero casillero)  throws casilleroEstaOcupado
     {
 		this.ubicarEn(casillero);
 		this.turnosConstruccion = 1;
+		this.cantidad++;
+
+     }
+	
+	//con casillero y jugador
+	public Unidad (Casillero casillero, Jugador jugador)  throws casilleroEstaOcupado,superaLimitePoblacional
+    {
+		this.ubicarEn(casillero);
+		this.turnosConstruccion = 1;
+		this.jugador = jugador;
+		this.jugador.aumentarPoblacion(1);
 		this.cantidad++;
 
      }
@@ -55,8 +63,7 @@ public abstract class Unidad extends Entidad
 		
 		this.vida = this.vida - danio;
 		if (vida <= 0 ) {
-			//matar unidad
-			this.cantidad--;
+			this.matar();
 		}
 	}
 
@@ -76,6 +83,13 @@ public abstract class Unidad extends Entidad
 			if	(Math.abs(this.casilleroOcupado.getFila() - casillero.getFila()) > rango  || Math.abs(this.casilleroOcupado.getColumna() - casillero.getColumna()) > rango )
 				return false;
 			return true;
+	}
+	
+	public void matar() {
+		
+		this.vida = 0;
+		this.jugador.reducirPoblacion(1);
+		this.cantidad--;
 	}
 
 	/*public boolean puedoColocar(int fila, int columna,Mapa mapa) throws casilleroEstaOcupado

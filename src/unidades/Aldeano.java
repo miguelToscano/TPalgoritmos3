@@ -24,13 +24,13 @@ public class Aldeano extends Unidad
     }
 
 	//Coordenadas
-	public Aldeano(int fila, int columna, Mapa mapa)throws casilleroEstaOcupado
-	{
-		super(fila, columna, mapa);
-		this.costo = 25;
-		this.trabajando = false;
-		this.vida = 50;
-	}
+//	public Aldeano(int fila, int columna, Mapa mapa)throws casilleroEstaOcupado
+//	{
+//		super(fila, columna, mapa);
+//		this.costo = 25;
+//		this.trabajando = false;
+//		this.vida = 50;
+//	}
 
 	public Aldeano(int fila, int columna, Mapa mapa, Jugador jugador)throws casilleroEstaOcupado, superaLimitePoblacional
 	{
@@ -43,14 +43,14 @@ public class Aldeano extends Unidad
 	}
 	
 	//Casillero
-	public Aldeano(Casillero casillero) throws casilleroEstaOcupado
-	{
-		super(casillero);
-		this.costo = 25;
-		this.trabajando = false;
-		this.vida = 50;
-	
-	}
+//	public Aldeano(Casillero casillero) throws casilleroEstaOcupado
+//	{
+//		super(casillero);
+//		this.costo = 25;
+//		this.trabajando = false;
+//		this.vida = 50;
+//	
+//	}
 	//Casillero y jugador
 	public Aldeano(Casillero casillero, Jugador jugador) throws casilleroEstaOcupado, superaLimitePoblacional
 	{

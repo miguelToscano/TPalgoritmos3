@@ -1,6 +1,8 @@
 package mapa;
 
 import mapa.excepcionesMapa.tamanioDeMapaInvalido;
+import excepciones.superaLimitePoblacional;
+import juego.Jugador;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -11,10 +13,12 @@ public class ConjuntoDeCasillerosTest
 {
     private Mapa mapa;
     private Fila fila;
+    private Jugador jugador;
 
     public ConjuntoDeCasillerosTest() throws tamanioDeMapaInvalido
     {
         mapa = new Mapa(15,15);
+        jugador = new Jugador();
     }
 
     @Test
@@ -25,9 +29,9 @@ public class ConjuntoDeCasillerosTest
     }
 
     @Test
-    public void contieneDevuelveTrueSiElElementoEstaEnLaFila() throws casilleroEstaOcupado
+    public void contieneDevuelveTrueSiElElementoEstaEnLaFila() throws casilleroEstaOcupado , superaLimitePoblacional
     {
-        Aldeano aldeano = new Aldeano(4,0,mapa);
+        Aldeano aldeano = new Aldeano(4,0,mapa, jugador);
         Fila fila = mapa.obtenerFilas().get(4);
         Assert.assertTrue(fila.contiene(aldeano));
     }
@@ -44,9 +48,9 @@ public class ConjuntoDeCasillerosTest
     }
 
     @Test
-    public void elementoEnFilaYColumnaCoincideConElementoEnMapa() throws casilleroEstaOcupado
+    public void elementoEnFilaYColumnaCoincideConElementoEnMapa() throws casilleroEstaOcupado, superaLimitePoblacional
     {
-        Aldeano aldeano = new Aldeano(4,0,mapa);
+        Aldeano aldeano = new Aldeano(4,0,mapa, jugador);
         Fila fila = mapa.obtenerFilas().get(4);
         Assert.assertEquals(fila.obtenerElemento(0),aldeano);
     }

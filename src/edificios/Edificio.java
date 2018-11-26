@@ -23,7 +23,6 @@ public abstract class Edificio extends Entidad {
 	public Edificio (Caja lugarOcupado, Mapa mapa, Jugador jugador) throws cajaEstaOcupada, superaLimitePoblacional
     {
         this.jugador = jugador;
-		this.jugador.aumentarPoblacion(1);
         this.ubicarEn(lugarOcupado);
         this.settearPuntoRally(mapa);// ojo que para castillo puede estar en el medio
 	}

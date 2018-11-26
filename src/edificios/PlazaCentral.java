@@ -56,7 +56,7 @@ public class PlazaCentral extends Edificio {
 	public void crearAldeano() throws casilleroEstaOcupado, superaLimitePoblacional
 	{
 		
-		Aldeano unAldeano = new Aldeano(this.puntoRally);
+		Aldeano unAldeano = new Aldeano(this.puntoRally, jugador);
 		// isRallyPoint ocupado? excepcion
 		
 		this.aldeanos.add(unAldeano);

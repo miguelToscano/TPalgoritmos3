@@ -31,10 +31,10 @@ public class Espadachin extends Militar {
         this.jugador.aumentarPoblacion(1);
 	}
 	
-	public Espadachin (Casillero casillero) throws casilleroEstaOcupado
+	public Espadachin (Casillero casillero, Jugador jugador) throws casilleroEstaOcupado,superaLimitePoblacional
 	{
 	
-		super (casillero);
+		super (casillero,jugador);
 		this.costo = 50;
         this.vida = 100;
         this.danioAUnidades = 25;

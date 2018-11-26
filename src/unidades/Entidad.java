@@ -15,7 +15,7 @@ public abstract class Entidad
 	
     public Entidad()
     {
-        this.construible=true;//?
+        this.construible=true;//??
     }
 	 
     public int getVida()
@@ -42,11 +42,7 @@ public abstract class Entidad
 		this.jugador = jugador;
 	}
 	
-	public void matar() {
-		
-		this.vida = 0;
-		this.jugador.reducirPoblacion(1);
-	}
+	
 	
 	public boolean estaVivo ()
     {

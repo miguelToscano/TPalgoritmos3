@@ -1,4 +1,4 @@
-package unidades;
+ 	package unidades;
 
 import java.util.ArrayList;
 
@@ -18,6 +18,7 @@ public class MilitarTest {
 	private int columnaDet;
 	private Casillero celda;
 	ArrayList<Casillero> lista = new ArrayList<Casillero>();
+	private Jugador jugador;
 
 	
 	public  MilitarTest () throws tamanioDeMapaInvalido
@@ -25,6 +26,8 @@ public class MilitarTest {
 		mapa = new Mapa(15,15);
 		filaDet = 3;
 		columnaDet= 3;
+		
+		jugador = new Jugador();
 		celda = mapa.obtenerCasillero(filaDet, columnaDet);
 		lista.add(celda);
 		lista.add(mapa.obtenerCasillero(filaDet+1, columnaDet));
@@ -36,21 +39,21 @@ public class MilitarTest {
 	
 	
 	@Test
-	public void ArqueroAtacaAldeano() throws UnidadAliada, casilleroEstaOcupado,FueraDeRango
+	public void ArqueroAtacaAldeano() throws UnidadAliada, casilleroEstaOcupado,FueraDeRango,superaLimitePoblacional
 	{
-		Aldeano objetivo = new Aldeano(lista.get(0)); // aldeano en 3 3;
-		Arquero arquero = new Arquero (lista.get(1));
+		Aldeano objetivo = new Aldeano(lista.get(0), jugador); // aldeano en 3 3;
+		Arquero arquero = new Arquero (lista.get(1) , jugador);
 		arquero.atacar(objetivo);
         Assert.assertEquals(objetivo.getVida(), 50-15 );
 
 	}
 	
 	@Test
-	public void ArquerosVariosAtacanAldeano() throws UnidadAliada, casilleroEstaOcupado,FueraDeRango
+	public void ArquerosVariosAtacanAldeano() throws UnidadAliada, casilleroEstaOcupado,FueraDeRango,superaLimitePoblacional
 	{
-		Aldeano objetivo = new Aldeano(lista.get(0)); // aldeano en 3 3;
-		Arquero arquero = new Arquero (lista.get(1));
-		Arquero arqueroBis = new Arquero (lista.get(2));
+		Aldeano objetivo = new Aldeano(lista.get(0), jugador); // aldeano en 3 3;
+		Arquero arquero = new Arquero (lista.get(1), jugador);
+		Arquero arqueroBis = new Arquero (lista.get(2),jugador );
 		arquero.atacar(objetivo);
 		arqueroBis.atacar(objetivo);
         Assert.assertEquals(objetivo.getVida(), 50-30 );
@@ -58,24 +61,24 @@ public class MilitarTest {
 	}
 	
 	@Test
-	public void ArquerosVariosAtacanyMatanAldeano() throws UnidadAliada, casilleroEstaOcupado,FueraDeRango
+	public void ArquerosVariosAtacanyMatanAldeano() throws UnidadAliada, casilleroEstaOcupado,FueraDeRango,superaLimitePoblacional
 	{
-		Aldeano objetivo = new Aldeano(lista.get(0)); // aldeano en 3 3;
-		Arquero arquero = new Arquero (lista.get(1));
-		Arquero arqueroBis = new Arquero (lista.get(2));
+		Aldeano objetivo = new Aldeano(lista.get(0), jugador); // aldeano en 3 3;
+		Arquero arquero = new Arquero (lista.get(1) , jugador);
+		Arquero arqueroBis = new Arquero (lista.get(2),jugador);
 		arquero.atacar(objetivo);
 		arquero.atacar(objetivo);
 		arqueroBis.atacar(objetivo);
 		arqueroBis.atacar(objetivo);
-        Assert.assertEquals(objetivo.getVida(), 50-60 );
+        Assert.assertEquals(objetivo.getVida(), 0);
 
 	}
 	
 	@Test(expected = FueraDeRango.class)
-	public void ArqueroFueraDeRangoLanzaExcepcion() throws UnidadAliada, casilleroEstaOcupado,FueraDeRango
+	public void ArqueroFueraDeRangoLanzaExcepcion() throws UnidadAliada, casilleroEstaOcupado,FueraDeRango,superaLimitePoblacional
 	{
-		Aldeano objetivo = new Aldeano(lista.get(0)); // aldeano en 3 3;
-		Arquero arquero = new Arquero (lista.get(4));
+		Aldeano objetivo = new Aldeano(lista.get(0), jugador); // aldeano en 3 3;
+		Arquero arquero = new Arquero (lista.get(4),jugador);
 		arquero.atacar(objetivo);
 	}
 	

@@ -1,5 +1,6 @@
 package unidades;
 import excepciones.*;
+import juego.*;
 import mapa.*;
 import mapa.excepcionesMapa.casilleroEstaOcupado;
 
@@ -16,9 +17,9 @@ public abstract class Militar extends Unidad
 		super (fila, columna, mapa);
     }
 	
-    public Militar (Casillero casillero) throws casilleroEstaOcupado {
+    public Militar (Casillero casillero, Jugador jugador ) throws casilleroEstaOcupado,superaLimitePoblacional {
     	
-    	super (casillero);
+    	super (casillero,jugador);
     }
     
     

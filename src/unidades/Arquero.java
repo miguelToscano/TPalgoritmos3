@@ -33,9 +33,9 @@ public class Arquero extends Militar
 		this.jugador.aumentarPoblacion(1);
 	}
 	
-	public Arquero (Casillero casillero) throws casilleroEstaOcupado {
+	public Arquero (Casillero casillero, Jugador jugador) throws casilleroEstaOcupado,superaLimitePoblacional {
 	
-	super (casillero);
+	super (casillero,  jugador);
 	
 	this.danioAEdificios = 10;
 	this.danioAUnidades = 15;

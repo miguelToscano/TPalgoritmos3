@@ -34,9 +34,9 @@ public class ArmaDeAsedio extends Militar {
 		this.jugador.aumentarPoblacion(1);
 }
 
-	public ArmaDeAsedio (Casillero casillero) throws casilleroEstaOcupado {
+	public ArmaDeAsedio (Casillero casillero, Jugador jugador) throws casilleroEstaOcupado,superaLimitePoblacional {
 	
-		super (casillero);
+		super (casillero, jugador);
 		
 		this.montada = false;
 		this.vida = 150;
@@ -45,10 +45,7 @@ public class ArmaDeAsedio extends Militar {
 
 }
 	
-	public void atacar()
-    {
-        System.out.println("Ataca a una unidad o edificio");
-    }
+	
 
     public void desmontar()
     {

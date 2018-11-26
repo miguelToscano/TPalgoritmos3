@@ -32,9 +32,9 @@ public class Castillo extends Edificio
 
 	}
 
-	public void crearArmaDeAsedio() throws casilleroEstaOcupado
+	public void crearArmaDeAsedio() throws casilleroEstaOcupado,superaLimitePoblacional
     {
-		ArmaDeAsedio unArmaDeAsedio = new ArmaDeAsedio(puntoRally);
+		ArmaDeAsedio unArmaDeAsedio = new ArmaDeAsedio(puntoRally,this.jugador);
 		this.armasDeAsedio.add(unArmaDeAsedio);
 	}
 

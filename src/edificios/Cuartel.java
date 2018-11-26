@@ -23,7 +23,7 @@ public class Cuartel extends Edificio
 		this.vidaCompleta = 250;
 		this.vida=this.vidaCompleta;
 		this.cajaOcupada = lugarOcupado;
-		this.cajaOcupada.llenar(this);
+		//this.cajaOcupada.llenar(this);
 		ejercito = new ArrayList<Militar>();
 	}
 
@@ -38,7 +38,7 @@ public class Cuartel extends Edificio
 		this.costo = 50;
 		this.vidaCompleta = 250;
 		this.vida=this.vidaCompleta;
-		this.cajaOcupada.llenar(this);
+		//this.cajaOcupada.llenar(this);
 		//this.settearPuntoRally(mapa);
 		this.jugador = jugador;
 		
@@ -49,18 +49,14 @@ public class Cuartel extends Edificio
 	
 	public void crearEspadachin() throws casilleroEstaOcupado, superaLimitePoblacional {
 		
-		Espadachin unEspadachin = new Espadachin(puntoRally);
-		unEspadachin.setJugador(this.jugador);
+		Espadachin unEspadachin = new Espadachin(puntoRally,this.jugador);
 		this.ejercito.add(unEspadachin);
-		this.jugador.aumentarPoblacion(1);
 	}
 	
 	public void crearArquero() throws casilleroEstaOcupado, superaLimitePoblacional {
 		
-		Arquero unArquero = new Arquero(puntoRally);
-		unArquero.setJugador(this.jugador);
+		Arquero unArquero = new Arquero(puntoRally,this.jugador);
 		this.ejercito.add(unArquero);
-		this.jugador.aumentarPoblacion(1);
 	}
 	
 	//esto es un sida
