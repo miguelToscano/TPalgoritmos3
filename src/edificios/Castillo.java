@@ -20,7 +20,8 @@ public class Castillo extends Edificio
 
 	{
 		super(lugarOcupado,mapa,jugador);
-		this.vida= 1000;
+		this.vidaCompleta= 1000;
+		this.vida= this.vidaCompleta;
 		this.construible = false;
 		this.velocidadReparacion = 15;
 		this.cajaOcupada = lugarOcupado;
