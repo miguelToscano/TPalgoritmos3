@@ -24,7 +24,7 @@ public class CastilloTest
     private Castillo castillo;
     private Jugador jugador;
 
-    public CastilloTest () throws tamanioDeMapaInvalido, casilleroInvalido
+    public CastilloTest () throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada
     {
     	fila = 4;
     	columna = 6;

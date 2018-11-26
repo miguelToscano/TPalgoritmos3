@@ -10,15 +10,14 @@ import jugador.*;
 
 public class Castillo extends Edificio
 {
-	private Jugador duenio;
 	private int radioAtaque;
 	private int danioAEntidades;
-	
+
 	private ArrayList<ArmaDeAsedio> armasDeAsedio;
-	
-	public Castillo (Caja lugarOcupado, Mapa mapa, Jugador jugador)
+
+	public Castillo (Caja lugarOcupado, Mapa mapa, Jugador jugador) throws cajaEstaOcupada
 	{
-		this.duenio = jugador;
+		super(lugarOcupado,mapa,jugador);
 		this.vida= 1000;
 		this.construible = false;
 		this.velocidadReparacion = 15;
@@ -26,25 +25,25 @@ public class Castillo extends Edificio
 		this.radioAtaque = 3;
 		this.danioAEntidades = 20;
 		this.cajaOcupada.llenar(this);
-		this.settearPuntoRally(mapa); // ojo que aca puede estar en el medio
+		//this.settearPuntoRally(mapa); // ojo que aca puede estar en el medio
 		this.armasDeAsedio = new ArrayList<ArmaDeAsedio>();
-		this.ubicarEn(lugarOcupado);
+
 	}
-	
+
 	public void crearArmaDeAsedio() throws casilleroEstaOcupado
     {
 		ArmaDeAsedio unArmaDeAsedio = new ArmaDeAsedio(puntoRally);
 		this. armasDeAsedio.add(unArmaDeAsedio);
 	}
-	
+
 	public boolean tieneArmaDeAsedio()
 	{
 		return !this.armasDeAsedio.isEmpty();
 	}
-	
+
 	public void atacarCircundantes()
     {
-		
+
     }
 
     public Caja getCajaOcupada()

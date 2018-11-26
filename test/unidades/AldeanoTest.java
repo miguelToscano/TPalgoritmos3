@@ -14,12 +14,14 @@ public class AldeanoTest {
 	private int filaDet;
 	private int columnaDet;
 	private Casillero celda;
+	private Jugador jugador;
 
 
 	public AldeanoTest() throws tamanioDeMapaInvalido {
 		mapa = new Mapa(15, 15);
 		filaDet = 3;
 		columnaDet = 3;
+		jugador = new Jugador();
 	}
 
 
@@ -167,11 +169,13 @@ public class AldeanoTest {
 	}
 
 	@Test(expected = casilleroEstaOcupado.class)
-	public void seCreaEnUnLugarOcupadoPorEdificioLanzaExcepcion() throws casilleroEstaOcupado, casilleroInvalido {
+	public void seCreaEnUnLugarOcupadoPorEdificioLanzaExcepcion() throws casilleroEstaOcupado,
+														casilleroInvalido, cajaEstaOcupada
+	{
 		//creo el edificio
 		celda = mapa.obtenerCasillero(6, 6);
 		Caja caja = mapa.asignarCajaACasillero(celda);
-		Cuartel cuartel = new Cuartel(caja, this.mapa);
+		Cuartel cuartel = new Cuartel(caja, this.mapa,this.jugador);
 
 		// el edificio va a estar en 6,6 6,7 7,6 y 7,7
 		Aldeano aldeano = new Aldeano(mapa.obtenerCasillero(6, 7));
@@ -180,11 +184,13 @@ public class AldeanoTest {
 	}
 
 	@Test(expected = casilleroEstaOcupado.class)
-	public void seMueveAUnLugarOcupadoPorEdificioLanzaExcepcion() throws casilleroEstaOcupado, casilleroInvalido {
+	public void seMueveAUnLugarOcupadoPorEdificioLanzaExcepcion() throws casilleroEstaOcupado,
+														casilleroInvalido, cajaEstaOcupada
+	{
 		//creo el edificio
 		celda = mapa.obtenerCasillero(6, 6);
 		Caja caja = mapa.asignarCajaACasillero(celda);
-		Cuartel cuartel = new Cuartel(caja, this.mapa);
+		Cuartel cuartel = new Cuartel(caja, this.mapa,jugador);
 
 		// el edificio va a estar en 6,6 6,7 7,6 y 7,7
 		Aldeano aldeano = new Aldeano(mapa.obtenerCasillero(5, 5));

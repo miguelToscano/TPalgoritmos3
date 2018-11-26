@@ -1,7 +1,7 @@
 package unidades;
 
 import mapa.*;
-import jugador.*;
+import juego.*;
 
 import mapa.excepcionesMapa.casilleroEstaOcupado;
 

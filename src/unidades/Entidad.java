@@ -3,7 +3,7 @@ package unidades;
 import mapa.Mapeable;
 import mapa.Casillero;
 import mapa.excepcionesMapa.*;
-import jugador.*;
+import juego.*;
 public abstract class Entidad
 {
     protected int vida;

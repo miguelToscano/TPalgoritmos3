@@ -111,7 +111,7 @@ public class Mapa
         }
     }
 
-    public void crearCastilloSuperior(Jugador jugador)
+    public void crearCastilloNoroeste(Jugador jugador) throws cajaEstaOcupada
     {
         Caja caja = new Caja(this.tamanioCastillo);
         for(int i=0;i<4;i++)
@@ -127,7 +127,7 @@ public class Mapa
 
     }
 
-    public void crearCastilloInferior(Jugador jugador)
+    public void crearCastilloSureste(Jugador jugador) throws cajaEstaOcupada
     {
         Caja caja = new Caja(this.tamanioCastillo);
         for(int i=this.obtenerTamanioFilas()-4;i<this.obtenerTamanioFilas();i++)

@@ -5,7 +5,8 @@ import edificios.PlazaCentral;
 import excepciones.SuperaLimitePoblacional;
 import jugador.Jugador;
 import mapa.*;
-import mapa.excepcionesMapa.casilleroEstaOcupado;
+import mapa.excepcionesMapa.*;
+import juego.Jugador;
 
 public class Aldeano extends Unidad
 {
@@ -53,13 +54,14 @@ public class Aldeano extends Unidad
 	}
 	
 
-	public void construirPlazaCentral(Caja caja, Mapa mapa)
+	public void construirPlazaCentral(Caja caja, Mapa mapa,Jugador jugador) throws cajaEstaOcupada
+
     {
 		turnosConstruyendo++;
 		trabajando=true;
 		
 		if (turnosConstruyendo==1) {
-			PlazaCentral plaza = new PlazaCentral();
+			PlazaCentral plaza = new PlazaCentral(caja,mapa,jugador);
 			edificioEnConstruccion=plaza;
 		} else if (turnosConstruyendo==edificioEnConstruccion.getTurnosConstruccion()) {
 			edificioEnConstruccion.mostrarConstruido();
@@ -69,13 +71,13 @@ public class Aldeano extends Unidad
 		
 	}
 	
-	public void construirCuartel(Caja caja, Mapa mapa)
+	public void construirCuartel(Caja caja, Mapa mapa,Jugador jugador) throws cajaEstaOcupada
     {
 		turnosConstruyendo++;
 		trabajando=true;
 		
 		if (turnosConstruyendo==1) {
-			Cuartel plaza = new Cuartel(); // ?
+			Cuartel plaza = new Cuartel(caja,mapa,jugador); // ?
 			edificioEnConstruccion=plaza;
 		} else if (turnosConstruyendo==edificioEnConstruccion.getTurnosConstruccion()) {
 			edificioEnConstruccion.mostrarConstruido();

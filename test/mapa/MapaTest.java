@@ -14,11 +14,13 @@ import static org.junit.Assert.*;
 public class MapaTest {
 
     private Mapa mapa;
+    private Jugador jugador;
 
 
     public MapaTest() throws tamanioDeMapaInvalido
     {
         mapa = new Mapa(15, 15);
+        jugador = new Jugador();
     }
 
     @Test
@@ -77,7 +79,7 @@ public class MapaTest {
     public void seColocaPlazaCentralEnCajaDadaPorCasillero() throws cajaEstaOcupada, casilleroInvalido {
         Casillero casillero = mapa.obtenerCasillero(0, 0);
         Caja caja = mapa.obtenerCajas().get(0);
-        PlazaCentral plaza = new PlazaCentral(casillero, mapa);
+        PlazaCentral plaza = new PlazaCentral(casillero, mapa,this.jugador);
         for (int i = 0; i < mapa.obtenerTamanioCajas(); i++) {
             Assert.assertEquals(caja.obtenerElemento(i), plaza);
         }
@@ -87,8 +89,8 @@ public class MapaTest {
     @Test(expected = cajaEstaOcupada.class)
     public void colocarCuartelEnCajaOcupadaLanzaExcepcion() throws casilleroInvalido, cajaEstaOcupada {
         Casillero casillero = mapa.obtenerCasillero(5, 5);
-        Cuartel unCuartel = new Cuartel(casillero, mapa);
-        Cuartel otroCuartel = new Cuartel(casillero, mapa);
+        Cuartel unCuartel = new Cuartel(casillero, mapa,this.jugador);
+        Cuartel otroCuartel = new Cuartel(casillero, mapa,this.jugador);
     }
 
     @Test

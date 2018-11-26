@@ -1,5 +1,6 @@
 package edificios;
 
+import juego.Jugador;
 import mapa.excepcionesMapa.cajaEstaOcupada;
 import mapa.excepcionesMapa.casilleroEstaOcupado;
 import mapa.excepcionesMapa.casilleroInvalido;
@@ -7,6 +8,8 @@ import unidades.Entidad;
 import mapa.*;
 
 public abstract class Edificio extends Entidad {
+
+    private Jugador duenio;
 
 	protected Caja cajaOcupada;
 	
@@ -16,19 +19,22 @@ public abstract class Edificio extends Entidad {
 	
 	protected boolean construido=false;
 
-	public Edificio ()
+	public Edificio (Caja lugarOcupado, Mapa mapa, Jugador jugador) throws cajaEstaOcupada
     {
-
+        this.duenio = jugador;
+        this.ubicarEn(lugarOcupado);
+        //this.settearPuntoRally(mapa);// ojo que para castillo puede estar en el medio
 	}
 
-	public Edificio (Casillero casilleroInicial, Mapa mapa) throws casilleroInvalido, cajaEstaOcupada
+	public Edificio (Casillero casilleroInicial, Mapa mapa, Jugador jugador) throws casilleroInvalido, cajaEstaOcupada
     {
+        this.duenio = jugador;
     	Caja caja = mapa.asignarCajaACasillero(casilleroInicial);
     	this.ubicarEn(caja);
-    	this.settearPuntoRally(mapa);
+    	//this.settearPuntoRally(mapa);
 	}
 	
-	public void settearPuntoRally (Mapa mapa)
+	/*public void settearPuntoRally (Mapa mapa)
     {
 		int puntoRallyFila = mapa.obtenerFilaInt(cajaOcupada.obtenerCasillero(0));
 		int puntoRallyColumna = mapa.obtenerColumnaInt(cajaOcupada.obtenerCasillero(0))+ 2;
@@ -38,7 +44,7 @@ public abstract class Edificio extends Entidad {
 		puntoRally =mapa.obtenerCasillero(puntoRallyFila, puntoRallyColumna);
 		
 
-	}
+	}*/
 	
 	private Caja fijarCaja(Casillero casilleroInicial, Mapa mapa) throws casilleroInvalido
     {

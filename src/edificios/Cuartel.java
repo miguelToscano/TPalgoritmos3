@@ -6,7 +6,7 @@ import excepciones.SuperaLimitePoblacional;
 import mapa.*;
 import mapa.excepcionesMapa.*;
 import unidades.*;
-import jugador.*;
+import juego.*;
 
 public class Cuartel extends Edificio
 {
@@ -14,71 +14,35 @@ public class Cuartel extends Edificio
 	private ArrayList<Militar> ejercito;
 	
 	
-	public Cuartel(Caja lugarOcupado, Mapa mapa)
+	public Cuartel(Caja lugarOcupado, Mapa mapa, Jugador jugador) throws cajaEstaOcupada
 	{
-		
+		super(lugarOcupado,mapa,jugador);
 		this.turnosConstruccion = 3;
 		this.velocidadReparacion = 50;
 		this.costo = 50;
 		this.vida = 250;
 		this.cajaOcupada = lugarOcupado;
 		this.cajaOcupada.llenar(this);
-		this.settearPuntoRally(mapa);
 		ejercito = new ArrayList<Militar>();
 	}
 
-	public Cuartel(Caja lugarOcupado, Mapa mapa, Jugador jugador) {
-		
-		this.turnosConstruccion = 3;
-		this.velocidadReparacion = 50;
-		this.costo = 50;
-		this.vida = 250;
-		this.cajaOcupada = lugarOcupado;
-		this.cajaOcupada.llenar(this);
-		this.settearPuntoRally(mapa);
-		this.jugador = jugador;
-		ejercito = new ArrayList<Militar>();
-	}
-	
-	public Cuartel() {
-		
-		this.turnosConstruccion = 3;
-		this.velocidadReparacion = 50;
-		this.costo = 50;
-		this.vida = 250;
-		ejercito = new ArrayList<Militar>();
-	}
 	
 	public Cuartel(Casillero casilleroInicial, Mapa mapa, Jugador jugador) throws casilleroInvalido, cajaEstaOcupada
 	{
 		
-		super(casilleroInicial, mapa);
+		super(casilleroInicial, mapa, jugador);
 		this.turnosConstruccion = 3;
 		this.velocidadReparacion = 50;
 		this.costo = 50;
 		this.vida = 250;
 		this.cajaOcupada.llenar(this);
-		this.settearPuntoRally(mapa);
+		//this.settearPuntoRally(mapa);
 		this.jugador = jugador;
 		
 		ejercito = new ArrayList<Militar>();
 		
 	}
 
-	public Cuartel(Casillero casilleroInicial, Mapa mapa) throws casilleroInvalido, cajaEstaOcupada
-	{
-		
-		super(casilleroInicial, mapa);
-		this.turnosConstruccion = 3;
-		this.velocidadReparacion = 50;
-		this.costo = 50;
-		this.vida = 250;
-		this.cajaOcupada.llenar(this);
-		this.settearPuntoRally(mapa);
-		
-		ejercito = new ArrayList<Militar>();
-		
-	}
 	
 	public void crearEspadachin() throws casilleroEstaOcupado, SuperaLimitePoblacional {
 		

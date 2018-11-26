@@ -10,7 +10,7 @@ import org.junit.Assert;
 import excepciones.*;
 import org.junit.Test;
 import mapa.*;
-import jugador.*;
+import juego.*;
 import edificios.*;
 import unidades.*;
 

@@ -7,6 +7,7 @@ import jugador.*;
 import mapa.excepcionesMapa.*;
 import unidades.*;
 import mapa.*;
+import juego.Jugador;
 
 
 public class PlazaCentral extends Edificio {
@@ -17,8 +18,9 @@ public class PlazaCentral extends Edificio {
 	// constructores
 	
 	// le indico todos los casilleros que ocupa
-	public PlazaCentral(Caja lugarOcupado, Mapa mapa) {
-	
+	public PlazaCentral(Caja lugarOcupado, Mapa mapa, Jugador jugador) throws cajaEstaOcupada
+    {
+        super(lugarOcupado,mapa,jugador);
 		this.aldeanos = new ArrayList<Aldeano>();
 		this.vida = 450;
 		this.costo = 100;
@@ -26,32 +28,21 @@ public class PlazaCentral extends Edificio {
 		this.velocidadReparacion = 25;
 		this.cajaOcupada = lugarOcupado;
 		this.cajaOcupada.llenar(this);
-		this.settearPuntoRally(mapa);
 		
 	}
-	
-	public PlazaCentral() {
 
-		this.aldeanos = new ArrayList<Aldeano>();
-		this.vida = 450;
-		this.costo = 100;
-		this.turnosConstruccion = 3;
-		this.velocidadReparacion = 25;
-
-	}
 	
 	// indico el donde empieza
-	public PlazaCentral(Casillero casilleroInicial, Mapa mapa) throws casilleroInvalido, cajaEstaOcupada
+	public PlazaCentral(Casillero casilleroInicial, Mapa mapa, Jugador jugador) throws casilleroInvalido, cajaEstaOcupada
 	{
-		
-		super(casilleroInicial, mapa);
+		super(casilleroInicial, mapa, jugador);
 		this.aldeanos = new ArrayList<Aldeano>();
 		this.vida = 450;
 		this.costo = 100;
 		this.turnosConstruccion = 3;
 		this.velocidadReparacion = 25;
 		this.cajaOcupada.llenar(this);
-		this.settearPuntoRally(mapa);
+
 	}
 	
 	public PlazaCentral(Casillero casillero, Mapa mapa, Jugador jugador) throws casilleroInvalido, cajaEstaOcupada {
