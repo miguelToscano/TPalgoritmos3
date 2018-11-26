@@ -6,7 +6,8 @@ import mapa.excepcionesMapa.*;
 import juego.*;
 public abstract class Entidad
 {
-    protected int vida;
+   	protected int vida;
+   	protected static int vidaCompleta;
 	protected int costo;
 	protected boolean construible;
 	protected int turnosConstruccion;
