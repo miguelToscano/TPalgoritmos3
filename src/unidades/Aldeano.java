@@ -106,9 +106,13 @@ public class Aldeano extends Unidad
 	
 	public void repararEdificio(Edificio unEdificio)
     {
-		unEdificio.reparar();
-		trabajando = true;
-		
+		if (!unEdificio.reparacionCompleta()) {
+			unEdificio.reparar();
+			trabajando = true;
+		} else {
+			trabajando = false;
+			this.recolectarOro();
+		}
 	}
 	
 	//public Edificio construirEdificio ()
