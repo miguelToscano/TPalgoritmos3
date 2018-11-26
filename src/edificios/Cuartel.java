@@ -20,7 +20,8 @@ public class Cuartel extends Edificio
 		this.turnosConstruccion = 3;
 		this.velocidadReparacion = 50;
 		this.costo = 50;
-		this.vida = 250;
+		this.vidaCompleta = 250;
+		this.vida=this.vidaCompleta;
 		this.cajaOcupada = lugarOcupado;
 		this.cajaOcupada.llenar(this);
 		ejercito = new ArrayList<Militar>();
@@ -35,7 +36,8 @@ public class Cuartel extends Edificio
 		this.turnosConstruccion = 3;
 		this.velocidadReparacion = 50;
 		this.costo = 50;
-		this.vida = 250;
+		this.vidaCompleta = 250;
+		this.vida=this.vidaCompleta;
 		this.cajaOcupada.llenar(this);
 		//this.settearPuntoRally(mapa);
 		this.jugador = jugador;
@@ -75,3 +77,4 @@ public class Cuartel extends Edificio
         return;
     }
 }
+
