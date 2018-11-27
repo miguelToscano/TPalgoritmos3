@@ -23,7 +23,7 @@ public class Cuartel extends Edificio
 		this.vidaCompleta = 250;
 		this.vida=this.vidaCompleta;
 		this.cajaOcupada = lugarOcupado;
-		//this.cajaOcupada.llenar(this);
+		this.cajaOcupada.llenar(this);
 		ejercito = new ArrayList<Militar>();
 	}
 

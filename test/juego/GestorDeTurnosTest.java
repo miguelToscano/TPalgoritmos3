@@ -4,6 +4,11 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import static org.junit.Assert.*;
+import juego.*;
+import mapa.Mapa;
+import unidades.Aldeano;
+
 public class GestorDeTurnosTest {
 	
 	private Jugador jugadorMockA= Mockito.mock(Jugador.class);

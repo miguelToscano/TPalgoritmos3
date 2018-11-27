@@ -2,10 +2,15 @@
 
 import java.util.ArrayList;
 
+import mapa.excepcionesMapa.cajaEstaOcupada;
+import mapa.excepcionesMapa.casilleroEstaOcupado;
+import mapa.excepcionesMapa.tamanioDeMapaInvalido;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import edificios.Cuartel;
+import mapa.*;
 import excepciones.FueraDeRango;
 import excepciones.UnidadAliada;
 import excepciones.superaLimitePoblacional;
@@ -84,70 +89,5 @@ public class MilitarTest {
 		Aldeano objetivo = new Aldeano(lista.get(0), jugador); // aldeano en 3 3;
 		Arquero arquero = new Arquero (lista.get(4),jugador);
 		arquero.atacar(objetivo);
-	}
-	
-	@Test
-	public void matarAldeanoReducePoblacion() throws casilleroEstaOcupado, superaLimitePoblacional {
-		
-		Jugador jugador = new Jugador();
-		Aldeano aldeano = new Aldeano(this.filaDet, this.columnaDet, this.mapa, jugador);
-	
-		Assert.assertEquals(1, jugador.obtenerPoblacion());
-		
-		aldeano.matar();
-		
-		Assert.assertEquals(0, jugador.obtenerPoblacion());
-	}
-	
-	public void matarArqueroReducePoblacion() throws casilleroEstaOcupado, superaLimitePoblacional {
-		
-		Jugador jugador = new Jugador();
-		Arquero arquero = new Arquero(this.filaDet, this.columnaDet, this.mapa, jugador);
-	
-		Assert.assertEquals(1, jugador.obtenerPoblacion());
-		
-		arquero.matar();
-		
-		Assert.assertEquals(0, jugador.obtenerPoblacion());
-	}
-	
-	@Test
-	public void matarEspadachinReducePoblacion() throws casilleroEstaOcupado, superaLimitePoblacional {
-		
-		Jugador jugador = new Jugador();
-		Espadachin espadachin= new Espadachin(this.filaDet, this.columnaDet, this.mapa, jugador);
-	
-		Assert.assertEquals(1, jugador.obtenerPoblacion());
-		
-		espadachin.matar();
-		
-		Assert.assertEquals(0, jugador.obtenerPoblacion());
-	}
-	
-	@Test
-	public void matarArmaDeAsedioReducePoblacion() throws casilleroEstaOcupado, superaLimitePoblacional {
-
-		Jugador jugador = new Jugador();
-		ArmaDeAsedio armaDeAsedio= new ArmaDeAsedio(this.filaDet, this.columnaDet, this.mapa, jugador);
-	
-		Assert.assertEquals(1, jugador.obtenerPoblacion());
-		
-		armaDeAsedio.matar();
-		
-		Assert.assertEquals(0, jugador.obtenerPoblacion());		
-	}
-	
-	@Test
-	public void matarAldeanoBajaProduccionDeOro() throws casilleroEstaOcupado, superaLimitePoblacional {
-		
-		Jugador jugador = new Jugador();
-		Aldeano aldeano = new Aldeano(this.filaDet, this.columnaDet, this.mapa, jugador);
-	
-		Assert.assertEquals(100, jugador.obtenerOro());		
-		aldeano.recolectarOro();
-		Assert.assertEquals(125, jugador.obtenerOro());
-		aldeano.matar();
-		aldeano.recolectarOro();
-		Assert.assertEquals(125, jugador.obtenerOro());
 	}
 }
