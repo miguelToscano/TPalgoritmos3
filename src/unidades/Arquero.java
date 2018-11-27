@@ -46,8 +46,8 @@ public class Arquero extends Militar
 	
 	
 	public void atacar()
-		{
-			System.out.println("Ataca a una unidad o edificio");
-		}
+	{
+		System.out.println("Ataca a una unidad o edificio");
+	}
 
 }
