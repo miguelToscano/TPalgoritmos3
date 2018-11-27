@@ -1,19 +1,19 @@
 package edificios;
 
 
+import org.junit.Before;
+import org.junit.Test;
+
+import excepciones.superaLimitePoblacional;
+import juego.Jugador;
 import junit.framework.Assert;
 import mapa.Caja;
 import mapa.Casillero;
 import mapa.Mapa;
-import mapa.excepcionesMapa.*;
-import excepciones.superaLimitePoblacional;
-
-import org.junit.Test;
-
-
+import mapa.excepcionesMapa.cajaEstaOcupada;
+import mapa.excepcionesMapa.casilleroEstaOcupado;
 import mapa.excepcionesMapa.casilleroInvalido;
 import mapa.excepcionesMapa.tamanioDeMapaInvalido;
-import juego.Jugador;
 
 public class CastilloTest
 {
@@ -23,7 +23,8 @@ public class CastilloTest
     private Castillo castillo;
     private Jugador jugador;
 
-    public CastilloTest () throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, superaLimitePoblacional
+    @Before
+    public  void setUp () throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, superaLimitePoblacional
     {
     	this.jugador = new Jugador();
         this.mapa = new Mapa(15,15);

@@ -1,24 +1,28 @@
 package mapa;
 
-import edificios.*;
-import juego.*;
-import mapa.excepcionesMapa.*;
+import static org.junit.Assert.fail;
+
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
+import edificios.Cuartel;
+import edificios.PlazaCentral;
+import excepciones.superaLimitePoblacional;
+import juego.Jugador;
+import mapa.excepcionesMapa.cajaEstaOcupada;
+import mapa.excepcionesMapa.casilleroEstaOcupado;
+import mapa.excepcionesMapa.casilleroInvalido;
+import mapa.excepcionesMapa.tamanioDeMapaInvalido;
 import unidades.Aldeano;
 import unidades.Espadachin;
-import excepciones.superaLimitePoblacional;
-
-
-import static org.junit.Assert.*;
 public class MapaTest {
 
     private Mapa mapa;
     private Jugador jugador;
 
-
-    public MapaTest() throws tamanioDeMapaInvalido {
+    @Before
+    public void setUp()  throws tamanioDeMapaInvalido {
         mapa = new Mapa(15, 15);
         jugador = new Jugador();
     }

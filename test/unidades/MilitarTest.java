@@ -2,14 +2,18 @@
 
 import java.util.ArrayList;
 
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+import excepciones.FueraDeRango;
+import excepciones.UnidadAliada;
+import excepciones.superaLimitePoblacional;
+import juego.Jugador;
+import mapa.Casillero;
+import mapa.Mapa;
 import mapa.excepcionesMapa.casilleroEstaOcupado;
 import mapa.excepcionesMapa.tamanioDeMapaInvalido;
-import org.junit.Assert;
-import excepciones.*;
-import juego.*;
-
-import org.junit.Test;
-import mapa.*;
 
 public class MilitarTest {
 	
@@ -20,8 +24,8 @@ public class MilitarTest {
 	ArrayList<Casillero> lista = new ArrayList<Casillero>();
 	private Jugador jugador;
 
-	
-	public  MilitarTest () throws tamanioDeMapaInvalido
+	@Before
+    public void setUp()  throws tamanioDeMapaInvalido
 	{
 		mapa = new Mapa(15,15);
 		filaDet = 3;

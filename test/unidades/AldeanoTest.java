@@ -1,15 +1,21 @@
 package unidades;
 
-import juego.*;
-import mapa.excepcionesMapa.*;
-
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import mapa.*;
-import edificios.*;
+import edificios.Cuartel;
+import edificios.PlazaCentral;
 import excepciones.superaLimitePoblacional;
+import juego.Jugador;
+import mapa.Caja;
+import mapa.Casillero;
+import mapa.Mapa;
+import mapa.excepcionesMapa.cajaEstaOcupada;
+import mapa.excepcionesMapa.casilleroEstaOcupado;
+import mapa.excepcionesMapa.casilleroInvalido;
+import mapa.excepcionesMapa.tamanioDeMapaInvalido;
 
 public class AldeanoTest {
 
@@ -24,7 +30,8 @@ public class AldeanoTest {
 	Jugador jugadorMock = Mockito.mock(Jugador.class);
 	PlazaCentral plazaMock = Mockito.mock(PlazaCentral.class);
 
-	public AldeanoTest() throws tamanioDeMapaInvalido {
+	@Before
+    public void setUp()  throws tamanioDeMapaInvalido {
 		mapa = new Mapa(15, 15);
 		filaDet = 3;
 		columnaDet = 3;

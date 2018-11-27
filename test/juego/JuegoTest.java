@@ -1,20 +1,23 @@
 package juego;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
-import mapa.Mapa;
-import mapa.excepcionesMapa.*;
-import excepciones.superaLimitePoblacional;
 
-import static org.junit.Assert.*;
+import excepciones.superaLimitePoblacional;
+import mapa.Mapa;
+import mapa.excepcionesMapa.cajaEstaOcupada;
+import mapa.excepcionesMapa.casilleroInvalido;
+import mapa.excepcionesMapa.tamanioDeMapaInvalido;
 
 public class JuegoTest {
     private Jugador jugadorA;
     private Jugador jugadorB;
     private Mapa mapa;
     private Juego juego;
-
-    public JuegoTest() throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada,superaLimitePoblacional
+    
+    @Before
+    public void setUp() throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada,superaLimitePoblacional
     {
         jugadorA = new Jugador();
         jugadorB = new Jugador();
