@@ -59,13 +59,8 @@ public abstract class Unidad extends Entidad
 	}
 
 	
-	public void recibirDanio(int danio) {
-		
-		this.vida = this.vida - danio;
-		if (vida <= 0 ) {
-			this.matar();
-		}
-	}
+	
+	
 
 	public void ubicarEn(Mapeable mapeable) throws casilleroEstaOcupado
     {

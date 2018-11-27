@@ -33,8 +33,12 @@ public abstract class Entidad
 		return this.turnosConstruccion;
 	}
  
-	public void recibirDanio(int danio){
-		this.vida = this.vida-danio;
+	public void recibirDanio(int danio) {
+		
+		this.vida = this.vida - danio;
+		if (vida <= 0 ) {
+			this.matar();
+		}
 	}
 	
 	public void establecerJugador(Jugador jugador) {
@@ -48,7 +52,7 @@ public abstract class Entidad
     {
 		return (this.vida > 0 );
 	}
-	
+	public abstract void matar();
 	public abstract boolean estaEnRango (int rango, Casillero casillero);
 
 	public abstract void ubicarEn(Mapeable mapeable) throws casilleroEstaOcupado, cajaEstaOcupada;

@@ -46,7 +46,7 @@ public class PoblacionTest {
 		int columna = 2;
 		Mapa unMapa = new Mapa(15, 15);
 		Jugador unJugador = new Jugador();
-		Arquero unArquero= new Arquero(fila, columna, unMapa, unJugador);
+		Arquero unArquero = new Arquero(fila, columna, unMapa, unJugador);
 		
 		Assert.assertEquals(1, unJugador.obtenerPoblacion());
 	}
@@ -142,4 +142,14 @@ public class PoblacionTest {
 		aldeano.recolectarOro();
 		Assert.assertEquals(125, jugador.obtenerOro());
 	}
+	
+//	@Test (expected = superaLimitePoblacional.class)
+//	public void limitePoblacional  () throws  casilleroEstaOcupado, superaLimitePoblacional
+//	{
+//		
+//		for (int i=0 ; i< 50; i++) {
+//			Aldeano()
+//		}
+//			
+//	}
 }

@@ -14,16 +14,15 @@ public class Cuartel extends Edificio
 	private ArrayList<Militar> ejercito;
 	
 	
-	public Cuartel(Caja lugarOcupado, Mapa mapa, Jugador jugador) throws cajaEstaOcupada,superaLimitePoblacional
-	{
+	public Cuartel(Caja lugarOcupado, Mapa mapa, Jugador jugador) throws cajaEstaOcupada	{
 		super(lugarOcupado,mapa,jugador);
 		this.turnosConstruccion = 3;
 		this.velocidadReparacion = 50;
 		this.costo = 50;
 		this.vidaCompleta = 250;
 		this.vida=this.vidaCompleta;
-		this.cajaOcupada = lugarOcupado;
-		this.cajaOcupada.llenar(this);
+		//this.cajaOcupada = lugarOcupado;
+		//this.cajaOcupada.llenar(this);
 		ejercito = new ArrayList<Militar>();
 	}
 
@@ -68,9 +67,6 @@ public class Cuartel extends Edificio
 		return this.ejercito.size() > 0;
 	}
 	
-	public void ubicar(Mapeable mapa)
-    {
-        return;
-    }
+	
 }
 

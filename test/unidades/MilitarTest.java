@@ -2,22 +2,21 @@
 
 import java.util.ArrayList;
 
-import mapa.excepcionesMapa.cajaEstaOcupada;
-import mapa.excepcionesMapa.casilleroEstaOcupado;
-import mapa.excepcionesMapa.tamanioDeMapaInvalido;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import edificios.Cuartel;
-import mapa.*;
 import excepciones.FueraDeRango;
 import excepciones.UnidadAliada;
 import excepciones.superaLimitePoblacional;
 import juego.Jugador;
+import mapa.Caja;
 import mapa.Casillero;
 import mapa.Mapa;
+import mapa.excepcionesMapa.cajaEstaOcupada;
 import mapa.excepcionesMapa.casilleroEstaOcupado;
+import mapa.excepcionesMapa.casilleroInvalido;
 import mapa.excepcionesMapa.tamanioDeMapaInvalido;
 
 public class MilitarTest {
@@ -26,13 +25,14 @@ public class MilitarTest {
 	private int filaDet;
 	private int columnaDet;
 	private Casillero celda;
-	ArrayList<Casillero> lista = new ArrayList<Casillero>();
+	private ArrayList<Casillero> lista = new ArrayList<Casillero>();
 	private Jugador jugador;
+	private Caja caja;
 
 	@Before
-    public void setUp()  throws tamanioDeMapaInvalido
+    public void setUp()  throws tamanioDeMapaInvalido, casilleroInvalido
 	{
-		mapa = new Mapa(15,15);
+		mapa = new Mapa(13 , 13);
 		filaDet = 3;
 		columnaDet= 3;
 		
@@ -43,6 +43,9 @@ public class MilitarTest {
 		lista.add(mapa.obtenerCasillero(filaDet, columnaDet+1));
 		lista.add(mapa.obtenerCasillero(filaDet+1, columnaDet+1));
 		lista.add(mapa.obtenerCasillero(filaDet+4, columnaDet));
+		lista.add(mapa.obtenerCasillero(filaDet+2, columnaDet+2) );
+		Caja caja = mapa.asignarCajaACasillero(celda);
+		
 		
 	}
 	
@@ -90,4 +93,37 @@ public class MilitarTest {
 		Arquero arquero = new Arquero (lista.get(4),jugador);
 		arquero.atacar(objetivo);
 	}
+	
+	
+	@Test
+	public void ArqueroAtacaEdificioQueEstaEnRango () throws cajaEstaOcupada,superaLimitePoblacional,casilleroEstaOcupado,FueraDeRango , UnidadAliada
+	
+	{
+		Cuartel cuartel = new Cuartel (this.caja, mapa , jugador); //3 3 y 4 4 y 3 4 y 4 3 .
+		Arquero arquero = new Arquero (lista.get(5) , jugador); //5 5 
+		
+		int vidaPreAtaque = cuartel.getVida();
+		arquero.atacar(cuartel);
+		
+        Assert.assertEquals(cuartel.getVida(), vidaPreAtaque-15 );
+
+
+		
+	}
+	
+	@Test
+	public void ArmaAsedioAtacaEdificioQueEstaEnRango () throws cajaEstaOcupada,superaLimitePoblacional,casilleroEstaOcupado,FueraDeRango , UnidadAliada
+	
+	{
+		Cuartel cuartel = new Cuartel (caja, mapa , jugador); //3 3 y 4 4 y 3 4 y 4 3 .
+		ArmaDeAsedio asedio = new ArmaDeAsedio (mapa.obtenerCasillero(7, 8) , jugador); //5 5 
+		
+		int vidaPreAtaque = cuartel.getVida();
+		asedio.atacar(cuartel);
+        Assert.assertEquals(cuartel.getVida(), vidaPreAtaque-75 );
+
+
+		
+	}
+	
 }
