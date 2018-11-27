@@ -1,12 +1,13 @@
 package mapa;
 
-import mapa.excepcionesMapa.tamanioDeMapaInvalido;
-import excepciones.superaLimitePoblacional;
-import juego.Jugador;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
+import excepciones.superaLimitePoblacional;
+import juego.Jugador;
 import mapa.excepcionesMapa.casilleroEstaOcupado;
+import mapa.excepcionesMapa.tamanioDeMapaInvalido;
 import unidades.Aldeano;
 
 public class ConjuntoDeCasillerosTest
@@ -15,7 +16,8 @@ public class ConjuntoDeCasillerosTest
     private Fila fila;
     private Jugador jugador;
 
-    public ConjuntoDeCasillerosTest() throws tamanioDeMapaInvalido
+    @Before
+    public void setUp()  throws tamanioDeMapaInvalido
     {
         mapa = new Mapa(15,15);
         jugador = new Jugador();

@@ -1,23 +1,27 @@
 package edificios;
 import java.util.ArrayList;
 
-import junit.framework.Assert;
-import mapa.*;
-import unidades.Aldeano;
-import juego.*;
-import excepciones.*;
-
-import java.util.ArrayList;
-
+import org.junit.Before;
 import org.junit.Test;
 
-import mapa.excepcionesMapa.*;
+import excepciones.superaLimitePoblacional;
+import juego.Jugador;
+import junit.framework.Assert;
+import mapa.Caja;
+import mapa.Casillero;
+import mapa.Mapa;
+import mapa.excepcionesMapa.cajaEstaOcupada;
+import mapa.excepcionesMapa.casilleroEstaOcupado;
+import mapa.excepcionesMapa.casilleroInvalido;
+import mapa.excepcionesMapa.tamanioDeMapaInvalido;
+import unidades.Aldeano;
 
 public class PlazaCentralTest {
 
     private Jugador jugador;
-
-    public PlazaCentralTest()
+    
+    @Before
+    public void setUp()
     {
         jugador = new Jugador();
     }

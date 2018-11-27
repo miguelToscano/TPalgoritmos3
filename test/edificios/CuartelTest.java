@@ -1,14 +1,15 @@
 package edificios;
 
+import org.junit.Assert;
+import org.junit.Test;
+
+import excepciones.superaLimitePoblacional;
+import juego.Jugador;
+import mapa.Mapa;
 import mapa.excepcionesMapa.cajaEstaOcupada;
 import mapa.excepcionesMapa.casilleroEstaOcupado;
 import mapa.excepcionesMapa.casilleroInvalido;
 import mapa.excepcionesMapa.tamanioDeMapaInvalido;
-import org.junit.Assert;
-import excepciones.*;
-import org.junit.Test;
-import mapa.*;
-import juego.*;
 
 public class CuartelTest {
 	
