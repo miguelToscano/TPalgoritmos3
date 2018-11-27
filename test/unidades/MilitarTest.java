@@ -105,7 +105,7 @@ public class MilitarTest {
 		int vidaPreAtaque = cuartel.getVida();
 		arquero.atacar(cuartel);
 		
-        Assert.assertEquals(cuartel.getVida(), vidaPreAtaque-15 );
+        Assert.assertEquals(cuartel.getVida(), vidaPreAtaque-10 );
 
 
 		
