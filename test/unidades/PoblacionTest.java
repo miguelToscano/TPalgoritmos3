@@ -46,6 +46,7 @@ public class PoblacionTest {
 		int columna = 2;
 		Mapa unMapa = new Mapa(15, 15);
 		Jugador unJugador = new Jugador();
+
 		Arquero unArquero= new Arquero(fila, columna, unMapa, unJugador);
 		
 		Assert.assertEquals(1, unJugador.obtenerPoblacion());
@@ -142,4 +143,12 @@ public class PoblacionTest {
 		aldeano.recolectarOro();
 		Assert.assertEquals(125, jugador.obtenerOro());
 	}
+
 }
+	
+	
+	
+	
+	
+	
+	

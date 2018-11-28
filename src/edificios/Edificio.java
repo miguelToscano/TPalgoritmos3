@@ -20,15 +20,15 @@ public abstract class Edificio extends Entidad {
 	
 	protected boolean construido=false;
 
-	public Edificio (Caja lugarOcupado, Mapa mapa, Jugador jugador) throws cajaEstaOcupada, superaLimitePoblacional
+	public Edificio (Caja lugarOcupado, Mapa mapa, Jugador jugador) throws cajaEstaOcupada
     {
         this.jugador = jugador;
         this.ubicarEn(lugarOcupado);
         this.settearPuntoRally(mapa);// ojo que para castillo puede estar en el medio
 	}
 
-	public Edificio (Casillero casilleroInicial, Mapa mapa, Jugador jugador) throws casilleroInvalido, cajaEstaOcupada,
-																					superaLimitePoblacional
+	public Edificio (Casillero casilleroInicial, Mapa mapa, Jugador jugador) throws casilleroInvalido, cajaEstaOcupada
+																					
     {
         this.jugador = jugador;
     	Caja caja = mapa.asignarCajaACasillero(casilleroInicial);
@@ -96,7 +96,7 @@ public abstract class Edificio extends Entidad {
 
 	public void ubicarEn(Mapeable mapeable) throws cajaEstaOcupada
 	{
-		Caja caja = (Caja)mapeable;
+		Caja caja = (Caja) mapeable;
 		if (caja.estaOcupada())
 		{
 			throw new cajaEstaOcupada();
@@ -105,6 +105,11 @@ public abstract class Edificio extends Entidad {
 		caja.llenar(this);
 	}
 
+	
+	public void matar () {
+		this.vida = 0;
+				
+	}
 	/*
 	public boolean puedoColocar(Casillero casillero,Mapa mapa) throws cajaEstaOcupada,casilleroInvalido
 	{

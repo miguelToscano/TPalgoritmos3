@@ -16,7 +16,7 @@ public class Castillo extends Edificio
 
 	private ArrayList<ArmaDeAsedio> armasDeAsedio;
 
-	public Castillo (Caja lugarOcupado, Mapa mapa, Jugador jugador) throws cajaEstaOcupada, superaLimitePoblacional
+	public Castillo (Caja lugarOcupado, Mapa mapa, Jugador jugador) throws cajaEstaOcupada
 
 	{
 		super(lugarOcupado,mapa,jugador);
@@ -24,10 +24,10 @@ public class Castillo extends Edificio
 		this.vida= this.vidaCompleta;
 		this.construible = false;
 		this.velocidadReparacion = 15;
-		this.cajaOcupada = lugarOcupado;
+		//this.cajaOcupada = lugarOcupado;
 		this.radioAtaque = 3;
 		this.danioAEntidades = 20;
-		this.cajaOcupada.llenar(this);
+		//this.cajaOcupada.llenar(this);
 		this.armasDeAsedio = new ArrayList<ArmaDeAsedio>();
 
 	}
