@@ -2,7 +2,7 @@ package juego;
 
 public class GestorDeTurno {
 	
-	private Jugador jugadorDeTurno;
+	protected Jugador jugadorDeTurno;
 	private Jugador jugadorA;
 	private Jugador jugadorB;
 	private int numeroTurno;
@@ -18,13 +18,19 @@ public class GestorDeTurno {
 		
 		if (!this.hayUnGanador()) {
 			numeroTurno++;
+			jugadorDeTurno.deshabilitar();
 			jugadorDeTurno=this.obtenerJugadorSiguiente();
+			jugadorDeTurno.habilitar();
 		}
 	}
 	
 	public Jugador obtenerPrimerJugador() {
-		// TODO Random algorithm
-		return jugadorA;
+		double numeroRandom = Math.random();
+		if(numeroRandom<0.5){
+			return jugadorA;
+		}else{
+			return jugadorB;
+		}
 	}
 	
 	public Jugador obtenerJugadorSiguiente() {
@@ -35,13 +41,12 @@ public class GestorDeTurno {
 		}
 	}
 	
-	private boolean hayUnGanador() {
-		//TODO
-		return false;
+	public boolean hayUnGanador() {
+		return (jugadorA.perdioLaPartida() || jugadorB.perdioLaPartida());
 	}
 	
 	public int obtenerTurnoActual() {
-		//TODO
+		
 		return this.numeroTurno;
 	}
 
