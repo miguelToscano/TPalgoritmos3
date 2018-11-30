@@ -133,8 +133,8 @@ public class MapaTest {
     @Test
     public void obtenerTercerCajaAPartirDeTercerCasillero() throws casilleroInvalido {
 
-        Caja tercerCaja = mapa.obtenerCajas().get(2);
-        Casillero tercerCasillero = mapa.obtenerCasillero(0, 2);
+        Caja tercerCaja = mapa.obtenerCajas().get(45);
+        Casillero tercerCasillero = mapa.obtenerCasillero(3, 3);
         try {
             mapa.asignarCajaACasillero(tercerCasillero);
         } catch (casilleroInvalido c) {
