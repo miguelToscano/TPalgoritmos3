@@ -4,14 +4,14 @@ import excepciones.superaLimitePoblacional;
 import unidades.*;
 import java.util.ArrayList;
 
-//Cada jugador comienza con una plaza central y un castillo. No es posible construir un castillo. SÃ³lo
-// existirÃ¡ el que es asignado al empezar la partida. SÃ­ es posible construir plazas centrales y cuarteles sin lÃ­mite.
+//Cada jugador comienza con una plaza central y un castillo. No es posible construir un castillo. SÃƒÂ³lo
+// existirÃƒÂ¡ el que es asignado al empezar la partida. SÃƒÂ­ es posible construir plazas centrales y cuarteles sin lÃƒÂ­mite.
 //
 //Cada jugador comienza la partida con 3 aldeanos y 100 de oro
 //
 //Los jugadores inician en extremos opuestos del mapa.
 //
-//El lÃ­mite de poblaciÃ³n es 50 (para cada jugador, es decir, 100 en total). Cada unidad del jugador ocupa 1 lugar de poblaciÃ³n. Los edificios no ocupan lugar de poblaciÃ³n.
+//El lÃƒÂ­mite de poblaciÃƒÂ³n es 50 (para cada jugador, es decir, 100 en total). Cada unidad del jugador ocupa 1 lugar de poblaciÃƒÂ³n. Los edificios no ocupan lugar de poblaciÃƒÂ³n.
 
 
 public class Jugador
@@ -23,7 +23,9 @@ public class Jugador
     private ArrayList<ArmaDeAsedio> armas = new ArrayList<ArmaDeAsedio>();
     private ArrayList<Arquero> arqueros = new ArrayList<Arquero>();
     private ArrayList<Espadachin> espadachines = new ArrayList<Espadachin>();
+     
     private boolean habilitado=false;
+    private Juego juego=null;
     
     final static int ORO_INICIAL = 100;
     final static int LIMITE_POBLACION = 50;
@@ -36,6 +38,15 @@ public class Jugador
         this.oro = ORO_INICIAL;
         this.poblacion = 0;
         this.habilitado=false;
+
+    }
+    
+    public Jugador(Juego juego) {
+
+        this.oro = ORO_INICIAL;
+        this.poblacion = 0;
+        this.habilitado=false;
+        this.juego=juego;
 
     }
 
@@ -91,7 +102,6 @@ public class Jugador
     }
 
     public void sumarOro(int oro) {
-
         this.oro += oro;
     }
     
@@ -107,7 +117,29 @@ public class Jugador
     	return (this.habilitado);
     }
     
+    public void terminarJugada() {
+    	this.habilitarPiezas();
+    	juego.terminarTurno();
+    }
+    
     public boolean perdioLaPartida() {
     	return (this.getCastillo().destruidoTotalmente());
     }
+    
+    public void habilitarPiezas() {
+    	
+    	for (Unidad u: aldeanos) {
+    		u.habilitar();
+    	}
+    	for (Unidad u: espadachines) {
+    		u.habilitar();
+    	}
+    	for (Unidad u: arqueros) {
+    		u.habilitar();
+    	}
+    	for (Unidad u: armas) {
+    		u.habilitar();
+    	}
+    }
+
 }
