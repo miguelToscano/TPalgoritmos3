@@ -7,6 +7,8 @@ import org.mockito.Mockito;
 
 import edificios.Cuartel;
 import edificios.PlazaCentral;
+import excepciones.NoEsElTurnoDelJugador;
+import excepciones.YaMovioEstaPieza;
 import excepciones.superaLimitePoblacional;
 import juego.Jugador;
 import mapa.Caja;
@@ -36,6 +38,7 @@ public class AldeanoTest {
 		filaDet = 3;
 		columnaDet = 3;
 		jugador = new Jugador();
+		jugador.habilitar();
 	}
 
 	@Test
@@ -56,7 +59,7 @@ public class AldeanoTest {
 	}
 
 	@Test
-	public void seMueveCorrectamente1() throws casilleroEstaOcupado,superaLimitePoblacional {
+	public void seMueveCorrectamente1() throws casilleroEstaOcupado,superaLimitePoblacional, NoEsElTurnoDelJugador, YaMovioEstaPieza {
 
 		// y+1
 		celda = mapa.obtenerCasillero(filaDet + 1, columnaDet);
@@ -69,7 +72,7 @@ public class AldeanoTest {
 	}
 
 	@Test
-	public void seMueveCorrectamente2() throws casilleroEstaOcupado,superaLimitePoblacional {
+	public void seMueveCorrectamente2() throws casilleroEstaOcupado,superaLimitePoblacional, NoEsElTurnoDelJugador, YaMovioEstaPieza {
 
 		// y-1
 		celda = mapa.obtenerCasillero(filaDet - 1, columnaDet);
@@ -82,7 +85,7 @@ public class AldeanoTest {
 	}
 
 	@Test
-	public void seMueveCorrectamente3() throws casilleroEstaOcupado,superaLimitePoblacional {
+	public void seMueveCorrectamente3() throws casilleroEstaOcupado,superaLimitePoblacional, NoEsElTurnoDelJugador, YaMovioEstaPieza {
 
 		// x+1
 		celda = mapa.obtenerCasillero(filaDet, columnaDet + 1);
@@ -95,7 +98,7 @@ public class AldeanoTest {
 	}
 
 	@Test
-	public void seMueveCorrectamente4() throws casilleroEstaOcupado,superaLimitePoblacional {
+	public void seMueveCorrectamente4() throws casilleroEstaOcupado,superaLimitePoblacional, NoEsElTurnoDelJugador, YaMovioEstaPieza {
 
 		// x-1
 		celda = mapa.obtenerCasillero(filaDet, columnaDet - 1);
@@ -108,7 +111,7 @@ public class AldeanoTest {
 	}
 
 	@Test
-	public void seMueveCorrectamente5() throws casilleroEstaOcupado,superaLimitePoblacional {
+	public void seMueveCorrectamente5() throws casilleroEstaOcupado,superaLimitePoblacional, NoEsElTurnoDelJugador, YaMovioEstaPieza {
 
 		// x-1 y-1
 		celda = mapa.obtenerCasillero(filaDet - 1, columnaDet - 1);
@@ -121,7 +124,7 @@ public class AldeanoTest {
 	}
 
 	@Test
-	public void seMueveCorrectamente6() throws casilleroEstaOcupado,superaLimitePoblacional {
+	public void seMueveCorrectamente6() throws casilleroEstaOcupado,superaLimitePoblacional, NoEsElTurnoDelJugador, YaMovioEstaPieza {
 
 		// x+1 y+1
 		celda = mapa.obtenerCasillero(filaDet + 1, columnaDet + 1);
@@ -134,7 +137,7 @@ public class AldeanoTest {
 	}
 
 	@Test
-	public void seMueveCorrectamente7() throws casilleroEstaOcupado,superaLimitePoblacional {
+	public void seMueveCorrectamente7() throws casilleroEstaOcupado,superaLimitePoblacional, NoEsElTurnoDelJugador, YaMovioEstaPieza {
 
 		// x+1 y-1
 		celda = mapa.obtenerCasillero(filaDet - 1, columnaDet + 1);
@@ -147,7 +150,7 @@ public class AldeanoTest {
 	}
 
 	@Test
-	public void seMueveCorrectamente8() throws casilleroEstaOcupado,superaLimitePoblacional {
+	public void seMueveCorrectamente8() throws casilleroEstaOcupado,superaLimitePoblacional, NoEsElTurnoDelJugador, YaMovioEstaPieza {
 
 		// x-1 y+1
 		celda = mapa.obtenerCasillero(filaDet + 1, columnaDet - 1);
@@ -169,7 +172,7 @@ public class AldeanoTest {
 	}
 
 	@Test(expected = casilleroEstaOcupado.class)
-	public void seMueveAUnLugarOcupadoPorUnidadLanzaExcepcion() throws casilleroEstaOcupado,superaLimitePoblacional {
+	public void seMueveAUnLugarOcupadoPorUnidadLanzaExcepcion() throws casilleroEstaOcupado,superaLimitePoblacional, NoEsElTurnoDelJugador, YaMovioEstaPieza {
 		celda = mapa.obtenerCasillero(filaDet + 1, columnaDet + 1);
 		Casillero celdaBis = mapa.obtenerCasillero(filaDet, columnaDet);
 
@@ -195,7 +198,7 @@ public class AldeanoTest {
 
 	@Test(expected = casilleroEstaOcupado.class)
 	public void seMueveAUnLugarOcupadoPorEdificioLanzaExcepcion()
-			throws casilleroEstaOcupado, casilleroInvalido, cajaEstaOcupada, superaLimitePoblacional {
+			throws casilleroEstaOcupado, casilleroInvalido, cajaEstaOcupada, superaLimitePoblacional, NoEsElTurnoDelJugador, YaMovioEstaPieza {
 		// creo el edificio
 		celda = mapa.obtenerCasillero(6, 6);
 		Caja caja = mapa.asignarCajaACasillero(celda);

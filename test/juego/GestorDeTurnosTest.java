@@ -1,30 +1,36 @@
 package juego;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import excepciones.superaLimitePoblacional;
+
 import static org.junit.Assert.*;
 import juego.*;
-import mapa.Mapa;
-import unidades.Aldeano;
 
 public class GestorDeTurnosTest {
 	
 	private Jugador jugadorMockA= Mockito.mock(Jugador.class);
 	private Jugador jugadorMockB= Mockito.mock(Jugador.class);
-	private GestorDeTurno gestorMock= Mockito.mock(GestorDeTurno.class);
-	private int turno=1;
+	private GestorDeTurno gestor=null;
 	
-	GestorDeTurno gestor= new GestorDeTurno(jugadorMockA, jugadorMockB, turno);
-	
+	  
+	@Before
+	public void setUp() {
+		
+		 this.gestor = new GestorDeTurno(jugadorMockA, jugadorMockB, 1);
+		 this.gestor.jugadorDeTurno=jugadorMockA;
+	}
+	 
 	  @Test
 	  public void finalizadoElTurnoSeCambiaDeJugador() {
 		  
-		  Jugador primerJugador = this.gestor.obtenerPrimerJugador();
+		  Jugador primerJugador = this.gestor.jugadorDeTurno;
 		  this.gestor.finalizarTurno();
 		  
-		  Assert.assertTrue(this.gestor.obtenerJugadorSiguiente()!=primerJugador);
+		  Assert.assertTrue(this.gestor.jugadorDeTurno!=primerJugador);
 	  }
 	  
 		
@@ -36,4 +42,14 @@ public class GestorDeTurnosTest {
 		  
 		  Assert.assertTrue(numeroTurnoAlPpio<this.gestor.obtenerTurnoActual());
 	  }
+	  
+	  @Test
+	  public void primerTurnoJugadorAleatorio() {
+		  
+		  Jugador jugador = this.gestor.obtenerPrimerJugador();
+		
+		  Assert.assertTrue(jugador==jugadorMockA||jugador==jugadorMockB);
+	  }
+	  
+
 }

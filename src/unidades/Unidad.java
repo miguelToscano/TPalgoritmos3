@@ -11,6 +11,7 @@ public abstract class Unidad extends Entidad
 {
     protected Casillero casilleroOcupado;
 	private static int cantidad = 0;
+	private boolean habilitada=false;
 
 	//Constructores
 	
@@ -51,15 +52,28 @@ public abstract class Unidad extends Entidad
 
      }
 	
-	public void mover(Casillero casillero)throws casilleroEstaOcupado {
-		
-		this.casilleroOcupado.vaciar();
-		//check distancias, movimiento posible
-		this.ubicarEn(casillero);
+	public void mover(Casillero casillero)throws casilleroEstaOcupado, NoEsElTurnoDelJugador, YaMovioEstaPieza {
+		if (jugador.esTuTurno()) {
+			if(this.habilitada) {
+				this.casilleroOcupado.vaciar();
+				//check distancias, movimiento posible
+				this.ubicarEn(casillero);
+				this.deshabilitar();
+			}else {
+				throw new YaMovioEstaPieza();
+			}
+		} else {
+			throw new NoEsElTurnoDelJugador();
+		}
 	}
-
 	
+	public void habilitar() {
+		this.habilitada=true;
+	}
 	
+	public void deshabilitar() {
+		this.habilitada=false;
+	}
 	
 
 	public void ubicarEn(Mapeable mapeable) throws casilleroEstaOcupado

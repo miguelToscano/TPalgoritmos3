@@ -110,6 +110,11 @@ public abstract class Edificio extends Entidad {
 		this.vida = 0;
 				
 	}
+	
+
+	public boolean destruidoTotalmente() {
+		return (!this.estaVivo());		
+	}
 	/*
 	public boolean puedoColocar(Casillero casillero,Mapa mapa) throws cajaEstaOcupada,casilleroInvalido
 	{
@@ -117,4 +122,5 @@ public abstract class Edificio extends Entidad {
 	}
 	*/
 }
+
 
