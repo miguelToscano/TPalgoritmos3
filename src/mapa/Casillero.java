@@ -1,5 +1,6 @@
 package mapa;
 
+import mapa.excepcionesMapa.DistanciaInvalida;
 import unidades.Entidad;
 
 public class Casillero extends Mapeable
@@ -73,6 +74,13 @@ public class Casillero extends Mapeable
 
 	public void setColumna(int columna) {
 		this.columna = columna;
+	}
+	
+	public void assertDistancia(int rango, Casillero casillero) throws DistanciaInvalida {
+		
+		if	(Math.abs(this.getFila() - casillero.getFila()) > rango  || Math.abs(this.getColumna() - casillero.getColumna()) > rango )
+			throw new DistanciaInvalida();
+		return ;
 	}
 	
 	// casillero

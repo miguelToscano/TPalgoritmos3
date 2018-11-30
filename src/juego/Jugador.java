@@ -13,6 +13,7 @@ import java.util.ArrayList;
 //
 //El lÃƒÂ­mite de poblaciÃƒÂ³n es 50 (para cada jugador, es decir, 100 en total). Cada unidad del jugador ocupa 1 lugar de poblaciÃƒÂ³n. Los edificios no ocupan lugar de poblaciÃƒÂ³n.
 
+// por que mierda tiene un atributo jeugo? doble flecha
 
 public class Jugador
 {
@@ -24,7 +25,7 @@ public class Jugador
     private ArrayList<Arquero> arqueros = new ArrayList<Arquero>();
     private ArrayList<Espadachin> espadachines = new ArrayList<Espadachin>();
      
-    private boolean habilitado=false;
+    private boolean habilitado;
     private Juego juego=null;
     
     final static int ORO_INICIAL = 100;

@@ -36,7 +36,7 @@ public class MilitarTest {
 	@Before
     public void setUp()  throws tamanioDeMapaInvalido, casilleroInvalido
 	{
-		mapa = new Mapa(13 , 13);
+		mapa = new Mapa(15 , 15);
 		filaDet = 3;
 		columnaDet= 3;
 		
@@ -48,7 +48,7 @@ public class MilitarTest {
 		lista.add(mapa.obtenerCasillero(filaDet+1, columnaDet+1));
 		lista.add(mapa.obtenerCasillero(filaDet+4, columnaDet));
 		lista.add(mapa.obtenerCasillero(filaDet+2, columnaDet+2) );
-		Caja caja = mapa.asignarCajaACasillero(celda);
+		caja = mapa.asignarCajaACasillero(celda);
 		
 		
 	}
@@ -136,7 +136,7 @@ public class MilitarTest {
 	
 	{
 		Cuartel cuartel = new Cuartel (caja, mapa , jugador); //3 3 y 4 4 y 3 4 y 4 3 .
-		Espadachin militar = new Espadachin (mapa.obtenerCasillero(7, 8) , jugador); //5 5 
+		Espadachin militar = new Espadachin (mapa.obtenerCasillero(5, 5) , jugador); //5 5 
 		
 		int vidaPreAtaque = cuartel.getVida();
 		militar.atacar(cuartel);

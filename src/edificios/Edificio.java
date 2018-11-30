@@ -88,10 +88,10 @@ public abstract class Edificio extends Entidad {
 	{
 		for	(Casillero celda: this.cajaOcupada.getLista())
 		{
-			if	(Math.abs(celda.getFila() - casillero.getFila()) > rango  || Math.abs(celda.getColumna() - casillero.getColumna()) > rango )
-				return false;
+			if	(Math.abs(celda.getFila() - casillero.getFila()) <= rango  || Math.abs(celda.getColumna() - casillero.getColumna()) <= rango )
+				return true;
 		}
-		return true;
+		return false;
 	}
 
 	public void ubicarEn(Mapeable mapeable) throws cajaEstaOcupada
@@ -111,6 +111,14 @@ public abstract class Edificio extends Entidad {
 				
 	}
 	
+	public void recibirDanio( int danioUnidades, int danioEdificios)
+	{
+		this.vida = this.vida - danioEdificios;
+		if (!this.estaVivo()) {
+			this.vida = 0;
+			this.matar();
+		}
+	}
 
 	public boolean destruidoTotalmente() {
 		return (!this.estaVivo());		

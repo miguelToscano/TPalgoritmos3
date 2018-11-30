@@ -33,13 +33,7 @@ public abstract class Entidad
 		return this.turnosConstruccion;
 	}
  
-	public void recibirDanio(int danio) {
-		
-		this.vida = this.vida - danio;
-		if (vida <= 0 ) {
-			this.matar();
-		}
-	}
+	public abstract void recibirDanio(int danioUnidades, int danioEdificios) ;
 	
 	public void establecerJugador(Jugador jugador) {
 		

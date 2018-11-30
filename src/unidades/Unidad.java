@@ -1,9 +1,15 @@
 package unidades;
 
-import mapa.*;
-import excepciones.*;
-import juego.*;
-
+import excepciones.MovimientoInvalido;
+import excepciones.NoEsElTurnoDelJugador;
+import excepciones.PiezaDeshabilitadaEnTurno;
+import excepciones.superaLimitePoblacional;
+import juego.Jugador;
+import juego.Turno;
+import mapa.Casillero;
+import mapa.Mapa;
+import mapa.Mapeable;
+import mapa.excepcionesMapa.DistanciaInvalida;
 import mapa.excepcionesMapa.casilleroEstaOcupado;
 
 public abstract class Unidad extends Entidad
@@ -11,7 +17,8 @@ public abstract class Unidad extends Entidad
 {
     protected Casillero casilleroOcupado;
 	private static int cantidad = 0;
-	private boolean habilitada=false;
+	private Turno turno;
+	
 
 	//Constructores
 	
@@ -52,29 +59,40 @@ public abstract class Unidad extends Entidad
 
      }
 	
-	public void mover(Casillero casillero)throws casilleroEstaOcupado, NoEsElTurnoDelJugador, YaMovioEstaPieza {
-		if (jugador.esTuTurno()) {
-			if(this.habilitada) {
-				this.casilleroOcupado.vaciar();
-				//check distancias, movimiento posible
-				this.ubicarEn(casillero);
-				this.deshabilitar();
-			}else {
-				throw new YaMovioEstaPieza();
+	public void mover(Casillero casillero)throws MovimientoInvalido, casilleroEstaOcupado, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno {
+			
+			this.casilleroOcupado.vaciar();
+			
+			try {
+				this.casilleroOcupado.assertDistancia(1,casillero);
 			}
-		} else {
-			throw new NoEsElTurnoDelJugador();
-		}
+			catch (DistanciaInvalida e) {
+				throw new MovimientoInvalido ();
+			}
+			this.ubicarEn(casillero);
+			this.turno.finalizarAccion();
+			
+				
+	
+		
 	}
 	
 	public void habilitar() {
-		this.habilitada=true;
+		this.turno.statusReset();
 	}
+//	
+//	public void deshabilitar() {
+//		this.habilitada=false;
+//	}
 	
-	public void deshabilitar() {
-		this.habilitada=false;
+	public void recibirDanio( int danioUnidades, int danioEdificios)
+	{
+		this.vida = this.vida - danioUnidades;
+		if (!this.estaVivo()) {
+			this.vida = 0;
+			this.matar();
+		}
 	}
-	
 
 	public void ubicarEn(Mapeable mapeable) throws casilleroEstaOcupado
     {
@@ -101,6 +119,10 @@ public abstract class Unidad extends Entidad
 		this.cantidad--;
 	}
 
+	
+	
+	
+	
 	/*public boolean puedoColocar(int fila, int columna,Mapa mapa) throws casilleroEstaOcupado
 	{
 		return mapa.puedoColocarUnidad(fila,columna);

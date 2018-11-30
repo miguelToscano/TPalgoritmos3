@@ -30,7 +30,7 @@ public abstract class Militar extends Unidad
     		 throw new FueraDeRango();
     	}
     	//limitar turno
-    	objetivo.recibirDanio(this.danioAUnidades);
+    	objetivo.recibirDanio(this.danioAUnidades,this.danioAEdificios);
     }
     
     
