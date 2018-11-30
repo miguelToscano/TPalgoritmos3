@@ -74,7 +74,7 @@ public class PlazaCentralTest {
         Mapa mapa = new Mapa(15,15);
         Casillero casillero = mapa.obtenerCasillero(1,9);
         PlazaCentral plaza = new PlazaCentral (casillero,mapa,this.jugador);
-   	    plaza.recibirDanio(40);
+   	    plaza.recibirDanio(0,40);
    	    plaza.crearAldeano();
 	    ArrayList<Aldeano> aldeanos = plaza.getAldeanos();
 	    aldeanos.get(0).repararEdificio(plaza);
@@ -88,7 +88,7 @@ public class PlazaCentralTest {
        Mapa mapa = new Mapa(15,15);
        Casillero casillero = mapa.obtenerCasillero(3,7);
        PlazaCentral plaza = new PlazaCentral (casillero,mapa,this.jugador);
-       plaza.recibirDanio(60);
+       plaza.recibirDanio(0,60);
    	
        Assert.assertEquals(plaza.getVida(), 450-60);
 

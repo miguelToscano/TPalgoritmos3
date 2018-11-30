@@ -2,16 +2,14 @@
 
 import java.util.ArrayList;
 
-import mapa.excepcionesMapa.cajaEstaOcupada;
-import mapa.excepcionesMapa.casilleroEstaOcupado;
-import mapa.excepcionesMapa.tamanioDeMapaInvalido;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import edificios.Cuartel;
-import mapa.*;
 import excepciones.FueraDeRango;
+import excepciones.NoEsElTurnoDelJugador;
+import excepciones.PiezaDeshabilitadaEnTurno;
 import excepciones.UnidadAliada;
 import excepciones.superaLimitePoblacional;
 import juego.Jugador;
@@ -31,6 +29,7 @@ public class MilitarTest {
 	private Casillero celda;
 	private ArrayList<Casillero> lista = new ArrayList<Casillero>();
 	private Jugador jugador;
+	private Jugador jugadorEnemigo;
 	private Caja caja;
 
 	@Before
@@ -41,6 +40,8 @@ public class MilitarTest {
 		columnaDet= 3;
 		
 		jugador = new Jugador();
+		jugador.habilitar();
+		jugadorEnemigo = new Jugador();
 		celda = mapa.obtenerCasillero(filaDet, columnaDet);
 		lista.add(celda);
 		lista.add(mapa.obtenerCasillero(filaDet+1, columnaDet));
@@ -55,9 +56,9 @@ public class MilitarTest {
 	
 	
 	@Test
-	public void ArqueroAtacaAldeano() throws UnidadAliada, casilleroEstaOcupado,FueraDeRango,superaLimitePoblacional
+	public void ArqueroAtacaAldeano() throws UnidadAliada, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno, casilleroEstaOcupado,FueraDeRango,superaLimitePoblacional
 	{
-		Aldeano objetivo = new Aldeano(lista.get(0), jugador); // aldeano en 3 3;
+		Aldeano objetivo = new Aldeano(lista.get(0), jugadorEnemigo); // aldeano en 3 3;
 		Arquero arquero = new Arquero (lista.get(1) , jugador);
 		arquero.atacar(objetivo);
         Assert.assertEquals(objetivo.getVida(), 50-15 );
@@ -65,9 +66,9 @@ public class MilitarTest {
 	}
 	
 	@Test
-	public void ArquerosVariosAtacanAldeano() throws UnidadAliada, casilleroEstaOcupado,FueraDeRango,superaLimitePoblacional
+	public void ArquerosVariosAtacanAldeano() throws UnidadAliada, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno, casilleroEstaOcupado,FueraDeRango,superaLimitePoblacional
 	{
-		Aldeano objetivo = new Aldeano(lista.get(0), jugador); // aldeano en 3 3;
+		Aldeano objetivo = new Aldeano(lista.get(0), jugadorEnemigo); // aldeano en 3 3;
 		Arquero arquero = new Arquero (lista.get(1), jugador);
 		Arquero arqueroBis = new Arquero (lista.get(2),jugador );
 		arquero.atacar(objetivo);
@@ -76,24 +77,28 @@ public class MilitarTest {
 
 	}
 	
+	//turnos?
 	@Test
-	public void ArquerosVariosAtacanyMatanAldeano() throws UnidadAliada, casilleroEstaOcupado,FueraDeRango,superaLimitePoblacional
+	public void ArquerosVariosAtacanyMatanAldeano() throws UnidadAliada, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno, casilleroEstaOcupado,FueraDeRango,superaLimitePoblacional
 	{
-		Aldeano objetivo = new Aldeano(lista.get(0), jugador); // aldeano en 3 3;
+		Aldeano objetivo = new Aldeano(lista.get(0), jugadorEnemigo); // aldeano en 3 3;
 		Arquero arquero = new Arquero (lista.get(1) , jugador);
 		Arquero arqueroBis = new Arquero (lista.get(2),jugador);
 		arquero.atacar(objetivo);
+		arqueroBis.atacar(objetivo);
+		//jugador.habilitarPiezas();
+		arquero.habilitar();
+		arqueroBis.habilitar();
+		arqueroBis.atacar(objetivo);
 		arquero.atacar(objetivo);
-		arqueroBis.atacar(objetivo);
-		arqueroBis.atacar(objetivo);
         Assert.assertEquals(objetivo.getVida(), 0);
 
 	}
 	
 	@Test(expected = FueraDeRango.class)
-	public void ArqueroFueraDeRangoLanzaExcepcion() throws UnidadAliada, casilleroEstaOcupado,FueraDeRango,superaLimitePoblacional
+	public void ArqueroFueraDeRangoLanzaExcepcion() throws UnidadAliada, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno, casilleroEstaOcupado,FueraDeRango,superaLimitePoblacional
 	{
-		Aldeano objetivo = new Aldeano(lista.get(0), jugador); // aldeano en 3 3;
+		Aldeano objetivo = new Aldeano(lista.get(0), jugadorEnemigo); // aldeano en 3 3;
 		Arquero arquero = new Arquero (lista.get(4),jugador);
 		arquero.atacar(objetivo);
 	}
@@ -101,10 +106,10 @@ public class MilitarTest {
 	
 	
 	@Test
-	public void ArqueroAtacaEdificioQueEstaEnRango () throws cajaEstaOcupada,superaLimitePoblacional,casilleroEstaOcupado,FueraDeRango , UnidadAliada
+	public void ArqueroAtacaEdificioQueEstaEnRango () throws cajaEstaOcupada, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno,superaLimitePoblacional,casilleroEstaOcupado,FueraDeRango , UnidadAliada
 	
 	{
-		Cuartel cuartel = new Cuartel (this.caja, mapa , jugador); //3 3 y 4 4 y 3 4 y 4 3 .
+		Cuartel cuartel = new Cuartel (this.caja, mapa , jugadorEnemigo); //3 3 y 4 4 y 3 4 y 4 3 .
 		Arquero arquero = new Arquero (lista.get(5) , jugador); //5 5 
 		
 		int vidaPreAtaque = cuartel.getVida();
@@ -117,10 +122,10 @@ public class MilitarTest {
 	}
 	
 	@Test
-	public void ArmaAsedioAtacaEdificioQueEstaEnRango () throws cajaEstaOcupada,superaLimitePoblacional,casilleroEstaOcupado,FueraDeRango , UnidadAliada
+	public void ArmaAsedioAtacaEdificioQueEstaEnRango () throws cajaEstaOcupada, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno,superaLimitePoblacional,casilleroEstaOcupado,FueraDeRango , UnidadAliada
 	
 	{
-		Cuartel cuartel = new Cuartel (caja, mapa , jugador); //3 3 y 4 4 y 3 4 y 4 3 .
+		Cuartel cuartel = new Cuartel (caja, mapa , jugadorEnemigo); //3 3 y 4 4 y 3 4 y 4 3 .
 		ArmaDeAsedio asedio = new ArmaDeAsedio (mapa.obtenerCasillero(7, 8) , jugador); //5 5 
 		
 		int vidaPreAtaque = cuartel.getVida();
@@ -132,10 +137,10 @@ public class MilitarTest {
 	}
 	
 	@Test
-	public void EspadachinAtacaEdificioQueEstaEnRango () throws cajaEstaOcupada,superaLimitePoblacional,casilleroEstaOcupado,FueraDeRango , UnidadAliada
+	public void EspadachinAtacaEdificioQueEstaEnRango () throws cajaEstaOcupada, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno,superaLimitePoblacional,casilleroEstaOcupado,FueraDeRango , UnidadAliada
 	
 	{
-		Cuartel cuartel = new Cuartel (caja, mapa , jugador); //3 3 y 4 4 y 3 4 y 4 3 .
+		Cuartel cuartel = new Cuartel (caja, mapa , jugadorEnemigo); //3 3 y 4 4 y 3 4 y 4 3 .
 		Espadachin militar = new Espadachin (mapa.obtenerCasillero(5, 5) , jugador); //5 5 
 		
 		int vidaPreAtaque = cuartel.getVida();
@@ -146,10 +151,10 @@ public class MilitarTest {
 		
 	}
 	@Test
-	public void ArqueroAtacaEdificioQueEstaParcialmenteEnRango () throws cajaEstaOcupada,superaLimitePoblacional,casilleroEstaOcupado,FueraDeRango , UnidadAliada
+	public void ArqueroAtacaEdificioQueEstaParcialmenteEnRango () throws cajaEstaOcupada, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno,superaLimitePoblacional,casilleroEstaOcupado,FueraDeRango , UnidadAliada
 	
 	{
-		Cuartel cuartel = new Cuartel (this.caja, mapa , jugador); //3 3 y 4 4 y 3 4 y 4 3 .
+		Cuartel cuartel = new Cuartel (this.caja, mapa , jugadorEnemigo); //3 3 y 4 4 y 3 4 y 4 3 .
 		Arquero arquero = new Arquero (7,7, mapa , jugador); //7 7
 		
 		int vidaPreAtaque = cuartel.getVida();
@@ -162,10 +167,10 @@ public class MilitarTest {
 	}
 	
 	@Test
-	public void ArmaAsedioAtacaEdificioQueEstaParcialmenteEnRango () throws cajaEstaOcupada,superaLimitePoblacional,casilleroEstaOcupado,FueraDeRango , UnidadAliada
+	public void ArmaAsedioAtacaEdificioQueEstaParcialmenteEnRango () throws cajaEstaOcupada, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno,superaLimitePoblacional,casilleroEstaOcupado,FueraDeRango , UnidadAliada
 	
 	{
-		Cuartel cuartel = new Cuartel (caja, mapa , jugador); //3 3 y 4 4 y 3 4 y 4 3 .
+		Cuartel cuartel = new Cuartel (caja, mapa , jugadorEnemigo); //3 3 y 4 4 y 3 4 y 4 3 .
 		ArmaDeAsedio asedio = new ArmaDeAsedio (9,9,mapa , jugador); //5 5 
 		
 		int vidaPreAtaque = cuartel.getVida();
@@ -178,7 +183,22 @@ public class MilitarTest {
 	
 	@Test(expected = FueraDeRango.class)
 
-	public void ArmaAsedioAtacaEdificioQueEstaFueraEnRango () throws cajaEstaOcupada,superaLimitePoblacional,casilleroEstaOcupado,FueraDeRango , UnidadAliada
+	public void ArmaAsedioAtacaEdificioQueEstaFueraEnRango () throws cajaEstaOcupada, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno,superaLimitePoblacional,casilleroEstaOcupado,FueraDeRango , UnidadAliada
+	
+	{
+		Cuartel cuartel = new Cuartel (caja, mapa , jugadorEnemigo); //3 3 y 4 4 y 3 4 y 4 3 .
+		ArmaDeAsedio asedio = new ArmaDeAsedio (10,10,mapa, jugador); //5 5 
+		
+		int vidaPreAtaque = cuartel.getVida();
+		asedio.atacar(cuartel);
+        
+
+
+	}	
+	
+	@Test(expected = UnidadAliada.class)
+
+	public void ArmaAsedioAtacaEdificioAliadaLanzaExcepcion () throws cajaEstaOcupada, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno,superaLimitePoblacional,casilleroEstaOcupado,FueraDeRango , UnidadAliada
 	
 	{
 		Cuartel cuartel = new Cuartel (caja, mapa , jugador); //3 3 y 4 4 y 3 4 y 4 3 .
@@ -189,7 +209,17 @@ public class MilitarTest {
         
 
 
-	}	
+	}
+	
+	@Test(expected = UnidadAliada.class)
+	public void ArqueroAtacaAldeanoAliadoLanzaExcpecion() throws UnidadAliada, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno, casilleroEstaOcupado,FueraDeRango,superaLimitePoblacional
+	{
+		Aldeano objetivo = new Aldeano(lista.get(0), jugador); // aldeano en 3 3;
+		Arquero arquero = new Arquero (lista.get(1) , jugador);
+		arquero.atacar(objetivo);
+
+	}
+	
 	
 	
 

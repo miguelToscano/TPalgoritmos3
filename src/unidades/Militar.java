@@ -1,7 +1,12 @@
 package unidades;
-import excepciones.*;
-import juego.*;
-import mapa.*;
+import excepciones.FueraDeRango;
+import excepciones.NoEsElTurnoDelJugador;
+import excepciones.PiezaDeshabilitadaEnTurno;
+import excepciones.UnidadAliada;
+import excepciones.superaLimitePoblacional;
+import juego.Jugador;
+import mapa.Casillero;
+import mapa.Mapa;
 import mapa.excepcionesMapa.casilleroEstaOcupado;
 
 public abstract class Militar extends Unidad
@@ -24,13 +29,19 @@ public abstract class Militar extends Unidad
     
     
     
-    public void atacar (Entidad objetivo) throws FueraDeRango, UnidadAliada
+    public void atacar (Entidad objetivo) throws FueraDeRango, UnidadAliada, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno
     {
+    	// estos metodos lanzan la excepcion correspondiente, asi no esta lleno de ifs
+    	
+    	this.jugador.assertTurno();  //es turno del jugador del cual es la nuidad
+		this.turno.assertDisponibilidad(); // la unidad no se movio anteriormente
+		this.assertUnidadEnemiga(objetivo); // la unidad objetivo a atacar no es aliada
+		
     	if (! this.estaEnRango ( objetivo)) {
     		 throw new FueraDeRango();
     	}
-    	//limitar turno
     	objetivo.recibirDanio(this.danioAUnidades,this.danioAEdificios);
+    	this.turno.finalizarAccion();
     }
     
     
@@ -39,7 +50,11 @@ public abstract class Militar extends Unidad
     	return objetivo.estaEnRango(this.radioAtaque, this.casilleroOcupado);
     	}
     	
-   
+   public void assertUnidadEnemiga (Entidad objetivo) throws UnidadAliada {
+	   if (this.jugador == objetivo.getJugador()) {
+		   throw new UnidadAliada();
+	   }
+   }
 
 }
 //    

@@ -40,7 +40,9 @@ public abstract class Entidad
 		this.jugador = jugador;
 	}
 	
-	
+	public Jugador getJugador() {
+		return this.jugador;
+	}
 	
 	public boolean estaVivo ()
     {

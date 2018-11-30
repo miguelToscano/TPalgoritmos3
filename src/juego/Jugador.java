@@ -1,8 +1,16 @@
 package juego;
-import edificios.*;
-import excepciones.superaLimitePoblacional;
-import unidades.*;
 import java.util.ArrayList;
+
+import edificios.Castillo;
+import edificios.Cuartel;
+import edificios.PlazaCentral;
+import excepciones.NoEsElTurnoDelJugador;
+import excepciones.superaLimitePoblacional;
+import unidades.Aldeano;
+import unidades.ArmaDeAsedio;
+import unidades.Arquero;
+import unidades.Espadachin;
+import unidades.Unidad;
 
 //Cada jugador comienza con una plaza central y un castillo. No es posible construir un castillo. SÃƒÂ³lo
 // existirÃƒÂ¡ el que es asignado al empezar la partida. SÃƒÂ­ es posible construir plazas centrales y cuarteles sin lÃƒÂ­mite.
@@ -116,6 +124,12 @@ public class Jugador
     
     public boolean esTuTurno() {
     	return (this.habilitado);
+    }
+    
+    public void assertTurno() throws NoEsElTurnoDelJugador {
+    	if (!this.habilitado) {
+    		throw new NoEsElTurnoDelJugador();
+    	}
     }
     
     public void terminarJugada() {

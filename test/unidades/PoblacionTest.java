@@ -1,18 +1,13 @@
 package unidades;
 
-import java.util.ArrayList;
-
-import mapa.excepcionesMapa.cajaEstaOcupada;
-import mapa.excepcionesMapa.casilleroEstaOcupado;
-import mapa.excepcionesMapa.tamanioDeMapaInvalido;
 import org.junit.Assert;
-import excepciones.*;
-import juego.*;
-
 import org.junit.Test;
 
-import edificios.Cuartel;
-import mapa.*;
+import excepciones.superaLimitePoblacional;
+import juego.Jugador;
+import mapa.Mapa;
+import mapa.excepcionesMapa.casilleroEstaOcupado;
+import mapa.excepcionesMapa.tamanioDeMapaInvalido;
 public class PoblacionTest {
 
 	@Test

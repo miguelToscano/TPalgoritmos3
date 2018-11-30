@@ -7,6 +7,7 @@ import org.mockito.Mockito;
 
 import edificios.Cuartel;
 import edificios.PlazaCentral;
+import excepciones.MovimientoInvalido;
 import excepciones.NoEsElTurnoDelJugador;
 import excepciones.PiezaDeshabilitadaEnTurno;
 import excepciones.superaLimitePoblacional;
@@ -59,7 +60,7 @@ public class AldeanoTest {
 	}
 
 	@Test
-	public void seMueveCorrectamente1() throws casilleroEstaOcupado,superaLimitePoblacional, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno {
+	public void seMueveCorrectamente1() throws MovimientoInvalido,casilleroEstaOcupado,superaLimitePoblacional, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno {
 
 		// y+1
 		celda = mapa.obtenerCasillero(filaDet + 1, columnaDet);
@@ -72,7 +73,7 @@ public class AldeanoTest {
 	}
 
 	@Test
-	public void seMueveCorrectamente2() throws casilleroEstaOcupado,superaLimitePoblacional, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno {
+	public void seMueveCorrectamente2() throws MovimientoInvalido,casilleroEstaOcupado,superaLimitePoblacional, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno {
 
 		// y-1
 		celda = mapa.obtenerCasillero(filaDet - 1, columnaDet);
@@ -85,7 +86,7 @@ public class AldeanoTest {
 	}
 
 	@Test
-	public void seMueveCorrectamente3() throws casilleroEstaOcupado,superaLimitePoblacional, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno {
+	public void seMueveCorrectamente3() throws MovimientoInvalido,casilleroEstaOcupado,superaLimitePoblacional, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno {
 
 		// x+1
 		celda = mapa.obtenerCasillero(filaDet, columnaDet + 1);
@@ -98,7 +99,7 @@ public class AldeanoTest {
 	}
 
 	@Test
-	public void seMueveCorrectamente4() throws casilleroEstaOcupado,superaLimitePoblacional, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno {
+	public void seMueveCorrectamente4() throws MovimientoInvalido,casilleroEstaOcupado,superaLimitePoblacional, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno {
 
 		// x-1
 		celda = mapa.obtenerCasillero(filaDet, columnaDet - 1);
@@ -111,7 +112,7 @@ public class AldeanoTest {
 	}
 
 	@Test
-	public void seMueveCorrectamente5() throws casilleroEstaOcupado,superaLimitePoblacional, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno {
+	public void seMueveCorrectamente5() throws MovimientoInvalido,casilleroEstaOcupado,superaLimitePoblacional, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno {
 
 		// x-1 y-1
 		celda = mapa.obtenerCasillero(filaDet - 1, columnaDet - 1);
@@ -124,7 +125,7 @@ public class AldeanoTest {
 	}
 
 	@Test
-	public void seMueveCorrectamente6() throws casilleroEstaOcupado,superaLimitePoblacional, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno {
+	public void seMueveCorrectamente6() throws MovimientoInvalido,casilleroEstaOcupado,superaLimitePoblacional, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno {
 
 		// x+1 y+1
 		celda = mapa.obtenerCasillero(filaDet + 1, columnaDet + 1);
@@ -137,7 +138,7 @@ public class AldeanoTest {
 	}
 
 	@Test
-	public void seMueveCorrectamente7() throws casilleroEstaOcupado,superaLimitePoblacional, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno {
+	public void seMueveCorrectamente7() throws MovimientoInvalido,casilleroEstaOcupado,superaLimitePoblacional, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno {
 
 		// x+1 y-1
 		celda = mapa.obtenerCasillero(filaDet - 1, columnaDet + 1);
@@ -150,7 +151,7 @@ public class AldeanoTest {
 	}
 
 	@Test
-	public void seMueveCorrectamente8() throws casilleroEstaOcupado,superaLimitePoblacional, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno {
+	public void seMueveCorrectamente8() throws MovimientoInvalido,casilleroEstaOcupado,superaLimitePoblacional, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno {
 
 		// x-1 y+1
 		celda = mapa.obtenerCasillero(filaDet + 1, columnaDet - 1);
@@ -172,7 +173,7 @@ public class AldeanoTest {
 	}
 
 	@Test(expected = casilleroEstaOcupado.class)
-	public void seMueveAUnLugarOcupadoPorUnidadLanzaExcepcion() throws casilleroEstaOcupado,superaLimitePoblacional, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno {
+	public void seMueveAUnLugarOcupadoPorUnidadLanzaExcepcion() throws MovimientoInvalido,casilleroEstaOcupado,superaLimitePoblacional, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno {
 		celda = mapa.obtenerCasillero(filaDet + 1, columnaDet + 1);
 		Casillero celdaBis = mapa.obtenerCasillero(filaDet, columnaDet);
 
@@ -198,7 +199,7 @@ public class AldeanoTest {
 
 	@Test(expected = casilleroEstaOcupado.class)
 	public void seMueveAUnLugarOcupadoPorEdificioLanzaExcepcion()
-			throws casilleroEstaOcupado, casilleroInvalido, cajaEstaOcupada, superaLimitePoblacional, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno {
+			throws MovimientoInvalido,casilleroEstaOcupado, casilleroInvalido, cajaEstaOcupada, superaLimitePoblacional, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno {
 		// creo el edificio
 		celda = mapa.obtenerCasillero(6, 6);
 		Caja caja = mapa.asignarCajaACasillero(celda);
@@ -247,7 +248,7 @@ public class AldeanoTest {
 		Aldeano aldeano = new Aldeano(this.casilleroMock, jugador);
 		Cuartel cuartel = new Cuartel(cajaMock, mapaMock, jugadorMock);
 
-		cuartel.recibirDanio(50);
+		cuartel.recibirDanio(0,50);
 		aldeano.repararEdificio(cuartel);
 
 		Assert.assertTrue(cuartel.reparacionCompleta());

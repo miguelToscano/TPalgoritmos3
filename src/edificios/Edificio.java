@@ -65,6 +65,8 @@ public abstract class Edificio extends Entidad {
 	public void reparar()
 	{
 		this.vida += this.velocidadReparacion;
+		if (this.vida > this.vidaCompleta)
+			vida = vidaCompleta;
 	}
 	public boolean reparacionCompleta()
 	{

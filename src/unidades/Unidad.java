@@ -17,7 +17,7 @@ public abstract class Unidad extends Entidad
 {
     protected Casillero casilleroOcupado;
 	private static int cantidad = 0;
-	private Turno turno;
+	protected Turno turno;
 	
 
 	//Constructores
@@ -35,6 +35,7 @@ public abstract class Unidad extends Entidad
 		Casillero casillero = mapa.obtenerCasillero(fila, columna);
     	this.ubicarEn(casillero);
     	this.turnosConstruccion = 1;
+    	turno = new Turno();
     	this.cantidad++;
 
      }
@@ -44,6 +45,8 @@ public abstract class Unidad extends Entidad
     {
 		this.ubicarEn(casillero);
 		this.turnosConstruccion = 1;
+    	turno = new Turno();
+
 		this.cantidad++;
 
      }
@@ -55,12 +58,16 @@ public abstract class Unidad extends Entidad
 		this.turnosConstruccion = 1;
 		this.jugador = jugador;
 		this.jugador.aumentarPoblacion(1);
+    	turno = new Turno();
+
 		this.cantidad++;
 
      }
 	
 	public void mover(Casillero casillero)throws MovimientoInvalido, casilleroEstaOcupado, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno {
 			
+			this.jugador.assertTurno();
+			this.turno.assertDisponibilidad();
 			this.casilleroOcupado.vaciar();
 			
 			try {
@@ -78,7 +85,7 @@ public abstract class Unidad extends Entidad
 	}
 	
 	public void habilitar() {
-		this.turno.statusReset();
+		this.turno.habilitar();
 	}
 //	
 //	public void deshabilitar() {
@@ -103,6 +110,7 @@ public abstract class Unidad extends Entidad
         }
 		this.casilleroOcupado = casillero;
         casillero.cambiarContenido(this);
+        
     }
 	
 	public boolean estaEnRango (int rango, Casillero casillero) {
