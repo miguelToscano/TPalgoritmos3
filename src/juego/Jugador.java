@@ -5,14 +5,14 @@ import juego.Juego;
 import unidades.*;
 import java.util.ArrayList;
 
-//Cada jugador comienza con una plaza central y un castillo. No es posible construir un castillo. SÃƒÂ³lo
-// existirÃƒÂ¡ el que es asignado al empezar la partida. SÃƒÂ­ es posible construir plazas centrales y cuarteles sin lÃƒÂ­mite.
+//Cada jugador comienza con una plaza central y un castillo. No es posible construir un castillo. SÃƒÆ’Ã‚Â³lo
+// existirÃƒÆ’Ã‚Â¡ el que es asignado al empezar la partida. SÃƒÆ’Ã‚Â­ es posible construir plazas centrales y cuarteles sin lÃƒÆ’Ã‚Â­mite.
 //
 //Cada jugador comienza la partida con 3 aldeanos y 100 de oro
 //
 //Los jugadores inician en extremos opuestos del mapa.
 //
-//El lÃƒÂ­mite de poblaciÃƒÂ³n es 50 (para cada jugador, es decir, 100 en total). Cada unidad del jugador ocupa 1 lugar de poblaciÃƒÂ³n. Los edificios no ocupan lugar de poblaciÃƒÂ³n.
+//El lÃƒÆ’Ã‚Â­mite de poblaciÃƒÆ’Ã‚Â³n es 50 (para cada jugador, es decir, 100 en total). Cada unidad del jugador ocupa 1 lugar de poblaciÃƒÆ’Ã‚Â³n. Los edificios no ocupan lugar de poblaciÃƒÆ’Ã‚Â³n.
 
 
 public class Jugador
@@ -21,9 +21,6 @@ public class Jugador
     private ArrayList<PlazaCentral> plazas = new ArrayList<PlazaCentral>();
     private ArrayList<Cuartel> cuarteles = new ArrayList<Cuartel>();
     private ArrayList<Aldeano> aldeanos =  new ArrayList<Aldeano>();
-    private ArrayList<ArmaDeAsedio> armas = new ArrayList<ArmaDeAsedio>();
-    private ArrayList<Arquero> arqueros = new ArrayList<Arquero>();
-    private ArrayList<Espadachin> espadachines = new ArrayList<Espadachin>();
     private boolean habilitado=false;
     private Juego juego;
     
@@ -54,12 +51,22 @@ public class Jugador
     {
         return this.castillo;
     }
+    
+    public ArrayList<Cuartel> getCuarteles()
+    {
+        return this.cuarteles;
+    }
+    
 
     public void agregarPlazaCentral(PlazaCentral plaza)
     {
-        plazas.add(plaza);
+        this.plazas.add(plaza);
     }
-
+    
+    public void agregarCuartel(Cuartel cuartel)
+    {
+        this.cuarteles.add(cuartel);
+    }
 
     public int obtenerPoblacion() {
 
@@ -127,4 +134,28 @@ public class Jugador
     {
         this.aldeanos.add(aldeano);
     }
+    
+    public boolean tieneArquero() {
+    	boolean tiene=false;
+    	for (Cuartel c: this.cuarteles) {
+    		if (c.tieneArquero()) {
+    			tiene=true;
+    			break;
+    		}
+    	}
+    	return tiene;
+	}
+    
+  
+  	public boolean tieneEspadachin() {
+  		boolean tiene=false;
+    	for (Cuartel c: this.cuarteles) {
+    		if (c.tieneEspadachin()) {
+    			tiene=true;
+    			break;
+    		}
+    	}
+    	return tiene;
+  	}
+  	
 }
