@@ -213,7 +213,7 @@ public class AldeanoTest {
 
 	@Test
 	public void aldeanoComienzaAConstruirPlaza()
-			throws casilleroEstaOcupado, casilleroInvalido, superaLimitePoblacional, cajaEstaOcupada {
+			throws casilleroEstaOcupado, casilleroInvalido, superaLimitePoblacional, cajaEstaOcupada, PiezaDeshabilitadaEnTurno {
 		Aldeano aldeano = new Aldeano(this.casilleroMock, jugador);
 
 		aldeano.construirPlazaCentral(this.cajaMock, this.mapaMock, this.jugadorMock);
@@ -223,7 +223,7 @@ public class AldeanoTest {
 
 	@Test
 	public void aldeanoConstruyendoEstaTrabajando()
-			throws cajaEstaOcupada, superaLimitePoblacional, casilleroEstaOcupado {
+			throws cajaEstaOcupada, superaLimitePoblacional, casilleroEstaOcupado, PiezaDeshabilitadaEnTurno {
 
 		Aldeano aldeano = new Aldeano(this.casilleroMock, jugador);
 
@@ -233,7 +233,7 @@ public class AldeanoTest {
 	}
 
 	@Test
-	public void aldeanoConstruyendoNoProduceOro() throws casilleroInvalido, cajaEstaOcupada, superaLimitePoblacional {
+	public void aldeanoConstruyendoNoProduceOro() throws casilleroInvalido, cajaEstaOcupada, superaLimitePoblacional, PiezaDeshabilitadaEnTurno {
 
 		Aldeano aldeanoMock = Mockito.mock(Aldeano.class);
 		aldeanoMock.construirPlazaCentral(this.cajaMock, this.mapaMock, this.jugadorMock);
