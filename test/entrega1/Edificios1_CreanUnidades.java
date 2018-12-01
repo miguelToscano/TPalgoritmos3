@@ -74,21 +74,21 @@ public class Edificios1_CreanUnidades {
 	public void cuartelCrearArquero() throws tamanioDeMapaInvalido, casilleroEstaOcupado, casilleroInvalido, cajaEstaOcupada, superaLimitePoblacional {
 		Jugador jugador = new Jugador();
 		Mapa mapa = new Mapa(15, 15);
-		Cuartel cuartel = new Cuartel(mapa.obtenerCasillero(1, 1), mapa, jugador);		
+		Cuartel cuartel = new Cuartel(mapa.obtenerCasillero(1, 1), mapa, jugador);
+		jugador.agregarCuartel(cuartel);
 		cuartel.crearArquero();
 		
-		 Assert.assertTrue(jugador.tieneArquero() == true);
+		 Assert.assertTrue(cuartel.tieneArquero());
 	}
 	
 	@Test
 	public void cuartelCrearEspadachin() throws casilleroEstaOcupado, tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, superaLimitePoblacional {
 		
-		Jugador jugador = new Jugador();
+		Jugador jugadorA = new Jugador();
 		Mapa mapa = new Mapa(20, 20);
-		Cuartel cuartel = new Cuartel(mapa.obtenerCasillero(1, 1), mapa, jugador);
-	
+		Cuartel cuartel = new Cuartel(mapa.obtenerCasillero(1, 1), mapa, jugadorA);
 		cuartel.crearEspadachin();
 		
-		 Assert.assertTrue(jugador.tieneEspadachin() == true);
+		 Assert.assertTrue(cuartel.tieneEspadachin());
 	}
 }
