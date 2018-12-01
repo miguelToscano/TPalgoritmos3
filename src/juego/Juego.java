@@ -17,6 +17,8 @@ public class Juego
     {
         this.jugadorA = jugadorA;
         this.jugadorB = jugadorB;
+        jugadorA.setJuego(this);
+        jugadorB.setJuego(this);
         this.mapa = new Mapa(15,15);
         this.crearCastillos();
         this.crearPlazas();
@@ -69,3 +71,4 @@ public class Juego
         return this.mapa;
     }
 }
+
