@@ -21,9 +21,9 @@ public class JuegoTest {
 
     @Before
     public void setUp() throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, superaLimitePoblacional, casilleroEstaOcupado {
-        jugadorA = new Jugador();
-        jugadorB = new Jugador();
-        this.juego = new Juego(jugadorA, jugadorB);
+        this.jugadorA = new Jugador();
+        this.jugadorB = new Jugador();
+        this.juego = new Juego(this.jugadorA, this.jugadorB);
         this.mapa = juego.getMapa();
 
     }
