@@ -1,17 +1,18 @@
 package juego;
 import edificios.*;
 import excepciones.superaLimitePoblacional;
+import juego.Juego;
 import unidades.*;
 import java.util.ArrayList;
 
-//Cada jugador comienza con una plaza central y un castillo. No es posible construir un castillo. SÃ³lo
-// existirÃ¡ el que es asignado al empezar la partida. SÃ­ es posible construir plazas centrales y cuarteles sin lÃ­mite.
+//Cada jugador comienza con una plaza central y un castillo. No es posible construir un castillo. SÃƒÂ³lo
+// existirÃƒÂ¡ el que es asignado al empezar la partida. SÃƒÂ­ es posible construir plazas centrales y cuarteles sin lÃƒÂ­mite.
 //
 //Cada jugador comienza la partida con 3 aldeanos y 100 de oro
 //
 //Los jugadores inician en extremos opuestos del mapa.
 //
-//El lÃ­mite de poblaciÃ³n es 50 (para cada jugador, es decir, 100 en total). Cada unidad del jugador ocupa 1 lugar de poblaciÃ³n. Los edificios no ocupan lugar de poblaciÃ³n.
+//El lÃƒÂ­mite de poblaciÃƒÂ³n es 50 (para cada jugador, es decir, 100 en total). Cada unidad del jugador ocupa 1 lugar de poblaciÃƒÂ³n. Los edificios no ocupan lugar de poblaciÃƒÂ³n.
 
 
 public class Jugador
@@ -24,6 +25,7 @@ public class Jugador
     private ArrayList<Arquero> arqueros = new ArrayList<Arquero>();
     private ArrayList<Espadachin> espadachines = new ArrayList<Espadachin>();
     private boolean habilitado=false;
+    private Juego juego;
     
     final static int ORO_INICIAL = 100;
     final static int LIMITE_POBLACION = 50;
@@ -38,6 +40,10 @@ public class Jugador
         this.habilitado=false;
 
     }
+    
+    public void setJuego(Juego juego) {
+		this.juego = juego;
+	}
 
     public void asignarCastillo(Castillo castillo)
     {
