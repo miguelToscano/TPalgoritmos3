@@ -66,7 +66,7 @@ public abstract class Unidad extends Entidad
 	
 	public void mover(Casillero casillero)throws MovimientoInvalido, casilleroEstaOcupado, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno {
 			
-			this.jugador.assertTurno();
+			//this.jugador.assertTurno();
 			this.turno.assertDisponibilidad();
 			this.casilleroOcupado.vaciar();
 			

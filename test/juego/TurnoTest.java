@@ -3,9 +3,7 @@ import org.junit.Before;
 
 import excepciones.superaLimitePoblacional;
 import mapa.Mapa;
-import mapa.excepcionesMapa.cajaEstaOcupada;
-import mapa.excepcionesMapa.casilleroInvalido;
-import mapa.excepcionesMapa.tamanioDeMapaInvalido;
+import mapa.excepcionesMapa.*;
 
 public class TurnoTest {
 
@@ -17,7 +15,7 @@ public class TurnoTest {
 	
 	
 	@Before
-    public void setUp()  throws tamanioDeMapaInvalido, casilleroInvalido,cajaEstaOcupada,superaLimitePoblacional
+    public void setUp()  throws tamanioDeMapaInvalido, casilleroInvalido,cajaEstaOcupada,superaLimitePoblacional, casilleroEstaOcupado
 	{
 		mapa = new Mapa(15 , 15);
 		p1 = new Jugador();
@@ -26,8 +24,5 @@ public class TurnoTest {
 		
 		
 	}
-	
-	
-	@Test 
-	public 
+
 }

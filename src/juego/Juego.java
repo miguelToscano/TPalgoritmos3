@@ -13,7 +13,7 @@ public class Juego
     private static int turno;
     private GestorDeTurno gestor=null;
 
-    public Juego(Jugador jugadorA, Jugador jugadorB) throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada,superaLimitePoblacional
+    public Juego(Jugador jugadorA, Jugador jugadorB) throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada,superaLimitePoblacional, casilleroEstaOcupado
     {
         this.jugadorA = jugadorA;
         this.jugadorB = jugadorB;
@@ -35,10 +35,9 @@ public class Juego
        this.mapa.crearCastilloSureste(jugadorB);
     }
 
-    public void crearPlazas() throws casilleroInvalido, cajaEstaOcupada, superaLimitePoblacional
+    public void crearPlazas() throws casilleroInvalido, cajaEstaOcupada, superaLimitePoblacional, casilleroEstaOcupado
     //se crean en las otras dos esquinas
     {
-
         //Plaza central de jugadorA se crea en la esquina suroeste
         Casillero casilleroJugadorA = this.mapa.obtenerCasillero(this.mapa.obtenerTamanioFilas()-2,0);
         PlazaCentral plazaJugadorA = new PlazaCentral(casilleroJugadorA,this.mapa,jugadorA);
@@ -49,7 +48,17 @@ public class Juego
         PlazaCentral plazaJugadorB = new PlazaCentral(casilleroJugadorB,this.mapa,jugadorB);
         jugadorB.agregarPlazaCentral(plazaJugadorB);
 
+        //Las plazas de cada jugador crean 3 aldeanos cada una
+        for(int i=0;i<3;i++)
+        {
+            plazaJugadorA.crearAldeano();
+            plazaJugadorA.settearPuntoRally(this.mapa);
+            plazaJugadorB.crearAldeano();
+            plazaJugadorB.settearPuntoRally(this.mapa);
+        }
     }
+
+
     
     public void terminarTurno() {
     	this.gestor.finalizarTurno();

@@ -54,12 +54,13 @@ public class Aldeano extends Unidad
 	//Casillero y jugador
 	public Aldeano(Casillero casillero, Jugador jugador) throws casilleroEstaOcupado, superaLimitePoblacional
 	{
-			super(casillero);
+			super(casillero,jugador);
 			this.costo = 25;
 			this.trabajando = false;
 			this.vida = 50;
 			this.jugador = jugador;
 			this.jugador.aumentarPoblacion(1);
+			this.jugador.agregarAldeano(this);
 		
 	}
 	public void construirPlazaCentral(Caja caja, Mapa mapa,Jugador jugador) throws cajaEstaOcupada, superaLimitePoblacional

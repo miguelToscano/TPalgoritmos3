@@ -57,11 +57,13 @@ public class PlazaCentral extends Edificio {
 	{
 		
 		Aldeano unAldeano = new Aldeano(this.puntoRally, jugador);
+
 		// isRallyPoint ocupado? excepcion
 		
 		this.aldeanos.add(unAldeano);
 
 	}
+
 }	
 	
 	
