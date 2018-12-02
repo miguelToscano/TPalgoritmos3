@@ -20,6 +20,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import unidades.*;
+
+import java.util.ArrayList;
+
 import edificios.*;
 import juego.*;
 import excepciones.*;
@@ -161,37 +164,38 @@ public class Main extends Application {
 		mapa.getChildren().add(oroJugador2);
 		mapa.getChildren().add(nombreJugador2);
 		mapa.getChildren().add(poblacionJugador2);
-//		mapa.getChildren().add(statsJugadores);
+		
 		// Crea Todas las celdas del mapa
+		
+		ArrayList<Entidad> entidadesYaDibujadas = new ArrayList<Entidad>();
+		
 		for (int i = 0; i < juego.obtenerFilas(); i++) {
 			
 			for (int j = 0; j < juego.obtenerColumnas(); j++) {
 				
 				Entidad entidadActual = juego.getMapa().obtenerCasillero(i, j).obtenerElemento();
 				
-				Bloque bloque = new Bloque(entidadActual, i, j);
+				Bloque bloque = new Bloque(mapa, entidadActual, i, j);
 				bloque.setTranslateX(i * width/juego.obtenerFilas());
 				bloque.setTranslateY(j * height/juego.obtenerColumnas());
+				
+				bloque.establecerImagen(entidadesYaDibujadas, entidadActual);
+				if (!entidadesYaDibujadas.contains(entidadActual))
+					entidadesYaDibujadas.add(entidadActual);
 				
 				mapa.getChildren().add(bloque);
 			}
 		}
 		
-		ImageView castilloJugador1 = new ImageView(new Image("castillo.jpg"));
-		castilloJugador1.setFitWidth((width/15) * 2);
-		castilloJugador1.setFitHeight((height/15) * 2);
-		castilloJugador1.setTranslateX(0);
-		castilloJugador1.setTranslateY(height - 80);
+		Button pasarTurno = new Button("Pasar turno");
+		pasarTurno.setTranslateX(width/2 - 45);
+		pasarTurno.setTranslateY(height + 10 );
 		
-		mapa.getChildren().add(castilloJugador1);	
-		
-		ImageView castilloJugador2 = new ImageView(new Image("castillo.jpg"));
-		castilloJugador2.setFitWidth((width/15) * 2);
-		castilloJugador2.setFitHeight((height/15) * 2);
-		castilloJugador2.setTranslateX(width - 80);
-		castilloJugador2.setTranslateY(0);
-		
-		mapa.getChildren().add(castilloJugador2);
+		Label turno = new Label();
+		turno.setTranslateX(width / 2 + 45);
+		turno.setTranslateY(height + 15);
+		turno.setText("Turno: ");
+		mapa.getChildren().addAll(pasarTurno, turno);
 		
 		return mapa;
 	}
