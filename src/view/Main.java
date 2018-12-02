@@ -113,7 +113,7 @@ public class Main extends Application {
 		
 		Jugador jugador1 = new Jugador("Ingleses");
 		Jugador jugador2 = new Jugador("Celtas");
-		Juego juego = new Juego(jugador1, jugador2, 40, 40);
+		Juego juego = new Juego(jugador1, jugador2, 15, 15);
 		
 		int width = 600;
 		int height = 600;
@@ -167,26 +167,28 @@ public class Main extends Application {
 			
 			for (int j = 0; j < juego.obtenerColumnas(); j++) {
 				
-				Bloque bloque = new Bloque(i, j);
-				bloque.setTranslateX(j * width/juego.obtenerFilas());
-				bloque.setTranslateY(i * height/juego.obtenerColumnas());
+				Entidad entidadActual = juego.getMapa().obtenerCasillero(i, j).obtenerElemento();
+				
+				Bloque bloque = new Bloque(entidadActual, i, j);
+				bloque.setTranslateX(i * width/juego.obtenerFilas());
+				bloque.setTranslateY(j * height/juego.obtenerColumnas());
 				
 				mapa.getChildren().add(bloque);
 			}
 		}
 		
 		ImageView castilloJugador1 = new ImageView(new Image("castillo.jpg"));
-		castilloJugador1.setFitWidth((width/40) * 4);
-		castilloJugador1.setFitHeight((height/40) * 4);
+		castilloJugador1.setFitWidth((width/15) * 2);
+		castilloJugador1.setFitHeight((height/15) * 2);
 		castilloJugador1.setTranslateX(0);
-		castilloJugador1.setTranslateY(height - 60);
+		castilloJugador1.setTranslateY(height - 80);
 		
-		mapa.getChildren().add(castilloJugador1);
+		mapa.getChildren().add(castilloJugador1);	
 		
 		ImageView castilloJugador2 = new ImageView(new Image("castillo.jpg"));
-		castilloJugador2.setFitWidth((width/40) * 4);
-		castilloJugador2.setFitHeight((height/40) * 4);
-		castilloJugador2.setTranslateX(width - 60);
+		castilloJugador2.setFitWidth((width/15) * 2);
+		castilloJugador2.setFitHeight((height/15) * 2);
+		castilloJugador2.setTranslateX(width - 80);
 		castilloJugador2.setTranslateY(0);
 		
 		mapa.getChildren().add(castilloJugador2);

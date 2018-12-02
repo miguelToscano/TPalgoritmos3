@@ -20,6 +20,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -40,15 +41,39 @@ public class Bloque extends StackPane {
 	private boolean estaOcupado;
 	int fila, columna;
 	Unidad unidad;
+//	Entidad entidadActual;
+//	ImageView imagen;
 	
-	public Bloque(int fila, int columna) {
+	public Bloque(Entidad entidadActual, int fila, int columna) {
+	
+//		this.entidadActual = entidadActual;
+		
+//		if (entidadActual instanceof Aldeano) {
+//			this.imagen = new ImageView(new Image("castillo.jpg"));
+//		}
 		
 		this.fila = fila;
 		this.columna = columna;
 		this.estaOcupado = false;
 		
-		Rectangle bordes = new Rectangle(15, 15);
-		bordes.setFill(null);
+//		private Rectangle rectangle;
+//		Image img = new Image("/image/rifat.jpg");
+//		rectangle.setFill(new ImagePattern(img));
+		
+		Rectangle bordes = new Rectangle(40, 40);
+		
+		if (entidadActual instanceof Aldeano) {
+			
+			Image img = new Image("aldeanoAlfa.jpg");
+			bordes.setFill(new ImagePattern(img));
+		} 
+		
+		else {
+		
+			bordes.setFill(null);
+		}
+//		Image img = new Image("castillo.jpg");
+//		bordes.setFill(new ImagePattern(img));
 		bordes.setStroke(Color.BLACK);
 		setAlignment(Pos.CENTER);
 		getChildren().addAll(bordes);

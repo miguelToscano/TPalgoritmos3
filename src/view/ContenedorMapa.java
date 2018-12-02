@@ -52,7 +52,7 @@ public class ContenedorMapa extends Pane {
 			
 			for (int j = 0; j < juego.obtenerColumnas(); j++) {
 				
-				Bloque bloque = new Bloque(i, j);
+				Bloque bloque = new Bloque(null, i, j);
 				bloque.setTranslateX(j * width/juego.obtenerFilas());
 				bloque.setTranslateY(i * height/juego.obtenerColumnas());
 				
