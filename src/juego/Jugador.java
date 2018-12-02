@@ -25,6 +25,7 @@ import unidades.Unidad;
 
 public class Jugador
 {
+	private String nombre;
     private Castillo castillo;
     private ArrayList<PlazaCentral> plazas = new ArrayList<PlazaCentral>();
     private ArrayList<Cuartel> cuarteles = new ArrayList<Cuartel>();
@@ -44,6 +45,19 @@ public class Jugador
 
     public Jugador() {
 
+        this.oro = ORO_INICIAL;
+        this.poblacion = 0;
+        this.habilitado=false;
+
+    }
+    
+    public String obtenerNombre() {
+    	return this.nombre;
+    }
+
+    public Jugador(String nombre) {
+
+    	this.nombre = nombre;
         this.oro = ORO_INICIAL;
         this.poblacion = 0;
         this.habilitado=false;

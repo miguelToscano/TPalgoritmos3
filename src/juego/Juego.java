@@ -13,6 +13,17 @@ public class Juego
     private static int turno;
     private GestorDeTurno gestor=null;
 
+    public Juego(Jugador jugadorA, Jugador jugadorB, int filas, int columnas) throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada,superaLimitePoblacional
+    {
+        this.jugadorA = jugadorA;
+        this.jugadorB = jugadorB;
+        this.mapa = new Mapa(filas,columnas);
+        this.crearCastillos();
+        this.crearPlazas();
+        this.turno = 0;
+        this.gestor= new GestorDeTurno(jugadorA, jugadorB, 1);
+    }
+    
     public Juego(Jugador jugadorA, Jugador jugadorB) throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada,superaLimitePoblacional
     {
         this.jugadorA = jugadorA;
@@ -27,6 +38,14 @@ public class Juego
     public void aumentarTurno()
     {
         this.turno++;
+    }
+    
+    public int obtenerFilas() {
+    	return this.mapa.obtenerTamanioFilas();
+    }
+    
+    public int obtenerColumnas() {
+    	return this.mapa.obtenerTamanioColumnas();
     }
 
     public void crearCastillos() throws cajaEstaOcupada,superaLimitePoblacional
