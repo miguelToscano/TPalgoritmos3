@@ -1,5 +1,7 @@
 package juego;
 
+import excepciones.HayUnGanador;
+
 public class GestorDeTurno {
 	
 	protected Jugador jugadorDeTurno;
@@ -14,13 +16,15 @@ public class GestorDeTurno {
 		this.numeroTurno=turno;
 	}
 	
-	public void finalizarTurno() {
+	public void finalizarTurno() throws HayUnGanador {
 		
 		if (!this.hayUnGanador()) {
 			numeroTurno++;
 			jugadorDeTurno.deshabilitar();
 			jugadorDeTurno=this.obtenerJugadorSiguiente();
 			jugadorDeTurno.habilitar();
+		} else {
+			throw new HayUnGanador();
 		}
 	}
 	
