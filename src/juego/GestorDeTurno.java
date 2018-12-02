@@ -41,7 +41,8 @@ public class GestorDeTurno {
 		}
 	}
 	
-	public boolean hayUnGanador() {
+	public boolean hayUnGanador()
+	{
 		return (jugadorA.perdioLaPartida() || jugadorB.perdioLaPartida());
 	}
 	

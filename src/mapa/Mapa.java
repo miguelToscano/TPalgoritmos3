@@ -152,7 +152,7 @@ public class Mapa
         if(filas*columnas<200||filas<8||columnas<8)
         {
             throw new tamanioDeMapaInvalido();
-       }
+        }
 
         else
         {

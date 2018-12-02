@@ -53,12 +53,5 @@ public class Castillo extends Edificio
 		return this.cajaOcupada;
 	}
 
-
-	public void ubicarEn(Mapeable mapeable)
-	{
-		Caja caja = (Caja)mapeable;
-		this.cajaOcupada = caja;
-		caja.llenar(this);
-	}
 	
 }

@@ -2,6 +2,7 @@ package unidades;
 import edificios.Cuartel;
 import edificios.Edificio;
 import edificios.PlazaCentral;
+import excepciones.PiezaDeshabilitadaEnTurno;
 import excepciones.superaLimitePoblacional;
 import mapa.*;
 import mapa.excepcionesMapa.*;
@@ -54,17 +55,19 @@ public class Aldeano extends Unidad
 	//Casillero y jugador
 	public Aldeano(Casillero casillero, Jugador jugador) throws casilleroEstaOcupado, superaLimitePoblacional
 	{
-			super(casillero);
+			super(casillero,jugador);
 			this.costo = 25;
 			this.trabajando = false;
 			this.vida = 50;
 			this.jugador = jugador;
 			this.jugador.aumentarPoblacion(1);
+			this.jugador.agregarAldeano(this);
 		
 	}
-	public void construirPlazaCentral(Caja caja, Mapa mapa,Jugador jugador) throws cajaEstaOcupada, superaLimitePoblacional
+	public void construirPlazaCentral(Caja caja, Mapa mapa,Jugador jugador) throws cajaEstaOcupada, superaLimitePoblacional, PiezaDeshabilitadaEnTurno
 
     {
+		this.turno.assertDisponibilidad();
 		turnosConstruyendo++;
 		trabajando=true;
 		
@@ -78,11 +81,13 @@ public class Aldeano extends Unidad
 			trabajando=false;
 			turnosConstruyendo=0;
 		}
+		this.turno.finalizarAccion();
 		
 	}
 	
-	public void construirCuartel(Caja caja, Mapa mapa,Jugador jugador) throws cajaEstaOcupada,superaLimitePoblacional
+	public void construirCuartel(Caja caja, Mapa mapa,Jugador jugador) throws cajaEstaOcupada,superaLimitePoblacional, PiezaDeshabilitadaEnTurno
     {
+		this.turno.assertDisponibilidad();
 		turnosConstruyendo++;
 		trabajando=true;
 		
@@ -97,6 +102,7 @@ public class Aldeano extends Unidad
 			trabajando=false;
 			turnosConstruyendo=0;
 		}
+		this.turno.finalizarAccion();
 		
 	}
 //	public void construirEdificio(Edificio edificio, Casillero casillero, Mapa mapa)

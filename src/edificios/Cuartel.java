@@ -12,6 +12,10 @@ public class Cuartel extends Edificio
 {
 
 	private ArrayList<Militar> ejercito;
+    private ArrayList<ArmaDeAsedio> armas;
+    private ArrayList<Arquero> arqueros= new ArrayList<Arquero>();
+    private ArrayList<Espadachin> espadachines = new ArrayList<Espadachin>();
+
 	
 	
 	public Cuartel(Caja lugarOcupado, Mapa mapa, Jugador jugador) throws cajaEstaOcupada	{
@@ -23,8 +27,10 @@ public class Cuartel extends Edificio
 		this.vida=this.vidaCompleta;
 		//this.cajaOcupada = lugarOcupado;
 		//this.cajaOcupada.llenar(this);
-
 		ejercito = new ArrayList<Militar>();
+	    this.armas = new ArrayList<ArmaDeAsedio>();
+	    this.arqueros = new ArrayList<Arquero>();
+	    this.espadachines = new ArrayList<Espadachin>();
 	}
 
 	
@@ -50,23 +56,25 @@ public class Cuartel extends Edificio
 	public void crearEspadachin() throws casilleroEstaOcupado, superaLimitePoblacional {
 		
 		Espadachin unEspadachin = new Espadachin(puntoRally,this.jugador);
-		this.ejercito.add(unEspadachin);
+		this.espadachines.add(unEspadachin);
 	}
 	
 	public void crearArquero() throws casilleroEstaOcupado, superaLimitePoblacional {
 		
 		Arquero unArquero = new Arquero(puntoRally,this.jugador);
-		this.ejercito.add(unArquero);
+		this.arqueros.add(unArquero);
 	}
 	
-	//esto es un sida
-	public boolean tieneEspadachin() {
-		return this.ejercito.size() > 0;
+    public boolean tieneArquero() {
+		return this.arqueros.size() > 0;
 	}
+    
+  
+  	public boolean tieneEspadachin() {
+  		return this.espadachines.size() > 0;
+  	}
 	
-	public boolean tieneArquero() {
-		return this.ejercito.size() > 0;
-	}
+	
 	
 	
 }

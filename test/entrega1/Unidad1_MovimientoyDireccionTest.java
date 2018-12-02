@@ -1,37 +1,26 @@
-package unidades;
+package entrega1;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import edificios.Cuartel;
-import edificios.PlazaCentral;
 import excepciones.MovimientoInvalido;
 import excepciones.NoEsElTurnoDelJugador;
 import excepciones.PiezaDeshabilitadaEnTurno;
 import excepciones.superaLimitePoblacional;
 import juego.Jugador;
-import mapa.Caja;
-import mapa.Casillero;
-import mapa.Mapa;
-import mapa.excepcionesMapa.cajaEstaOcupada;
-import mapa.excepcionesMapa.casilleroEstaOcupado;
-import mapa.excepcionesMapa.casilleroInvalido;
-import mapa.excepcionesMapa.tamanioDeMapaInvalido;
+import mapa.*;
+import mapa.excepcionesMapa.*;
+import unidades.*;
 
-public class AldeanoTest {
-
+public class Unidad1_MovimientoyDireccionTest {
+	
 	private Mapa mapa;
 	private int filaDet;
 	private int columnaDet;
 	private Casillero celda;
 	private Jugador jugador;
-	Casillero casilleroMock = Mockito.mock(Casillero.class);
-	Caja cajaMock = Mockito.mock(Caja.class);
-	Mapa mapaMock = Mockito.mock(Mapa.class);
-	Jugador jugadorMock = Mockito.mock(Jugador.class);
-	PlazaCentral plazaMock = Mockito.mock(PlazaCentral.class);
 
 	@Before
     public void setUp()  throws tamanioDeMapaInvalido {
@@ -42,6 +31,7 @@ public class AldeanoTest {
 		jugador.habilitar();
 	}
 
+	
 	@Test
 	public void seCreoAldeanoConCoordenadas() throws casilleroEstaOcupado,superaLimitePoblacional {
 
@@ -51,11 +41,11 @@ public class AldeanoTest {
 	}
 
 	@Test
-	public void seCreoAldeanoConCasillero() throws casilleroEstaOcupado,superaLimitePoblacional {
+	public void seCreoEspadachinConCasillero() throws casilleroEstaOcupado,superaLimitePoblacional {
 
 		celda = mapa.obtenerCasillero(filaDet, columnaDet);
-		Aldeano aldeano = new Aldeano(celda, jugador);
-		Assert.assertEquals(aldeano, mapa.obtenerElemento(filaDet, columnaDet));
+		Espadachin espadachin = new Espadachin(celda, jugador);
+		Assert.assertEquals(espadachin, mapa.obtenerElemento(filaDet, columnaDet));
 
 	}
 
@@ -155,11 +145,11 @@ public class AldeanoTest {
 
 		// x-1 y+1
 		celda = mapa.obtenerCasillero(filaDet + 1, columnaDet - 1);
-		Aldeano aldeano = new Aldeano(filaDet, columnaDet, mapa, jugador);
-		aldeano.mover(celda);
+		Arquero arquero = new Arquero(filaDet, columnaDet, mapa, jugador);
+		arquero.mover(celda);
 
-		Assert.assertEquals(aldeano, mapa.obtenerElemento(filaDet + 1, columnaDet - 1));
-		Assert.assertNotSame(aldeano, mapa.obtenerElemento(filaDet, columnaDet));
+		Assert.assertEquals(arquero, mapa.obtenerElemento(filaDet + 1, columnaDet - 1));
+		Assert.assertNotSame(arquero, mapa.obtenerElemento(filaDet, columnaDet));
 
 	}
 
@@ -168,7 +158,7 @@ public class AldeanoTest {
 	public void seCreaEnLugarOcupadoPorUnidadLanzaExcepcion() throws casilleroEstaOcupado,superaLimitePoblacional {
 		celda = mapa.obtenerCasillero(filaDet, columnaDet);
 		Aldeano aldeano = new Aldeano(celda, jugador);
-		Aldeano aldeanoBis = new Aldeano(celda, jugador);
+		ArmaDeAsedio arma = new ArmaDeAsedio(celda, jugador);
 
 	}
 
@@ -209,62 +199,6 @@ public class AldeanoTest {
 		Aldeano aldeano = new Aldeano(mapa.obtenerCasillero(5, 5), jugador);
 		aldeano.mover(celda);
 
-	}
-
-	@Test
-	public void aldeanoComienzaAConstruirPlaza()
-			throws casilleroEstaOcupado, casilleroInvalido, superaLimitePoblacional, cajaEstaOcupada, PiezaDeshabilitadaEnTurno {
-		Aldeano aldeano = new Aldeano(this.casilleroMock, jugador);
-
-		aldeano.construirPlazaCentral(this.cajaMock, this.mapaMock, this.jugadorMock);
-
-		Assert.assertFalse(aldeano.obtenerEdificioEnConstruccion() == null);
-	}
-
-	@Test
-	public void aldeanoConstruyendoEstaTrabajando()
-			throws cajaEstaOcupada, superaLimitePoblacional, casilleroEstaOcupado, PiezaDeshabilitadaEnTurno {
-
-		Aldeano aldeano = new Aldeano(this.casilleroMock, jugador);
-
-		aldeano.construirPlazaCentral(this.cajaMock, this.mapaMock, this.jugadorMock);
-
-		Assert.assertTrue(aldeano.trabajando == true);
-	}
-
-	@Test
-	public void aldeanoConstruyendoNoProduceOro() throws casilleroInvalido, cajaEstaOcupada, superaLimitePoblacional, PiezaDeshabilitadaEnTurno {
-
-		Aldeano aldeanoMock = Mockito.mock(Aldeano.class);
-		aldeanoMock.construirPlazaCentral(this.cajaMock, this.mapaMock, this.jugadorMock);
-
-		Mockito.verify(aldeanoMock, Mockito.times(0)).recolectarOro();
-
-	}
-
-	@Test
-	public void aldeanoReparacionCompleta() throws casilleroEstaOcupado, cajaEstaOcupada, superaLimitePoblacional {
-
-		Aldeano aldeano = new Aldeano(this.casilleroMock, jugador);
-		Cuartel cuartel = new Cuartel(cajaMock, mapaMock, jugadorMock);
-
-		cuartel.recibirDanio(0,50);
-		aldeano.repararEdificio(cuartel);
-
-		Assert.assertTrue(cuartel.reparacionCompleta());
-	}
-	
-	@Test
-	public void aldeanoReparacionCompletaVuelveARecolectar() throws casilleroEstaOcupado, cajaEstaOcupada, superaLimitePoblacional {
-
-		Aldeano aldeanoMock = Mockito.mock(Aldeano.class);
-		//Aldeano aldeano = new Aldeano(this.casilleroMock);
-		PlazaCentral plaza = new PlazaCentral(cajaMock, mapaMock, jugadorMock);
-		
-		Mockito.doCallRealMethod().when(aldeanoMock).repararEdificio(plaza);
-		aldeanoMock.repararEdificio(plaza);
-
-		Mockito.verify(aldeanoMock, Mockito.times(1)).recolectarOro();
 	}
 
 }

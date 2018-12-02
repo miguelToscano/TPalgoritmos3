@@ -33,7 +33,7 @@ public abstract class Militar extends Unidad
     {
     	// estos metodos lanzan la excepcion correspondiente, asi no esta lleno de ifs
     	
-    	this.jugador.assertTurno();  //es turno del jugador del cual es la nuidad
+    	//this.jugador.assertTurno();  //es turno del jugador del cual es la nuidad
 		this.turno.assertDisponibilidad(); // la unidad no se movio anteriormente
 		this.assertUnidadEnemiga(objetivo); // la unidad objetivo a atacar no es aliada
 		
