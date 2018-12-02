@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import excepciones.HayUnGanador;
 import excepciones.superaLimitePoblacional;
 
 import static org.junit.Assert.*;
@@ -25,7 +26,7 @@ public class GestorDeTurnosTest {
 	}
 	 
 	  @Test
-	  public void finalizadoElTurnoSeCambiaDeJugador() {
+	  public void finalizadoElTurnoSeCambiaDeJugador() throws HayUnGanador {
 		  
 		  Jugador primerJugador = this.gestor.jugadorDeTurno;
 		  this.gestor.finalizarTurno();
@@ -35,7 +36,7 @@ public class GestorDeTurnosTest {
 	  
 		
 	  @Test
-	  public void finalizadoElTurnoSeIncrementaNumeroTurno() {
+	  public void finalizadoElTurnoSeIncrementaNumeroTurno() throws HayUnGanador {
 		  
 		  int numeroTurnoAlPpio = this.gestor.obtenerTurnoActual();
 		  this.gestor.finalizarTurno();
