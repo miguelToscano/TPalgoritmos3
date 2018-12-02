@@ -1,95 +1,46 @@
-package juego;
-import edificios.PlazaCentral;
-import mapa.*;
-import mapa.excepcionesMapa.*;
-import juego.Jugador;
+package entrega3;
+
+
+import org.junit.Before;
+import org.junit.Test;
+
+import edificios.Castillo;
+import excepciones.HayUnGanador;
 import excepciones.superaLimitePoblacional;
+import juego.Juego;
+import juego.Jugador;
+import mapa.Caja;
+import mapa.Mapa;
+import mapa.excepcionesMapa.cajaEstaOcupada;
+import mapa.excepcionesMapa.casilleroEstaOcupado;
+import mapa.excepcionesMapa.casilleroInvalido;
+import mapa.excepcionesMapa.tamanioDeMapaInvalido;
 
-public class Juego
-{
-    private Mapa mapa;
-    private Jugador jugadorA;
-    private Jugador jugadorB;
-    private static int turno;
-    private GestorDeTurno gestor=null;
+public class Juego_ReglasDeFinalizacionTest {
+	
+	   private Jugador jugadorA;
+	    private Jugador jugadorB;
+	    private Juego juego;
 
-    public Juego(Jugador jugadorA, Jugador jugadorB) throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada,superaLimitePoblacional, casilleroEstaOcupado
-    {
-        this.jugadorA = jugadorA;
-        this.jugadorB = jugadorB;
-        jugadorA.setJuego(this);
-        jugadorB.setJuego(this);
-        this.mapa = new Mapa(15,15);
-        this.crearCastillos();
-        this.crearPlazas();
-        this.turno = 0;
-        this.gestor= new GestorDeTurno(jugadorA, jugadorB, 1);
-    }
+	    @Before
+	    public void setUp() throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, superaLimitePoblacional, casilleroEstaOcupado {
+	        this.jugadorA = new Jugador();
+	        this.jugadorB = new Jugador();
+	        this.juego = new Juego(this.jugadorA, this.jugadorB);
 
-    public void aumentarTurno()
-    {
-        this.turno++;
-    }
-    
-    public int obtenerFilas() {
-    	return this.mapa.obtenerTamanioFilas();
-    }
-    
-    public int obtenerColumnas() {
-    	return this.mapa.obtenerTamanioColumnas();
-    }
+	    }
+	    
+	    @Test(expected = HayUnGanador.class)
+	    public void juegoSeFinalizaCuandoUnCastilloSeDestruyeTotalmente() throws casilleroInvalido, tamanioDeMapaInvalido, cajaEstaOcupada, HayUnGanador {
+	    	
+			Mapa mapa = new Mapa(20, 20);
+			Caja caja = mapa.asignarCajaACasillero(mapa.obtenerCasillero(1, 1));
+		    Castillo castillo = new Castillo(caja, mapa, this.jugadorA);
+		    jugadorA.asignarCastillo(castillo);
+		    castillo.recibirDanio(0, 1000);
+		    this.juego.terminarTurno();
 
-    public void crearCastillos() throws cajaEstaOcupada,superaLimitePoblacional
-    {
-       this.mapa.crearCastilloNoroeste(jugadorA);
-       this.mapa.crearCastilloSureste(jugadorB);
-    }
+	    }
 
-    public void crearPlazas() throws casilleroInvalido, cajaEstaOcupada, superaLimitePoblacional, casilleroEstaOcupado
-    //se crean en las otras dos esquinas
-    {
-        //Plaza central de jugadorA se crea en la esquina suroeste
-        Casillero casilleroJugadorA = this.mapa.obtenerCasillero(this.mapa.obtenerTamanioFilas()-2,0);
-        PlazaCentral plazaJugadorA = new PlazaCentral(casilleroJugadorA,this.mapa,jugadorA);
-        jugadorA.agregarPlazaCentral(plazaJugadorA);
-
-        //Plaza central de jugadorB se crea en la esquina noreste
-        Casillero casilleroJugadorB = this.mapa.obtenerCasillero(0,this.mapa.obtenerTamanioColumnas()-2);
-        PlazaCentral plazaJugadorB = new PlazaCentral(casilleroJugadorB,this.mapa,jugadorB);
-        jugadorB.agregarPlazaCentral(plazaJugadorB);
-
-        //Las plazas de cada jugador crean 3 aldeanos cada una
-        for(int i=0;i<3;i++)
-        {
-            plazaJugadorA.crearAldeano();
-            plazaJugadorA.settearPuntoRally(this.mapa);
-            plazaJugadorB.crearAldeano();
-            plazaJugadorB.settearPuntoRally(this.mapa);
-        }
-    }
-
-
-    
-    public void terminarTurno() {
-    	this.gestor.finalizarTurno();
-    }
-
-    public Mapa getMapa()
-    {
-        return this.mapa;
-    }
-    
-    public Juego(Jugador jugadorA, Jugador jugadorB, int filas, int columnas) throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada,superaLimitePoblacional, casilleroEstaOcupado
-    {
-        this.jugadorA = jugadorA;
-        this.jugadorB = jugadorB;
-        jugadorA.setJuego(this);
-        jugadorB.setJuego(this);
-        this.mapa = new Mapa(filas,columnas);
-        this.crearCastillos();
-        this.crearPlazas();
-        this.turno = 0;
-        this.gestor= new GestorDeTurno(jugadorA, jugadorB, 1);
-    }
+	   
 }
-
