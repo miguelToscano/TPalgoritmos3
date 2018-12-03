@@ -3,6 +3,7 @@ package view;
 import javafx.application.Application;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
@@ -28,32 +30,33 @@ import juego.*;
 import excepciones.*;
 import mapa.*;
 import mapa.excepcionesMapa.cajaEstaOcupada;
-import mapa.excepcionesMapa.casilleroEstaOcupado;
 import mapa.excepcionesMapa.casilleroInvalido;
 import mapa.excepcionesMapa.tamanioDeMapaInvalido;
 
-public class Main extends Application {
 
-	Scene menuInicio;
+public class ContenedorInformacionJuego {
 	
-	public void start(Stage ventana) {
+	private ArrayList<Node> elementos;
+	
+	public ContenedorInformacionJuego(Juego juego, Jugador jugador1, Jugador jugador2, int width, int height) {
 		
-		ContenedorBackgroundMenuInicial backgroundMenuInicial = new ContenedorBackgroundMenuInicial();
-		ContenedorBotonesMenuInicial botonesMenuInicial = new ContenedorBotonesMenuInicial(ventana);
+		this.elementos = new ArrayList<Node>();
 		
-		Group layoutMenuInicio = new Group();
+		Button pasarTurno = new Button("Pasar turno");
+		pasarTurno.setTranslateX(width/2 - 45);
+		pasarTurno.setTranslateY(height + 10 );
 		
-		layoutMenuInicio.getChildren().addAll(backgroundMenuInicial.obtenerBackgroundMenuInicial());
-		layoutMenuInicio.getChildren().addAll(botonesMenuInicial.obtenerBotones());
+		elementos.add(pasarTurno);
 		
-		this.menuInicio = new Scene(layoutMenuInicio, 1200, 650);
-
-		ventana.setScene(menuInicio);
-		ventana.setTitle("Algo Empires");
-		ventana.show();
+		Label turno = new Label();
+		turno.setTranslateX(width / 2 + 45);
+		turno.setTranslateY(height + 15);
+		turno.setText("Turno: ");
+	
+		elementos.add(turno);
 	}
 	
-	public static void main(String[] args) {
-		launch(args);
+	public ArrayList<Node> obtenerInformacionJuego() {
+		return this.elementos;
 	}
 }

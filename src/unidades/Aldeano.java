@@ -60,7 +60,7 @@ public class Aldeano extends Unidad
 			this.trabajando = false;
 			this.vida = 50;
 			this.jugador = jugador;
-			this.jugador.aumentarPoblacion(1);
+//			this.jugador.aumentarPoblacion(1);
 			this.jugador.agregarAldeano(this);
 		
 	}
