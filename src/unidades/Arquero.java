@@ -33,6 +33,11 @@ public class Arquero extends Militar
 		this.jugador.aumentarPoblacion(1);
 	}
 	
+	@Override
+	public void ejecutarLogicaDeTurno() {
+		System.out.println("Soy un arquero");
+	}
+	
 	public Arquero (Casillero casillero, Jugador jugador) throws casilleroEstaOcupado,superaLimitePoblacional {
 	
 	super (casillero,  jugador);
@@ -42,7 +47,7 @@ public class Arquero extends Militar
 	this.radioAtaque = 3;
 	this.vida = 75;
 	this.costo = 75;
-}
+	}
 	
 	
 	public void atacar()

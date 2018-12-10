@@ -33,6 +33,10 @@ public class Cuartel extends Edificio
 	    this.espadachines = new ArrayList<Espadachin>();
 	}
 
+	@Override
+	public void ejecutarLogicaDeTurno() {
+		System.out.println("Soy un Cuartel");
+	}
 	
 	public Cuartel(Casillero casilleroInicial, Mapa mapa, Jugador jugador) throws casilleroInvalido, cajaEstaOcupada,
 																					superaLimitePoblacional

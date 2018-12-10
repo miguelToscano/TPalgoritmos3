@@ -22,6 +22,10 @@ public class ArmaDeAsedio extends Militar {
 		this.danioAEdificios = 75;	
 }
 	
+	public void ejecutarLogicaDeTurno() {
+		System.out.println("Soy un arma de asedio");
+	}
+	
 	public ArmaDeAsedio (int fila, int columna, Mapa mapa, Jugador jugador) throws casilleroEstaOcupado, superaLimitePoblacional {
 		
 		super (fila, columna, mapa);

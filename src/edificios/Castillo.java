@@ -42,6 +42,11 @@ public class Castillo extends Edificio
 		ArmaDeAsedio unArmaDeAsedio = new ArmaDeAsedio(puntoRally,this.jugador);
 		this.armasDeAsedio.add(unArmaDeAsedio);
 	}
+	
+	@Override
+	public void ejecutarLogicaDeTurno() {
+		System.out.println("Soy un castillo");
+	}
 
 	public boolean tieneArmaDeAsedio()
 	{

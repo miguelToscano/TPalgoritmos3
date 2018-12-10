@@ -43,6 +43,13 @@ public class Aldeano extends Unidad
 		this.jugador.aumentarPoblacion(1);
 	}
 	
+	@Override
+	public void ejecutarLogicaDeTurno() {
+		if (!this.trabajando)
+			this.jugador.sumarOro(25);
+		System.out.println("Soy un aldeano");
+	}
+	
 	//Casillero
 //	public Aldeano(Casillero casillero) throws casilleroEstaOcupado
 //	{

@@ -65,6 +65,9 @@ public abstract class Edificio extends Entidad {
 
 	}
 	
+	
+	public abstract void ejecutarLogicaDeTurno();	
+	
 	private Caja fijarCaja(Casillero casilleroInicial, Mapa mapa) throws casilleroInvalido
     {
 		return mapa.asignarCajaACasillero(casilleroInicial); // 4 para todos los edficios construibles

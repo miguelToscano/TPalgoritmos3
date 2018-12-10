@@ -100,7 +100,10 @@ public class Bloque extends StackPane {
 	
 	public void establecerImagen(ArrayList<Entidad> entidadesYaDibujadas, Entidad entidadActual) {
 		
-		if (entidadActual instanceof Aldeano) {
+		if (entidadActual != null && entidadActual.getVida() <= 0)
+			bordes.setFill(null);
+		
+		else if (entidadActual instanceof Aldeano) {
 			
 			String imagenPath = "aldeano";
 			
@@ -254,6 +257,7 @@ public class Bloque extends StackPane {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
+					this.ejecutarLogicaDeTurno(this.juego, this.contenedor);
 					this.actualizarPantalla(ventana, juego, mapa, fila, columna, contenedor, width, height);
 					this.mapa.setOnMouseClicked(event2 -> {
 						
@@ -590,20 +594,43 @@ public class Bloque extends StackPane {
 		return bloquesDisponibles;
 	}
 	
+	private void ejecutarLogicaDeTurno(Juego juego, ContenedorBloques contenedor) {
+		
+		// Obtener TODOS los bloques y ejecutar las acciones correspondientes a lo que contenga ese bloque
+		Jugador jugadorActual = juego.obtenerGestorDeTurno().obtenerJugadorActual();
+		ArrayList<Bloque> bloques = contenedor.obtenerBloques();
+		ArrayList<Entidad> entidadesYaEjecutadas = new ArrayList<Entidad>();
+		
+		for (int i = 0; i < bloques.size(); i++) {
+			
+			Entidad entidad = bloques.get(i).obtenerEntidadActual();
+			
+			if (entidad != null && !entidadesYaEjecutadas.contains(entidad)) {
+				
+				entidadesYaEjecutadas.add(entidad);
+				entidad.ejecutarLogicaDeTurno();
+			}
+		}
+		
+		
+	}
+	
 	private void actualizarPantalla(Stage ventana, Juego juego, Pane mapa, int fila, int columna, ContenedorBloques contenedor, int width, int height) {
 	
 		Pane tableroActualizado = new Pane();
 		
 		ContenedorStatsJugadores statsJugadores = new ContenedorStatsJugadores(juego, juego.obtenerJugador1(), juego.obtenerJugador2(), width, height);
-//		ContenedorInformacionJuego informacionJuego = new ContenedorInformacionJuego(juego, juego.obtenerJugador1(), juego.obtenerJugador2(), width, height);
+		ContenedorInformacionJuego informacionJuego = new ContenedorInformacionJuego(juego, juego.obtenerJugador1(), juego.obtenerJugador2(), width, height);
 		ContenedorBloques bloques = new ContenedorBloques(ventana, juego, tableroActualizado, width, height);
 		ContenedorBackgroundTablero backgroundTablero = new ContenedorBackgroundTablero(width, height);
 
 		tableroActualizado.getChildren().addAll(statsJugadores.obtenerStatsJugadores());
-//		tableroActualizado.getChildren().addAll(informacionJuego.obtenerInformacionJuego());
+		tableroActualizado.getChildren().addAll(informacionJuego.obtenerInformacionJuego());
 		tableroActualizado.getChildren().addAll(backgroundTablero.obtenerBackgroundTablero());
 		tableroActualizado.getChildren().addAll(bloques.obtenerBloques());
 	
+		tableroActualizado.setPrefSize(width, height + 50);
+		
 		ventana.setScene(new Scene(tableroActualizado));
 	}
 }

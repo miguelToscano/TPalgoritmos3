@@ -27,7 +27,7 @@ public abstract class Militar extends Unidad
     	super (casillero,jugador);
     }
     
-    
+    public abstract void ejecutarLogicaDeTurno();
     
     public void atacar (Entidad objetivo) throws FueraDeRango, UnidadAliada, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno
     {
@@ -41,7 +41,7 @@ public abstract class Militar extends Unidad
     		 throw new FueraDeRango();
     	}
     	objetivo.recibirDanio(this.danioAUnidades,this.danioAEdificios);
-    	this.turno.finalizarAccion();
+//    	this.turno.finalizarAccion();
     }
     
     

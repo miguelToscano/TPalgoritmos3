@@ -40,6 +40,8 @@ public abstract class Unidad extends Entidad
 
      }
 	
+	public abstract void ejecutarLogicaDeTurno();
+	
 	
 	public Unidad (Casillero casillero)  throws casilleroEstaOcupado
     {

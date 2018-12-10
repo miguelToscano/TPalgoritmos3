@@ -31,6 +31,10 @@ public class PlazaCentral extends Edificio {
 		
 	}
 
+	@Override
+	public void ejecutarLogicaDeTurno() {
+		System.out.println("Soy una plaza central");
+	}
 	
 	// indico el donde empieza
 	public PlazaCentral(Casillero casilleroInicial, Mapa mapa, Jugador jugador) throws casilleroInvalido,

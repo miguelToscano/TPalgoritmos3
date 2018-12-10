@@ -120,12 +120,12 @@ public class ContenedorBotonesMenuInicial {
 		tablero.setPrefSize(width, height + 50);
 		
 		ContenedorStatsJugadores statsJugadores = new ContenedorStatsJugadores(juego, jugador1, jugador2, width, height);
-//		ContenedorInformacionJuego informacionJuego = new ContenedorInformacionJuego(juego, jugador1, jugador2, width, height);
+		ContenedorInformacionJuego informacionJuego = new ContenedorInformacionJuego(juego, jugador1, jugador2, width, height);
 		ContenedorBloques bloques = new ContenedorBloques(ventana, juego, tablero, width, height);
 		ContenedorBackgroundTablero backgroundTablero = new ContenedorBackgroundTablero(width, height);
 		
 		tablero.getChildren().addAll(statsJugadores.obtenerStatsJugadores());
-//		tablero.getChildren().addAll(informacionJuego.obtenerInformacionJuego());
+		tablero.getChildren().addAll(informacionJuego.obtenerInformacionJuego());
 		tablero.getChildren().addAll(backgroundTablero.obtenerBackgroundTablero());
 		tablero.getChildren().addAll(bloques.obtenerBloques());
 		

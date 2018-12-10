@@ -27,6 +27,7 @@ public abstract class Entidad
 		return this.vida;
 	}
 	
+    
 	public int getCosto()
     {
 		return this.costo;
@@ -56,4 +57,6 @@ public abstract class Entidad
 	public abstract boolean estaEnRango (int rango, Casillero casillero);
 
 	public abstract void ubicarEn(Mapeable mapeable) throws casilleroEstaOcupado, cajaEstaOcupada;
+
+	public abstract void ejecutarLogicaDeTurno();
  }

@@ -31,6 +31,11 @@ public class Espadachin extends Militar {
         this.jugador.aumentarPoblacion(1);
 	}
 	
+	@Override
+	public void ejecutarLogicaDeTurno() {
+		System.out.println("Soy un espadachin");
+	}
+	
 	public Espadachin (Casillero casillero, Jugador jugador) throws casilleroEstaOcupado,superaLimitePoblacional
 	{
 	
