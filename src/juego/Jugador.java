@@ -1,7 +1,6 @@
 package juego;
 import edificios.*;
-import excepciones.superaLimitePoblacional;
-import juego.Juego;
+import excepciones.SuperaLimitePoblacional;
 import unidades.*;
 import java.util.ArrayList;
 
@@ -91,10 +90,10 @@ public class Jugador
         return this.plazas;
     }
 
-    public void aumentarPoblacion(int cantidad) throws superaLimitePoblacional {
+    public void aumentarPoblacion(int cantidad) throws SuperaLimitePoblacional {
 
         if (this.poblacion + cantidad > LIMITE_POBLACION)
-            throw new superaLimitePoblacional();
+            throw new SuperaLimitePoblacional();
 
         this.poblacion += cantidad;
     }
@@ -118,15 +117,18 @@ public class Jugador
     	this.habilitado=true;
     }
     
-    public void deshabilitar() {
+    public void deshabilitar()
+    {
     	this.habilitado=false;
     }
     
-    public boolean esTuTurno() {
+    public boolean esTuTurno()
+    {
     	return (this.habilitado);
     }
     
-    public boolean perdioLaPartida() {
+    public boolean perdioLaPartida()
+    {
     	return (this.getCastillo().destruidoTotalmente());
     }
 

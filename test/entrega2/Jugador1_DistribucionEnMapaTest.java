@@ -5,7 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import edificios.Castillo;
-import excepciones.superaLimitePoblacional;
+import excepciones.SuperaLimitePoblacional;
 import juego.Juego;
 import juego.Jugador;
 import mapa.Mapa;
@@ -21,7 +21,7 @@ public class Jugador1_DistribucionEnMapaTest {
 	    private Juego juego;
 
 	    @Before
-	    public void setUp() throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, superaLimitePoblacional, casilleroEstaOcupado {
+	    public void setUp() throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, SuperaLimitePoblacional, casilleroEstaOcupado {
 	        this.jugadorA = new Jugador();
 	        this.jugadorB = new Jugador();
 	        this.juego = new Juego(this.jugadorA, this.jugadorB);

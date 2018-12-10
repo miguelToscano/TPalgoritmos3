@@ -6,10 +6,6 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import excepciones.HayUnGanador;
-import excepciones.superaLimitePoblacional;
-
-import static org.junit.Assert.*;
-import juego.*;
 
 public class GestorDeTurnosTest {
 	

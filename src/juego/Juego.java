@@ -2,9 +2,8 @@ package juego;
 import edificios.PlazaCentral;
 import mapa.*;
 import mapa.excepcionesMapa.*;
-import juego.Jugador;
 import excepciones.HayUnGanador;
-import excepciones.superaLimitePoblacional;
+import excepciones.SuperaLimitePoblacional;
 
 public class Juego
 {
@@ -14,7 +13,7 @@ public class Juego
     private static int turno;
     private GestorDeTurno gestor=null;
     
-    public Juego(Jugador jugadorA, Jugador jugadorB) throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada,superaLimitePoblacional, casilleroEstaOcupado
+    public Juego(Jugador jugadorA, Jugador jugadorB) throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, SuperaLimitePoblacional, casilleroEstaOcupado
     {
         this.jugadorA = jugadorA;
         this.jugadorB = jugadorB;
@@ -50,13 +49,13 @@ public class Juego
     	return this.mapa.obtenerTamanioColumnas();
     }
 
-    public void crearCastillos() throws cajaEstaOcupada,superaLimitePoblacional
+    public void crearCastillos() throws cajaEstaOcupada, SuperaLimitePoblacional
     {
        this.mapa.crearCastilloNoroeste(jugadorA);
        this.mapa.crearCastilloSureste(jugadorB);
     }
 
-    public void crearPlazas() throws casilleroInvalido, cajaEstaOcupada, superaLimitePoblacional, casilleroEstaOcupado
+    public void crearPlazas() throws casilleroInvalido, cajaEstaOcupada, SuperaLimitePoblacional, casilleroEstaOcupado
     //se crean en las otras dos esquinas
     {
         //Plaza central de jugadorA se crea en la esquina suroeste
@@ -92,7 +91,7 @@ public class Juego
         return this.mapa;
     }
     
-    public Juego(Jugador jugadorA, Jugador jugadorB, int filas, int columnas) throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada,superaLimitePoblacional, casilleroEstaOcupado
+    public Juego(Jugador jugadorA, Jugador jugadorB, int filas, int columnas) throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, SuperaLimitePoblacional, casilleroEstaOcupado
     {
         this.jugadorA = jugadorA;
         this.jugadorB = jugadorB;

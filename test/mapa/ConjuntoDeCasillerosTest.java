@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import excepciones.superaLimitePoblacional;
+import excepciones.SuperaLimitePoblacional;
 import juego.Jugador;
 import mapa.excepcionesMapa.casilleroEstaOcupado;
 import mapa.excepcionesMapa.tamanioDeMapaInvalido;
@@ -31,7 +31,7 @@ public class ConjuntoDeCasillerosTest
     }
 
     @Test
-    public void contieneDevuelveTrueSiElElementoEstaEnLaFila() throws casilleroEstaOcupado , superaLimitePoblacional
+    public void contieneDevuelveTrueSiElElementoEstaEnLaFila() throws casilleroEstaOcupado , SuperaLimitePoblacional
     {
         Aldeano aldeano = new Aldeano(4,0,mapa, jugador);
         Fila fila = mapa.obtenerFilas().get(4);
@@ -50,7 +50,7 @@ public class ConjuntoDeCasillerosTest
     }
 
     @Test
-    public void elementoEnFilaYColumnaCoincideConElementoEnMapa() throws casilleroEstaOcupado, superaLimitePoblacional
+    public void elementoEnFilaYColumnaCoincideConElementoEnMapa() throws casilleroEstaOcupado, SuperaLimitePoblacional
     {
         Aldeano aldeano = new Aldeano(4,0,mapa, jugador);
         Fila fila = mapa.obtenerFilas().get(4);

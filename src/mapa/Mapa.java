@@ -8,7 +8,7 @@ import unidades.Entidad;
 import edificios.Castillo;
 import mapa.excepcionesMapa.*;
 import juego.*;
-import excepciones.superaLimitePoblacional;
+import excepciones.SuperaLimitePoblacional;
 
 public class Mapa
 {
@@ -112,7 +112,7 @@ public class Mapa
         }
     }
 
-    public void crearCastilloNoroeste(Jugador jugador) throws cajaEstaOcupada, superaLimitePoblacional
+    public void crearCastilloNoroeste(Jugador jugador) throws cajaEstaOcupada, SuperaLimitePoblacional
     {
         Caja caja = new Caja(this.tamanioCastillo);
         for(int i=0;i<4;i++)
@@ -128,7 +128,7 @@ public class Mapa
 
     }
 
-    public void crearCastilloSureste(Jugador jugador) throws cajaEstaOcupada, superaLimitePoblacional
+    public void crearCastilloSureste(Jugador jugador) throws cajaEstaOcupada, SuperaLimitePoblacional
     {
         Caja caja = new Caja(this.tamanioCastillo);
         for(int i=this.obtenerTamanioFilas()-4;i<this.obtenerTamanioFilas();i++)

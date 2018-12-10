@@ -60,6 +60,7 @@ public class Casillero extends Mapeable
     {
         return mapa.obtenerColumna(this);
     }
+
     public int getFila() {
     	return fila;
     }
@@ -76,8 +77,8 @@ public class Casillero extends Mapeable
 		this.columna = columna;
 	}
 	
-	public void assertDistancia(int rango, Casillero casillero) throws DistanciaInvalida {
-		
+	public void assertDistancia(int rango, Casillero casillero) throws DistanciaInvalida
+    {
 		if	(Math.abs(this.getFila() - casillero.getFila()) > rango  || Math.abs(this.getColumna() - casillero.getColumna()) > rango )
 			throw new DistanciaInvalida();
 		return ;

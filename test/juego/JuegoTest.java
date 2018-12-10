@@ -1,12 +1,11 @@
 package juego;
 
 import edificios.Castillo;
-import edificios.PlazaCentral;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import excepciones.superaLimitePoblacional;
+import excepciones.SuperaLimitePoblacional;
 import mapa.*;
 import mapa.excepcionesMapa.*;
 import unidades.Aldeano;
@@ -20,7 +19,7 @@ public class JuegoTest {
     private Juego juego;
 
     @Before
-    public void setUp() throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, superaLimitePoblacional, casilleroEstaOcupado {
+    public void setUp() throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, SuperaLimitePoblacional, casilleroEstaOcupado {
         this.jugadorA = new Jugador();
         this.jugadorB = new Jugador();
         this.juego = new Juego(this.jugadorA, this.jugadorB);

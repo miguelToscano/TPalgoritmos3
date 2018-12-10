@@ -3,7 +3,7 @@ package unidades;
 import org.junit.Assert;
 import org.junit.Test;
 
-import excepciones.superaLimitePoblacional;
+import excepciones.SuperaLimitePoblacional;
 import juego.Jugador;
 import mapa.Mapa;
 import mapa.excepcionesMapa.casilleroEstaOcupado;
@@ -11,7 +11,7 @@ import mapa.excepcionesMapa.tamanioDeMapaInvalido;
 public class PoblacionTest {
 
 	@Test
-	public void crearAldeanoAumentaPoblacion() throws casilleroEstaOcupado, superaLimitePoblacional, tamanioDeMapaInvalido {
+	public void crearAldeanoAumentaPoblacion() throws casilleroEstaOcupado, SuperaLimitePoblacional, tamanioDeMapaInvalido {
 	
 		int fila = 1;
 		int columna = 2;
@@ -23,7 +23,7 @@ public class PoblacionTest {
 	}
 
 	@Test
-	public void crearEspadachinAumentaPoblacion() throws casilleroEstaOcupado, superaLimitePoblacional, tamanioDeMapaInvalido {
+	public void crearEspadachinAumentaPoblacion() throws casilleroEstaOcupado, SuperaLimitePoblacional, tamanioDeMapaInvalido {
 	
 		int fila = 1;
 		int columna = 2;
@@ -35,7 +35,7 @@ public class PoblacionTest {
 	}
 	
 	@Test
-	public void crearArqueroAumentaPoblacion() throws casilleroEstaOcupado, superaLimitePoblacional, tamanioDeMapaInvalido {
+	public void crearArqueroAumentaPoblacion() throws casilleroEstaOcupado, SuperaLimitePoblacional, tamanioDeMapaInvalido {
 	
 		int fila = 1;
 		int columna = 2;
@@ -48,7 +48,7 @@ public class PoblacionTest {
 	}
 	
 	@Test
-	public void crearArmaDeAsedioAumentaPoblacion() throws casilleroEstaOcupado, superaLimitePoblacional, tamanioDeMapaInvalido {
+	public void crearArmaDeAsedioAumentaPoblacion() throws casilleroEstaOcupado, SuperaLimitePoblacional, tamanioDeMapaInvalido {
 	
 		int fila = 1;
 		int columna = 2;
@@ -60,7 +60,7 @@ public class PoblacionTest {
 	}
 	
 	@Test
-	public void matarAldeanoReducePoblacion() throws casilleroEstaOcupado, superaLimitePoblacional, tamanioDeMapaInvalido {
+	public void matarAldeanoReducePoblacion() throws casilleroEstaOcupado, SuperaLimitePoblacional, tamanioDeMapaInvalido {
 		
 		Jugador jugador = new Jugador();
 		int fila = 0;
@@ -75,7 +75,7 @@ public class PoblacionTest {
 		Assert.assertEquals(0, jugador.obtenerPoblacion());
 	}
 	
-	public void matarArqueroReducePoblacion() throws casilleroEstaOcupado, superaLimitePoblacional, tamanioDeMapaInvalido {
+	public void matarArqueroReducePoblacion() throws casilleroEstaOcupado, SuperaLimitePoblacional, tamanioDeMapaInvalido {
 		
 		Jugador jugador = new Jugador();
 		int fila = 0;
@@ -91,7 +91,7 @@ public class PoblacionTest {
 	}
 	
 	@Test
-	public void matarEspadachinReducePoblacion() throws casilleroEstaOcupado, superaLimitePoblacional, tamanioDeMapaInvalido {
+	public void matarEspadachinReducePoblacion() throws casilleroEstaOcupado, SuperaLimitePoblacional, tamanioDeMapaInvalido {
 		
 		Jugador jugador = new Jugador();
 		int fila = 0;
@@ -107,7 +107,7 @@ public class PoblacionTest {
 	}
 	
 	@Test
-	public void matarArmaDeAsedioReducePoblacion() throws casilleroEstaOcupado, superaLimitePoblacional, tamanioDeMapaInvalido {
+	public void matarArmaDeAsedioReducePoblacion() throws casilleroEstaOcupado, SuperaLimitePoblacional, tamanioDeMapaInvalido {
 
 		Jugador jugador = new Jugador();
 		int fila = 0;
@@ -123,7 +123,7 @@ public class PoblacionTest {
 	}
 	
 	@Test
-	public void matarAldeanoBajaProduccionDeOro() throws casilleroEstaOcupado, superaLimitePoblacional, tamanioDeMapaInvalido {
+	public void matarAldeanoBajaProduccionDeOro() throws casilleroEstaOcupado, SuperaLimitePoblacional, tamanioDeMapaInvalido {
 		
 		Jugador jugador = new Jugador();
 		int fila = 0;

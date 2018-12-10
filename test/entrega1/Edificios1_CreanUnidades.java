@@ -8,7 +8,7 @@ import org.junit.Test;
 import edificios.Castillo;
 import edificios.Cuartel;
 import edificios.PlazaCentral;
-import excepciones.superaLimitePoblacional;
+import excepciones.SuperaLimitePoblacional;
 import juego.Jugador;
 import junit.framework.Assert;
 import mapa.Caja;
@@ -30,7 +30,7 @@ public class Edificios1_CreanUnidades {
     private Jugador jugador;
 
     @Before
-    public  void setUp () throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, superaLimitePoblacional
+    public  void setUp () throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, SuperaLimitePoblacional
     {
     	this.jugador = new Jugador();
         this.mapa = new Mapa(15,15);
@@ -40,7 +40,7 @@ public class Edificios1_CreanUnidades {
     }
     
     @Test
-    public void castilloCrearArmaDeAsedio() throws casilleroEstaOcupado, superaLimitePoblacional
+    public void castilloCrearArmaDeAsedio() throws casilleroEstaOcupado, SuperaLimitePoblacional
     {
         castillo.crearArmaDeAsedio();
         
@@ -48,7 +48,7 @@ public class Edificios1_CreanUnidades {
     }
 	
 	@Test(expected = casilleroEstaOcupado.class)
-	    public void castilloCrearArmaDeAsedioLanzaExcepcionSiCasilleroEstaOcupado() throws casilleroEstaOcupado, superaLimitePoblacional
+	    public void castilloCrearArmaDeAsedioLanzaExcepcionSiCasilleroEstaOcupado() throws casilleroEstaOcupado, SuperaLimitePoblacional
 	    {
 	        castillo.crearArmaDeAsedio();
 	        castillo.crearArmaDeAsedio(); //como el arma de asedio no se movio la
@@ -57,7 +57,7 @@ public class Edificios1_CreanUnidades {
 
     @Test
     public void plazaCreaAldeano() throws casilleroInvalido, casilleroEstaOcupado, cajaEstaOcupada,
-                                                    tamanioDeMapaInvalido, superaLimitePoblacional
+                                                    tamanioDeMapaInvalido, SuperaLimitePoblacional
     {
         Mapa mapa = new Mapa(15,15);
         Casillero casillero = mapa.obtenerCasillero(3,2);
@@ -71,7 +71,7 @@ public class Edificios1_CreanUnidades {
     }
     
     @Test
-	public void cuartelCrearArquero() throws tamanioDeMapaInvalido, casilleroEstaOcupado, casilleroInvalido, cajaEstaOcupada, superaLimitePoblacional {
+	public void cuartelCrearArquero() throws tamanioDeMapaInvalido, casilleroEstaOcupado, casilleroInvalido, cajaEstaOcupada, SuperaLimitePoblacional {
 		Jugador jugador = new Jugador();
 		Mapa mapa = new Mapa(15, 15);
 		Cuartel cuartel = new Cuartel(mapa.obtenerCasillero(1, 1), mapa, jugador);
@@ -82,7 +82,7 @@ public class Edificios1_CreanUnidades {
 	}
 	
 	@Test
-	public void cuartelCrearEspadachin() throws casilleroEstaOcupado, tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, superaLimitePoblacional {
+	public void cuartelCrearEspadachin() throws casilleroEstaOcupado, tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, SuperaLimitePoblacional {
 		
 		Jugador jugadorA = new Jugador();
 		Mapa mapa = new Mapa(20, 20);

@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import excepciones.superaLimitePoblacional;
+import excepciones.SuperaLimitePoblacional;
 import juego.Jugador;
 import mapa.excepcionesMapa.casilleroEstaOcupado;
 import mapa.excepcionesMapa.tamanioDeMapaInvalido;
@@ -29,7 +29,7 @@ public class FilaTest
     }
 
     @Test
-    public void estaLibreDevuelveFalseParaFilaOcupadaDelMapa() throws casilleroEstaOcupado, superaLimitePoblacional
+    public void estaLibreDevuelveFalseParaFilaOcupadaDelMapa() throws casilleroEstaOcupado, SuperaLimitePoblacional
     {
         Aldeano aldeano = new Aldeano(0,1,mapa, jugador);
         Fila fila = mapa.obtenerFilas().get(0);
