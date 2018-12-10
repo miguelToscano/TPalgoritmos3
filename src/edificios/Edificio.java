@@ -16,6 +16,8 @@ public abstract class Edificio extends Entidad {
 	
 	protected Casillero puntoRally; // aca se crean las unidades
 
+	protected Casillero casilleroInicial;
+	
 	protected int velocidadReparacion;
 	
 	protected boolean construido=false;
@@ -30,10 +32,16 @@ public abstract class Edificio extends Entidad {
 	public Edificio (Casillero casilleroInicial, Mapa mapa, Jugador jugador) throws casilleroInvalido, cajaEstaOcupada
 																					
     {
+		this.casilleroInicial = new Casillero();
+		this.casilleroInicial = casilleroInicial;
         this.jugador = jugador;
     	Caja caja = mapa.asignarCajaACasillero(casilleroInicial);
     	this.ubicarEn(caja);
     	this.settearPuntoRally(mapa);
+	}
+	
+	public Casillero obtenerCasilleroInicial() {
+		return this.casilleroInicial;
 	}
 	
 	public void settearPuntoRally (Mapa mapa)
@@ -84,6 +92,14 @@ public abstract class Edificio extends Entidad {
 	
 	public void mostrarConstruido() {
 		this.construido=true;
+	}
+	
+	public boolean estaConstruido() {
+		return this.construido;
+	}
+	
+	public void setEstaConstruido(boolean valor) {
+		this.construido = valor;
 	}
 	
 	public boolean estaEnRango (int rango, Casillero casillero)

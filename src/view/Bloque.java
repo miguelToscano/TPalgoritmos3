@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -36,6 +37,7 @@ import juego.*;
 import excepciones.*;
 import mapa.*;
 import mapa.excepcionesMapa.cajaEstaOcupada;
+import mapa.excepcionesMapa.casilleroEstaOcupado;
 import mapa.excepcionesMapa.casilleroInvalido;
 import mapa.excepcionesMapa.tamanioDeMapaInvalido;
 
@@ -47,14 +49,28 @@ public class Bloque extends StackPane {
 	Entidad entidadActual;
 	Rectangle bordes;
 	ContextMenu acciones;
+	Juego juego;
+	Pane mapa;
+	ContenedorBloques contenedor;
+	Pane tablero;
+	int width;
+	int height;
+	Stage ventana;
+	Button pasarTurno;
 	
-	public Bloque(Pane mapa, Entidad entidadActual, int fila, int columna) {
-	
+	public Bloque(Stage ventana, Juego juego, Pane mapa, Entidad entidadActual, int fila, int columna, ContenedorBloques contenedor, int width, int height) {
+		
+		this.ventana = ventana;
+		this.width = width;
+		this.height = height;
+		this.contenedor = contenedor;
+		this.juego = juego;
 		this.entidadActual = entidadActual;		
 		this.fila = fila;
 		this.columna = columna;
 		this.estaOcupado = false;
 		this.bordes = new Rectangle(40, 40);
+		this.mapa = mapa;
 		
 		bordes.setStroke(Color.BLACK);
 		setAlignment(Pos.CENTER);
@@ -69,33 +85,117 @@ public class Bloque extends StackPane {
 			else if (this.entidadActual instanceof PlazaCentral)
 				System.out.println("Plaza central");
 			
-			this.establecerAcciones(mapa);
+			this.establecerAcciones(mapa, this);
 			
 		});
-		
-		
+	}
+	
+	public Rectangle obtenerBordes() {
+		return this.bordes;
+	}
+	
+	public Entidad obtenerEntidadActual() {
+		return this.entidadActual;
 	}
 	
 	public void establecerImagen(ArrayList<Entidad> entidadesYaDibujadas, Entidad entidadActual) {
 		
 		if (entidadActual instanceof Aldeano) {
 			
-			Image img = new Image("aldeanoAlfa.jpg");
+			String imagenPath = "aldeano";
+			
+			if (entidadActual.obtenerJugador() == juego.obtenerJugador1())
+				imagenPath += "Jugador1.jpg";
+			else 
+				imagenPath += "Jugador2.jpg";
+
+			
+			Image img = new Image(imagenPath);
 			bordes.setFill(new ImagePattern(img));
 		}
 		
 		else if (entidadActual instanceof PlazaCentral && !entidadesYaDibujadas.contains(entidadActual)) {
-			Image img = new Image("PlazaCentral.jpg");
+			
+			String imagenPath = "PlazaCentral";
+			
+			if (entidadActual.obtenerJugador() == juego.obtenerJugador1())
+				imagenPath += "Jugador1.jpg";
+			else
+				imagenPath += "Jugador2.jpg";
+			
+			Image img = new Image(imagenPath);
 			bordes.setFill(new ImagePattern(img));
 			bordes.setWidth(40 * 2);
 			bordes.setHeight(40 * 2);
 		}
 		
+		else if (entidadActual instanceof Arquero) {
+			
+			String imagenPath = "arquero";
+			
+			if (entidadActual.obtenerJugador() == juego.obtenerJugador1())
+				imagenPath += "Jugador1.jpg";
+			else
+				imagenPath += "Jugador2.jpg";
+			
+			Image img = new Image(imagenPath);
+			bordes.setFill(new ImagePattern(img));
+			bordes.setWidth(40 * 1);
+			bordes.setHeight(40 * 1);
+		}
+		
+		else if (entidadActual instanceof Espadachin) {
+			
+			String imagenPath = "espadachin";
+			
+			if (entidadActual.obtenerJugador() == juego.obtenerJugador1())
+				imagenPath += "Jugador1.jpg";
+			else
+				imagenPath += "Jugador2.jpg";
+			
+			Image img = new Image(imagenPath);
+			bordes.setFill(new ImagePattern(img));
+			bordes.setWidth(40 * 1);
+			bordes.setHeight(40 * 1);
+		}
+		
 		else if (entidadActual instanceof Castillo && !entidadesYaDibujadas.contains(entidadActual)) {
-			Image img = new Image("castillo.jpg");
+			
+			String imagenPath = "castillo";
+			
+			if (entidadActual.obtenerJugador() == juego.obtenerJugador1())
+				imagenPath += "Jugador1.jpg";
+			else
+				imagenPath += "Jugador2.jpg";
+			
+			Image img = new Image(imagenPath);
 			bordes.setFill(new ImagePattern(img));
 			bordes.setWidth(40 * 4);
 			bordes.setHeight(40 * 4);
+		}
+		
+		else if (entidadActual instanceof Cuartel && !entidadesYaDibujadas.contains(entidadActual)) {
+			
+			Edificio edificio = (Edificio) entidadActual;
+			
+			String imagenPath = "cuartel";
+			
+			if (entidadActual.obtenerJugador() == juego.obtenerJugador1())
+				imagenPath += "Jugador1.jpg";
+			else
+				imagenPath += "Jugador2.jpg";
+			
+			edificio.setEstaConstruido(true);
+	
+//			if (!edificio.estaConstruido()) 
+//				imagenPath = "construccion.jpg";
+//			else
+//				imagenPath = "cuartel.jpg";
+			
+			Image img = new Image(imagenPath);
+			bordes.setFill(new ImagePattern(img));
+			bordes.setWidth(40 * 2);
+			bordes.setHeight(40 * 2);
 		}
 		
 		else {
@@ -104,46 +204,406 @@ public class Bloque extends StackPane {
 		}
 	}
 	
-	private void establecerAcciones(Pane mapa) {
+	private void establecerAcciones(Pane mapa, Bloque bloque) {
 		if (this.entidadActual instanceof Aldeano) {
 			this.acciones = new ContextMenu();
-			MenuItem item1 = new MenuItem("Mover");
-			MenuItem item2 = new MenuItem("Construir");
-			MenuItem item3 = new MenuItem("Cancelar");
+			MenuItem equipo = new MenuItem("Equipo: " + this.entidadActual.obtenerJugador().obtenerNombre());
+			MenuItem vida = new MenuItem("Vida: " + this.entidadActual.getVida());
+			MenuItem mover = new MenuItem("Mover");
+			MenuItem construir = new MenuItem("Construir");
+			MenuItem cancelar = new MenuItem("Cancelar");
 			this.acciones.setAnchorX(this.fila);
 			this.acciones.setAnchorY(this.columna);
 			this.acciones.setX(this.fila);
 			this.acciones.setY(this.columna);
 			this.acciones.setStyle("-fx-base: black");
-			acciones.getItems().addAll(item1, item2, item3);
+			acciones.getItems().addAll(equipo, vida, mover, construir, cancelar);
 			this.acciones.show(mapa, this.fila * 40 + 15, this.columna * 40 + 15);
+			mover.setOnAction(e -> {
+				this.mapa.setOnMouseClicked(event -> {
+					double x = event.getX();
+					double xAux = 0;
+					for (int i = 0; i < this.width / this.juego.getMapa().obtenerTamanioFilas(); i++) {
+						xAux = i * 40;
+						if (xAux > x) {
+							xAux = 40 * (i - 1);
+							break;
+						}
+					}
+					x = xAux;
+					double y = event.getY();
+					double yAux = 0;
+					for (int i = 0; i < this.height / this.juego.getMapa().obtenerTamanioColumnas(); i++) {
+						yAux = i * 40;
+						if (yAux > y) {
+							yAux = 40 * (i - 1);
+							break;
+						}
+					}
+					y = yAux;
+					
+					System.out.println("x: " + x + " y: " + y);
+					Unidad unidadActual =(Unidad) bloque.obtenerEntidadActual();
+					try {
+						unidadActual.mover(this.juego.getMapa().obtenerCasillero((int) xAux / 40, (int) yAux / 40));
+						if (unidadActual instanceof Aldeano) {
+							((Aldeano) unidadActual).recolectarOro();
+						}
+					} catch (MovimientoInvalido | casilleroEstaOcupado | NoEsElTurnoDelJugador
+							| PiezaDeshabilitadaEnTurno e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					this.actualizarPantalla(ventana, juego, mapa, fila, columna, contenedor, width, height);
+					this.mapa.setOnMouseClicked(event2 -> {
+						
+					});
+				});	
+			});
+			
+			construir.setOnAction(event -> {
+				ContextMenu construibles = new ContextMenu();
+				
+				MenuItem construirPlazaCentral = new MenuItem("Plaza Central");
+				MenuItem construirCuartel = new MenuItem("Cuartel");
+				MenuItem cancelar2 = new MenuItem("Cancelar");
+				construibles.setAnchorX(this.fila);
+				construibles.setAnchorY(this.columna);
+				construibles.setX(this.fila);
+				construibles.setY(this.columna);
+				construibles.setStyle("-fx-base: black");
+				construibles.getItems().addAll(construirPlazaCentral, construirCuartel, cancelar2);
+				construibles.show(mapa, this.fila * 40 + 15, this.columna * 40 + 15);
+				
+				construirPlazaCentral.setOnAction(event1 -> {
+					this.mapa.setOnMouseClicked(event2 -> {
+						double x = event2.getX();
+						double xAux = 0;
+						for (int i = 0; i < this.width / this.juego.getMapa().obtenerTamanioFilas(); i++) {
+							xAux = i * 40;
+							if (xAux > x) {
+								xAux = 40 * (i - 1);
+								break;
+							}
+						}
+						x = (int) xAux;
+						double y = event2.getY();
+						double yAux = 0;
+						for (int i = 0; i < this.height / this.juego.getMapa().obtenerTamanioColumnas(); i++) {
+							yAux = i * 40;
+							if (yAux > y) {
+								yAux = 40 * (i - 1);
+								break;
+							}
+						}
+						y = (int) yAux;
+						
+						System.out.println("x: " + x + " y: " + y);
+						try {
+							PlazaCentral nuevaPlaza = new PlazaCentral(this.juego.getMapa().obtenerCasillero((int) x / 40, (int) y / 40), this.juego.getMapa(), this.entidadActual.obtenerJugador());
+							this.entidadActual.obtenerJugador().cobrarOro(nuevaPlaza.getCosto());
+						} catch (casilleroInvalido | cajaEstaOcupada e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						this.actualizarPantalla(ventana, juego, this.mapa, fila, columna, contenedor, width, height);
+						this.mapa.setOnMouseClicked(event3 -> {
+							
+						});
+					});
+				});
+				
+				construirCuartel.setOnAction(event1 -> {
+					this.mapa.setOnMouseClicked(event2 -> {
+						double x = event2.getX();
+						double xAux = 0;
+						for (int i = 0; i < this.width / this.juego.getMapa().obtenerTamanioFilas(); i++) {
+							xAux = i * 40;
+							if (xAux > x) {
+								xAux = 40 * (i - 1);
+								break;
+							}
+						}
+						x = (int) xAux;
+						double y = event2.getY();
+						double yAux = 0;
+						for (int i = 0; i < this.height / this.juego.getMapa().obtenerTamanioColumnas(); i++) {
+							yAux = i * 40;
+							if (yAux > y) {
+								yAux = 40 * (i - 1);
+								break;
+							}
+						}
+						y = (int) yAux;
+						
+						System.out.println("x: " + x + " y: " + y);
+					
+						try {
+							Cuartel nuevoCuartel = new Cuartel(this.juego.getMapa().obtenerCasillero((int) x / 40, (int) y / 40), this.juego.getMapa(), this.entidadActual.obtenerJugador());
+							this.entidadActual.obtenerJugador().cobrarOro(nuevoCuartel.getCosto());
+						} catch (casilleroInvalido | cajaEstaOcupada | superaLimitePoblacional e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					
+						this.actualizarPantalla(ventana, juego, this.mapa, fila, columna, contenedor, width, height);
+						this.mapa.setOnMouseClicked(event3 -> {
+							
+						});
+					});
+				});
+			});
+			
+			
+			
+		}
+		
+		else if (this.entidadActual instanceof Militar) {
+			this.acciones = new ContextMenu();
+			MenuItem vida = new MenuItem("Vida: " + this.entidadActual.getVida());
+			MenuItem mover = new MenuItem("Mover");
+			MenuItem atacar = new MenuItem("Atacar");
+			MenuItem cancelar = new MenuItem("Cancelar");
+			this.acciones.setAnchorX(this.fila);
+			this.acciones.setAnchorY(this.columna);
+			this.acciones.setX(this.fila);
+			this.acciones.setY(this.columna);
+			this.acciones.setStyle("-fx-base: black");
+			acciones.getItems().addAll(vida, mover, atacar, cancelar);
+			this.acciones.show(mapa, this.fila * 40 + 15, this.columna * 40 + 15);
+			
+			mover.setOnAction(e -> {
+				this.mapa.setOnMouseClicked(event -> {
+					double x = event.getX();
+					double xAux = 0;
+					for (int i = 0; i < this.width / this.juego.getMapa().obtenerTamanioFilas(); i++) {
+						xAux = i * 40;
+						if (xAux > x) {
+							xAux = 40 * (i - 1);
+							break;
+						}
+					}
+					x = xAux;
+					double y = event.getY();
+					double yAux = 0;
+					for (int i = 0; i < this.height / this.juego.getMapa().obtenerTamanioColumnas(); i++) {
+						yAux = i * 40;
+						if (yAux > y) {
+							yAux = 40 * (i - 1);
+							break;
+						}
+					}
+					y = yAux;
+			
+					Unidad unidadActual =(Unidad) bloque.obtenerEntidadActual();
+					try {
+						unidadActual.mover(this.juego.getMapa().obtenerCasillero((int) xAux / 40, (int) yAux / 40));
+					} catch (MovimientoInvalido | casilleroEstaOcupado | NoEsElTurnoDelJugador
+							| PiezaDeshabilitadaEnTurno e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					this.actualizarPantalla(ventana, juego, mapa, fila, columna, contenedor, width, height);
+					this.mapa.setOnMouseClicked(event2 -> {
+						
+					});
+				});	
+			});
+			
+			atacar.setOnAction(e -> {
+				this.mapa.setOnMouseClicked(event -> {
+					double x = event.getX();
+					double xAux = 0;
+					for (int i = 0; i < this.width / this.juego.getMapa().obtenerTamanioFilas(); i++) {
+						xAux = i * 40;
+						if (xAux > x) {
+							xAux = 40 * (i - 1);
+							break;
+						}
+					}
+					x = xAux;
+					double y = event.getY();
+					double yAux = 0;
+					for (int i = 0; i < this.height / this.juego.getMapa().obtenerTamanioColumnas(); i++) {
+						yAux = i * 40;
+						if (yAux > y) {
+							yAux = 40 * (i - 1);
+							break;
+						}
+					}
+					y = yAux;
+			
+					Militar unidadActual =(Militar) bloque.obtenerEntidadActual();
+					Casillero casillero = this.juego.getMapa().obtenerCasillero((int) xAux / 40,(int) yAux / 40);
+					Entidad objetivo = casillero.obtenerElemento();
+					
+					try {
+						unidadActual.atacar(objetivo);
+					} catch (FueraDeRango | UnidadAliada | NoEsElTurnoDelJugador | PiezaDeshabilitadaEnTurno e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+					this.actualizarPantalla(ventana, juego, mapa, fila, columna, contenedor, width, height);
+					this.mapa.setOnMouseClicked(event2 -> {
+						
+					});
+				});	
+			});
+				
 		}
 		
 		else if (this.entidadActual instanceof Castillo) {
 			this.acciones = new ContextMenu();
-			MenuItem item1 = new MenuItem("Crear Arma de Asedio");
-			MenuItem item2 = new MenuItem("Cancelar");
+			MenuItem vida = new MenuItem("Vida: " + this.entidadActual.getVida());
+			MenuItem crearArmaDeAsedio = new MenuItem("Crear Arma de Asedio");
+			MenuItem cancelar = new MenuItem("Cancelar");
 			this.acciones.setAnchorX(this.fila);
 			this.acciones.setAnchorY(this.columna);
 			this.acciones.setX(this.fila);
 			this.acciones.setY(this.columna);
 			this.acciones.setStyle("-fx-base: black");
-			acciones.getItems().addAll(item1, item2);
+			acciones.getItems().addAll(vida, crearArmaDeAsedio, cancelar);
 			this.acciones.show(mapa, this.fila * 40 + 15, this.columna * 40 + 15);
 		}
 		
 		else if (this.entidadActual instanceof PlazaCentral) {
 			this.acciones = new ContextMenu();
-			MenuItem item1 = new MenuItem("Crear Aldeano");
-			MenuItem item2 = new MenuItem("Cancelar");
+			MenuItem vida = new MenuItem("Vida: " + this.entidadActual.getVida());
+			MenuItem crearAldeano = new MenuItem("Crear Aldeano");
+			MenuItem cancelar = new MenuItem("Cancelar");
 			this.acciones.setAnchorX(this.fila);
 			this.acciones.setAnchorY(this.columna);
 			this.acciones.setX(this.fila);
 			this.acciones.setY(this.columna);
 			this.acciones.setStyle("-fx-base: black");
-			acciones.getItems().addAll(item1, item2);
+			acciones.getItems().addAll(vida, crearAldeano, cancelar);
 			this.acciones.show(mapa, this.fila * 40 + 15, this.columna * 40 + 15);
-		}
 			
+			crearAldeano.setOnAction(event1 -> {
+				
+				PlazaCentral plaza = (PlazaCentral) this.entidadActual;
+				
+				try {
+					plaza.crearAldeano(this.juego.getMapa());
+				} catch (casilleroEstaOcupado | superaLimitePoblacional e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				this.actualizarPantalla(ventana, juego, mapa, fila, columna, contenedor, width, height);
+			});
+		}
+		
+		else if (this.entidadActual instanceof Cuartel) {
+			this.acciones = new ContextMenu();
+			((Cuartel) this.entidadActual).setEstaConstruido(true);
+			MenuItem vida = new MenuItem("Vida: " + this.entidadActual.getVida());
+			MenuItem crearEspadachin = new MenuItem("Crear espadachin");
+			MenuItem crearArquero = new MenuItem("Crear arquero");
+			MenuItem cancelar = new MenuItem("Cancelar");
+			this.acciones.setAnchorX(this.fila);
+			this.acciones.setAnchorY(this.columna);
+			this.acciones.setX(this.fila);
+			this.acciones.setY(this.columna);
+			this.acciones.setStyle("-fx-base: black");
+			acciones.getItems().addAll(vida, cancelar);
+			if (((Cuartel) this.entidadActual).estaConstruido()) {
+				acciones.getItems().clear();
+				acciones.getItems().addAll(vida, crearEspadachin, crearArquero, cancelar);
+			}
+			this.acciones.show(mapa, this.fila * 40 + 15, this.columna * 40 + 15);
+			
+			crearArquero.setOnAction(event1 -> {
+				
+				Cuartel cuartel = (Cuartel) this.entidadActual;
+				
+				try {
+					cuartel.crearArquero(this.juego.getMapa());
+				} catch (casilleroEstaOcupado | superaLimitePoblacional e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				this.actualizarPantalla(ventana, juego, mapa, fila, columna, contenedor, width, height);
+			});
+			
+			crearEspadachin.setOnAction(event1 -> {
+				
+				Cuartel cuartel = (Cuartel) this.entidadActual;
+				
+				try {
+					cuartel.crearEspadachin(this.juego.getMapa());
+				} catch (casilleroEstaOcupado | superaLimitePoblacional e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				this.actualizarPantalla(ventana, juego, mapa, fila, columna, contenedor, width, height);
+			});
+		}
+		
+	}
+	
+	private void establecerUnidadActual(Entidad nuevaEntidad) {
+		this.entidadActual = nuevaEntidad;
+	}
+	
+		
+	public ArrayList<Bloque> obtenerBloquesDisponiblesMovimiento(Bloque bloqueActual) {
+		
+		ArrayList<Bloque> bloquesDisponibles = new ArrayList<Bloque>();
+		
+//		for (int i = 0; i < 3; i++) {
+//			for (int j = 0; j < 3; j++) {
+//				Bloque aux = this.contenedor.obtenerBloque(i, j);
+//				System.out.println("Fila: " + aux.fila + " Columna: " + aux.columna);
+//				if (aux.obtenerEntidadActual() instanceof Castillo) {
+//					System.out.println("Castillo");
+//				}
+//			}
+//		}
+		
+		if (bloqueActual.obtenerEntidadActual() instanceof Unidad) {
+			Unidad unidadActual = (Unidad) bloqueActual.obtenerEntidadActual();
+			
+			for (int i = unidadActual.obtenerCasilleroOcupado().getFila() - 1; i <= unidadActual.obtenerCasilleroOcupado().getFila() + 1; i++) {
+				for (int j = unidadActual.obtenerCasilleroOcupado().getColumna() - 1; j <= unidadActual.obtenerCasilleroOcupado().getColumna() + 1; j++) {
+
+					if (i >= 0 && i < this.juego.getMapa().obtenerTamanioFilas() && j >= 0 && j < this.juego.getMapa().obtenerTamanioColumnas()) {
+						Bloque bloqueAuxiliar = this.contenedor.obtenerBloque(i, j);
+						if (bloqueAuxiliar.obtenerEntidadActual() instanceof Entidad) {
+							System.out.println("Estoy agarrando una entidad cuando no deberia");
+						}
+						
+						if (!(bloqueAuxiliar.obtenerEntidadActual() instanceof Unidad)
+								&& !(bloqueAuxiliar.obtenerEntidadActual() instanceof Edificio)
+								&& bloqueAuxiliar.obtenerEntidadActual() != bloqueActual.obtenerEntidadActual()) {
+							bloquesDisponibles.add(bloqueAuxiliar);
+							
+						}
+					}
+				}
+			}
+		}
+		
+		return bloquesDisponibles;
+	}
+	
+	private void actualizarPantalla(Stage ventana, Juego juego, Pane mapa, int fila, int columna, ContenedorBloques contenedor, int width, int height) {
+	
+		Pane tableroActualizado = new Pane();
+		
+		ContenedorStatsJugadores statsJugadores = new ContenedorStatsJugadores(juego, juego.obtenerJugador1(), juego.obtenerJugador2(), width, height);
+//		ContenedorInformacionJuego informacionJuego = new ContenedorInformacionJuego(juego, juego.obtenerJugador1(), juego.obtenerJugador2(), width, height);
+		ContenedorBloques bloques = new ContenedorBloques(ventana, juego, tableroActualizado, width, height);
+		ContenedorBackgroundTablero backgroundTablero = new ContenedorBackgroundTablero(width, height);
+
+		tableroActualizado.getChildren().addAll(statsJugadores.obtenerStatsJugadores());
+//		tableroActualizado.getChildren().addAll(informacionJuego.obtenerInformacionJuego());
+		tableroActualizado.getChildren().addAll(backgroundTablero.obtenerBackgroundTablero());
+		tableroActualizado.getChildren().addAll(bloques.obtenerBloques());
+	
+		ventana.setScene(new Scene(tableroActualizado));
 	}
 }

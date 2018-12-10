@@ -13,7 +13,7 @@ public class Juego
     private Jugador jugadorB;
     private static int turno;
     private GestorDeTurno gestor=null;
-
+    
     public Juego(Jugador jugadorA, Jugador jugadorB) throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada,superaLimitePoblacional, casilleroEstaOcupado
     {
         this.jugadorA = jugadorA;
@@ -26,6 +26,16 @@ public class Juego
         this.turno = 0;
         this.gestor= new GestorDeTurno(jugadorA, jugadorB, 1);
     }
+    
+    public Jugador obtenerJugador1() {
+    	return this.jugadorA;
+    }
+    
+    public Jugador obtenerJugador2() {
+    	return this.jugadorB;
+    }
+    
+
 
     public void aumentarTurno()
     {
@@ -69,7 +79,9 @@ public class Juego
         }
     }
 
-
+    public GestorDeTurno obtenerGestorDeTurno() {
+    	return this.gestor;
+    }
     
     public void terminarTurno() throws HayUnGanador {
     	this.gestor.finalizarTurno();

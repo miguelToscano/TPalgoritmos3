@@ -51,7 +51,7 @@ public class ContenedorInformacionJuego {
 		Label turno = new Label();
 		turno.setTranslateX(width / 2 + 45);
 		turno.setTranslateY(height + 15);
-		turno.setText("Turno: ");
+		turno.setText("Turno: " + juego.obtenerGestorDeTurno().obtenerJugadorActual().obtenerNombre());
 	
 		elementos.add(turno);
 	}

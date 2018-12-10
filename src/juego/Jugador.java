@@ -80,7 +80,12 @@ public class Jugador
         this.poblacion = nuevaPoblacion;
     }
 
-
+    public void cobrarOro(int oro) {
+    	if (oro <= this.oro) {
+    		this.oro -= oro;
+    	}
+    }
+    
     public ArrayList<PlazaCentral> getPlazas()
     {
         return this.plazas;

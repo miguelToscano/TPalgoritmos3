@@ -42,9 +42,7 @@ public class Espadachin extends Militar {
         this.radioAtaque = 1;
 		
 }
-	
-	
-	
+
 	public void atacar() {
 		System.out.println("Ataca a una unidad o edificio");
 	}

@@ -53,15 +53,21 @@ public class PlazaCentral extends Edificio {
 		return aldeanos;
 	}
 	
+	public void crearAldeano(Mapa mapa) throws casilleroEstaOcupado, superaLimitePoblacional {
+		
+		this.settearPuntoRally(mapa);
+		
+		Aldeano unAldeano = new Aldeano(this.puntoRally, jugador);
+		this.aldeanos.add(unAldeano);
+	}
+	
 	public void crearAldeano() throws casilleroEstaOcupado, superaLimitePoblacional
 	{
-		
 		Aldeano unAldeano = new Aldeano(this.puntoRally, jugador);
 
 		// isRallyPoint ocupado? excepcion
 		
 		this.aldeanos.add(unAldeano);
-
 	}
 
 }	

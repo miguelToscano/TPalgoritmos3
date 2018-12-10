@@ -38,42 +38,44 @@ public class ContenedorMapa extends Pane {
 		
 		this.mapa = new Group();
 		
-		ImageView backgroundMapa = new ImageView(new Image("TexturaLlanura.jpg"));
-		backgroundMapa.setFitWidth(width);
-		backgroundMapa.setFitHeight(height);
-		mapa.getChildren().add(backgroundMapa);
-		
-		this.terreno = new Pane();
-		this.terreno.setPrefSize(width, height + 50);
-		mapa.getChildren().add(terreno);
-		
-		// Crea Todas las celdas del mapa
-		for (int i = 0; i < juego.obtenerFilas(); i++) {
-			
-			for (int j = 0; j < juego.obtenerColumnas(); j++) {
-				
-				Bloque bloque = new Bloque(null, null, i, j);
-				bloque.setTranslateX(j * width/juego.obtenerFilas());
-				bloque.setTranslateY(i * height/juego.obtenerColumnas());
-				
-				mapa.getChildren().add(bloque);
-			}
-		}
-		
-		ImageView castilloJugador1 = new ImageView(new Image("castillo.jpg"));
-		castilloJugador1.setFitWidth((width/40) * 4);
-		castilloJugador1.setFitHeight((height/40) * 4);
-		castilloJugador1.setTranslateX(0);
-		castilloJugador1.setTranslateY(height - 60);
-		
-		mapa.getChildren().add(castilloJugador1);
-		
-		ImageView castilloJugador2 = new ImageView(new Image("castillo.jpg"));
-		castilloJugador2.setFitWidth((width/40) * 4);
-		castilloJugador2.setFitHeight((height/40) * 4);
-		castilloJugador2.setTranslateX(width - 60);
-		castilloJugador2.setTranslateY(0);
-		
-		mapa.getChildren().add(castilloJugador2);
+//		ImageView backgroundMapa = new ImageView(new Image("TexturaLlanura.jpg"));
+//		backgroundMapa.setFitWidth(width);
+//		backgroundMapa.setFitHeight(height);
+//		mapa.getChildren().add(backgroundMapa);
+//		
+//		this.terreno = new Pane();
+//		this.terreno.setPrefSize(width, height + 50);
+//		mapa.getChildren().add(terreno);
+//		
+//		ContenedorBloques contenedorBloques = new ContenedorBloques(juego, this.terreno, width, height);
+//		
+//		// Crea Todas las celdas del mapa
+//		for (int i = 0; i < juego.obtenerFilas(); i++) {
+//			
+//			for (int j = 0; j < juego.obtenerColumnas(); j++) {
+//				
+//				Bloque bloque = new Bloque(null, null, null, i, j, null);
+//				bloque.setTranslateX(j * width/juego.obtenerFilas());
+//				bloque.setTranslateY(i * height/juego.obtenerColumnas());
+//				
+//				mapa.getChildren().add(bloque);
+//			}
+//		}
+//		
+//		ImageView castilloJugador1 = new ImageView(new Image("castillo.jpg"));
+//		castilloJugador1.setFitWidth((width/40) * 4);
+//		castilloJugador1.setFitHeight((height/40) * 4);
+//		castilloJugador1.setTranslateX(0);
+//		castilloJugador1.setTranslateY(height - 60);
+//		
+//		mapa.getChildren().add(castilloJugador1);
+//		
+//		ImageView castilloJugador2 = new ImageView(new Image("castillo.jpg"));
+//		castilloJugador2.setFitWidth((width/40) * 4);
+//		castilloJugador2.setFitHeight((height/40) * 4);
+//		castilloJugador2.setTranslateX(width - 60);
+//		castilloJugador2.setTranslateY(0);
+//		
+//		mapa.getChildren().add(castilloJugador2);
 	}
 }

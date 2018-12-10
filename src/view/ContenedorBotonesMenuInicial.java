@@ -68,7 +68,7 @@ public class ContenedorBotonesMenuInicial {
 		
 		iniciar.setOnAction(e -> {
 			try {
-				ventana.setScene(new Scene(iniciarPartida(ingresoJugador1.getText(), ingresoJugador2.getText())));
+				ventana.setScene(new Scene(iniciarPartida(ventana, ingresoJugador1.getText(), ingresoJugador2.getText())));
 			} catch (tamanioDeMapaInvalido | casilleroInvalido | cajaEstaOcupada | superaLimitePoblacional e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -107,7 +107,7 @@ public class ContenedorBotonesMenuInicial {
 		return this.botones;
 	}
 	
-	public Parent iniciarPartida(String nombreJugador1, String nombreJugador2) throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, superaLimitePoblacional, casilleroEstaOcupado {
+	public Parent iniciarPartida(Stage ventana, String nombreJugador1, String nombreJugador2) throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, superaLimitePoblacional, casilleroEstaOcupado {
 		
 		Jugador jugador1 = new Jugador(nombreJugador1);
 		Jugador jugador2 = new Jugador(nombreJugador2);
@@ -119,16 +119,15 @@ public class ContenedorBotonesMenuInicial {
 		Pane tablero = new Pane();
 		tablero.setPrefSize(width, height + 50);
 		
-		ContenedorStatsJugadores statsJugadores = new ContenedorStatsJugadores(jugador1, jugador2, width, height);
-		ContenedorInformacionJuego informacionJuego = new ContenedorInformacionJuego(juego, jugador1, jugador2, width, height);
-		ContenedorBloques bloques = new ContenedorBloques(juego, tablero, width, height);
+		ContenedorStatsJugadores statsJugadores = new ContenedorStatsJugadores(juego, jugador1, jugador2, width, height);
+//		ContenedorInformacionJuego informacionJuego = new ContenedorInformacionJuego(juego, jugador1, jugador2, width, height);
+		ContenedorBloques bloques = new ContenedorBloques(ventana, juego, tablero, width, height);
 		ContenedorBackgroundTablero backgroundTablero = new ContenedorBackgroundTablero(width, height);
 		
 		tablero.getChildren().addAll(statsJugadores.obtenerStatsJugadores());
-		tablero.getChildren().addAll(informacionJuego.obtenerInformacionJuego());
+//		tablero.getChildren().addAll(informacionJuego.obtenerInformacionJuego());
 		tablero.getChildren().addAll(backgroundTablero.obtenerBackgroundTablero());
 		tablero.getChildren().addAll(bloques.obtenerBloques());
-		
 		
 		return tablero;
 	}

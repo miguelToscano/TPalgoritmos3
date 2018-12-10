@@ -10,10 +10,15 @@ public class GestorDeTurno {
 	private int numeroTurno;
 	
 	public GestorDeTurno(Jugador jugadorA, Jugador jugadorB, int turno) {
-		this.jugadorDeTurno=this.obtenerPrimerJugador();
+		
 		this.jugadorA=jugadorA;
 		this.jugadorB=jugadorB;
 		this.numeroTurno=turno;
+		this.jugadorDeTurno=this.obtenerPrimerJugador();
+	}
+	
+	public Jugador obtenerJugadorActual() {
+		return this.jugadorDeTurno;
 	}
 	
 	public void finalizarTurno() throws HayUnGanador {

@@ -58,8 +58,24 @@ public class Cuartel extends Edificio
 		Espadachin unEspadachin = new Espadachin(puntoRally,this.jugador);
 		this.espadachines.add(unEspadachin);
 	}
+
+	public void crearEspadachin(Mapa mapa) throws casilleroEstaOcupado, superaLimitePoblacional {
+		
+		this.settearPuntoRally(mapa);
+		Espadachin unEspadachin = new Espadachin(puntoRally,this.jugador);
+		this.espadachines.add(unEspadachin);
+	}
+
 	
 	public void crearArquero() throws casilleroEstaOcupado, superaLimitePoblacional {
+		
+		Arquero unArquero = new Arquero(puntoRally,this.jugador);
+		this.arqueros.add(unArquero);
+	}
+	
+	public void crearArquero(Mapa mapa) throws casilleroEstaOcupado, superaLimitePoblacional {
+		
+		this.settearPuntoRally(mapa);
 		
 		Arquero unArquero = new Arquero(puntoRally,this.jugador);
 		this.arqueros.add(unArquero);

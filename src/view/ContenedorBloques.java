@@ -37,9 +37,11 @@ import mapa.excepcionesMapa.tamanioDeMapaInvalido;
 public class ContenedorBloques {
 	
 	private ArrayList<Bloque> bloques;
+	Juego juego;
 	
-	public ContenedorBloques(Juego juego, Pane tablero, int width, int height) {
+	public ContenedorBloques(Stage ventana, Juego juego, Pane tablero, int width, int height) {
 		this.bloques = new ArrayList<Bloque>();
+		this.juego = juego;
 		
 		ArrayList<Entidad> entidadesYaDibujadas = new ArrayList<Entidad>();
 		
@@ -49,14 +51,13 @@ public class ContenedorBloques {
 				
 				Entidad entidadActual = juego.getMapa().obtenerCasillero(i, j).obtenerElemento();
 				
-				Bloque bloque = new Bloque(tablero, entidadActual, i, j);
+				Bloque bloque = new Bloque(ventana, juego, tablero, entidadActual, i, j, this, width, height);
 				bloque.setTranslateX(i * width/juego.obtenerFilas());
 				bloque.setTranslateY(j * height/juego.obtenerColumnas());
 				
 				bloque.establecerImagen(entidadesYaDibujadas, entidadActual);
 				if (!entidadesYaDibujadas.contains(entidadActual))
 					entidadesYaDibujadas.add(entidadActual);
-				
 				this.bloques.add(bloque);
 			}
 		}
@@ -64,5 +65,13 @@ public class ContenedorBloques {
 	
 	public ArrayList<Bloque> obtenerBloques() {
 		return this.bloques;
+	}
+	
+	public void agregarBloque(Bloque nuevoBloque) {
+		this.bloques.add(nuevoBloque);
+	}
+	
+	public Bloque obtenerBloque(int fila, int columna) {
+		return this.bloques.get(fila * juego.obtenerFilas() + columna);
 	}
 }

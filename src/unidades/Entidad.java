@@ -18,6 +18,10 @@ public abstract class Entidad
         this.construible=true;//??
     }
 	 
+    public Jugador obtenerJugador() {
+    	return this.jugador;
+    }
+   
     public int getVida()
     {
 		return this.vida;

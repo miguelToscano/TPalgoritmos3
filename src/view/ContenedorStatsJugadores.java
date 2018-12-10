@@ -37,7 +37,7 @@ public class ContenedorStatsJugadores extends HBox {
 
 	ArrayList<Node> elementos;
 	
-	public ContenedorStatsJugadores(Jugador jugador1, Jugador jugador2, int width, int height) {
+	public ContenedorStatsJugadores(Juego juego, Jugador jugador1, Jugador jugador2, int width, int height) {
 		
 		this.elementos = new ArrayList<Node>();
 		
@@ -78,10 +78,23 @@ public class ContenedorStatsJugadores extends HBox {
 		poblacionJugador2.setTranslateX(width - 80);
 		poblacionJugador2.setTranslateY(height + 30);
 		poblacionJugador2.setText("Poblacion: " + jugador2.obtenerPoblacion());
-		
+			
 		elementos.add(poblacionJugador2);
-	}
+		
+		Button pasarTurno = new Button("Pasar turno");
+		pasarTurno.setTranslateX(width/2 - 45);
+		pasarTurno.setTranslateY(height + 10 );
+		
+		elementos.add(pasarTurno);
+		
+		Label turno = new Label();
+		turno.setText("Turno: " + juego.obtenerGestorDeTurno().obtenerJugadorActual().obtenerNombre());
+		turno.setTranslateX(width / 2 + 45);
+		turno.setTranslateY(height + 15);
 	
+		elementos.add(turno);
+	}
+		
 	public ArrayList<Node> obtenerStatsJugadores() {
 		return this.elementos;
 	}
