@@ -3,7 +3,7 @@ import excepciones.FueraDeRango;
 import excepciones.NoEsElTurnoDelJugador;
 import excepciones.PiezaDeshabilitadaEnTurno;
 import excepciones.UnidadAliada;
-import excepciones.superaLimitePoblacional;
+import excepciones.SuperaLimitePoblacional;
 import juego.Jugador;
 import mapa.Casillero;
 import mapa.Mapa;
@@ -22,7 +22,7 @@ public abstract class Militar extends Unidad
 		super (fila, columna, mapa);
     }
 	
-    public Militar (Casillero casillero, Jugador jugador ) throws casilleroEstaOcupado,superaLimitePoblacional {
+    public Militar (Casillero casillero, Jugador jugador ) throws casilleroEstaOcupado, SuperaLimitePoblacional {
     	
     	super (casillero,jugador);
     }

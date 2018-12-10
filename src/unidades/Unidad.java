@@ -3,7 +3,7 @@ package unidades;
 import excepciones.MovimientoInvalido;
 import excepciones.NoEsElTurnoDelJugador;
 import excepciones.PiezaDeshabilitadaEnTurno;
-import excepciones.superaLimitePoblacional;
+import excepciones.SuperaLimitePoblacional;
 import juego.Jugador;
 import juego.Turno;
 import mapa.Casillero;
@@ -54,7 +54,7 @@ public abstract class Unidad extends Entidad
      }
 	
 	//con casillero y jugador
-	public Unidad (Casillero casillero, Jugador jugador)  throws casilleroEstaOcupado,superaLimitePoblacional
+	public Unidad (Casillero casillero, Jugador jugador)  throws casilleroEstaOcupado, SuperaLimitePoblacional
     {
 		this.ubicarEn(casillero);
 		this.turnosConstruccion = 1;

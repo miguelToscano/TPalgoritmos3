@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
-import excepciones.superaLimitePoblacional;
+import excepciones.SuperaLimitePoblacional;
 import juego.Jugador;
 import junit.framework.Assert;
 import mapa.Caja;
@@ -27,7 +27,7 @@ public class PlazaCentralTest {
     }
     
     @Test
-    public void seCreaEnLaPrimerCaja() throws casilleroInvalido,tamanioDeMapaInvalido,cajaEstaOcupada,superaLimitePoblacional
+    public void seCreaEnLaPrimerCaja() throws casilleroInvalido,tamanioDeMapaInvalido,cajaEstaOcupada, SuperaLimitePoblacional
     {
         Mapa mapa = new Mapa(15,15);
         Casillero casillero = mapa.obtenerCasillero(0,0);
@@ -38,7 +38,7 @@ public class PlazaCentralTest {
     }
 
     @Test
-    public void seCreaConCasilleroComoParametro() throws casilleroInvalido, cajaEstaOcupada, tamanioDeMapaInvalido,superaLimitePoblacional
+    public void seCreaConCasilleroComoParametro() throws casilleroInvalido, cajaEstaOcupada, tamanioDeMapaInvalido, SuperaLimitePoblacional
     {
         Mapa mapa = new Mapa(15,15);
         Casillero casillero = mapa.obtenerCasillero(5,7);
@@ -52,7 +52,7 @@ public class PlazaCentralTest {
 
     @Test
     public void seCreaAldeanoConRallyLibre() throws casilleroInvalido, casilleroEstaOcupado, cajaEstaOcupada,
-                                                    tamanioDeMapaInvalido, superaLimitePoblacional
+                                                    tamanioDeMapaInvalido, SuperaLimitePoblacional
     {
         Mapa mapa = new Mapa(15,15);
         Casillero casillero = mapa.obtenerCasillero(3,2);
@@ -69,7 +69,7 @@ public class PlazaCentralTest {
     
    @Test
    public void seReparaEdificio() throws casilleroInvalido, casilleroEstaOcupado, cajaEstaOcupada,
-                                    tamanioDeMapaInvalido, superaLimitePoblacional
+                                    tamanioDeMapaInvalido, SuperaLimitePoblacional
    {
         Mapa mapa = new Mapa(15,15);
         Casillero casillero = mapa.obtenerCasillero(1,9);
@@ -83,7 +83,7 @@ public class PlazaCentralTest {
    }
    
    @Test
-   public void seRecibeDanio() throws casilleroInvalido, cajaEstaOcupada, tamanioDeMapaInvalido,superaLimitePoblacional
+   public void seRecibeDanio() throws casilleroInvalido, cajaEstaOcupada, tamanioDeMapaInvalido, SuperaLimitePoblacional
    {
        Mapa mapa = new Mapa(15,15);
        Casillero casillero = mapa.obtenerCasillero(3,7);
@@ -95,7 +95,7 @@ public class PlazaCentralTest {
    }
    
    @Test 
-   public void seCreaEnCajaYElMapaLaReconoceEnCadaCasillero() throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada,superaLimitePoblacional
+   public void seCreaEnCajaYElMapaLaReconoceEnCadaCasillero() throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, SuperaLimitePoblacional
    {
 
         int fila = 3;
@@ -121,7 +121,7 @@ public class PlazaCentralTest {
    @Test(expected = casilleroEstaOcupado.class)
    public void intentarCrearAldeanoConRallyPointOcupadoLanzaExcepcion() throws casilleroEstaOcupado,
                                         tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada,
-                                            superaLimitePoblacional
+           SuperaLimitePoblacional
    {
        Mapa mapa = new Mapa(15,15);
        Casillero casillero = mapa.obtenerCasillero(0,0);

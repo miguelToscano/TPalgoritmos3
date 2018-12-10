@@ -9,7 +9,7 @@ import unidades.ArmaDeAsedio;
 import unidades.Entidad;
 import unidades.Unidad;
 import juego.*;
-import excepciones.superaLimitePoblacional;
+import excepciones.SuperaLimitePoblacional;
 
 public class Castillo extends Edificio
 {
@@ -37,7 +37,7 @@ public class Castillo extends Edificio
 
 	}
 
-	public void crearArmaDeAsedio() throws casilleroEstaOcupado,superaLimitePoblacional
+	public void crearArmaDeAsedio() throws casilleroEstaOcupado, SuperaLimitePoblacional
     {
 		ArmaDeAsedio unArmaDeAsedio = new ArmaDeAsedio(puntoRally,this.jugador);
 		this.armasDeAsedio.add(unArmaDeAsedio);

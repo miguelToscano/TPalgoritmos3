@@ -1,7 +1,7 @@
 package unidades;
 
 import mapa.excepcionesMapa.casilleroEstaOcupado;
-import excepciones.superaLimitePoblacional;
+import excepciones.SuperaLimitePoblacional;
 import juego.*;
 import mapa.Casillero;
 import mapa.Mapa;
@@ -20,7 +20,7 @@ public class Arquero extends Militar
 		
 	}
 
-	public Arquero (int fila, int columna, Mapa mapa, Jugador jugador)throws casilleroEstaOcupado, superaLimitePoblacional {
+	public Arquero (int fila, int columna, Mapa mapa, Jugador jugador)throws casilleroEstaOcupado, SuperaLimitePoblacional {
 		
 		super (fila, columna, mapa);
 		
@@ -38,7 +38,7 @@ public class Arquero extends Militar
 		System.out.println("Soy un arquero");
 	}
 	
-	public Arquero (Casillero casillero, Jugador jugador) throws casilleroEstaOcupado,superaLimitePoblacional {
+	public Arquero (Casillero casillero, Jugador jugador) throws casilleroEstaOcupado, SuperaLimitePoblacional {
 	
 	super (casillero,  jugador);
 	

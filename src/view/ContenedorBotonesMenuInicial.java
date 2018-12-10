@@ -1,33 +1,18 @@
 package view;
 
-import javafx.application.Application;
-import javafx.scene.Cursor;
-import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.TilePane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import unidades.*;
 
 import java.util.ArrayList;
 
-import edificios.*;
 import juego.*;
 import excepciones.*;
-import mapa.*;
 import mapa.excepcionesMapa.cajaEstaOcupada;
 import mapa.excepcionesMapa.casilleroEstaOcupado;
 import mapa.excepcionesMapa.casilleroInvalido;
@@ -69,7 +54,7 @@ public class ContenedorBotonesMenuInicial {
 		iniciar.setOnAction(e -> {
 			try {
 				ventana.setScene(new Scene(iniciarPartida(ventana, ingresoJugador1.getText(), ingresoJugador2.getText())));
-			} catch (tamanioDeMapaInvalido | casilleroInvalido | cajaEstaOcupada | superaLimitePoblacional e1) {
+			} catch (tamanioDeMapaInvalido | casilleroInvalido | cajaEstaOcupada | SuperaLimitePoblacional e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			} catch (casilleroEstaOcupado e1) {
@@ -107,7 +92,7 @@ public class ContenedorBotonesMenuInicial {
 		return this.botones;
 	}
 	
-	public Parent iniciarPartida(Stage ventana, String nombreJugador1, String nombreJugador2) throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, superaLimitePoblacional, casilleroEstaOcupado {
+	public Parent iniciarPartida(Stage ventana, String nombreJugador1, String nombreJugador2) throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, SuperaLimitePoblacional, casilleroEstaOcupado {
 		
 		Jugador jugador1 = new Jugador(nombreJugador1);
 		Jugador jugador2 = new Jugador(nombreJugador2);

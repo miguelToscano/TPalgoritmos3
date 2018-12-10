@@ -1,7 +1,7 @@
 package unidades;
 
 import mapa.excepcionesMapa.casilleroEstaOcupado;
-import excepciones.superaLimitePoblacional;
+import excepciones.SuperaLimitePoblacional;
 import juego.*;
 import mapa.Casillero;
 import mapa.Mapa;
@@ -26,7 +26,7 @@ public class ArmaDeAsedio extends Militar {
 		System.out.println("Soy un arma de asedio");
 	}
 	
-	public ArmaDeAsedio (int fila, int columna, Mapa mapa, Jugador jugador) throws casilleroEstaOcupado, superaLimitePoblacional {
+	public ArmaDeAsedio (int fila, int columna, Mapa mapa, Jugador jugador) throws casilleroEstaOcupado, SuperaLimitePoblacional {
 		
 		super (fila, columna, mapa);
 		
@@ -38,7 +38,7 @@ public class ArmaDeAsedio extends Militar {
 		this.jugador.aumentarPoblacion(1);
 }
 
-	public ArmaDeAsedio (Casillero casillero, Jugador jugador) throws casilleroEstaOcupado,superaLimitePoblacional {
+	public ArmaDeAsedio (Casillero casillero, Jugador jugador) throws casilleroEstaOcupado, SuperaLimitePoblacional {
 	
 		super (casillero, jugador);
 		

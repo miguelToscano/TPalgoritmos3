@@ -10,7 +10,7 @@ import edificios.PlazaCentral;
 import excepciones.MovimientoInvalido;
 import excepciones.NoEsElTurnoDelJugador;
 import excepciones.PiezaDeshabilitadaEnTurno;
-import excepciones.superaLimitePoblacional;
+import excepciones.SuperaLimitePoblacional;
 import juego.Jugador;
 import mapa.Caja;
 import mapa.Casillero;
@@ -43,7 +43,7 @@ public class EspadachinTest {
 	}
 
 	@Test
-	public void seCreoEspadachinConCoordenadas() throws casilleroEstaOcupado,superaLimitePoblacional {
+	public void seCreoEspadachinConCoordenadas() throws casilleroEstaOcupado, SuperaLimitePoblacional {
 
 		Espadachin unEspadachin = new Espadachin(filaDet, columnaDet, mapa, jugador);
 		Assert.assertEquals(unEspadachin, mapa.obtenerElemento(filaDet, columnaDet));
@@ -51,7 +51,7 @@ public class EspadachinTest {
 	}
 
 	@Test
-	public void seCreoEspadachinConCasillero() throws casilleroEstaOcupado,superaLimitePoblacional {
+	public void seCreoEspadachinConCasillero() throws casilleroEstaOcupado, SuperaLimitePoblacional {
 
 		celda = mapa.obtenerCasillero(filaDet, columnaDet);
 		Espadachin unEspadachin = new Espadachin(celda, jugador);
@@ -60,7 +60,7 @@ public class EspadachinTest {
 	}
 
 	@Test
-	public void seMueveCorrectamente1() throws NoEsElTurnoDelJugador,PiezaDeshabilitadaEnTurno,MovimientoInvalido,casilleroEstaOcupado,superaLimitePoblacional {
+	public void seMueveCorrectamente1() throws NoEsElTurnoDelJugador,PiezaDeshabilitadaEnTurno,MovimientoInvalido,casilleroEstaOcupado, SuperaLimitePoblacional {
 
 		// y+1
 		celda = mapa.obtenerCasillero(filaDet + 1, columnaDet);
@@ -73,7 +73,7 @@ public class EspadachinTest {
 	}
 
 	@Test
-	public void seMueveCorrectamente2() throws NoEsElTurnoDelJugador,PiezaDeshabilitadaEnTurno,MovimientoInvalido,casilleroEstaOcupado,superaLimitePoblacional {
+	public void seMueveCorrectamente2() throws NoEsElTurnoDelJugador,PiezaDeshabilitadaEnTurno,MovimientoInvalido,casilleroEstaOcupado, SuperaLimitePoblacional {
 
 		// y-1
 		celda = mapa.obtenerCasillero(filaDet - 1, columnaDet);
@@ -86,7 +86,7 @@ public class EspadachinTest {
 	}
 
 	@Test
-	public void seMueveCorrectamente3() throws NoEsElTurnoDelJugador,PiezaDeshabilitadaEnTurno,MovimientoInvalido,casilleroEstaOcupado,superaLimitePoblacional {
+	public void seMueveCorrectamente3() throws NoEsElTurnoDelJugador,PiezaDeshabilitadaEnTurno,MovimientoInvalido,casilleroEstaOcupado, SuperaLimitePoblacional {
 
 		// x+1
 		celda = mapa.obtenerCasillero(filaDet, columnaDet + 1);
@@ -99,7 +99,7 @@ public class EspadachinTest {
 	}
 
 	@Test
-	public void seMueveCorrectamente4() throws NoEsElTurnoDelJugador,PiezaDeshabilitadaEnTurno,MovimientoInvalido,casilleroEstaOcupado,superaLimitePoblacional {
+	public void seMueveCorrectamente4() throws NoEsElTurnoDelJugador,PiezaDeshabilitadaEnTurno,MovimientoInvalido,casilleroEstaOcupado, SuperaLimitePoblacional {
 
 		// x-1
 		celda = mapa.obtenerCasillero(filaDet, columnaDet - 1);
@@ -112,7 +112,7 @@ public class EspadachinTest {
 	}
 
 	@Test
-	public void seMueveCorrectamente5() throws NoEsElTurnoDelJugador,PiezaDeshabilitadaEnTurno,MovimientoInvalido,casilleroEstaOcupado,superaLimitePoblacional {
+	public void seMueveCorrectamente5() throws NoEsElTurnoDelJugador,PiezaDeshabilitadaEnTurno,MovimientoInvalido,casilleroEstaOcupado, SuperaLimitePoblacional {
 
 		// x-1 y-1
 		celda = mapa.obtenerCasillero(filaDet - 1, columnaDet - 1);
@@ -125,7 +125,7 @@ public class EspadachinTest {
 	}
 
 	@Test
-	public void seMueveCorrectamente6() throws NoEsElTurnoDelJugador,PiezaDeshabilitadaEnTurno,MovimientoInvalido,casilleroEstaOcupado,superaLimitePoblacional {
+	public void seMueveCorrectamente6() throws NoEsElTurnoDelJugador,PiezaDeshabilitadaEnTurno,MovimientoInvalido,casilleroEstaOcupado, SuperaLimitePoblacional {
 
 		// x+1 y+1
 		celda = mapa.obtenerCasillero(filaDet + 1, columnaDet + 1);
@@ -138,7 +138,7 @@ public class EspadachinTest {
 	}
 
 	@Test
-	public void seMueveCorrectamente7() throws NoEsElTurnoDelJugador,PiezaDeshabilitadaEnTurno,MovimientoInvalido,casilleroEstaOcupado,superaLimitePoblacional {
+	public void seMueveCorrectamente7() throws NoEsElTurnoDelJugador,PiezaDeshabilitadaEnTurno,MovimientoInvalido,casilleroEstaOcupado, SuperaLimitePoblacional {
 
 		// x+1 y-1
 		celda = mapa.obtenerCasillero(filaDet - 1, columnaDet + 1);
@@ -151,7 +151,7 @@ public class EspadachinTest {
 	}
 
 	@Test
-	public void seMueveCorrectamente8() throws NoEsElTurnoDelJugador,PiezaDeshabilitadaEnTurno,MovimientoInvalido,casilleroEstaOcupado,superaLimitePoblacional {
+	public void seMueveCorrectamente8() throws NoEsElTurnoDelJugador,PiezaDeshabilitadaEnTurno,MovimientoInvalido,casilleroEstaOcupado, SuperaLimitePoblacional {
 
 		// x-1 y+1
 		celda = mapa.obtenerCasillero(filaDet + 1, columnaDet - 1);
@@ -165,7 +165,7 @@ public class EspadachinTest {
 
 	@Test(expected = casilleroEstaOcupado.class)
 
-	public void seCreaEnLugarOcupadoPorUnidadLanzaExcepcion() throws casilleroEstaOcupado,superaLimitePoblacional {
+	public void seCreaEnLugarOcupadoPorUnidadLanzaExcepcion() throws casilleroEstaOcupado, SuperaLimitePoblacional {
 		celda = mapa.obtenerCasillero(filaDet, columnaDet);
 		Espadachin unEspadachin = new Espadachin(celda, jugador);
 		Espadachin unEspadachinBis = new Espadachin(celda, jugador);
@@ -173,7 +173,7 @@ public class EspadachinTest {
 	}
 
 	@Test(expected = casilleroEstaOcupado.class)
-	public void seMueveAUnLugarOcupadoPorUnidadLanzaExcepcion() throws NoEsElTurnoDelJugador,PiezaDeshabilitadaEnTurno,MovimientoInvalido,casilleroEstaOcupado,superaLimitePoblacional {
+	public void seMueveAUnLugarOcupadoPorUnidadLanzaExcepcion() throws NoEsElTurnoDelJugador,PiezaDeshabilitadaEnTurno,MovimientoInvalido,casilleroEstaOcupado, SuperaLimitePoblacional {
 		celda = mapa.obtenerCasillero(filaDet + 1, columnaDet + 1);
 		Casillero celdaBis = mapa.obtenerCasillero(filaDet, columnaDet);
 
@@ -186,7 +186,7 @@ public class EspadachinTest {
 
 	@Test(expected = casilleroEstaOcupado.class)
 	public void seCreaEnUnLugarOcupadoPorEdificioLanzaExcepcion()
-			throws casilleroEstaOcupado, casilleroInvalido, cajaEstaOcupada, superaLimitePoblacional {
+			throws casilleroEstaOcupado, casilleroInvalido, cajaEstaOcupada, SuperaLimitePoblacional {
 		// creo el edificio
 		celda = mapa.obtenerCasillero(6, 6);
 		Caja caja = mapa.asignarCajaACasillero(celda);
@@ -199,7 +199,7 @@ public class EspadachinTest {
 
 	@Test(expected = casilleroEstaOcupado.class)
 	public void seMueveAUnLugarOcupadoPorEdificioLanzaExcepcion()
-			throws NoEsElTurnoDelJugador,PiezaDeshabilitadaEnTurno,casilleroEstaOcupado, casilleroInvalido, cajaEstaOcupada,MovimientoInvalido, superaLimitePoblacional {
+			throws NoEsElTurnoDelJugador,PiezaDeshabilitadaEnTurno,casilleroEstaOcupado, casilleroInvalido, cajaEstaOcupada,MovimientoInvalido, SuperaLimitePoblacional {
 		// creo el edificio
 		celda = mapa.obtenerCasillero(6, 6);
 		Caja caja = mapa.asignarCajaACasillero(celda);

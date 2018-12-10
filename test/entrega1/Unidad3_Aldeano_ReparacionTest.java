@@ -6,7 +6,7 @@ import org.mockito.Mockito;
 
 import edificios.Cuartel;
 import edificios.PlazaCentral;
-import excepciones.superaLimitePoblacional;
+import excepciones.SuperaLimitePoblacional;
 import juego.Jugador;
 import mapa.Caja;
 import mapa.Casillero;
@@ -24,7 +24,7 @@ public class Unidad3_Aldeano_ReparacionTest {
 	PlazaCentral plazaMock = Mockito.mock(PlazaCentral.class);
 
 	@Test
-	public void aldeanoReparacionCompleta() throws casilleroEstaOcupado, cajaEstaOcupada, superaLimitePoblacional {
+	public void aldeanoReparacionCompleta() throws casilleroEstaOcupado, cajaEstaOcupada, SuperaLimitePoblacional {
 
 		Aldeano aldeano = new Aldeano(this.casilleroMock, jugadorMock);
 		Cuartel cuartel = new Cuartel(cajaMock, mapaMock, jugadorMock);
@@ -36,7 +36,7 @@ public class Unidad3_Aldeano_ReparacionTest {
 	}
 	
 	@Test
-	public void aldeanoReparacionCompletaVuelveARecolectar() throws casilleroEstaOcupado, cajaEstaOcupada, superaLimitePoblacional {
+	public void aldeanoReparacionCompletaVuelveARecolectar() throws casilleroEstaOcupado, cajaEstaOcupada, SuperaLimitePoblacional {
 
 		Aldeano aldeanoMock = Mockito.mock(Aldeano.class);
 		//Aldeano aldeano = new Aldeano(this.casilleroMock);

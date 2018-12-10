@@ -1,31 +1,16 @@
 package view;
 
-import javafx.application.Application;
 import javafx.geometry.Pos;
-import javafx.scene.Cursor;
-import javafx.scene.Group;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ContextMenu;
-import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
-import javafx.scene.effect.*;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.Lighting;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.TilePane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import unidades.*;
 
@@ -39,7 +24,6 @@ import mapa.*;
 import mapa.excepcionesMapa.cajaEstaOcupada;
 import mapa.excepcionesMapa.casilleroEstaOcupado;
 import mapa.excepcionesMapa.casilleroInvalido;
-import mapa.excepcionesMapa.tamanioDeMapaInvalido;
 
 public class Bloque extends StackPane {
 
@@ -345,7 +329,7 @@ public class Bloque extends StackPane {
 						try {
 							Cuartel nuevoCuartel = new Cuartel(this.juego.getMapa().obtenerCasillero((int) x / 40, (int) y / 40), this.juego.getMapa(), this.entidadActual.obtenerJugador());
 							this.entidadActual.obtenerJugador().cobrarOro(nuevoCuartel.getCosto());
-						} catch (casilleroInvalido | cajaEstaOcupada | superaLimitePoblacional e1) {
+						} catch (casilleroInvalido | cajaEstaOcupada | SuperaLimitePoblacional e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
@@ -490,7 +474,7 @@ public class Bloque extends StackPane {
 				
 				try {
 					plaza.crearAldeano(this.juego.getMapa());
-				} catch (casilleroEstaOcupado | superaLimitePoblacional e) {
+				} catch (casilleroEstaOcupado | SuperaLimitePoblacional e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -524,7 +508,7 @@ public class Bloque extends StackPane {
 				
 				try {
 					cuartel.crearArquero(this.juego.getMapa());
-				} catch (casilleroEstaOcupado | superaLimitePoblacional e) {
+				} catch (casilleroEstaOcupado | SuperaLimitePoblacional e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -538,7 +522,7 @@ public class Bloque extends StackPane {
 				
 				try {
 					cuartel.crearEspadachin(this.juego.getMapa());
-				} catch (casilleroEstaOcupado | superaLimitePoblacional e) {
+				} catch (casilleroEstaOcupado | SuperaLimitePoblacional e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}

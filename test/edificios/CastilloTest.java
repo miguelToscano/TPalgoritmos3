@@ -4,7 +4,7 @@ package edificios;
 import org.junit.Before;
 import org.junit.Test;
 
-import excepciones.superaLimitePoblacional;
+import excepciones.SuperaLimitePoblacional;
 import juego.Jugador;
 import junit.framework.Assert;
 import mapa.Caja;
@@ -25,7 +25,7 @@ public class CastilloTest
     private Jugador jugador;
 
     @Before
-    public  void setUp () throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, superaLimitePoblacional
+    public  void setUp () throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, SuperaLimitePoblacional
     {
     	this.jugador = new Jugador();
         this.mapa = new Mapa(15,15);
@@ -42,7 +42,7 @@ public class CastilloTest
 
 
     @Test(expected = casilleroEstaOcupado.class)
-    public void crearArmaDeAsedioLanzaExcepcionSiCasilleroEstaOcupado() throws casilleroEstaOcupado, superaLimitePoblacional
+    public void crearArmaDeAsedioLanzaExcepcionSiCasilleroEstaOcupado() throws casilleroEstaOcupado, SuperaLimitePoblacional
     {
         castillo.crearArmaDeAsedio();
         castillo.crearArmaDeAsedio(); //como el arma de asedio no se movio la
@@ -50,14 +50,14 @@ public class CastilloTest
     }
 
     @Test
-    public void tieneArmaDeAsedio() throws casilleroEstaOcupado,superaLimitePoblacional
+    public void tieneArmaDeAsedio() throws casilleroEstaOcupado, SuperaLimitePoblacional
     {
         castillo.crearArmaDeAsedio();
         Assert.assertTrue(castillo.tieneArmaDeAsedio());
     }
 
     @Test
-    public void atacaUnidadesCircundantes() throws cajaEstaOcupada, casilleroInvalido, tamanioDeMapaInvalido, casilleroEstaOcupado, superaLimitePoblacional
+    public void atacaUnidadesCircundantes() throws cajaEstaOcupada, casilleroInvalido, tamanioDeMapaInvalido, casilleroEstaOcupado, SuperaLimitePoblacional
     {
     	Jugador unJugador = new Jugador();  
     	Aldeano unAldeano1 = new Aldeano(4, 4, this.mapa, unJugador);
@@ -72,7 +72,7 @@ public class CastilloTest
     }
     
     @Test 
-    public void atacaUnidadesCircundantesMultiplesVeces() throws cajaEstaOcupada, casilleroInvalido, tamanioDeMapaInvalido, casilleroEstaOcupado, superaLimitePoblacional
+    public void atacaUnidadesCircundantesMultiplesVeces() throws cajaEstaOcupada, casilleroInvalido, tamanioDeMapaInvalido, casilleroEstaOcupado, SuperaLimitePoblacional
     {
     	Jugador unJugador = new Jugador();  
     	Aldeano unAldeano1 = new Aldeano(4, 4, this.mapa, unJugador);
@@ -88,7 +88,7 @@ public class CastilloTest
     }
     
     @Test
-    public void noAtacaUnidadCircundanteAliada () throws cajaEstaOcupada, casilleroInvalido, tamanioDeMapaInvalido, casilleroEstaOcupado, superaLimitePoblacional
+    public void noAtacaUnidadCircundanteAliada () throws cajaEstaOcupada, casilleroInvalido, tamanioDeMapaInvalido, casilleroEstaOcupado, SuperaLimitePoblacional
     {
     	
     	// Se crea un aldeano aliado
@@ -100,7 +100,7 @@ public class CastilloTest
     }
     
     @Test
-    public void noAtacaUnidadesCircundantesAliadas () throws cajaEstaOcupada, casilleroInvalido, tamanioDeMapaInvalido, casilleroEstaOcupado, superaLimitePoblacional
+    public void noAtacaUnidadesCircundantesAliadas () throws cajaEstaOcupada, casilleroInvalido, tamanioDeMapaInvalido, casilleroEstaOcupado, SuperaLimitePoblacional
     {
     	
     	// Se crea un aldeano aliado
@@ -114,7 +114,7 @@ public class CastilloTest
     }
     
     @Test
-    public void atacaUnidadesCircundantesVerticalmente() throws cajaEstaOcupada, casilleroInvalido, tamanioDeMapaInvalido, casilleroEstaOcupado, superaLimitePoblacional
+    public void atacaUnidadesCircundantesVerticalmente() throws cajaEstaOcupada, casilleroInvalido, tamanioDeMapaInvalido, casilleroEstaOcupado, SuperaLimitePoblacional
     {
     	Jugador unJugador = new Jugador();  
     	Aldeano unAldeano1 = new Aldeano(4, 4, this.mapa, unJugador);
@@ -131,7 +131,7 @@ public class CastilloTest
     }
     
     @Test
-    public void atacaUnidadesCircundantesHorizontalmente() throws cajaEstaOcupada, casilleroInvalido, tamanioDeMapaInvalido, casilleroEstaOcupado, superaLimitePoblacional
+    public void atacaUnidadesCircundantesHorizontalmente() throws cajaEstaOcupada, casilleroInvalido, tamanioDeMapaInvalido, casilleroEstaOcupado, SuperaLimitePoblacional
     {
     	Jugador unJugador = new Jugador();  
     	Aldeano unAldeano1 = new Aldeano(4, 4, this.mapa, unJugador);

@@ -2,7 +2,7 @@ package edificios;
 
 import java.util.ArrayList;
 
-import excepciones.superaLimitePoblacional;
+import excepciones.SuperaLimitePoblacional;
 import mapa.*;
 import mapa.excepcionesMapa.*;
 import unidades.*;
@@ -39,7 +39,7 @@ public class Cuartel extends Edificio
 	}
 	
 	public Cuartel(Casillero casilleroInicial, Mapa mapa, Jugador jugador) throws casilleroInvalido, cajaEstaOcupada,
-																					superaLimitePoblacional
+            SuperaLimitePoblacional
 	{
 		
 		super(casilleroInicial, mapa, jugador);
@@ -57,13 +57,13 @@ public class Cuartel extends Edificio
 	}
 
 	
-	public void crearEspadachin() throws casilleroEstaOcupado, superaLimitePoblacional {
+	public void crearEspadachin() throws casilleroEstaOcupado, SuperaLimitePoblacional {
 		
 		Espadachin unEspadachin = new Espadachin(puntoRally,this.jugador);
 		this.espadachines.add(unEspadachin);
 	}
 
-	public void crearEspadachin(Mapa mapa) throws casilleroEstaOcupado, superaLimitePoblacional {
+	public void crearEspadachin(Mapa mapa) throws casilleroEstaOcupado, SuperaLimitePoblacional {
 		
 		this.settearPuntoRally(mapa);
 		Espadachin unEspadachin = new Espadachin(puntoRally,this.jugador);
@@ -71,13 +71,13 @@ public class Cuartel extends Edificio
 	}
 
 	
-	public void crearArquero() throws casilleroEstaOcupado, superaLimitePoblacional {
+	public void crearArquero() throws casilleroEstaOcupado, SuperaLimitePoblacional {
 		
 		Arquero unArquero = new Arquero(puntoRally,this.jugador);
 		this.arqueros.add(unArquero);
 	}
 	
-	public void crearArquero(Mapa mapa) throws casilleroEstaOcupado, superaLimitePoblacional {
+	public void crearArquero(Mapa mapa) throws casilleroEstaOcupado, SuperaLimitePoblacional {
 		
 		this.settearPuntoRally(mapa);
 		

@@ -2,11 +2,9 @@ package edificios;
 
 import juego.Jugador;
 import mapa.excepcionesMapa.cajaEstaOcupada;
-import mapa.excepcionesMapa.casilleroEstaOcupado;
 import mapa.excepcionesMapa.casilleroInvalido;
 import unidades.Entidad;
 import mapa.*;
-import excepciones.superaLimitePoblacional;
 
 import java.util.ArrayList;
 
