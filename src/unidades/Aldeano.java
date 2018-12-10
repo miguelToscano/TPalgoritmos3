@@ -84,7 +84,7 @@ public class Aldeano extends Unidad
 		}
 		if(!cajaPegadaAAldeano)
 		{
-			throw new CajaNoEstaPegadaAAldeano();
+			throw new CajaNoEstaPegadaAAldeano("El aldeano debe limitar con el edificio que se desea construir");
 		}
 
 
@@ -119,7 +119,7 @@ public class Aldeano extends Unidad
 		}
 		if(!cajaPegadaAAldeano)
 		{
-			throw new CajaNoEstaPegadaAAldeano();
+			throw new CajaNoEstaPegadaAAldeano("El aldeano debe limitar con el edificio que se desea construir");
 		}
 
 		this.turno.assertDisponibilidad();
