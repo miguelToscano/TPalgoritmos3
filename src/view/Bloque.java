@@ -607,10 +607,14 @@ public class Bloque extends StackPane {
 			
 			if (entidad != null && !entidadesYaEjecutadas.contains(entidad)) {
 				
-				entidadesYaEjecutadas.add(entidad);
-				entidad.ejecutarLogicaDeTurno();
+				if (entidad.obtenerJugador() == juego.obtenerGestorDeTurno().obtenerJugadorActual()) {
+					entidadesYaEjecutadas.add(entidad);
+					entidad.ejecutarLogicaDeTurno();
+				}
 			}
 		}
+		
+		bloques.clear();
 		
 		
 	}

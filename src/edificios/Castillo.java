@@ -46,6 +46,7 @@ public class Castillo extends Edificio
 	@Override
 	public void ejecutarLogicaDeTurno() {
 		System.out.println("Soy un castillo");
+		this.atacarCircundantes();
 	}
 
 	public boolean tieneArmaDeAsedio()
