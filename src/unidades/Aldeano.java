@@ -18,6 +18,7 @@ public class Aldeano extends Unidad
     //Sin parametros
     public Aldeano()
     {
+    	super();
         this.costo = 25;
         this.trabajando = true;
         this.vida  =50;
@@ -39,7 +40,6 @@ public class Aldeano extends Unidad
 		this.trabajando = false;
 		this.vida = 50;
 		this.jugador = jugador;
-		this.jugador.aumentarPoblacion(1);
 	}
 	
 	@Override
@@ -66,7 +66,6 @@ public class Aldeano extends Unidad
 			this.trabajando = false;
 			this.vida = 50;
 			this.jugador = jugador;
-//			this.jugador.aumentarPoblacion(1);
 			this.jugador.agregarAldeano(this);
 		
 	}
@@ -87,7 +86,10 @@ public class Aldeano extends Unidad
 			throw new CajaNoEstaPegadaAAldeano();
 		}
 
-
+		PlazaCentral auxiliar = new PlazaCentral();
+		
+		this.jugador.cobrarOro(auxiliar.getCosto());
+		
 		this.turno.assertDisponibilidad();
 		turnosConstruyendo++;
 		trabajando=true;
@@ -107,7 +109,7 @@ public class Aldeano extends Unidad
 	}
 	
 	public void construirCuartel(Casillero casillero, Mapa mapa,Jugador jugador) throws casilleroInvalido, cajaEstaOcupada, CajaNoEstaPegadaAAldeano, PiezaDeshabilitadaEnTurno
-    {
+    {	
     	Caja caja = mapa.asignarCajaACasillero(casillero);
 		boolean cajaPegadaAAldeano=false;
 		for(int i=0;i<mapa.obtenerCasillerosCircundantes(caja).size();i++)
@@ -122,6 +124,10 @@ public class Aldeano extends Unidad
 			throw new CajaNoEstaPegadaAAldeano();
 		}
 
+		Cuartel auxiliar = new Cuartel();
+		
+		this.jugador.cobrarOro(auxiliar.getCosto());
+		
 		this.turno.assertDisponibilidad();
 		turnosConstruyendo++;
 		trabajando=true;

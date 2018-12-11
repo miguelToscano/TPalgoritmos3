@@ -60,6 +60,9 @@ public class ContenedorBotonesMenuInicial {
 			} catch (casilleroEstaOcupado e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
+			} catch (NoHaySuficienteOro e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
 		});
 
@@ -92,11 +95,14 @@ public class ContenedorBotonesMenuInicial {
 		return this.botones;
 	}
 	
-	public Parent iniciarPartida(Stage ventana, String nombreJugador1, String nombreJugador2) throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, SuperaLimitePoblacional, casilleroEstaOcupado {
+	public Parent iniciarPartida(Stage ventana, String nombreJugador1, String nombreJugador2) throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, SuperaLimitePoblacional, casilleroEstaOcupado, NoHaySuficienteOro {
 		
 		Jugador jugador1 = new Jugador(nombreJugador1);
 		Jugador jugador2 = new Jugador(nombreJugador2);
 		Juego juego = new Juego(jugador1, jugador2, 15, 15);
+		System.out.println("El problema no es el constructor");
+		
+		Bloque auxiliar = null;
 		
 		int width = 600;
 		int height = 600;
@@ -105,8 +111,8 @@ public class ContenedorBotonesMenuInicial {
 		tablero.setPrefSize(width, height + 50);
 		
 		ContenedorStatsJugadores statsJugadores = new ContenedorStatsJugadores(juego, jugador1, jugador2, width, height);
-		ContenedorInformacionJuego informacionJuego = new ContenedorInformacionJuego(juego, jugador1, jugador2, width, height);
 		ContenedorBloques bloques = new ContenedorBloques(ventana, juego, tablero, width, height);
+		ContenedorInformacionJuego informacionJuego = new ContenedorInformacionJuego(juego, jugador1, jugador2, width, height, bloques.obtenerBloques().get(0));
 		ContenedorBackgroundTablero backgroundTablero = new ContenedorBackgroundTablero(width, height);
 		
 		tablero.getChildren().addAll(statsJugadores.obtenerStatsJugadores());

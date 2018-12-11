@@ -4,6 +4,7 @@ package edificios;
 import org.junit.Before;
 import org.junit.Test;
 
+import excepciones.NoHaySuficienteOro;
 import excepciones.SuperaLimitePoblacional;
 import juego.Jugador;
 import junit.framework.Assert;
@@ -42,7 +43,7 @@ public class CastilloTest
 
 
     @Test(expected = casilleroEstaOcupado.class)
-    public void crearArmaDeAsedioLanzaExcepcionSiCasilleroEstaOcupado() throws casilleroEstaOcupado, SuperaLimitePoblacional
+    public void crearArmaDeAsedioLanzaExcepcionSiCasilleroEstaOcupado() throws casilleroEstaOcupado, SuperaLimitePoblacional, NoHaySuficienteOro
     {
         castillo.crearArmaDeAsedio();
         castillo.crearArmaDeAsedio(); //como el arma de asedio no se movio la
@@ -50,7 +51,7 @@ public class CastilloTest
     }
 
     @Test
-    public void tieneArmaDeAsedio() throws casilleroEstaOcupado, SuperaLimitePoblacional
+    public void tieneArmaDeAsedio() throws casilleroEstaOcupado, SuperaLimitePoblacional, NoHaySuficienteOro
     {
         castillo.crearArmaDeAsedio();
         Assert.assertTrue(castillo.tieneArmaDeAsedio());

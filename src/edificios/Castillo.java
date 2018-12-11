@@ -9,6 +9,7 @@ import unidades.ArmaDeAsedio;
 import unidades.Entidad;
 import unidades.Unidad;
 import juego.*;
+import excepciones.NoHaySuficienteOro;
 import excepciones.SuperaLimitePoblacional;
 
 public class Castillo extends Edificio
@@ -22,8 +23,8 @@ public class Castillo extends Edificio
 	public Castillo (Caja lugarOcupado, Mapa mapa, Jugador jugador) throws cajaEstaOcupada
 
 	{
-		
 		super(lugarOcupado,mapa,jugador);
+		System.out.println("El super constructor esta bien");
 		this.mapa = mapa;
 		this.vidaCompleta= 1000;
 		this.vida= this.vidaCompleta;
@@ -37,8 +38,16 @@ public class Castillo extends Edificio
 
 	}
 
-	public void crearArmaDeAsedio() throws casilleroEstaOcupado, SuperaLimitePoblacional
+	public void crearArmaDeAsedio() throws casilleroEstaOcupado, SuperaLimitePoblacional, NoHaySuficienteOro
     {
+		if (this.jugador.obtenerPoblacion() == 50)
+			throw new SuperaLimitePoblacional();
+		
+		ArmaDeAsedio arma = new ArmaDeAsedio();
+		
+		if (this.getJugador().obtenerOro() < arma.getCosto())
+			throw new NoHaySuficienteOro();
+		
 		ArmaDeAsedio unArmaDeAsedio = new ArmaDeAsedio(puntoRally,this.jugador);
 		this.armasDeAsedio.add(unArmaDeAsedio);
 	}

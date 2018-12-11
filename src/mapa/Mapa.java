@@ -84,21 +84,26 @@ public class Mapa
 
     private void crearCajas()
     {
+    	
         int inicioFilas=0;
         int finFilas=2;
         int inicioColumnas=0;
         int finColumnas = 2;
 
+        
         for(int k=0;k<this.cantidadDeCajas();k++)
         {
+        	
             Caja caja = new Caja(this.tamanioCajas);
             for (int i = inicioFilas; i < finFilas; i++)
             {
+            
                 for (int j = inicioColumnas; j < finColumnas; j++)
                 {
                     caja.referenciarCasillero(this.obtenerFila(i).get(j));
-                }
+                }   
             }
+            
             cajas.add(caja);
             inicioColumnas++;
             finColumnas++;
@@ -115,25 +120,23 @@ public class Mapa
     public void crearCastilloNoroeste(Jugador jugador) throws cajaEstaOcupada, SuperaLimitePoblacional
     {
         Caja caja = new Caja(this.tamanioCastillo);
-        for(int i=0;i<4;i++)
+        for(int i=11;i<15;i++)
         {
-            for(int j=0;j<4;j++)
+            for(int j=4;j<8;j++)
             {
                 caja.referenciarCasillero(this.obtenerFila(i).get(j));
             }
-
         }
         Castillo castilloSuperior = new Castillo(caja,this,jugador);
         jugador.asignarCastillo(castilloSuperior);
-
     }
 
     public void crearCastilloSureste(Jugador jugador) throws cajaEstaOcupada, SuperaLimitePoblacional
     {
         Caja caja = new Caja(this.tamanioCastillo);
-        for(int i=this.obtenerTamanioFilas()-4;i<this.obtenerTamanioFilas();i++)
+        for(int i=this.obtenerTamanioFilas()-15;i<this.obtenerTamanioFilas()-11;i++)
         {
-            for(int j=this.obtenerTamanioColumnas()-4;j<this.obtenerTamanioColumnas();j++)
+            for(int j=this.obtenerTamanioColumnas()-8;j<this.obtenerTamanioColumnas()-4;j++)
             {
                 caja.referenciarCasillero(this.obtenerFila(i).get(j));
             }
@@ -144,33 +147,23 @@ public class Mapa
     }
 
     //Constructor
-    public Mapa (int filas, int columnas) throws tamanioDeMapaInvalido
+    public Mapa (int filas, int columnas)
     {
-        //El tamanio del mapa es filas x columnas y debe ser >= a 200
-        //filas y columnas deben ser >=8 (tamanio castillo)
-
-        if(filas*columnas<200||filas<8||columnas<8)
-        {
-            throw new tamanioDeMapaInvalido();
-        }
-
-        else
-        {
+    		this.tamanioFilas = columnas;
             this.tamanioColumnas = filas;
-            this.tamanioFilas = columnas;
             this.tamanioCajas = 4;
             this.tamanioCastillo = 16;
 
             this.crearCasilleros();
             this.crearFilas();
-            this.crearColumnas();
+            this.crearColumnas();        
             this.crearCajas();
-        }
+            
     }
 
     private int cantidadDeCajas()
     {
-        return (this.tamanioFilas-1)*(this.tamanioFilas-1);
+        return (this.tamanioFilas-1)*(this.tamanioColumnas-1);
     }
 
     public ArrayList<Fila>obtenerFilas()
@@ -384,7 +377,7 @@ public class Mapa
             casilleros.add(this.obtenerCasilleroDerecha(cuartoCasillero));
         }
 
-        return casilleros;
+        return casilleros;        
     }
 
 

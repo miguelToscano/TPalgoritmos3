@@ -18,6 +18,8 @@ public abstract class Edificio extends Entidad {
 	
 	protected int velocidadReparacion;
 	
+	public int turnosConstruccion;
+	
 	protected boolean construido=false;
 
 	public Edificio (Caja lugarOcupado, Mapa mapa, Jugador jugador) throws cajaEstaOcupada
@@ -25,6 +27,11 @@ public abstract class Edificio extends Entidad {
         this.jugador = jugador;
         this.ubicarEn(lugarOcupado);
         this.settearPuntoRally(mapa);// ojo que para castillo puede estar en el medio
+	}
+	
+	public Edificio() {
+		
+		
 	}
 
 	public Edificio (Casillero casilleroInicial, Mapa mapa, Jugador jugador) throws casilleroInvalido, cajaEstaOcupada
@@ -52,7 +59,6 @@ public abstract class Edificio extends Entidad {
         {
             if(casillero.estaLibre())
                 this.puntoRally = casillero;
-
         } //AGREGAR EXCEPCION
 		//int puntoRallyFila = mapa.obtenerFilaInt(cajaOcupada.obtenerCasillero(0));
 		//int puntoRallyColumna = mapa.obtenerColumnaInt(cajaOcupada.obtenerCasillero(0))+2;

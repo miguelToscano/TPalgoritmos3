@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import edificios.Castillo;
 import excepciones.HayUnGanador;
+import excepciones.NoHaySuficienteOro;
 import excepciones.SuperaLimitePoblacional;
 import juego.Juego;
 import juego.Jugador;
@@ -23,7 +24,7 @@ public class Juego_ReglasDeFinalizacionTest {
 	    private Juego juego;
 
 	    @Before
-	    public void setUp() throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, SuperaLimitePoblacional, casilleroEstaOcupado {
+	    public void setUp() throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, SuperaLimitePoblacional, casilleroEstaOcupado, NoHaySuficienteOro {
 	        this.jugadorA = new Jugador();
 	        this.jugadorB = new Jugador();
 	        this.juego = new Juego(this.jugadorA, this.jugadorB);

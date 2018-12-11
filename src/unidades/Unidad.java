@@ -54,12 +54,11 @@ public abstract class Unidad extends Entidad
      }
 	
 	//con casillero y jugador
-	public Unidad (Casillero casillero, Jugador jugador)  throws casilleroEstaOcupado, SuperaLimitePoblacional
+	public Unidad (Casillero casillero, Jugador jugador)  throws casilleroEstaOcupado
     {
 		this.ubicarEn(casillero);
 		this.turnosConstruccion = 1;
 		this.jugador = jugador;
-		this.jugador.aumentarPoblacion(1);
     	turno = new Turno();
 
 		this.cantidad++;

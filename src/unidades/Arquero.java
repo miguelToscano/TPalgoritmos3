@@ -20,7 +20,16 @@ public class Arquero extends Militar
 		
 	}
 
-	public Arquero (int fila, int columna, Mapa mapa, Jugador jugador)throws casilleroEstaOcupado, SuperaLimitePoblacional {
+	public Arquero() {
+		super();
+		this.danioAEdificios = 10;
+		this.danioAUnidades = 15;
+		this.radioAtaque = 3;
+		this.vida = 75;
+		this.costo = 75;
+	}
+	
+	public Arquero (int fila, int columna, Mapa mapa, Jugador jugador)throws casilleroEstaOcupado{
 		
 		super (fila, columna, mapa);
 		
@@ -30,7 +39,6 @@ public class Arquero extends Militar
 		this.vida = 75;
 		this.costo = 75;
 		this.jugador = jugador;
-		this.jugador.aumentarPoblacion(1);
 	}
 	
 	@Override
@@ -38,7 +46,7 @@ public class Arquero extends Militar
 		System.out.println("Soy un arquero");
 	}
 	
-	public Arquero (Casillero casillero, Jugador jugador) throws casilleroEstaOcupado, SuperaLimitePoblacional {
+	public Arquero (Casillero casillero, Jugador jugador) throws casilleroEstaOcupado {
 	
 	super (casillero,  jugador);
 	

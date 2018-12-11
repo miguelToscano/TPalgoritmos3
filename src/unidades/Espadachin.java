@@ -19,7 +19,16 @@ public class Espadachin extends Militar {
         this.radioAtaque = 1;	
 }
 
-	public Espadachin (int fila, int columna, Mapa mapa, Jugador jugador) throws casilleroEstaOcupado, SuperaLimitePoblacional {
+	public Espadachin() {
+		super();
+		this.costo = 50;
+        this.vida = 100;
+        this.danioAUnidades = 25;
+        this.danioAEdificios = 15;
+        this.radioAtaque = 1;
+	}
+	
+	public Espadachin (int fila, int columna, Mapa mapa, Jugador jugador) throws casilleroEstaOcupado {
 		
 		super (fila, columna, mapa);
 		this.costo = 50;
@@ -28,7 +37,6 @@ public class Espadachin extends Militar {
         this.danioAEdificios = 15;
         this.radioAtaque = 1;
         this.jugador = jugador;
-        this.jugador.aumentarPoblacion(1);
 	}
 	
 	@Override
@@ -36,7 +44,7 @@ public class Espadachin extends Militar {
 		System.out.println("Soy un espadachin");
 	}
 	
-	public Espadachin (Casillero casillero, Jugador jugador) throws casilleroEstaOcupado, SuperaLimitePoblacional
+	public Espadachin (Casillero casillero, Jugador jugador) throws casilleroEstaOcupado
 	{
 	
 		super (casillero,jugador);
@@ -45,7 +53,6 @@ public class Espadachin extends Militar {
         this.danioAUnidades = 25;
         this.danioAEdificios = 15;
         this.radioAtaque = 1;
-		
 }
 
 	public void atacar() {

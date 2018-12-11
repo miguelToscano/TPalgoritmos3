@@ -41,45 +41,45 @@ public class ContenedorStatsJugadores extends HBox {
 		
 		this.elementos = new ArrayList<Node>();
 		
-		Label nombreJugador1 = new Label(jugador1.obtenerNombre());
-		nombreJugador1.setTranslateX(10);
-		nombreJugador1.setTranslateY(height);
-		
-		elementos.add(nombreJugador1);
-		
-		Label oroJugador1 = new Label();
-		oroJugador1.setTranslateX(10);
-		oroJugador1.setTranslateY(height + 15);
-		oroJugador1.setText("Oro: " + jugador1.obtenerOro());
-		
-		elementos.add(oroJugador1);
-		
-		Label poblacionJugador1 = new Label();
-		poblacionJugador1.setTranslateX(10);
-		poblacionJugador1.setTranslateY(height + 30);
-		poblacionJugador1.setText("Poblacion: " + jugador1.obtenerPoblacion());
-
-		elementos.add(poblacionJugador1);
-		
 		Label nombreJugador2 = new Label(jugador2.obtenerNombre());
-		nombreJugador2.setTranslateX(width - 80);
+		nombreJugador2.setTranslateX(10);
 		nombreJugador2.setTranslateY(height);
 		
 		elementos.add(nombreJugador2);
 		
 		Label oroJugador2 = new Label();
-		oroJugador2.setTranslateX(width - 80);
+		oroJugador2.setTranslateX(10);
 		oroJugador2.setTranslateY(height + 15);
 		oroJugador2.setText("Oro: " + jugador2.obtenerOro());
 		
 		elementos.add(oroJugador2);
 		
 		Label poblacionJugador2 = new Label();
-		poblacionJugador2.setTranslateX(width - 80);
+		poblacionJugador2.setTranslateX(10);
 		poblacionJugador2.setTranslateY(height + 30);
 		poblacionJugador2.setText("Poblacion: " + jugador2.obtenerPoblacion());
-			
+
 		elementos.add(poblacionJugador2);
+		
+		Label nombreJugador1 = new Label(jugador1.obtenerNombre());
+		nombreJugador1.setTranslateX(width - 80);
+		nombreJugador1.setTranslateY(height);
+		
+		elementos.add(nombreJugador1);
+		
+		Label oroJugador1 = new Label();
+		oroJugador1.setTranslateX(width - 80);
+		oroJugador1.setTranslateY(height + 15);
+		oroJugador1.setText("Oro: " + jugador1.obtenerOro());
+		
+		elementos.add(oroJugador1);
+		
+		Label poblacionJugador1 = new Label();
+		poblacionJugador1.setTranslateX(width - 80);
+		poblacionJugador1.setTranslateY(height + 30);
+		poblacionJugador1.setText("Poblacion: " + jugador1.obtenerPoblacion());
+			
+		elementos.add(poblacionJugador1);
 		
 		Button pasarTurno = new Button("Pasar turno");
 		pasarTurno.setTranslateX(width/2 - 45);

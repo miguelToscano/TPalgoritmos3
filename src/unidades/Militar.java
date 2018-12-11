@@ -22,9 +22,13 @@ public abstract class Militar extends Unidad
 		super (fila, columna, mapa);
     }
 	
-    public Militar (Casillero casillero, Jugador jugador ) throws casilleroEstaOcupado, SuperaLimitePoblacional {
+    public Militar (Casillero casillero, Jugador jugador ) throws casilleroEstaOcupado {
     	
     	super (casillero,jugador);
+    }
+    
+    public Militar() {
+    	super();
     }
     
     public abstract void ejecutarLogicaDeTurno();

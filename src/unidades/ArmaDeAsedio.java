@@ -26,6 +26,14 @@ public class ArmaDeAsedio extends Militar {
 		System.out.println("Soy un arma de asedio");
 	}
 	
+	public ArmaDeAsedio() {
+		super();
+		this.montada = false;
+		this.vida = 150;
+		this.radioAtaque = 5;
+		this.danioAEdificios = 75;
+	}
+	
 	public ArmaDeAsedio (int fila, int columna, Mapa mapa, Jugador jugador) throws casilleroEstaOcupado, SuperaLimitePoblacional {
 		
 		super (fila, columna, mapa);
@@ -35,7 +43,6 @@ public class ArmaDeAsedio extends Militar {
 		this.radioAtaque = 5;
 		this.danioAEdificios = 75;
 		this.jugador = jugador;
-		this.jugador.aumentarPoblacion(1);
 }
 
 	public ArmaDeAsedio (Casillero casillero, Jugador jugador) throws casilleroEstaOcupado, SuperaLimitePoblacional {

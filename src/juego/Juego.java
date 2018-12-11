@@ -3,6 +3,7 @@ import edificios.PlazaCentral;
 import mapa.*;
 import mapa.excepcionesMapa.*;
 import excepciones.HayUnGanador;
+import excepciones.NoHaySuficienteOro;
 import excepciones.SuperaLimitePoblacional;
 
 public class Juego
@@ -13,10 +14,12 @@ public class Juego
     private static int turno;
     private GestorDeTurno gestor=null;
     
-    public Juego(Jugador jugadorA, Jugador jugadorB) throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, SuperaLimitePoblacional, casilleroEstaOcupado
+    public Juego(Jugador jugadorA, Jugador jugadorB) throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, SuperaLimitePoblacional, casilleroEstaOcupado, NoHaySuficienteOro
     {
         this.jugadorA = jugadorA;
         this.jugadorB = jugadorB;
+        this.jugadorA.sumarOro(75);
+        this.jugadorB.sumarOro(75);
         jugadorA.setJuego(this);
         jugadorB.setJuego(this);
         this.mapa = new Mapa(15,15);
@@ -34,8 +37,6 @@ public class Juego
     	return this.jugadorB;
     }
     
-
-
     public void aumentarTurno()
     {
         this.turno++;
@@ -55,19 +56,21 @@ public class Juego
        this.mapa.crearCastilloSureste(jugadorB);
     }
 
-    public void crearPlazas() throws casilleroInvalido, cajaEstaOcupada, SuperaLimitePoblacional, casilleroEstaOcupado
+    public void crearPlazas() throws casilleroInvalido, cajaEstaOcupada, SuperaLimitePoblacional, casilleroEstaOcupado, NoHaySuficienteOro
     //se crean en las otras dos esquinas
     {
         //Plaza central de jugadorA se crea en la esquina suroeste
         Casillero casilleroJugadorA = this.mapa.obtenerCasillero(this.mapa.obtenerTamanioFilas()-2,0);
         PlazaCentral plazaJugadorA = new PlazaCentral(casilleroJugadorA,this.mapa,jugadorA);
+        plazaJugadorA.setearEstaConstruido(true);
         jugadorA.agregarPlazaCentral(plazaJugadorA);
 
         //Plaza central de jugadorB se crea en la esquina noreste
         Casillero casilleroJugadorB = this.mapa.obtenerCasillero(0,this.mapa.obtenerTamanioColumnas()-2);
         PlazaCentral plazaJugadorB = new PlazaCentral(casilleroJugadorB,this.mapa,jugadorB);
+        plazaJugadorB.setearEstaConstruido(true);
         jugadorB.agregarPlazaCentral(plazaJugadorB);
-
+        
         //Las plazas de cada jugador crean 3 aldeanos cada una
         for(int i=0;i<3;i++)
         {
@@ -91,16 +94,23 @@ public class Juego
         return this.mapa;
     }
     
-    public Juego(Jugador jugadorA, Jugador jugadorB, int filas, int columnas) throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, SuperaLimitePoblacional, casilleroEstaOcupado
+    public Juego(Jugador jugadorA, Jugador jugadorB, int filas, int columnas) throws tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, SuperaLimitePoblacional, casilleroEstaOcupado, NoHaySuficienteOro
     {
         this.jugadorA = jugadorA;
         this.jugadorB = jugadorB;
         jugadorA.setJuego(this);
         jugadorB.setJuego(this);
         this.mapa = new Mapa(filas,columnas);
+        System.out.println("El problema no es la creacion del mapa");
+        this.jugadorA.sumarOro(75);
+        this.jugadorB.sumarOro(75);
+        System.out.println("Suma bien los oros");
         this.crearCastillos();
+        System.out.println("Crea bien los casitllos");
         this.crearPlazas();
+        System.out.println("Crea bien las plazas");
         this.turno = 0;
         this.gestor= new GestorDeTurno(jugadorA, jugadorB, 1);
+        System.out.println("Sale de la creacion del juego");
     }
 }

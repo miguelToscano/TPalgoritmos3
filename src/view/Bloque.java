@@ -40,7 +40,6 @@ public class Bloque extends StackPane {
 	int width;
 	int height;
 	Stage ventana;
-	Button pasarTurno;
 	
 	public Bloque(Stage ventana, Juego juego, Pane mapa, Entidad entidadActual, int fila, int columna, ContenedorBloques contenedor, int width, int height) {
 		
@@ -61,6 +60,7 @@ public class Bloque extends StackPane {
 		getChildren().addAll(bordes);
 	
 		this.setOnMouseClicked(e -> {
+			
 			System.out.println("Fila: " + this.fila + " Columna: " + this.columna);
 			if (this.entidadActual instanceof Aldeano)
 				System.out.println("Aldeano");
@@ -69,8 +69,7 @@ public class Bloque extends StackPane {
 			else if (this.entidadActual instanceof PlazaCentral)
 				System.out.println("Plaza central");
 			
-			this.establecerAcciones(mapa, this);
-			
+				this.establecerAcciones(mapa, this);
 		});
 	}
 	
@@ -103,17 +102,30 @@ public class Bloque extends StackPane {
 		
 		else if (entidadActual instanceof PlazaCentral && !entidadesYaDibujadas.contains(entidadActual)) {
 			
-			String imagenPath = "PlazaCentral";
+			PlazaCentral auxiliar =  (PlazaCentral) entidadActual;
 			
-			if (entidadActual.obtenerJugador() == juego.obtenerJugador1())
-				imagenPath += "Jugador1.jpg";
-			else
-				imagenPath += "Jugador2.jpg";
-			
-			Image img = new Image(imagenPath);
-			bordes.setFill(new ImagePattern(img));
-			bordes.setWidth(40 * 2);
-			bordes.setHeight(40 * 2);
+			if (auxiliar.estaConstruido()) {
+				
+				String imagenPath = "PlazaCentral";
+				
+				if (entidadActual.obtenerJugador() == juego.obtenerJugador1())
+					imagenPath += "Jugador1.jpg";
+				else
+					imagenPath += "Jugador2.jpg";
+				
+				Image img = new Image(imagenPath);
+				bordes.setFill(new ImagePattern(img));
+				bordes.setWidth(40 * 2);
+				bordes.setHeight(40 * 2);
+			}
+				
+			else {
+
+				Image img = new Image("construccion.jpg");
+				bordes.setFill(new ImagePattern(img));
+				bordes.setWidth(40 * 2);
+				bordes.setHeight(40 * 2);
+			}
 		}
 		
 		else if (entidadActual instanceof Arquero) {
@@ -163,26 +175,30 @@ public class Bloque extends StackPane {
 		
 		else if (entidadActual instanceof Cuartel && !entidadesYaDibujadas.contains(entidadActual)) {
 			
-			Edificio edificio = (Edificio) entidadActual;
+			Cuartel auxiliar =  (Cuartel) entidadActual;
 			
-			String imagenPath = "cuartel";
-			
-			if (entidadActual.obtenerJugador() == juego.obtenerJugador1())
-				imagenPath += "Jugador1.jpg";
-			else
-				imagenPath += "Jugador2.jpg";
-			
-			edificio.setEstaConstruido(true);
-	
-//			if (!edificio.estaConstruido()) 
-//				imagenPath = "construccion.jpg";
-//			else
-//				imagenPath = "cuartel.jpg";
-			
-			Image img = new Image(imagenPath);
-			bordes.setFill(new ImagePattern(img));
-			bordes.setWidth(40 * 2);
-			bordes.setHeight(40 * 2);
+			if (auxiliar.estaConstruido()) {
+				
+				String imagenPath = "cuartel";
+				
+				if (entidadActual.obtenerJugador() == juego.obtenerJugador1())
+					imagenPath += "Jugador1.jpg";
+				else
+					imagenPath += "Jugador2.jpg";
+				
+				Image img = new Image(imagenPath);
+				bordes.setFill(new ImagePattern(img));
+				bordes.setWidth(40 * 2);
+				bordes.setHeight(40 * 2);
+			}
+				
+			else {
+
+				Image img = new Image("construccion.jpg");
+				bordes.setFill(new ImagePattern(img));
+				bordes.setWidth(40 * 2);
+				bordes.setHeight(40 * 2);
+			}
 		}
 		
 		else {
@@ -191,7 +207,12 @@ public class Bloque extends StackPane {
 		}
 	}
 	
+	public void establecerEntidadActual(Entidad nuevaEntidad) {
+		this.entidadActual = null;
+	}
+	
 	private void establecerAcciones(Pane mapa, Bloque bloque) {
+		
 		if (this.entidadActual instanceof Aldeano) {
 			this.acciones = new ContextMenu();
 			MenuItem equipo = new MenuItem("Equipo: " + this.entidadActual.obtenerJugador().obtenerNombre());
@@ -206,6 +227,7 @@ public class Bloque extends StackPane {
 			this.acciones.setStyle("-fx-base: black");
 			acciones.getItems().addAll(equipo, vida, mover, construir, cancelar);
 			this.acciones.show(mapa, this.fila * 40 + 15, this.columna * 40 + 15);
+			
 			mover.setOnAction(e -> {
 				this.mapa.setOnMouseClicked(event -> {
 					double x = event.getX();
@@ -228,20 +250,14 @@ public class Bloque extends StackPane {
 						}
 					}
 					y = yAux;
-					
-					System.out.println("x: " + x + " y: " + y);
 					Unidad unidadActual =(Unidad) bloque.obtenerEntidadActual();
 					try {
 						unidadActual.mover(this.juego.getMapa().obtenerCasillero((int) xAux / 40, (int) yAux / 40));
-						if (unidadActual instanceof Aldeano) {
-							((Aldeano) unidadActual).recolectarOro();
-						}
 					} catch (MovimientoInvalido | casilleroEstaOcupado | NoEsElTurnoDelJugador
 							| PiezaDeshabilitadaEnTurno e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					this.ejecutarLogicaDeTurno(this.juego, this.contenedor);
 					this.actualizarPantalla(ventana, juego, mapa, fila, columna, contenedor, width, height);
 					this.mapa.setOnMouseClicked(event2 -> {
 						
@@ -262,7 +278,7 @@ public class Bloque extends StackPane {
 				construibles.setStyle("-fx-base: black");
 				construibles.getItems().addAll(construirPlazaCentral, construirCuartel, cancelar2);
 				construibles.show(mapa, this.fila * 40 + 15, this.columna * 40 + 15);
-				
+			
 				construirPlazaCentral.setOnAction(event1 -> {
 					this.mapa.setOnMouseClicked(event2 -> {
 						double x = event2.getX();
@@ -287,13 +303,16 @@ public class Bloque extends StackPane {
 						y = (int) yAux;
 						
 						System.out.println("x: " + x + " y: " + y);
-						try {
-							PlazaCentral nuevaPlaza = new PlazaCentral(this.juego.getMapa().obtenerCasillero((int) x / 40, (int) y / 40), this.juego.getMapa(), this.entidadActual.obtenerJugador());
-							this.entidadActual.obtenerJugador().cobrarOro(nuevaPlaza.getCosto());
-						} catch (casilleroInvalido | cajaEstaOcupada e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
+			
+							Aldeano aldeano = (Aldeano) this.entidadActual;
+							try {
+								aldeano.construirPlazaCentral(this.juego.getMapa().obtenerCasillero((int) x / 40, (int) y / 40), this.juego.getMapa(), this.entidadActual.obtenerJugador());
+							} catch (CajaNoEstaPegadaAAldeano | cajaEstaOcupada | casilleroInvalido
+									| PiezaDeshabilitadaEnTurno e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						
 						this.actualizarPantalla(ventana, juego, this.mapa, fila, columna, contenedor, width, height);
 						this.mapa.setOnMouseClicked(event3 -> {
 							
@@ -326,10 +345,11 @@ public class Bloque extends StackPane {
 						
 						System.out.println("x: " + x + " y: " + y);
 					
+						Aldeano aldeano = (Aldeano) this.entidadActual;
 						try {
-							Cuartel nuevoCuartel = new Cuartel(this.juego.getMapa().obtenerCasillero((int) x / 40, (int) y / 40), this.juego.getMapa(), this.entidadActual.obtenerJugador());
-							this.entidadActual.obtenerJugador().cobrarOro(nuevoCuartel.getCosto());
-						} catch (casilleroInvalido | cajaEstaOcupada | SuperaLimitePoblacional e1) {
+							aldeano.construirCuartel(this.juego.getMapa().obtenerCasillero((int) x / 40, (int) y / 40), this.juego.getMapa(), this.entidadActual.obtenerJugador());
+						} catch (CajaNoEstaPegadaAAldeano | cajaEstaOcupada | casilleroInvalido
+								| PiezaDeshabilitadaEnTurno e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
@@ -474,7 +494,7 @@ public class Bloque extends StackPane {
 				
 				try {
 					plaza.crearAldeano(this.juego.getMapa());
-				} catch (casilleroEstaOcupado | SuperaLimitePoblacional e) {
+				} catch (casilleroEstaOcupado | SuperaLimitePoblacional | NoHaySuficienteOro e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -508,7 +528,7 @@ public class Bloque extends StackPane {
 				
 				try {
 					cuartel.crearArquero(this.juego.getMapa());
-				} catch (casilleroEstaOcupado | SuperaLimitePoblacional e) {
+				} catch (casilleroEstaOcupado | SuperaLimitePoblacional | NoHaySuficienteOro e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -522,7 +542,7 @@ public class Bloque extends StackPane {
 				
 				try {
 					cuartel.crearEspadachin(this.juego.getMapa());
-				} catch (casilleroEstaOcupado | SuperaLimitePoblacional e) {
+				} catch (casilleroEstaOcupado | SuperaLimitePoblacional | NoHaySuficienteOro e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -530,8 +550,8 @@ public class Bloque extends StackPane {
 				this.actualizarPantalla(ventana, juego, mapa, fila, columna, contenedor, width, height);
 			});
 		}
-		
-	}
+		}
+	
 	
 	private void establecerUnidadActual(Entidad nuevaEntidad) {
 		this.entidadActual = nuevaEntidad;
@@ -567,8 +587,7 @@ public class Bloque extends StackPane {
 						if (!(bloqueAuxiliar.obtenerEntidadActual() instanceof Unidad)
 								&& !(bloqueAuxiliar.obtenerEntidadActual() instanceof Edificio)
 								&& bloqueAuxiliar.obtenerEntidadActual() != bloqueActual.obtenerEntidadActual()) {
-							bloquesDisponibles.add(bloqueAuxiliar);
-							
+							bloquesDisponibles.add(bloqueAuxiliar);						
 						}
 					}
 				}
@@ -589,12 +608,18 @@ public class Bloque extends StackPane {
 			
 			Entidad entidad = bloques.get(i).obtenerEntidadActual();
 			
-			if (entidad != null && !entidadesYaEjecutadas.contains(entidad)) {
+			if (entidad != null && !entidadesYaEjecutadas.contains(entidad) && entidad.obtenerJugador() == juego.obtenerGestorDeTurno().obtenerJugadorActual()) {
 				
-				if (entidad.obtenerJugador() == juego.obtenerGestorDeTurno().obtenerJugadorActual()) {
-					entidadesYaEjecutadas.add(entidad);
-					entidad.ejecutarLogicaDeTurno();
+				if (entidad instanceof Unidad) {
+					Unidad auxiliar = (Unidad) entidad;
+					auxiliar.habilitar();
+					if (auxiliar.getVida() <= 0)
+						this.establecerEntidadActual(null);
 				}
+				
+				entidad.ejecutarLogicaDeTurno();
+				
+				entidadesYaEjecutadas.add(entidad);
 			}
 		}
 		
@@ -602,14 +627,25 @@ public class Bloque extends StackPane {
 		
 		
 	}
+
+	public void actualizarPantalla() {
+		this.actualizarPantalla(ventana, juego, mapa, fila, columna, contenedor, width, height);
+	}
+	
+	public void pasarTurno() throws HayUnGanador {
+		this.juego.obtenerGestorDeTurno().finalizarTurno();
+		this.ejecutarLogicaDeTurno(juego, contenedor);
+		this.actualizarPantalla(ventana, juego, mapa, fila, columna, contenedor, width, height);
+	}
 	
 	private void actualizarPantalla(Stage ventana, Juego juego, Pane mapa, int fila, int columna, ContenedorBloques contenedor, int width, int height) {
 	
 		Pane tableroActualizado = new Pane();
+		Bloque auxiliar = null;
 		
 		ContenedorStatsJugadores statsJugadores = new ContenedorStatsJugadores(juego, juego.obtenerJugador1(), juego.obtenerJugador2(), width, height);
-		ContenedorInformacionJuego informacionJuego = new ContenedorInformacionJuego(juego, juego.obtenerJugador1(), juego.obtenerJugador2(), width, height);
 		ContenedorBloques bloques = new ContenedorBloques(ventana, juego, tableroActualizado, width, height);
+		ContenedorInformacionJuego informacionJuego = new ContenedorInformacionJuego(juego, juego.obtenerJugador1(), juego.obtenerJugador2(), width, height, bloques.obtenerBloques().get(0));
 		ContenedorBackgroundTablero backgroundTablero = new ContenedorBackgroundTablero(width, height);
 
 		tableroActualizado.getChildren().addAll(statsJugadores.obtenerStatsJugadores());

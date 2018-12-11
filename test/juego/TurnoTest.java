@@ -1,6 +1,7 @@
 package juego;
 import org.junit.Before;
 
+import excepciones.NoHaySuficienteOro;
 import excepciones.SuperaLimitePoblacional;
 import mapa.Mapa;
 import mapa.excepcionesMapa.*;
@@ -15,7 +16,7 @@ public class TurnoTest {
 	
 	
 	@Before
-    public void setUp()  throws tamanioDeMapaInvalido, casilleroInvalido,cajaEstaOcupada, SuperaLimitePoblacional, casilleroEstaOcupado
+    public void setUp()  throws tamanioDeMapaInvalido, casilleroInvalido,cajaEstaOcupada, SuperaLimitePoblacional, casilleroEstaOcupado, NoHaySuficienteOro
 	{
 		mapa = new Mapa(15 , 15);
 		p1 = new Jugador();

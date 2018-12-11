@@ -38,7 +38,7 @@ public class ContenedorInformacionJuego {
 	
 	private ArrayList<Node> elementos;
 	
-	public ContenedorInformacionJuego(Juego juego, Jugador jugador1, Jugador jugador2, int width, int height) {
+	public ContenedorInformacionJuego(Juego juego, Jugador jugador1, Jugador jugador2, int width, int height, Bloque auxiliar) {
 		
 		this.elementos = new ArrayList<Node>();
 		
@@ -53,6 +53,15 @@ public class ContenedorInformacionJuego {
 		turno.setTranslateY(height + 15);
 		turno.setText("Turno: " + juego.obtenerGestorDeTurno().obtenerJugadorActual().obtenerNombre());
 	
+		pasarTurno.setOnAction(event -> {
+			try {
+				auxiliar.pasarTurno();
+			} catch (HayUnGanador e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
+		
 		elementos.add(turno);
 	}
 	

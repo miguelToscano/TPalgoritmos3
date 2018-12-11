@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
+import excepciones.NoHaySuficienteOro;
 import excepciones.SuperaLimitePoblacional;
 import juego.Jugador;
 import junit.framework.Assert;
@@ -52,7 +53,7 @@ public class PlazaCentralTest {
 
     @Test
     public void seCreaAldeanoConRallyLibre() throws casilleroInvalido, casilleroEstaOcupado, cajaEstaOcupada,
-                                                    tamanioDeMapaInvalido, SuperaLimitePoblacional
+                                                    tamanioDeMapaInvalido, SuperaLimitePoblacional, NoHaySuficienteOro
     {
         Mapa mapa = new Mapa(15,15);
         Casillero casillero = mapa.obtenerCasillero(3,2);
@@ -69,7 +70,7 @@ public class PlazaCentralTest {
     
    @Test
    public void seReparaEdificio() throws casilleroInvalido, casilleroEstaOcupado, cajaEstaOcupada,
-                                    tamanioDeMapaInvalido, SuperaLimitePoblacional
+                                    tamanioDeMapaInvalido, SuperaLimitePoblacional, NoHaySuficienteOro
    {
         Mapa mapa = new Mapa(15,15);
         Casillero casillero = mapa.obtenerCasillero(1,9);
@@ -121,7 +122,7 @@ public class PlazaCentralTest {
    @Test(expected = casilleroEstaOcupado.class)
    public void intentarCrearAldeanoConRallyPointOcupadoLanzaExcepcion() throws casilleroEstaOcupado,
                                         tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada,
-           SuperaLimitePoblacional
+           SuperaLimitePoblacional, NoHaySuficienteOro
    {
        Mapa mapa = new Mapa(15,15);
        Casillero casillero = mapa.obtenerCasillero(0,0);

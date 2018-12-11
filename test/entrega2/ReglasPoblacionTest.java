@@ -6,6 +6,7 @@ import org.junit.Test;
 import edificios.Castillo;
 import edificios.Cuartel;
 import edificios.PlazaCentral;
+import excepciones.NoHaySuficienteOro;
 import excepciones.SuperaLimitePoblacional;
 import juego.Jugador;
 import mapa.Caja;
@@ -17,7 +18,7 @@ import mapa.excepcionesMapa.tamanioDeMapaInvalido;
 
 public class ReglasPoblacionTest {
 	@Test
-	public void crearUnidadArqueroAumentaPoblacion() throws tamanioDeMapaInvalido, casilleroEstaOcupado, casilleroInvalido, cajaEstaOcupada, SuperaLimitePoblacional {
+	public void crearUnidadArqueroAumentaPoblacion() throws tamanioDeMapaInvalido, casilleroEstaOcupado, casilleroInvalido, cajaEstaOcupada, SuperaLimitePoblacional, NoHaySuficienteOro {
 		Jugador jugador = new Jugador();
 		Mapa mapa = new Mapa(15, 15);
 		Cuartel cuartel = new Cuartel(mapa.obtenerCasillero(1, 1), mapa, jugador);		
@@ -27,7 +28,7 @@ public class ReglasPoblacionTest {
 	}
 	
 	@Test
-	public void crearUnidadEspadachinAumentaPoblacion() throws casilleroEstaOcupado, tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, SuperaLimitePoblacional {
+	public void crearUnidadEspadachinAumentaPoblacion() throws casilleroEstaOcupado, tamanioDeMapaInvalido, casilleroInvalido, cajaEstaOcupada, SuperaLimitePoblacional, NoHaySuficienteOro {
 		
 		Jugador jugador = new Jugador();
 		Mapa mapa = new Mapa(20, 20);
@@ -39,7 +40,7 @@ public class ReglasPoblacionTest {
 	}
 	
 	@Test(expected = SuperaLimitePoblacional.class)
-	public void crearArqueroCuandoSeAlcanzaElLimitePoblacionalArrojaExcepcion() throws casilleroEstaOcupado, SuperaLimitePoblacional, casilleroInvalido, cajaEstaOcupada, tamanioDeMapaInvalido {
+	public void crearArqueroCuandoSeAlcanzaElLimitePoblacionalArrojaExcepcion() throws casilleroEstaOcupado, SuperaLimitePoblacional, casilleroInvalido, cajaEstaOcupada, tamanioDeMapaInvalido, NoHaySuficienteOro {
 		
 		Jugador jugador = new Jugador();
 		Mapa mapa = new Mapa(20, 20);
@@ -49,7 +50,7 @@ public class ReglasPoblacionTest {
 	}
 	
 	@Test(expected = SuperaLimitePoblacional.class)
-	public void crearAldeanoCuandoSeAlcanzaElLimitePoblacionalArrojaExcepcion() throws casilleroEstaOcupado, SuperaLimitePoblacional, casilleroInvalido, cajaEstaOcupada, tamanioDeMapaInvalido {
+	public void crearAldeanoCuandoSeAlcanzaElLimitePoblacionalArrojaExcepcion() throws casilleroEstaOcupado, SuperaLimitePoblacional, casilleroInvalido, cajaEstaOcupada, tamanioDeMapaInvalido, NoHaySuficienteOro {
 		
 		Jugador jugador = new Jugador();
 		Mapa mapa = new Mapa(20, 20);
@@ -59,7 +60,7 @@ public class ReglasPoblacionTest {
 	}
 	
 	@Test(expected = SuperaLimitePoblacional.class)
-	public void crearArmaDeAsedioCuandoSeAlcanzaElLimitePoblacionalArrojaExcepcion() throws casilleroEstaOcupado, SuperaLimitePoblacional, casilleroInvalido, cajaEstaOcupada, tamanioDeMapaInvalido {
+	public void crearArmaDeAsedioCuandoSeAlcanzaElLimitePoblacionalArrojaExcepcion() throws casilleroEstaOcupado, SuperaLimitePoblacional, casilleroInvalido, cajaEstaOcupada, tamanioDeMapaInvalido, NoHaySuficienteOro {
 		
 		Jugador jugador = new Jugador();
 		Mapa mapa = new Mapa(20, 20);
