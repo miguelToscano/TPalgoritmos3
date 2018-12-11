@@ -104,6 +104,35 @@ public class Bloque extends StackPane {
 			bordes.setFill(new ImagePattern(img));
 		}
 		
+		else if (entidadActual instanceof ArmaDeAsedio) {
+			
+			ArmaDeAsedio auxiliar = (ArmaDeAsedio) entidadActual;
+			
+			if (auxiliar.enConstruccion == true) {
+				Image img = new Image("construccion.jpg");
+				bordes.setFill(new ImagePattern(img));
+				bordes.setWidth(40 * 1);
+				bordes.setHeight(40 * 1);
+			}
+			
+			else if (auxiliar.montada == true){
+				
+				String imagenPath = "armaDeAsedioMontada.jpg";			
+				Image img = new Image(imagenPath);
+				bordes.setFill(new ImagePattern(img));
+				bordes.setWidth(40 * 1);
+				bordes.setHeight(40 * 1);
+			}
+			
+			else if (auxiliar.montada == false) {
+				String imagenPath = "armaDeAsedioNoMontada.jpg";			
+				Image img = new Image(imagenPath);
+				bordes.setFill(new ImagePattern(img));
+				bordes.setWidth(40 * 1);
+				bordes.setHeight(40 * 1);
+			}
+		}
+		
 		else if (entidadActual instanceof PlazaCentral && !entidadesYaDibujadas.contains(entidadActual)) {
 			
 			PlazaCentral auxiliar =  (PlazaCentral) entidadActual;
@@ -374,10 +403,12 @@ public class Bloque extends StackPane {
 			
 		}
 		
-		else if (this.entidadActual instanceof Militar) {
+		else if (this.entidadActual instanceof Militar && (this.entidadActual instanceof Espadachin || this.entidadActual instanceof Arquero)) {
 			this.acciones = new ContextMenu();
 			MenuItem equipo = new MenuItem("Equipo: " + this.entidadActual.obtenerJugador().obtenerNombre());
 			MenuItem vida = new MenuItem("Vida: " + this.entidadActual.getVida());
+			MenuItem montar = new MenuItem("Montar");
+			MenuItem desmontar = new MenuItem("Desmontar");
 			MenuItem mover = new MenuItem("Mover");
 			MenuItem atacar = new MenuItem("Atacar");
 			MenuItem cancelar = new MenuItem("Cancelar");
@@ -386,7 +417,8 @@ public class Bloque extends StackPane {
 			this.acciones.setX(this.fila);
 			this.acciones.setY(this.columna);
 			this.acciones.setStyle("-fx-base: black");
-			acciones.getItems().addAll(equipo, vida, mover, atacar, cancelar);
+			acciones.getItems().addAll(equipo, vida, mover, atacar);
+			this.acciones.getItems().add(cancelar);
 			this.acciones.show(mapa, this.fila * 40 + 15, this.columna * 40 + 15);
 			
 			mover.setOnAction(e -> {
@@ -472,9 +504,10 @@ public class Bloque extends StackPane {
 		
 		else if (this.entidadActual instanceof Castillo) {
 			this.acciones = new ContextMenu();
+			ArmaDeAsedio auxiliar = new ArmaDeAsedio();
 			MenuItem equipo = new MenuItem("Equipo: " + this.entidadActual.obtenerJugador().obtenerNombre());
 			MenuItem vida = new MenuItem("Vida: " + this.entidadActual.getVida());
-			MenuItem crearArmaDeAsedio = new MenuItem("Crear Arma de Asedio");
+			MenuItem crearArmaDeAsedio = new MenuItem("Crear Arma de Asedio: " + auxiliar.getCosto() + " oro");
 			MenuItem cancelar = new MenuItem("Cancelar");
 			this.acciones.setAnchorX(this.fila);
 			this.acciones.setAnchorY(this.columna);
@@ -482,6 +515,139 @@ public class Bloque extends StackPane {
 			this.acciones.setY(this.columna);
 			this.acciones.setStyle("-fx-base: black");
 			acciones.getItems().addAll(equipo, vida, crearArmaDeAsedio, cancelar);
+			this.acciones.show(mapa, this.fila * 40 + 15, this.columna * 40 + 15);
+			
+			crearArmaDeAsedio.setOnAction(event -> {
+				
+				Castillo castillo = (Castillo) this.entidadActual;
+				
+				try {
+					castillo.crearArmaDeAsedio(this.juego.getMapa());
+				} catch (casilleroEstaOcupado | SuperaLimitePoblacional | NoHaySuficienteOro e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				this.actualizarPantalla(ventana, juego, mapa, fila, columna, contenedor, width, height);
+			});
+		}
+		
+		else if (this.entidadActual instanceof ArmaDeAsedio) {
+			this.acciones = new ContextMenu();
+			ArmaDeAsedio auxiliar= (ArmaDeAsedio) this.entidadActual;
+			MenuItem equipo = new MenuItem("Equipo: " + this.entidadActual.obtenerJugador().obtenerNombre());
+			MenuItem vida = new MenuItem("Vida: " + this.entidadActual.getVida());
+			this.acciones.setAnchorX(this.fila);
+			this.acciones.setAnchorY(this.columna);
+			this.acciones.setX(this.fila);
+			this.acciones.setY(this.columna);
+			this.acciones.setStyle("-fx-base: black");
+			acciones.getItems().addAll(equipo, vida);
+			
+			if (auxiliar.montada == false) {
+				MenuItem mover = new MenuItem("Mover");
+				MenuItem montar = new MenuItem("Montar");
+				this.acciones.getItems().addAll(mover, montar);
+				
+				montar.setOnAction(event -> {
+					auxiliar.montar();
+					this.actualizarPantalla();
+				});
+				
+				mover.setOnAction(e -> {
+					this.mapa.setOnMouseClicked(event -> {
+						double x = event.getX();
+						double xAux = 0;
+						for (int i = 0; i < this.width / this.juego.getMapa().obtenerTamanioFilas(); i++) {
+							xAux = i * 40;
+							if (xAux > x) {
+								xAux = 40 * (i - 1);
+								break;
+							}
+						}
+						x = xAux;
+						double y = event.getY();
+						double yAux = 0;
+						for (int i = 0; i < this.height / this.juego.getMapa().obtenerTamanioColumnas(); i++) {
+							yAux = i * 40;
+							if (yAux > y) {
+								yAux = 40 * (i - 1);
+								break;
+							}
+						}
+						y = yAux;
+				
+						Unidad unidadActual =(Unidad) bloque.obtenerEntidadActual();
+						try {
+							unidadActual.mover(this.juego.getMapa().obtenerCasillero((int) xAux / 40, (int) yAux / 40));
+						} catch (MovimientoInvalido | casilleroEstaOcupado | NoEsElTurnoDelJugador
+								| PiezaDeshabilitadaEnTurno | DistanciaInvalida e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						this.actualizarPantalla(ventana, juego, mapa, fila, columna, contenedor, width, height);
+						this.mapa.setOnMouseClicked(event2 -> {
+							
+						});
+					});	
+				});
+			}
+			
+			else if (auxiliar.montada == true) {
+				MenuItem atacar = new MenuItem("Atacar");
+				MenuItem desmontar = new MenuItem("Desmontar");
+				this.acciones.getItems().addAll(atacar, desmontar);
+				
+				desmontar.setOnAction(event -> {
+					auxiliar.desmontar();
+					this.actualizarPantalla();
+				});
+				
+				atacar.setOnAction(e -> {
+					this.mapa.setOnMouseClicked(event -> {
+						double x = event.getX();
+						double xAux = 0;
+						for (int i = 0; i < this.width / this.juego.getMapa().obtenerTamanioFilas(); i++) {
+							xAux = i * 40;
+							if (xAux > x) {
+								xAux = 40 * (i - 1);
+								break;
+							}
+						}
+						x = xAux;
+						double y = event.getY();
+						double yAux = 0;
+						for (int i = 0; i < this.height / this.juego.getMapa().obtenerTamanioColumnas(); i++) {
+							yAux = i * 40;
+							if (yAux > y) {
+								yAux = 40 * (i - 1);
+								break;
+							}
+						}
+						y = yAux;
+				
+						Militar unidadActual =(Militar) bloque.obtenerEntidadActual();
+						Casillero casillero = this.juego.getMapa().obtenerCasillero((int) xAux / 40,(int) yAux / 40);
+						Entidad objetivo = casillero.obtenerElemento();
+						
+						try {
+							unidadActual.atacar(objetivo);
+						} catch (FueraDeRango | UnidadAliada | NoEsElTurnoDelJugador | PiezaDeshabilitadaEnTurno | NoEstaMontada e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
+						this.actualizarPantalla(ventana, juego, mapa, fila, columna, contenedor, width, height);
+						this.mapa.setOnMouseClicked(event2 -> {
+							
+						});
+					});	
+				});
+			}
+			
+			MenuItem cancelar = new MenuItem("Cancelar");
+			this.acciones.getItems().add(cancelar);
+			
 			this.acciones.show(mapa, this.fila * 40 + 15, this.columna * 40 + 15);
 		}
 		

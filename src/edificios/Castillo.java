@@ -7,6 +7,7 @@ import mapa.excepcionesMapa.casilleroEstaOcupado;
 import mapa.*;
 import unidades.ArmaDeAsedio;
 import unidades.Entidad;
+import unidades.Espadachin;
 import unidades.Unidad;
 import juego.*;
 import excepciones.NoHaySuficienteOro;
@@ -50,6 +51,25 @@ public class Castillo extends Edificio
 		
 		ArmaDeAsedio unArmaDeAsedio = new ArmaDeAsedio(puntoRally,this.jugador);
 		this.armasDeAsedio.add(unArmaDeAsedio);
+		this.jugador.cobrarOro(arma.getCosto());
+		this.jugador.aumentarPoblacion(1);
+	}
+	
+	public void crearArmaDeAsedio(Mapa mapa) throws casilleroEstaOcupado, SuperaLimitePoblacional, NoHaySuficienteOro
+    {
+		if (this.jugador.obtenerPoblacion() == 50)
+			throw new SuperaLimitePoblacional();
+		
+		ArmaDeAsedio arma = new ArmaDeAsedio();
+		
+		if (this.getJugador().obtenerOro() < arma.getCosto())
+			throw new NoHaySuficienteOro();
+		
+		this.settearPuntoRally(mapa);
+		ArmaDeAsedio unArmaDeAsedio = new ArmaDeAsedio(puntoRally,this.jugador);
+		this.armasDeAsedio.add(unArmaDeAsedio);
+		this.jugador.cobrarOro(arma.getCosto());
+		this.jugador.aumentarPoblacion(1);
 	}
 	
 	@Override

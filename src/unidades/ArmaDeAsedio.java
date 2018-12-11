@@ -13,7 +13,7 @@ import mapa.Mapa;
 
 public class ArmaDeAsedio extends Militar {
 
-	private boolean montada;
+	public boolean montada;
 	public boolean enConstruccion;
 	
 	
