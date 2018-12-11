@@ -501,10 +501,9 @@ public class Bloque extends StackPane {
 						
 					});
 				});	
-			});
-				
+			});	
 		}
-		
+		}
 		else if (this.entidadActual instanceof Castillo) {
 			this.acciones = new ContextMenu();
 			ArmaDeAsedio auxiliar = new ArmaDeAsedio();
@@ -535,7 +534,7 @@ public class Bloque extends StackPane {
 				this.actualizarPantalla(ventana, juego, mapa, fila, columna, contenedor, width, height);
 			});
 		}
-		}}
+		}
 		else if (this.entidadActual instanceof ArmaDeAsedio) {
 			this.acciones = new ContextMenu();
 			ArmaDeAsedio auxiliar= (ArmaDeAsedio) this.entidadActual;
