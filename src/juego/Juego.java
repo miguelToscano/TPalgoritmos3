@@ -88,6 +88,10 @@ public class Juego
     public void terminarTurno() throws HayUnGanador {
     	this.gestor.finalizarTurno();
     }
+    
+    public Jugador obtenerGanador(){
+    	return (this.gestor.obtenerGanador());
+    }
 
     public Mapa getMapa()
     {
