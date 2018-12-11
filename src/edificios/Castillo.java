@@ -88,16 +88,17 @@ public class Castillo extends Edificio
 		// Obtener celdas circuncidantes
 		// Si la instancia almacenada en cada celda es una unidad, atacarla
 		
-		for (int i = this.obtenerEspacioOcupado().obtenerPrimerCasillero().getFila() - this.radioAtaque; i < this.radioAtaque + 4; i++) {
+		for (int i = this.obtenerEspacioOcupado().obtenerPrimerCasillero().getFila() - this.radioAtaque; i < this.obtenerEspacioOcupado().obtenerPrimerCasillero().getFila() + this.radioAtaque + 4; i++) {
 			
-			for (int j = this.obtenerEspacioOcupado().obtenerPrimerCasillero().getColumna() - this.radioAtaque; j < this.radioAtaque + 4; j++) {
+			for (int j = this.obtenerEspacioOcupado().obtenerPrimerCasillero().getColumna() - this.radioAtaque; j < this.obtenerEspacioOcupado().obtenerPrimerCasillero().getColumna() + this.radioAtaque + 4; j++) {
 				
 				if ((i >= 0 && i < this.mapa.obtenerTamanioFilas()) && (j >= 0 && j < this.mapa.obtenerTamanioColumnas())) {
-				
-					Entidad entidadActual = this.mapa.obtenerCasillero(i, j).obtenerElemento();
-						
-					if (entidadActual instanceof Unidad && entidadActual.obtenerJugador() != this.obtenerJugador()) {
-							
+			
+					Entidad entidadActual = this.mapa.obtenerElemento(i, j);
+					
+					if (entidadActual instanceof Unidad && entidadActual.obtenerJugador() != this.jugador) {
+						System.out.println("Pasa segunda condicion");
+						System.out.println("Ataca a unidad");
 						entidadActual.recibirDanio(this.danioAEntidades, 0);
 					}
 				}

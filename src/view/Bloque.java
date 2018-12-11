@@ -815,6 +815,10 @@ public class Bloque extends StackPane {
 				
 				entidad.ejecutarLogicaDeTurno();
 				
+				if (entidad instanceof Unidad && entidad.getVida() <= 0) {
+					((Unidad) entidad).casilleroOcupado.vaciar();
+				}
+				
 				entidadesYaEjecutadas.add(entidad);
 			}
 		}

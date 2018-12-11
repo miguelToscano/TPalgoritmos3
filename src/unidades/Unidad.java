@@ -15,7 +15,7 @@ import mapa.excepcionesMapa.casilleroEstaOcupado;
 public abstract class Unidad extends Entidad
 
 {
-    protected Casillero casilleroOcupado;
+    public Casillero casilleroOcupado;
 	private static int cantidad = 0;
 	protected Turno turno;
 	public boolean seMovio;
