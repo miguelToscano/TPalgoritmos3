@@ -6,6 +6,8 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.*;
@@ -23,6 +25,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import unidades.*;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import edificios.*;
@@ -33,11 +36,10 @@ import mapa.excepcionesMapa.cajaEstaOcupada;
 import mapa.excepcionesMapa.casilleroInvalido;
 import mapa.excepcionesMapa.tamanioDeMapaInvalido;
 
-
 public class ContenedorBackgroundTablero {
 
 	ArrayList<ImageView> imagenes;
-	
+	private MediaPlayer sonidoFondo;
 	public ContenedorBackgroundTablero(int width, int height) {
 		
 		this.imagenes = new ArrayList<ImageView>();
