@@ -2,7 +2,9 @@ package view;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
@@ -11,11 +13,12 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import unidades.*;
 
 import java.util.ArrayList;
-
+import java.util.Optional;
 
 import edificios.*;
 import juego.*;
@@ -314,7 +317,7 @@ public class Bloque extends StackPane {
 								aldeano.construirPlazaCentral(this.juego.getMapa().obtenerCasillero((int) x / 40, (int) y / 40), this.juego.getMapa(), this.entidadActual.obtenerJugador());
 							} catch (CajaNoEstaPegadaAAldeano | cajaEstaOcupada | casilleroInvalido
 									| PiezaDeshabilitadaEnTurno e1) {
-								// TODO Auto-generated catch block
+								this.manejadorExcepciones(e1);
 								e1.printStackTrace();
 							}
 						
@@ -453,7 +456,7 @@ public class Bloque extends StackPane {
 					
 					try {
 						unidadActual.atacar(objetivo);
-					} catch (FueraDeRango | UnidadAliada | NoEsElTurnoDelJugador | PiezaDeshabilitadaEnTurno e1) {
+					} catch (FueraDeRango | UnidadAliada | NoEsElTurnoDelJugador | PiezaDeshabilitadaEnTurno | NoEstaMontada e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
@@ -666,5 +669,28 @@ public class Bloque extends StackPane {
 		tableroActualizado.setPrefSize(width, height + 50);
 		
 		ventana.setScene(new Scene(tableroActualizado));
+	}
+	
+	public void manejadorExcepciones(Exception excepcion) {
+		
+		Alert notificador = new Alert(
+                Alert.AlertType.CONFIRMATION,
+                "Mensaje de error"
+        );
+		
+        Button salir = (Button) notificador.getDialogPane().lookupButton(
+                ButtonType.OK
+        );
+        salir.setText("Ok");
+        notificador.initModality(Modality.APPLICATION_MODAL);
+        notificador.initOwner(ventana);
+        notificador.setX(ventana.getX() + 500);
+        notificador.setY(ventana.getY() + 100);
+
+        Optional<ButtonType> closeResponse = notificador.showAndWait();
+        if (!ButtonType.OK.equals(closeResponse.get())) {
+            notificador.close();;
+        }
+
 	}
 }

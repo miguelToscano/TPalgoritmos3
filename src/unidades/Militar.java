@@ -1,6 +1,7 @@
 package unidades;
 import excepciones.FueraDeRango;
 import excepciones.NoEsElTurnoDelJugador;
+import excepciones.NoEstaMontada;
 import excepciones.PiezaDeshabilitadaEnTurno;
 import excepciones.UnidadAliada;
 import excepciones.SuperaLimitePoblacional;
@@ -37,7 +38,7 @@ public abstract class Militar extends Unidad
     
     public abstract void ejecutarLogicaDeTurno();
   
-    public abstract void atacar(Entidad objetivo) throws FueraDeRango, UnidadAliada, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno;
+    public abstract void atacar(Entidad objetivo) throws FueraDeRango, UnidadAliada, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno, NoEstaMontada;
     
     public boolean estaEnRango ( Entidad objetivo) {
     		
