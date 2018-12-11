@@ -46,7 +46,8 @@ public class Aldeano extends Unidad
 	public void ejecutarLogicaDeTurno() {
 		if (!this.trabajando)
 			this.jugador.sumarOro(25);
-		System.out.println("Soy un aldeano");
+		
+		this.seMovio = false;
 	}
 	
 	//Casillero

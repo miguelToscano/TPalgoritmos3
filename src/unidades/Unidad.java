@@ -18,7 +18,7 @@ public abstract class Unidad extends Entidad
     protected Casillero casilleroOcupado;
 	private static int cantidad = 0;
 	protected Turno turno;
-	
+	public boolean seMovio;
 
 	//Constructores
 	
@@ -26,6 +26,7 @@ public abstract class Unidad extends Entidad
     {
 	    this.turnosConstruccion = 1;
 	    this.cantidad++;
+	    this.seMovio = false;
 	}
 	
 	
@@ -37,6 +38,7 @@ public abstract class Unidad extends Entidad
     	this.turnosConstruccion = 1;
     	turno = new Turno();
     	this.cantidad++;
+    	this.seMovio = false;
 
      }
 	
@@ -48,7 +50,7 @@ public abstract class Unidad extends Entidad
 		this.ubicarEn(casillero);
 		this.turnosConstruccion = 1;
     	turno = new Turno();
-
+    	this.seMovio = false;
 		this.cantidad++;
 
      }
@@ -60,7 +62,7 @@ public abstract class Unidad extends Entidad
 		this.turnosConstruccion = 1;
 		this.jugador = jugador;
     	turno = new Turno();
-
+    	this.seMovio = false;
 		this.cantidad++;
 
      }
@@ -69,23 +71,16 @@ public abstract class Unidad extends Entidad
 		return this.casilleroOcupado;
 	}
 	
-	public void mover(Casillero casillero)throws MovimientoInvalido, casilleroEstaOcupado, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno {
+	public void mover(Casillero casillero)throws MovimientoInvalido, casilleroEstaOcupado, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno, DistanciaInvalida {
+	
 			
-			//this.jugador.assertTurno();
+//			this.jugador.assertTurno();
 			this.turno.assertDisponibilidad();
+			this.casilleroOcupado.assertDistancia(1,casillero);
+			if (casillero.estaOcupado()) throw new casilleroEstaOcupado();
 			this.casilleroOcupado.vaciar();
-			
-			try {
-				this.casilleroOcupado.assertDistancia(1,casillero);
-			}
-			catch (DistanciaInvalida e) {
-				throw new MovimientoInvalido ();
-			}
 			this.ubicarEn(casillero);
 			this.turno.finalizarAccion();
-			
-				
-	
 		
 	}
 	

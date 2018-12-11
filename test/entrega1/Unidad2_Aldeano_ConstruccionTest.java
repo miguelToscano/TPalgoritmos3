@@ -1,6 +1,5 @@
 package entrega1;
 
-import mapa.excepcionesMapa.tamanioDeMapaInvalido;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -81,7 +80,7 @@ public class Unidad2_Aldeano_ConstruccionTest {
 	    }
 	  
 	  @Test(expected = PiezaDeshabilitadaEnTurno.class)
-	    public void noPuedeMoveryConstruir() throws casilleroEstaOcupado, CajaNoEstaPegadaAAldeano, casilleroInvalido, cajaEstaOcupada, PiezaDeshabilitadaEnTurno, MovimientoInvalido, NoEsElTurnoDelJugador {
+	    public void noPuedeMoveryConstruir() throws casilleroEstaOcupado, CajaNoEstaPegadaAAldeano, casilleroInvalido, cajaEstaOcupada, PiezaDeshabilitadaEnTurno, MovimientoInvalido, NoEsElTurnoDelJugador, DistanciaInvalida {
 
 		  this.aldeano.construirPlazaCentral(this.unCasillero, this.mapa, this.jugador);
 		  this.aldeano.mover(this.otroCasillero);

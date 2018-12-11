@@ -56,6 +56,7 @@ public class ContenedorInformacionJuego {
 		pasarTurno.setOnAction(event -> {
 			try {
 				auxiliar.pasarTurno();
+				auxiliar.actualizarPantalla();
 			} catch (HayUnGanador e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

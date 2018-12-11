@@ -72,12 +72,12 @@ public class Castillo extends Edificio
 			
 			for (int j = this.obtenerEspacioOcupado().obtenerPrimerCasillero().getColumna() - this.radioAtaque; j < this.radioAtaque + 4; j++) {
 				
-				if ((i >= 0 && i <= 14) && (j >= 0 && j <= 14)) {
-					
+				if ((i >= 0 && i < this.mapa.obtenerTamanioFilas()) && (j >= 0 && j < this.mapa.obtenerTamanioColumnas())) {
+				
 					Entidad entidadActual = this.mapa.obtenerCasillero(i, j).obtenerElemento();
-					
-					if (entidadActual instanceof Unidad && entidadActual.obtenerJugador() != this.obtenerJugador()) {
 						
+					if (entidadActual instanceof Unidad && entidadActual.obtenerJugador() != this.obtenerJugador()) {
+							
 						entidadActual.recibirDanio(this.danioAEntidades, 0);
 					}
 				}

@@ -21,6 +21,7 @@ import edificios.*;
 import juego.*;
 import excepciones.*;
 import mapa.*;
+import mapa.excepcionesMapa.DistanciaInvalida;
 import mapa.excepcionesMapa.cajaEstaOcupada;
 import mapa.excepcionesMapa.casilleroEstaOcupado;
 import mapa.excepcionesMapa.casilleroInvalido;
@@ -257,6 +258,9 @@ public class Bloque extends StackPane {
 							| PiezaDeshabilitadaEnTurno e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
+					} catch (DistanciaInvalida e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 					this.actualizarPantalla(ventana, juego, mapa, fila, columna, contenedor, width, height);
 					this.mapa.setOnMouseClicked(event2 -> {
@@ -409,7 +413,7 @@ public class Bloque extends StackPane {
 					try {
 						unidadActual.mover(this.juego.getMapa().obtenerCasillero((int) xAux / 40, (int) yAux / 40));
 					} catch (MovimientoInvalido | casilleroEstaOcupado | NoEsElTurnoDelJugador
-							| PiezaDeshabilitadaEnTurno e1) {
+							| PiezaDeshabilitadaEnTurno | DistanciaInvalida e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
