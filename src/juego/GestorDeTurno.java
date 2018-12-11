@@ -59,6 +59,16 @@ public class GestorDeTurno {
 		
 		return this.numeroTurno;
 	}
+	
+	public Jugador obtenerGanador() {
+		Jugador ganador=null;
+		if (jugadorA.perdioLaPartida()) {
+			ganador=jugadorB;
+		} else if (jugadorB.perdioLaPartida()){
+			ganador=jugadorA;
+		}
+		return ganador;
+	}
 
 
 }
