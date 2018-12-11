@@ -58,7 +58,7 @@ public class ContenedorInformacionJuego {
 				auxiliar.pasarTurno();
 				auxiliar.actualizarPantalla();
 			} catch (HayUnGanador e) {
-				// TODO Auto-generated catch block
+				auxiliar.manejadorExcepciones(e);
 				e.printStackTrace();
 			}
 		});
