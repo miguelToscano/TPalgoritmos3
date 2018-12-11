@@ -929,7 +929,7 @@ public class Bloque extends StackPane {
 		HayUnGanador auxiliar = new HayUnGanador();
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("VICTORIA!");
-//		alert.setContentText("El ganador es: " + this.juego.obtenerGanador().obtenerNombre);
+		alert.setContentText("El ganador es: " + this.juego.obtenerGanador().obtenerNombre);
 		alert.setOnCloseRequest(event -> {
 			this.ventana.close();
 		});
