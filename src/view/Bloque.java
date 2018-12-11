@@ -73,9 +73,7 @@ public class Bloque extends StackPane {
 			else if (this.entidadActual instanceof PlazaCentral)
 				System.out.println("Plaza central");
 			
-			    if (this.juego.obtenerGestorDeTurno().obtenerJugadorActual() == this.entidadActual.obtenerJugador()) {
-			    	this.establecerAcciones(mapa, this);
-			    }
+				this.establecerAcciones(mapa, this);
 		});
 	}
 	
@@ -247,7 +245,7 @@ public class Bloque extends StackPane {
 	}
 	
 	private void establecerAcciones(Pane mapa, Bloque bloque) {
-		
+
 		if (this.entidadActual instanceof Aldeano) {
 			this.acciones = new ContextMenu();
 			MenuItem equipo = new MenuItem("Equipo: " + this.entidadActual.obtenerJugador().obtenerNombre());
@@ -262,7 +260,8 @@ public class Bloque extends StackPane {
 			this.acciones.setStyle("-fx-base: black");
 			acciones.getItems().addAll(equipo, vida, mover, construir, cancelar);
 			this.acciones.show(mapa, this.fila * 40 + 15, this.columna * 40 + 15);
-			
+
+			if (this.juego.obtenerGestorDeTurno().obtenerJugadorActual() == this.entidadActual.obtenerJugador()) {
 			mover.setOnAction(e -> {
 				this.mapa.setOnMouseClicked(event -> {
 					double x = event.getX();
@@ -401,7 +400,7 @@ public class Bloque extends StackPane {
 				});
 			});
 			
-			
+			}
 			
 		}
 		
@@ -423,6 +422,7 @@ public class Bloque extends StackPane {
 			this.acciones.getItems().add(cancelar);
 			this.acciones.show(mapa, this.fila * 40 + 15, this.columna * 40 + 15);
 			
+			if (this.juego.obtenerGestorDeTurno().obtenerJugadorActual() == this.entidadActual.obtenerJugador()) {
 			mover.setOnAction(e -> {
 				this.mapa.setOnMouseClicked(event -> {
 					double x = event.getX();
@@ -507,18 +507,19 @@ public class Bloque extends StackPane {
 		else if (this.entidadActual instanceof Castillo) {
 			this.acciones = new ContextMenu();
 			ArmaDeAsedio auxiliar = new ArmaDeAsedio();
-			MenuItem equipo = new MenuItem("Equipo: " + this.entidadActual.obtenerJugador().obtenerNombre());
-			MenuItem vida = new MenuItem("Vida: " + this.entidadActual.getVida());
+			MenuItem equipo1 = new MenuItem("Equipo: " + this.entidadActual.obtenerJugador().obtenerNombre());
+			MenuItem vida1 = new MenuItem("Vida: " + this.entidadActual.getVida());
 			MenuItem crearArmaDeAsedio = new MenuItem("Crear Arma de Asedio: " + auxiliar.getCosto() + " oro");
-			MenuItem cancelar = new MenuItem("Cancelar");
+			MenuItem cancelar1 = new MenuItem("Cancelar");
 			this.acciones.setAnchorX(this.fila);
 			this.acciones.setAnchorY(this.columna);
 			this.acciones.setX(this.fila);
 			this.acciones.setY(this.columna);
 			this.acciones.setStyle("-fx-base: black");
-			acciones.getItems().addAll(equipo, vida, crearArmaDeAsedio, cancelar);
+			acciones.getItems().addAll(equipo1, vida1, crearArmaDeAsedio, cancelar);
 			this.acciones.show(mapa, this.fila * 40 + 15, this.columna * 40 + 15);
 			
+			if (this.juego.obtenerGestorDeTurno().obtenerJugadorActual() == this.entidadActual.obtenerJugador()) {
 			crearArmaDeAsedio.setOnAction(event -> {
 				
 				Castillo castillo = (Castillo) this.entidadActual;
@@ -533,7 +534,7 @@ public class Bloque extends StackPane {
 				this.actualizarPantalla(ventana, juego, mapa, fila, columna, contenedor, width, height);
 			});
 		}
-		
+		}}
 		else if (this.entidadActual instanceof ArmaDeAsedio) {
 			this.acciones = new ContextMenu();
 			ArmaDeAsedio auxiliar= (ArmaDeAsedio) this.entidadActual;
@@ -545,7 +546,8 @@ public class Bloque extends StackPane {
 			this.acciones.setY(this.columna);
 			this.acciones.setStyle("-fx-base: black");
 			acciones.getItems().addAll(equipo, vida);
-			
+		
+			if (this.juego.obtenerGestorDeTurno().obtenerJugadorActual() == this.entidadActual.obtenerJugador()) {
 			if (auxiliar.montada == false) {
 				MenuItem mover = new MenuItem("Mover");
 				MenuItem montar = new MenuItem("Montar");
@@ -652,7 +654,7 @@ public class Bloque extends StackPane {
 			
 			this.acciones.show(mapa, this.fila * 40 + 15, this.columna * 40 + 15);
 		}
-		
+		}
 		else if (this.entidadActual instanceof PlazaCentral) {
 			this.acciones = new ContextMenu();
 			Aldeano auxiliarAldeano = new Aldeano();
@@ -667,7 +669,8 @@ public class Bloque extends StackPane {
 			this.acciones.setStyle("-fx-base: black");
 			acciones.getItems().addAll(equipo, vida, crearAldeano, cancelar);
 			this.acciones.show(mapa, this.fila * 40 + 15, this.columna * 40 + 15);
-			
+		
+			if (this.juego.obtenerGestorDeTurno().obtenerJugadorActual() == this.entidadActual.obtenerJugador()) {
 			crearAldeano.setOnAction(event1 -> {
 				
 				PlazaCentral plaza = (PlazaCentral) this.entidadActual;
@@ -682,7 +685,7 @@ public class Bloque extends StackPane {
 				this.actualizarPantalla(ventana, juego, mapa, fila, columna, contenedor, width, height);
 			});
 		}
-		
+		}
 		else if (this.entidadActual instanceof Cuartel) {
 			this.acciones = new ContextMenu();
 //			((Cuartel) this.entidadActual).setEstaConstruido(true);
@@ -702,7 +705,7 @@ public class Bloque extends StackPane {
 				acciones.getItems().addAll(equipo, vida, crearEspadachin, crearArquero, cancelar);
 			}
 			this.acciones.show(mapa, this.fila * 40 + 15, this.columna * 40 + 15);
-			
+			if (this.juego.obtenerGestorDeTurno().obtenerJugadorActual() == this.entidadActual.obtenerJugador()) {	
 			crearArquero.setOnAction(event1 -> {
 				
 				Cuartel cuartel = (Cuartel) this.entidadActual;
@@ -732,7 +735,7 @@ public class Bloque extends StackPane {
 			});
 		}
 		}
-	
+	}
 	
 	private void establecerUnidadActual(Entidad nuevaEntidad) {
 		this.entidadActual = nuevaEntidad;
