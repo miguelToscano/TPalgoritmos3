@@ -46,9 +46,20 @@ public class ContenedorBackgroundTablero {
 		backgroundTablero.setFitWidth(width);
 		backgroundTablero.setFitHeight(height);	
 		this.imagenes.add(backgroundTablero);
+		this.iniciarJuego();
 	}
 	
 	public ArrayList<ImageView> obtenerBackgroundTablero() {
 		return this.imagenes;
+	}
+		public void iniciarJuego() {
+		sonidoFondo = new MediaPlayer(new Media(new File("src/view/sonido/AgeMusic.mp3").toURI().toString()));
+//		sonidoFondo.setOnEndOfMedia(new Runnable() {
+//			public void run() {
+//				sonidoFondo.seek(Duration.ZERO);
+//			}
+//		});
+		sonidoFondo.play();
+		
 	}
 }
