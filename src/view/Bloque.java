@@ -267,9 +267,10 @@ public class Bloque extends StackPane {
 			
 			construir.setOnAction(event -> {
 				ContextMenu construibles = new ContextMenu();
-				
-				MenuItem construirPlazaCentral = new MenuItem("Plaza Central");
-				MenuItem construirCuartel = new MenuItem("Cuartel");
+				PlazaCentral auxiliarPlaza = new PlazaCentral();
+				Cuartel auxiliarCuartel = new Cuartel();
+				MenuItem construirPlazaCentral = new MenuItem("Plaza Central: " + auxiliarPlaza.getCosto() + " oro");
+				MenuItem construirCuartel = new MenuItem("Cuartel: " + auxiliarCuartel.getCosto() + " oro");
 				MenuItem cancelar2 = new MenuItem("Cancelar");
 				construibles.setAnchorX(this.fila);
 				construibles.setAnchorY(this.columna);
@@ -368,6 +369,7 @@ public class Bloque extends StackPane {
 		
 		else if (this.entidadActual instanceof Militar) {
 			this.acciones = new ContextMenu();
+			MenuItem equipo = new MenuItem("Equipo: " + this.entidadActual.obtenerJugador().obtenerNombre());
 			MenuItem vida = new MenuItem("Vida: " + this.entidadActual.getVida());
 			MenuItem mover = new MenuItem("Mover");
 			MenuItem atacar = new MenuItem("Atacar");
@@ -377,7 +379,7 @@ public class Bloque extends StackPane {
 			this.acciones.setX(this.fila);
 			this.acciones.setY(this.columna);
 			this.acciones.setStyle("-fx-base: black");
-			acciones.getItems().addAll(vida, mover, atacar, cancelar);
+			acciones.getItems().addAll(equipo, vida, mover, atacar, cancelar);
 			this.acciones.show(mapa, this.fila * 40 + 15, this.columna * 40 + 15);
 			
 			mover.setOnAction(e -> {
@@ -463,6 +465,7 @@ public class Bloque extends StackPane {
 		
 		else if (this.entidadActual instanceof Castillo) {
 			this.acciones = new ContextMenu();
+			MenuItem equipo = new MenuItem("Equipo: " + this.entidadActual.obtenerJugador().obtenerNombre());
 			MenuItem vida = new MenuItem("Vida: " + this.entidadActual.getVida());
 			MenuItem crearArmaDeAsedio = new MenuItem("Crear Arma de Asedio");
 			MenuItem cancelar = new MenuItem("Cancelar");
@@ -471,21 +474,23 @@ public class Bloque extends StackPane {
 			this.acciones.setX(this.fila);
 			this.acciones.setY(this.columna);
 			this.acciones.setStyle("-fx-base: black");
-			acciones.getItems().addAll(vida, crearArmaDeAsedio, cancelar);
+			acciones.getItems().addAll(equipo, vida, crearArmaDeAsedio, cancelar);
 			this.acciones.show(mapa, this.fila * 40 + 15, this.columna * 40 + 15);
 		}
 		
 		else if (this.entidadActual instanceof PlazaCentral) {
 			this.acciones = new ContextMenu();
+			Aldeano auxiliarAldeano = new Aldeano();
+			MenuItem equipo = new MenuItem("Equipo: " + this.entidadActual.obtenerJugador().obtenerNombre());
 			MenuItem vida = new MenuItem("Vida: " + this.entidadActual.getVida());
-			MenuItem crearAldeano = new MenuItem("Crear Aldeano");
+			MenuItem crearAldeano = new MenuItem("Crear Aldeano: " + auxiliarAldeano.getCosto() + " oro");
 			MenuItem cancelar = new MenuItem("Cancelar");
 			this.acciones.setAnchorX(this.fila);
 			this.acciones.setAnchorY(this.columna);
 			this.acciones.setX(this.fila);
 			this.acciones.setY(this.columna);
 			this.acciones.setStyle("-fx-base: black");
-			acciones.getItems().addAll(vida, crearAldeano, cancelar);
+			acciones.getItems().addAll(equipo, vida, crearAldeano, cancelar);
 			this.acciones.show(mapa, this.fila * 40 + 15, this.columna * 40 + 15);
 			
 			crearAldeano.setOnAction(event1 -> {
@@ -505,7 +510,8 @@ public class Bloque extends StackPane {
 		
 		else if (this.entidadActual instanceof Cuartel) {
 			this.acciones = new ContextMenu();
-			((Cuartel) this.entidadActual).setEstaConstruido(true);
+//			((Cuartel) this.entidadActual).setEstaConstruido(true);
+			MenuItem equipo = new MenuItem("Equipo: " + this.entidadActual.obtenerJugador().obtenerNombre());
 			MenuItem vida = new MenuItem("Vida: " + this.entidadActual.getVida());
 			MenuItem crearEspadachin = new MenuItem("Crear espadachin");
 			MenuItem crearArquero = new MenuItem("Crear arquero");
@@ -518,7 +524,7 @@ public class Bloque extends StackPane {
 			acciones.getItems().addAll(vida, cancelar);
 			if (((Cuartel) this.entidadActual).estaConstruido()) {
 				acciones.getItems().clear();
-				acciones.getItems().addAll(vida, crearEspadachin, crearArquero, cancelar);
+				acciones.getItems().addAll(equipo, vida, crearEspadachin, crearArquero, cancelar);
 			}
 			this.acciones.show(mapa, this.fila * 40 + 15, this.columna * 40 + 15);
 			
