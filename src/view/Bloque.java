@@ -73,7 +73,9 @@ public class Bloque extends StackPane {
 			else if (this.entidadActual instanceof PlazaCentral)
 				System.out.println("Plaza central");
 			
-				this.establecerAcciones(mapa, this);
+			    if (this.juego.obtenerGestorDeTurno().obtenerJugadorActual() == this.entidadActual.obtenerJugador()) {
+			    	this.establecerAcciones(mapa, this);
+			    }
 		});
 	}
 	
