@@ -77,24 +77,6 @@ public class MilitarTest {
 
 	}
 	
-	//turnos?
-	@Test
-	public void ArquerosVariosAtacanyMatanAldeano() throws UnidadAliada, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno, casilleroEstaOcupado,FueraDeRango, SuperaLimitePoblacional
-	{
-		Aldeano objetivo = new Aldeano(lista.get(0), jugadorEnemigo); // aldeano en 3 3;
-		Arquero arquero = new Arquero (lista.get(1) , jugador);
-		Arquero arqueroBis = new Arquero (lista.get(2),jugador);
-		arquero.atacar(objetivo);
-		arqueroBis.atacar(objetivo);
-		//jugador.habilitarPiezas();
-		arquero.habilitar();
-		arqueroBis.habilitar();
-		arqueroBis.atacar(objetivo);
-		arquero.atacar(objetivo);
-        Assert.assertEquals(objetivo.getVida(), 0);
-
-	}
-	
 	@Test(expected = FueraDeRango.class)
 	public void ArqueroFueraDeRangoLanzaExcepcion() throws UnidadAliada, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno, casilleroEstaOcupado,FueraDeRango, SuperaLimitePoblacional
 	{
