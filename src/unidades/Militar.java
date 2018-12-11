@@ -15,39 +15,29 @@ public abstract class Militar extends Unidad
 	protected int danioAEdificios;
 	protected int radioAtaque;
 
+	public boolean yaAtaco;
    // abstract void atacar();
     
     public Militar (int fila, int columna, Mapa mapa) throws casilleroEstaOcupado
-	{
+    {
 		super (fila, columna, mapa);
+		this.yaAtaco = false;
     }
 	
     public Militar (Casillero casillero, Jugador jugador ) throws casilleroEstaOcupado {
     	
     	super (casillero,jugador);
+    	this.yaAtaco = false;
     }
     
     public Militar() {
     	super();
+    	this.yaAtaco = false;
     }
     
     public abstract void ejecutarLogicaDeTurno();
-    
-    public void atacar (Entidad objetivo) throws FueraDeRango, UnidadAliada, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno
-    {
-    	// estos metodos lanzan la excepcion correspondiente, asi no esta lleno de ifs
-    	
-    	//this.jugador.assertTurno();  //es turno del jugador del cual es la nuidad
-		this.turno.assertDisponibilidad(); // la unidad no se movio anteriormente
-		this.assertUnidadEnemiga(objetivo); // la unidad objetivo a atacar no es aliada
-		
-    	if (! this.estaEnRango ( objetivo)) {
-    		 throw new FueraDeRango();
-    	}
-    	objetivo.recibirDanio(this.danioAUnidades,this.danioAEdificios);
-//    	this.turno.finalizarAccion();
-    }
-    
+  
+    public abstract void atacar(Entidad objetivo) throws FueraDeRango, UnidadAliada, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno;
     
     public boolean estaEnRango ( Entidad objetivo) {
     		

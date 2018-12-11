@@ -26,7 +26,7 @@ public class Castillo extends Edificio
 		super(lugarOcupado,mapa,jugador);
 		System.out.println("El super constructor esta bien");
 		this.mapa = mapa;
-		this.vidaCompleta= 1000;
+		this.vidaCompleta= 20;
 		this.vida= this.vidaCompleta;
 		this.construible = false;
 		this.velocidadReparacion = 15;
