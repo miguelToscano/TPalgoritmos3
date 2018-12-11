@@ -118,7 +118,13 @@ public class Bloque extends StackPane {
 			
 			else if (auxiliar.montada == true){
 				
-				String imagenPath = "armaDeAsedioMontada.jpg";			
+				String imagenPath = "armaDeAsedioMontada";
+				
+				if (this.entidadActual.obtenerJugador() == this.juego.obtenerJugador1())
+					imagenPath += "Jugador1.jpg";
+				else
+					imagenPath += "Jugador2.jpg";
+				
 				Image img = new Image(imagenPath);
 				bordes.setFill(new ImagePattern(img));
 				bordes.setWidth(40 * 1);
@@ -126,7 +132,13 @@ public class Bloque extends StackPane {
 			}
 			
 			else if (auxiliar.montada == false) {
-				String imagenPath = "armaDeAsedioNoMontada.jpg";			
+				String imagenPath = "armaDeAsedioNoMontada";
+				
+				if (this.entidadActual.obtenerJugador() == this.juego.obtenerJugador1())
+					imagenPath += "Jugador1.jpg";
+				else
+					imagenPath += "Jugador2.jpg";
+				
 				Image img = new Image(imagenPath);
 				bordes.setFill(new ImagePattern(img));
 				bordes.setWidth(40 * 1);
