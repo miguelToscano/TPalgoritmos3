@@ -1,6 +1,10 @@
 package unidades;
 
-import excepciones.superaLimitePoblacional;
+import excepciones.FueraDeRango;
+import excepciones.NoEsElTurnoDelJugador;
+import excepciones.PiezaDeshabilitadaEnTurno;
+import excepciones.SuperaLimitePoblacional;
+import excepciones.UnidadAliada;
 import juego.*;
 import mapa.Casillero;
 import mapa.Mapa;
@@ -19,7 +23,16 @@ public class Espadachin extends Militar {
         this.radioAtaque = 1;	
 }
 
-	public Espadachin (int fila, int columna, Mapa mapa, Jugador jugador) throws casilleroEstaOcupado, superaLimitePoblacional {
+	public Espadachin() {
+		super();
+		this.costo = 50;
+        this.vida = 100;
+        this.danioAUnidades = 25;
+        this.danioAEdificios = 15;
+        this.radioAtaque = 1;
+	}
+	
+	public Espadachin (int fila, int columna, Mapa mapa, Jugador jugador) throws casilleroEstaOcupado {
 		
 		super (fila, columna, mapa);
 		this.costo = 50;
@@ -28,10 +41,14 @@ public class Espadachin extends Militar {
         this.danioAEdificios = 15;
         this.radioAtaque = 1;
         this.jugador = jugador;
-        this.jugador.aumentarPoblacion(1);
 	}
 	
-	public Espadachin (Casillero casillero, Jugador jugador) throws casilleroEstaOcupado,superaLimitePoblacional
+	@Override
+	public void ejecutarLogicaDeTurno() {
+		System.out.println("Soy un espadachin");
+	}
+	
+	public Espadachin (Casillero casillero, Jugador jugador) throws casilleroEstaOcupado
 	{
 	
 		super (casillero,jugador);
@@ -40,13 +57,23 @@ public class Espadachin extends Militar {
         this.danioAUnidades = 25;
         this.danioAEdificios = 15;
         this.radioAtaque = 1;
-		
 }
-	
-	
-	
-	public void atacar() {
-		System.out.println("Ataca a una unidad o edificio");
+
+	public void atacar(Entidad objetivo) throws FueraDeRango, UnidadAliada, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno
+	{
+		if (this.yaAtaco == true) {
+			throw new PiezaDeshabilitadaEnTurno();
+		}
+		
+		this.assertUnidadEnemiga(objetivo);
+		
+		if (!this.estaEnRango(objetivo)) {
+			throw new FueraDeRango();
+		}
+		
+		objetivo.recibirDanio(this.danioAUnidades, this.danioAEdificios);
+		
+		this.yaAtaco = true;
 	}
 
 	

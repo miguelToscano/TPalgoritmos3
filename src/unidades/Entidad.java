@@ -18,11 +18,16 @@ public abstract class Entidad
         this.construible=true;//??
     }
 	 
+    public Jugador obtenerJugador() {
+    	return this.jugador;
+    }
+   
     public int getVida()
     {
 		return this.vida;
 	}
 	
+    
 	public int getCosto()
     {
 		return this.costo;
@@ -33,20 +38,16 @@ public abstract class Entidad
 		return this.turnosConstruccion;
 	}
  
-	public void recibirDanio(int danio) {
-		
-		this.vida = this.vida - danio;
-		if (vida <= 0 ) {
-			this.matar();
-		}
-	}
+	public abstract void recibirDanio(int danioUnidades, int danioEdificios) ;
 	
 	public void establecerJugador(Jugador jugador) {
 		
 		this.jugador = jugador;
 	}
 	
-	
+	public Jugador getJugador() {
+		return this.jugador;
+	}
 	
 	public boolean estaVivo ()
     {
@@ -56,4 +57,6 @@ public abstract class Entidad
 	public abstract boolean estaEnRango (int rango, Casillero casillero);
 
 	public abstract void ubicarEn(Mapeable mapeable) throws casilleroEstaOcupado, cajaEstaOcupada;
+
+	public abstract void ejecutarLogicaDeTurno();
  }

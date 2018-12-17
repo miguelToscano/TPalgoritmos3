@@ -1,17 +1,24 @@
 package unidades;
 
-import mapa.*;
-import excepciones.*;
-import juego.*;
-
+import excepciones.MovimientoInvalido;
+import excepciones.NoEsElTurnoDelJugador;
+import excepciones.PiezaDeshabilitadaEnTurno;
+import excepciones.SuperaLimitePoblacional;
+import juego.Jugador;
+import juego.Turno;
+import mapa.Casillero;
+import mapa.Mapa;
+import mapa.Mapeable;
+import mapa.excepcionesMapa.DistanciaInvalida;
 import mapa.excepcionesMapa.casilleroEstaOcupado;
 
 public abstract class Unidad extends Entidad
 
 {
-    protected Casillero casilleroOcupado;
+    public Casillero casilleroOcupado;
 	private static int cantidad = 0;
-	private boolean habilitada=false;
+	protected Turno turno;
+	public boolean seMovio;
 
 	//Constructores
 	
@@ -19,6 +26,7 @@ public abstract class Unidad extends Entidad
     {
 	    this.turnosConstruccion = 1;
 	    this.cantidad++;
+	    this.seMovio = false;
 	}
 	
 	
@@ -28,53 +36,70 @@ public abstract class Unidad extends Entidad
 		Casillero casillero = mapa.obtenerCasillero(fila, columna);
     	this.ubicarEn(casillero);
     	this.turnosConstruccion = 1;
+    	turno = new Turno();
     	this.cantidad++;
+    	this.seMovio = false;
 
      }
+	
+	public abstract void ejecutarLogicaDeTurno();
 	
 	
 	public Unidad (Casillero casillero)  throws casilleroEstaOcupado
     {
 		this.ubicarEn(casillero);
 		this.turnosConstruccion = 1;
+    	turno = new Turno();
+    	this.seMovio = false;
 		this.cantidad++;
 
      }
 	
 	//con casillero y jugador
-	public Unidad (Casillero casillero, Jugador jugador)  throws casilleroEstaOcupado,superaLimitePoblacional
+	public Unidad (Casillero casillero, Jugador jugador)  throws casilleroEstaOcupado
     {
 		this.ubicarEn(casillero);
 		this.turnosConstruccion = 1;
 		this.jugador = jugador;
-		this.jugador.aumentarPoblacion(1);
+    	turno = new Turno();
+    	this.seMovio = false;
 		this.cantidad++;
 
      }
 	
-	public void mover(Casillero casillero)throws casilleroEstaOcupado, NoEsElTurnoDelJugador, YaMovioEstaPieza {
-		if (jugador.esTuTurno()) {
-			if(this.habilitada) {
-				this.casilleroOcupado.vaciar();
-				//check distancias, movimiento posible
-				this.ubicarEn(casillero);
-				this.deshabilitar();
-			}else {
-				throw new YaMovioEstaPieza();
-			}
-		} else {
-			throw new NoEsElTurnoDelJugador();
-		}
+	public Casillero obtenerCasilleroOcupado() {
+		return this.casilleroOcupado;
+	}
+	
+	public void mover(Casillero casillero)throws MovimientoInvalido, casilleroEstaOcupado, NoEsElTurnoDelJugador, PiezaDeshabilitadaEnTurno, DistanciaInvalida {
+	
+			
+//			this.jugador.assertTurno();
+			this.turno.assertDisponibilidad();
+			this.casilleroOcupado.assertDistancia(1,casillero);
+			if (casillero.estaOcupado()) throw new casilleroEstaOcupado();
+			this.casilleroOcupado.vaciar();
+			this.ubicarEn(casillero);
+			this.turno.finalizarAccion();
+		
 	}
 	
 	public void habilitar() {
-		this.habilitada=true;
+		this.turno.habilitar();
 	}
+//	
+//	public void deshabilitar() {
+//		this.habilitada=false;
+//	}
 	
-	public void deshabilitar() {
-		this.habilitada=false;
+	public void recibirDanio( int danioUnidades, int danioEdificios)
+	{
+		this.vida = this.vida - danioUnidades;
+		if (!this.estaVivo()) {
+			this.vida = 0;
+			this.matar();
+		}
 	}
-	
 
 	public void ubicarEn(Mapeable mapeable) throws casilleroEstaOcupado
     {
@@ -85,6 +110,7 @@ public abstract class Unidad extends Entidad
         }
 		this.casilleroOcupado = casillero;
         casillero.cambiarContenido(this);
+        
     }
 	
 	public boolean estaEnRango (int rango, Casillero casillero) {
@@ -101,6 +127,10 @@ public abstract class Unidad extends Entidad
 		this.cantidad--;
 	}
 
+	
+	
+	
+	
 	/*public boolean puedoColocar(int fila, int columna,Mapa mapa) throws casilleroEstaOcupado
 	{
 		return mapa.puedoColocarUnidad(fila,columna);

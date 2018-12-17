@@ -5,7 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import edificios.PlazaCentral;
-import excepciones.superaLimitePoblacional;
+import excepciones.SuperaLimitePoblacional;
 import mapa.Caja;
 import mapa.Casillero;
 import mapa.Mapa;
@@ -34,7 +34,7 @@ public class JugadorTest {
     }
 
     @Test
-    public void agregarPlazaCentral() throws casilleroInvalido, cajaEstaOcupada, superaLimitePoblacional
+    public void agregarPlazaCentral() throws casilleroInvalido, cajaEstaOcupada, SuperaLimitePoblacional
     {
         Casillero casillero = mapa.obtenerCasillero(0,0);
         Caja caja = mapa.asignarCajaACasillero(casillero);

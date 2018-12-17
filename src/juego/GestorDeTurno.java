@@ -1,5 +1,7 @@
 package juego;
 
+import excepciones.HayUnGanador;
+
 public class GestorDeTurno {
 	
 	protected Jugador jugadorDeTurno;
@@ -8,19 +10,26 @@ public class GestorDeTurno {
 	private int numeroTurno;
 	
 	public GestorDeTurno(Jugador jugadorA, Jugador jugadorB, int turno) {
-		this.jugadorDeTurno=this.obtenerPrimerJugador();
+		
 		this.jugadorA=jugadorA;
 		this.jugadorB=jugadorB;
 		this.numeroTurno=turno;
+		this.jugadorDeTurno=this.obtenerPrimerJugador();
 	}
 	
-	public void finalizarTurno() {
+	public Jugador obtenerJugadorActual() {
+		return this.jugadorDeTurno;
+	}
+	
+	public void finalizarTurno() throws HayUnGanador {
 		
 		if (!this.hayUnGanador()) {
 			numeroTurno++;
 			jugadorDeTurno.deshabilitar();
 			jugadorDeTurno=this.obtenerJugadorSiguiente();
 			jugadorDeTurno.habilitar();
+		} else {
+			throw new HayUnGanador();
 		}
 	}
 	
@@ -41,13 +50,24 @@ public class GestorDeTurno {
 		}
 	}
 	
-	public boolean hayUnGanador() {
+	public boolean hayUnGanador()
+	{
 		return (jugadorA.perdioLaPartida() || jugadorB.perdioLaPartida());
 	}
 	
 	public int obtenerTurnoActual() {
 		
 		return this.numeroTurno;
+	}
+	
+	public Jugador obtenerGanador() {
+		Jugador ganador=null;
+		if (jugadorA.perdioLaPartida()) {
+			ganador=jugadorB;
+		} else if (jugadorB.perdioLaPartida()){
+			ganador=jugadorA;
+		}
+		return ganador;
 	}
 
 

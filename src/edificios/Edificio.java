@@ -2,11 +2,9 @@ package edificios;
 
 import juego.Jugador;
 import mapa.excepcionesMapa.cajaEstaOcupada;
-import mapa.excepcionesMapa.casilleroEstaOcupado;
 import mapa.excepcionesMapa.casilleroInvalido;
 import unidades.Entidad;
 import mapa.*;
-import excepciones.superaLimitePoblacional;
 
 import java.util.ArrayList;
 
@@ -16,7 +14,11 @@ public abstract class Edificio extends Entidad {
 	
 	protected Casillero puntoRally; // aca se crean las unidades
 
+	protected Casillero casilleroInicial;
+	
 	protected int velocidadReparacion;
+	
+	public int turnosConstruccion;
 	
 	protected boolean construido=false;
 
@@ -26,14 +28,25 @@ public abstract class Edificio extends Entidad {
         this.ubicarEn(lugarOcupado);
         this.settearPuntoRally(mapa);// ojo que para castillo puede estar en el medio
 	}
+	
+	public Edificio() {
+		
+		
+	}
 
 	public Edificio (Casillero casilleroInicial, Mapa mapa, Jugador jugador) throws casilleroInvalido, cajaEstaOcupada
 																					
     {
+		this.casilleroInicial = new Casillero();
+		this.casilleroInicial = casilleroInicial;
         this.jugador = jugador;
     	Caja caja = mapa.asignarCajaACasillero(casilleroInicial);
     	this.ubicarEn(caja);
     	this.settearPuntoRally(mapa);
+	}
+	
+	public Casillero obtenerCasilleroInicial() {
+		return this.casilleroInicial;
 	}
 	
 	public void settearPuntoRally (Mapa mapa)
@@ -46,7 +59,6 @@ public abstract class Edificio extends Entidad {
         {
             if(casillero.estaLibre())
                 this.puntoRally = casillero;
-
         } //AGREGAR EXCEPCION
 		//int puntoRallyFila = mapa.obtenerFilaInt(cajaOcupada.obtenerCasillero(0));
 		//int puntoRallyColumna = mapa.obtenerColumnaInt(cajaOcupada.obtenerCasillero(0))+2;
@@ -57,6 +69,9 @@ public abstract class Edificio extends Entidad {
 
 	}
 	
+	
+	public abstract void ejecutarLogicaDeTurno();	
+	
 	private Caja fijarCaja(Casillero casilleroInicial, Mapa mapa) throws casilleroInvalido
     {
 		return mapa.asignarCajaACasillero(casilleroInicial); // 4 para todos los edficios construibles
@@ -65,6 +80,8 @@ public abstract class Edificio extends Entidad {
 	public void reparar()
 	{
 		this.vida += this.velocidadReparacion;
+		if (this.vida > this.vidaCompleta)
+			vida = vidaCompleta;
 	}
 	public boolean reparacionCompleta()
 	{
@@ -84,14 +101,22 @@ public abstract class Edificio extends Entidad {
 		this.construido=true;
 	}
 	
+	public boolean estaConstruido() {
+		return this.construido;
+	}
+	
+	public void setEstaConstruido(boolean valor) {
+		this.construido = valor;
+	}
+	
 	public boolean estaEnRango (int rango, Casillero casillero)
 	{
 		for	(Casillero celda: this.cajaOcupada.getLista())
 		{
-			if	(Math.abs(celda.getFila() - casillero.getFila()) > rango  || Math.abs(celda.getColumna() - casillero.getColumna()) > rango )
-				return false;
+			if	(Math.abs(celda.getFila() - casillero.getFila()) <= rango  && Math.abs(celda.getColumna() - casillero.getColumna()) <= rango )
+				return true;
 		}
-		return true;
+		return false;
 	}
 
 	public void ubicarEn(Mapeable mapeable) throws cajaEstaOcupada
@@ -111,6 +136,14 @@ public abstract class Edificio extends Entidad {
 				
 	}
 	
+	public void recibirDanio( int danioUnidades, int danioEdificios)
+	{
+		this.vida = this.vida - danioEdificios;
+		if (!this.estaVivo()) {
+			this.vida = 0;
+			this.matar();
+		}
+	}
 
 	public boolean destruidoTotalmente() {
 		return (!this.estaVivo());		

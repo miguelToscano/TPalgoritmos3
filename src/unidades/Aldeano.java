@@ -2,7 +2,7 @@ package unidades;
 import edificios.Cuartel;
 import edificios.Edificio;
 import edificios.PlazaCentral;
-import excepciones.superaLimitePoblacional;
+import excepciones.*;
 import mapa.*;
 import mapa.excepcionesMapa.*;
 import juego.*;
@@ -18,6 +18,7 @@ public class Aldeano extends Unidad
     //Sin parametros
     public Aldeano()
     {
+    	super();
         this.costo = 25;
         this.trabajando = true;
         this.vida  =50;
@@ -32,14 +33,21 @@ public class Aldeano extends Unidad
 //		this.vida = 50;
 //	}
 
-	public Aldeano(int fila, int columna, Mapa mapa, Jugador jugador)throws casilleroEstaOcupado, superaLimitePoblacional
+	public Aldeano(int fila, int columna, Mapa mapa, Jugador jugador)throws casilleroEstaOcupado, SuperaLimitePoblacional
 	{
 		super(fila, columna, mapa);
 		this.costo = 25;
 		this.trabajando = false;
 		this.vida = 50;
 		this.jugador = jugador;
-		this.jugador.aumentarPoblacion(1);
+	}
+	
+	@Override
+	public void ejecutarLogicaDeTurno() {
+		if (!this.trabajando)
+			this.jugador.sumarOro(25);
+		
+		this.seMovio = false;
 	}
 	
 	//Casillero
@@ -52,19 +60,38 @@ public class Aldeano extends Unidad
 //	
 //	}
 	//Casillero y jugador
-	public Aldeano(Casillero casillero, Jugador jugador) throws casilleroEstaOcupado, superaLimitePoblacional
+	public Aldeano(Casillero casillero, Jugador jugador) throws casilleroEstaOcupado, SuperaLimitePoblacional
 	{
-			super(casillero);
+			super(casillero,jugador);
 			this.costo = 25;
 			this.trabajando = false;
 			this.vida = 50;
 			this.jugador = jugador;
-			this.jugador.aumentarPoblacion(1);
+			this.jugador.agregarAldeano(this);
 		
 	}
-	public void construirPlazaCentral(Caja caja, Mapa mapa,Jugador jugador) throws cajaEstaOcupada, superaLimitePoblacional
+	public void construirPlazaCentral(Casillero casillero, Mapa mapa,Jugador jugador) throws CajaNoEstaPegadaAAldeano, cajaEstaOcupada, casilleroInvalido, PiezaDeshabilitadaEnTurno
 
     {
+    	Caja caja = mapa.asignarCajaACasillero(casillero);
+    	boolean cajaPegadaAAldeano=false;
+    	for(int i=0;i<mapa.obtenerCasillerosCircundantes(caja).size();i++)
+		{
+			if(mapa.obtenerCasillerosCircundantes(caja).get(i).obtenerElemento()==this)
+			{
+				cajaPegadaAAldeano = true;
+			}
+		}
+		if(!cajaPegadaAAldeano)
+		{
+			throw new CajaNoEstaPegadaAAldeano();
+		}
+
+		PlazaCentral auxiliar = new PlazaCentral();
+		
+		this.jugador.cobrarOro(auxiliar.getCosto());
+		
+		this.turno.assertDisponibilidad();
 		turnosConstruyendo++;
 		trabajando=true;
 		
@@ -78,11 +105,31 @@ public class Aldeano extends Unidad
 			trabajando=false;
 			turnosConstruyendo=0;
 		}
+		this.turno.finalizarAccion();
 		
 	}
 	
-	public void construirCuartel(Caja caja, Mapa mapa,Jugador jugador) throws cajaEstaOcupada,superaLimitePoblacional
-    {
+	public void construirCuartel(Casillero casillero, Mapa mapa,Jugador jugador) throws casilleroInvalido, cajaEstaOcupada, CajaNoEstaPegadaAAldeano, PiezaDeshabilitadaEnTurno
+    {	
+    	Caja caja = mapa.asignarCajaACasillero(casillero);
+		boolean cajaPegadaAAldeano=false;
+		for(int i=0;i<mapa.obtenerCasillerosCircundantes(caja).size();i++)
+		{
+			if(mapa.obtenerCasillerosCircundantes(caja).get(i).obtenerElemento()==this)
+			{
+				cajaPegadaAAldeano = true;
+			}
+		}
+		if(!cajaPegadaAAldeano)
+		{
+			throw new CajaNoEstaPegadaAAldeano();
+		}
+
+		Cuartel auxiliar = new Cuartel();
+		
+		this.jugador.cobrarOro(auxiliar.getCosto());
+		
+		this.turno.assertDisponibilidad();
 		turnosConstruyendo++;
 		trabajando=true;
 		
@@ -97,8 +144,10 @@ public class Aldeano extends Unidad
 			trabajando=false;
 			turnosConstruyendo=0;
 		}
+		this.turno.finalizarAccion();
 		
 	}
+
 //	public void construirEdificio(Edificio edificio, Casillero casillero, Mapa mapa)
 //    {
 //		edificio = new Edificio()
