@@ -41,15 +41,6 @@ public class CastilloTest
         Assert.assertEquals(caja,castillo.obtenerEspacioOcupado());
     }
 
-
-    @Test(expected = casilleroEstaOcupado.class)
-    public void crearArmaDeAsedioLanzaExcepcionSiCasilleroEstaOcupado() throws casilleroEstaOcupado, SuperaLimitePoblacional, NoHaySuficienteOro
-    {
-        castillo.crearArmaDeAsedio();
-        castillo.crearArmaDeAsedio(); //como el arma de asedio no se movio la
-                                        // crea en el mismo lugar(puntoRally)
-    }
-
     @Test
     public void tieneArmaDeAsedio() throws casilleroEstaOcupado, SuperaLimitePoblacional, NoHaySuficienteOro
     {

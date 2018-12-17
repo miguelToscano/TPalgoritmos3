@@ -264,6 +264,7 @@ public class Bloque extends StackPane {
 			MenuItem equipo = new MenuItem("Equipo: " + this.entidadActual.obtenerJugador().obtenerNombre());
 			MenuItem vida = new MenuItem("Vida: " + this.entidadActual.getVida());
 			MenuItem mover = new MenuItem("Mover");
+			MenuItem reparar = new MenuItem("Reparar");
 			MenuItem construir = new MenuItem("Construir");
 			MenuItem cancelar = new MenuItem("Cancelar");
 			this.acciones.setAnchorX(this.fila);
@@ -305,6 +306,43 @@ public class Bloque extends StackPane {
 						this.manejadorExcepciones(e1);
 						e1.printStackTrace();
 					} catch (DistanciaInvalida e1) {
+						this.manejadorExcepciones(e1);
+						e1.printStackTrace();
+					}
+					this.actualizarPantalla(ventana, juego, mapa, fila, columna, contenedor, width, height);
+					this.mapa.setOnMouseClicked(event2 -> {
+						
+					});
+				});	
+			});
+
+			reparar.setOnAction(e -> {
+				this.mapa.setOnMouseClicked(event -> {
+					double x = event.getX();
+					double xAux = 0;
+					for (int i = 0; i < this.width / this.juego.getMapa().obtenerTamanioFilas(); i++) {
+						xAux = i * 40;
+						if (xAux > x) {
+							xAux = 40 * (i - 1);
+							break;
+						}
+					}
+					x = xAux;
+					double y = event.getY();
+					double yAux = 0;
+					for (int i = 0; i < this.height / this.juego.getMapa().obtenerTamanioColumnas(); i++) {
+						yAux = i * 40;
+						if (yAux > y) {
+							yAux = 40 * (i - 1);
+							break;
+						}
+					}
+					y = yAux;
+					Edificio edificioAReparar = (Edificio) this.juego.getMapa().obtenerCasillero((int) xAux / 40, (int) yAux / 40).obtenerElemento(); 
+					Aldeano aldeano =(Aldeano) bloque.obtenerEntidadActual();
+					try {
+						aldeano.repararEdificio(edificioAReparar);
+					} catch (Exception e1) {
 						this.manejadorExcepciones(e1);
 						e1.printStackTrace();
 					}
@@ -516,6 +554,7 @@ public class Bloque extends StackPane {
 			});	
 		}
 		}
+		
 		else if (this.entidadActual instanceof Castillo) {
 			this.acciones = new ContextMenu();
 			ArmaDeAsedio auxiliar = new ArmaDeAsedio();
@@ -817,6 +856,7 @@ public class Bloque extends StackPane {
 				
 				if (entidad instanceof Unidad && entidad.getVida() <= 0) {
 					((Unidad) entidad).casilleroOcupado.vaciar();
+					entidad.obtenerJugador().reducirPoblacion(1);
 				}
 				
 				entidadesYaEjecutadas.add(entidad);

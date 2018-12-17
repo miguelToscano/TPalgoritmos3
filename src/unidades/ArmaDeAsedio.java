@@ -25,7 +25,8 @@ public class ArmaDeAsedio extends Militar {
 		this.montada = false;
 		this.vida = 150;
 		this.radioAtaque = 5;
-		this.danioAEdificios = 75;	
+		this.danioAEdificios = 75;
+		this.costo = 75;
 }
 	
 	public void ejecutarLogicaDeTurno() {
@@ -35,7 +36,7 @@ public class ArmaDeAsedio extends Militar {
 			this.enConstruccion = false;
 			this.montada = true;
 		}
-		
+	
 		else if (this.enConstruccion == true && this.montada == true) {
 			this.enConstruccion = false;
 			this.montada = false;
@@ -55,6 +56,7 @@ public class ArmaDeAsedio extends Militar {
 		this.vida = 150;
 		this.radioAtaque = 5;
 		this.danioAEdificios = 75;
+		this.costo = 75;
 	}
 	
 	public void montar() {
@@ -79,6 +81,7 @@ public class ArmaDeAsedio extends Militar {
 		this.radioAtaque = 5;
 		this.danioAEdificios = 75;
 		this.jugador = jugador;
+		this.costo = 75;
 }
 
 	public ArmaDeAsedio (Casillero casillero, Jugador jugador) throws casilleroEstaOcupado, SuperaLimitePoblacional {
@@ -90,6 +93,7 @@ public class ArmaDeAsedio extends Militar {
 		this.vida = 150;
 		this.radioAtaque = 5;
 		this.danioAEdificios = 75;
+		this.costo = 75;
 }
 	
 	@Override

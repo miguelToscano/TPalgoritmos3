@@ -113,7 +113,7 @@ public abstract class Edificio extends Entidad {
 	{
 		for	(Casillero celda: this.cajaOcupada.getLista())
 		{
-			if	(Math.abs(celda.getFila() - casillero.getFila()) <= rango  || Math.abs(celda.getColumna() - casillero.getColumna()) <= rango )
+			if	(Math.abs(celda.getFila() - casillero.getFila()) <= rango  && Math.abs(celda.getColumna() - casillero.getColumna()) <= rango )
 				return true;
 		}
 		return false;

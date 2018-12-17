@@ -47,14 +47,6 @@ public class Edificios1_CreanUnidades {
         
         Assert.assertTrue(castillo.tieneArmaDeAsedio() == true);
     }
-	
-	@Test(expected = casilleroEstaOcupado.class)
-	    public void castilloCrearArmaDeAsedioLanzaExcepcionSiCasilleroEstaOcupado() throws casilleroEstaOcupado, SuperaLimitePoblacional, NoHaySuficienteOro
-	    {
-	        castillo.crearArmaDeAsedio();
-	        castillo.crearArmaDeAsedio(); //como el arma de asedio no se movio la
-	                                        // crea en el mismo lugar(puntoRally)
-	    }
 
     @Test
     public void plazaCreaAldeano() throws casilleroInvalido, casilleroEstaOcupado, cajaEstaOcupada,

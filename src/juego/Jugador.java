@@ -33,7 +33,7 @@ public class Jugador
     public Jugador() {
 
         this.oro = ORO_INICIAL;
-        this.poblacion = 0;
+        this.poblacion = 3;
         this.habilitado=false;
 
     }
@@ -170,7 +170,7 @@ public class Jugador
 
     	this.nombre = nombre;
         this.oro = ORO_INICIAL;
-        this.poblacion = 0;
+        this.poblacion = 3;
         this.habilitado=false;
     }
     
